@@ -7,7 +7,7 @@ import com.pinker.entity.Page;
 
 import java.util.List;
 
-public class FirendDaoImpl extends BaseDao<Friend> implements FriendDao {
+public class FriendDaoImpl extends BaseDao<Friend> implements FriendDao {
 
 
     /**
@@ -82,9 +82,24 @@ public class FirendDaoImpl extends BaseDao<Friend> implements FriendDao {
 
     }
 
+    /**
+     * 更改好友状态
+     * @param friend
+     * @param statue
+     * @return
+     */
     @Override
     public int updateFri(Friend friend, Integer statue) {
         String sql="update pk_friend set statue=? where userId=? and friendId=?";
         return this.update(sql,statue,friend.getUserId(),friend.getFriendId());
+    }
+
+    /**
+     * 按好友状态查询所有好友
+     */
+    @Override
+    public List<Friend> selectFriByIdAndStatue(Friend friend) {
+        String sql="select * from pk_friend where userId=? and statue=?";
+        return this.getListBean(sql,friend.getUserId(),friend.getStatue());
     }
 }

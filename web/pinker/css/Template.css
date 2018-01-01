@@ -129,7 +129,18 @@ font-weight: bold;
 }
 
 .head-img img{
-	display: none;
+
+	border-radius: 3px;
+}
+
+.head-username{
+	display: inline-block;
+	height: 50px;
+	line-height: 50px;
+	color: cornflowerblue;
+	position: relative;
+	top: -10px;
+	margin-right: 10px;
 }
 
 .template-main-body{

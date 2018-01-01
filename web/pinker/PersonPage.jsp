@@ -6,9 +6,8 @@
 		<meta charset="UTF-8">
 		<link rel="stylesheet" type="text/css" href="css/Template.css" />
 		<link rel="stylesheet" type="text/css" href="css/PersonPage.css" />
-		<script src="/pinker/js/jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
-		<script type="text/javascript" src="/pinker/js/personpage.js"></script>
-		<script type="text/javascript" src="js/personpage.js"></script>
+		<script src="../pinker/js/jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="../pinker/js/personpage.js"></script>
 		<script type="text/javascript" src="js/layer/layer.min.js"></script>
 		<script type="text/javascript" src="js/jquery-1.7.2.js"></script>
 		<title></title>
@@ -18,63 +17,16 @@
 	<body>
 		<!--模板容器-->
 		<div class="template-body">
-			<!--头部容器-->
-			<div class="template-header">
-				<div class="template-header-wrap">
-					<span class="template-logo">品客·</span>
-					<nav class="template-header-nav">
-						<a href="index.jsp" class="template-header-navItem isActive">首页</a>
-						<a href="topicList.jsp" class="template-header-navItem">发现</a>
-						<a href="topicList.jsp" class="template-header-navItem">话题</a>
-					</nav>
-					<!--搜索框-->
+			
+			<%@include file="/WEB-INF/include/head_info.jsp"%>
+			
 
-					<div class="template-search-bar">
-						<input type="text" name="" id="" value="" placeholder="你感兴趣的话题。。。" />
-
-					</div>
-					<div class="template-search-buttonWrap">
-						<input type="button" class="template-search-button" />
-					</div>
-					<!--右侧登录注册以及头像-->
-					<div class="right template-header-right">
-						<div class="template-loginRegist">
-							<a href="login.jsp">登录</a>
-							<a href="login.jsp">注册</a>
-						</div>
-
-						<div class="template-userInfo">
-							<div class="head-img">
-								<a href="PersonPage.jsp"><img src="img/default_head.png" height="40px" width="40px" /></a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
 
 			<!--模板结束-->
 			<div class="template-main-body">
 				<!--头像与背景显示-->
-				<div class="Card">
-					<div class="Card-showInfo">
-						<div class="shadow">
-							<div class="Card-headImg">
-								<a href="#"><img src="img/myHead.jpg" width="100px" height="100px" title="更换头像" /></a>
-							</div>
-						</div>
-						<div class="Card-nameAndIntro">
-							<div class="card-username">
-								<h3>隔壁老王</h3>
-							</div>
 
-							<div class="card-intro">
-								<span style="font-size: 13px;">你莫拽，我有你照片</span>
-							</div>
-						</div>
-					</div>
-
-				</div>
-
+				<%@include file="/WEB-INF/include/headimg_info.jsp"%>
 				<div class="template-body-left">
 					<!--在这里写左边-->
 					
@@ -294,16 +246,6 @@
 				</div>
 			</div>
 
-		</div>
-
-		<div class="head-img-box" >
-			<div class="img-box">
-				<img src="" id="yushow"/>
-				<button class="btn-uploading" onclick="uploadBtn();"><i class="icon-uploading"></i>上传图片</button>
-				<a class="shan" onclick="deleteImg();"><img src="/images/www.jpg">删除图片</a>
-			</div>
-			<input type="file" name="file" style="display:none;height: 200px;width: 200px;" onchange="previewImg(this);" id="upload" accept="image/*"/>
-			<input type="button" class="startUpLoadBtn" value="开始上传" >
 		</div>
 
 

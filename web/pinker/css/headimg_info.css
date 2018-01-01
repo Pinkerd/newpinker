@@ -1,0 +1,109 @@
+
+/**
+上传头像框
+ */
+.head-img-box{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(100,100,100,0.3);
+    top:0;
+    left:0;
+    display: none;
+}
+
+.img-box{
+    width: 400px;
+    height: 300px;
+    background: white;
+    position: absolute;
+    top:40%;
+    left:40%;
+}
+
+#yushow{
+    display: block;
+    height: 150px;
+    width: 150px;
+    border: 1px solid gray;
+    text-align: center;
+    line-height: 150px;
+    margin-top:30px;
+    margin-left: 125px;
+    background: rgba(100,100,100,0.5);
+}
+
+
+.btn-uploading{
+    display: inline-block;
+    height:30px;
+    width: 100px;
+    background: cadetblue;
+    color:white;
+    margin-top: 10px;
+    border:0;
+    margin-left: 120px;
+}
+
+.img-cancel{
+    display: inline-block;
+    height:30px;
+    width: 50px;
+    background: orangered;
+    color:white;
+    margin-top: 10px;
+    margin-left: 10px;
+    border:0;
+}
+
+.btn-uploading:hover,.img-cancel:hover,#yushow:hover{
+    cursor: pointer;
+}
+
+/**
+头像栏
+ */
+.Card{
+    height: 250px;
+    background: url(../img/111.jpg) 0px -700px;
+    position: relative;
+    box-shadow: 1px 1px 3px gray;
+    border-radius: 3px;
+}
+
+.Card-showInfo{
+    width: 300px;
+    position: absolute;
+    left: 380px;
+    top: 30px;
+}
+
+.shadow{
+    height: 110px;
+    width: 110px;
+    border-radius: 55px;
+    z-index: -10;
+    background: rgba(200,200,200,0.5);
+    margin: 0 auto;
+}
+.Card-headImg{
+    height: 100px;
+    width: 100px;
+    border-radius: 50px;
+    overflow: hidden;
+    position: relative;
+    top: 5px;
+    left: 5px;
+
+}
+
+
+
+.shadow:hover {
+    background: rgba(250,250,200,0.5);
+}
+
+.Card-nameAndIntro{
+    color:rgb(240,240,240);
+    text-align: center;
+}

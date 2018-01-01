@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.pinker.entity.pk_user" %><%--
   Created by IntelliJ IDEA.
   User: Administrator
   Date: 2017/12/25 0025
@@ -12,5 +12,13 @@
   </head>
   <body>
   $END$
+  <%
+    pk_user user=new pk_user();
+    user.setId(3);
+    user.setUsername("晕果");
+    request.getSession().setAttribute("user",user);
+  %>
+
+  <a href="OtherServlet?method=toOthersPage&userId=5">五号男嘉宾</a>
   </body>
 </html>

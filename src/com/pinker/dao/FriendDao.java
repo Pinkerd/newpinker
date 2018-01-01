@@ -47,6 +47,10 @@ public interface FriendDao {
      */
     int updateFri(Friend friend, Integer statue);
 
+    /**
+     * 按好友状态查询所有好友
+     */
+    List<Friend> selectFriByIdAndStatue(Friend friend);
 
 
 }

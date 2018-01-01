@@ -2,16 +2,18 @@ package com.pinker.service.Impl;
 
 import com.pinker.dao.FriendDao;
 import com.pinker.dao.UserDao;
-import com.pinker.dao.impl.FirendDaoImpl;
+import com.pinker.dao.impl.FriendDaoImpl;
 import com.pinker.dao.impl.UserDaoImpl;
 import com.pinker.entity.Friend;
 import com.pinker.entity.Page;
 import com.pinker.entity.pk_user;
 import com.pinker.service.FriendService;
 
-public class FiendServiceImpl implements FriendService {
+import java.util.List;
+
+public class FriendServiceImpl implements FriendService {
     UserDao userDao=new UserDaoImpl();
-    FriendDao friendDao=new FirendDaoImpl();
+    FriendDao friendDao=new FriendDaoImpl();
 
     /**
      * 填充用户，好友用户实体
@@ -71,7 +73,32 @@ public class FiendServiceImpl implements FriendService {
      */
     @Override
     public boolean friendRequest(Friend friend) {
-        return friendDao.insertFri(friend,1)!=0;
+        return friendDao.insertFri(friend,0)!=0;
+    }
+
+    /**
+     * 查询是否为好友关系（0：好友邀请 1：好友 2：无关系 ）
+     */
+    @Override
+    public int isFriend(Friend friend) {
+        this.swapFriend(friend);
+        Friend fri=friendDao.selectOneFri(friend);
+        if (fri != null) {
+            return fri.getStatue();
+        }else{
+            return 2;
+        }
+    }
+
+    /**
+     * 按好友状态查询所有好友
+     */
+    @Override
+    public List<Friend> getAllFriByUserIdAndStatue(int userId, int statue) {
+        Friend friend=new Friend();
+        friend.setFriendId(userId);
+        friend.setStatue(statue);
+        return friendDao.selectFriByIdAndStatue(friend);
     }
 
 }

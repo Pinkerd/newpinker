@@ -1,5 +1,6 @@
 package com.pinker.servlet;
 
+import com.pinker.entity.pk_user;
 import net.sf.json.JSONObject;
 import sun.misc.BASE64Decoder;
 
@@ -21,13 +22,19 @@ public class ImgServlet extends BaseServlet {
      */
     protected void headChange(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+
+
+        pk_user user= (pk_user) request.getSession().getAttribute("user");
+        int userId=user.getId();
+
+
         String filePath="E:\\site\\images";
-        uploadImg(request,response,filePath);
+        uploadImg(request,response,filePath,userId);
 
     }
 
 
-    public void uploadImg(HttpServletRequest request, HttpServletResponse response, String filePath){
+    public void uploadImg(HttpServletRequest request, HttpServletResponse response, String filePath,int userId){
 
         try {
             System.out.println("=================《《图片开始上传》》===================");
@@ -63,10 +70,11 @@ public class ImgServlet extends BaseServlet {
             imgName = URLDecoder.decode(imgName,"utf-8");//前面进行了两次编码，这里需要用解码器解码一次
             //String path = "/site/images"+File.separator+imgName;//Linux文件保存路径
 //            String path = "E:\\site\\images"+ File.separator+imgName;
-            String path = filePath+ File.separator+imgName;//Windows文件保存路径
-
+//            String path = filePath+ File.separator+imgName;//Windows文件保存路径
+            String path = filePath+ "\\"+userId+imgName.substring(imgName.lastIndexOf("."));
+            System.out.println(path);
             //File file = new File("/site/images");
-            File file = new File("E:\\site\\images");
+            File file = new File(filePath);
             if(!file.exists() && !file.isDirectory()){//如果文件夹不存在则创建
                 System.out.println("文件目录不存在，开始创建");
                 //file.mkdirs();//生成所有目录
