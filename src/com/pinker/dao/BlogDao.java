@@ -33,4 +33,9 @@ public interface BlogDao {
      */
     Page<Blog> findBlog(Page<Blog> page);
 
+    /**
+     *  查询用户博文
+     *
+     */
+  List<Blog> findUser(int userId);
 }
