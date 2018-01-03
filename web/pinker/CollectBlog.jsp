@@ -24,16 +24,6 @@
 
 	<body>
 
-	<%
-		BlogDaoService blog=new BlogDaoServiceImpl();
-		pk_user userMy = (pk_user) request.getSession().getAttribute("user");
-		Integer id = userMy.getId();
-
-		List<Blog> usersBlog = blog.findUser(id);
-		request.setAttribute("usersBlog",usersBlog);
-	%>
-
-
 		<!--模板容器-->
 		<div class="template-body">
 			<!--头部容器-->
@@ -66,10 +56,10 @@
 					<!--收藏的博文-->
 					<div class="left-attentionBlog">
 
-						<c:forEach items="${usersBlog}" var="blog">
+						<c:forEach items="${collectBlog}" var="collect">
 						<div class="blog-wrap">
 							<div class="blog-title-wrap">
-								<a href="/pinker/BlogServlet?method=selectblogOne&blogId=${blog.id}">${blog.title}</a>
+								<a href="/pinker/BlogServlet?method=selectblogOne&blogId=${collect.blogId}">${collect.blog.title}</a>
 							</div>
 							<div class="blog-info">
 								<span>${blog.publishtime}</span>·<span>16 个回答</span>·<span>55 个关注</span>
@@ -117,9 +107,7 @@
 							</div>
 
 							<div class="menu-attentionBlog">
-								<a href="CollectionBlogServlet">
 								<li>收藏的博文</li>
-								</a>
 							</div>
 
 							<div class="menu-myTopic">

@@ -32,7 +32,7 @@ public class CollectionBlogDaoImpl extends BaseDao<CollectionBlog> implements Co
 
     @Override
     public List<CollectionBlog> findAllByUerId(int userId) {
-        String sql="select * from pk_blog where userId=?";
+        String sql="select * from pk_collectionblog where userId=?";
         return this.getListBean(sql,userId);
     }
 }

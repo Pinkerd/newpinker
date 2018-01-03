@@ -2,6 +2,7 @@
 <%@ page import="com.pinker.service.serviceimpl.TopicServiceImpl" %>
 <%@ page import="com.pinker.entity.pk_topic" %>
 <%@ page import="java.util.List" %>
+<%@ page import="com.pinker.entity.pk_user" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -20,8 +21,12 @@
 	</head>
 <%
 	TopicService top=new TopicServiceImpl();
-	List<pk_topic> list = top.selectAll();
-	request.setAttribute("list",list);
+	pk_user TopMy = (pk_user) request.getSession().getAttribute("user");
+	System.out.println(TopMy);
+	Integer id = TopMy.getId();
+	List<pk_topic> userTopic = top.findByUserId(id);
+	System.out.println(userTopic);
+	request.setAttribute("userTopic",userTopic);
 %>
 	<body>
 		<!--模板容器-->
@@ -101,7 +106,7 @@
 					<!--关注的话题-->
 
 					<div class="left-attentionTopic">
-						<c:forEach items="${list}" var="topic">
+						<c:forEach items="${userTopic}" var="topic">
 							<div class="topic-wrap">
 								<div class="topic-img">
 									<img src="${topic.titleimg}" width="60px" height="60px" />
@@ -317,7 +322,7 @@
 
 					</div>
 
-				</div>
+				 </div>
 
 				<div class="template-body-right">
 					<!--在这里写右边-->

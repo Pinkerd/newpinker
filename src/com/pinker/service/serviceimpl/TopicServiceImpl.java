@@ -110,8 +110,9 @@ public class TopicServiceImpl  implements TopicService {
      * 按id查询
      */
     @Override
-    public pk_topic findByUserId(Integer userId) {
-        return tdi.findByUserId(userId);
+    public List<pk_topic> findByUserId(Integer userId) {
+        List<pk_topic> list = tdi.findByUserId(userId);
+        return list;
     }
 
 

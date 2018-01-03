@@ -54,6 +54,10 @@ public interface TopicService {
       */
      Page<pk_topic> findTopic(Page<pk_topic> page);
 
-
-     pk_topic findByUserId(Integer userId);
+     /**
+      * 按照用户id查询
+      * @param userId
+      * @return
+      */
+     List<pk_topic> findByUserId(Integer userId);
 }
