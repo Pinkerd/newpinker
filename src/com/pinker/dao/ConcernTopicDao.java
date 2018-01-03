@@ -9,36 +9,22 @@ public interface ConcernTopicDao {
 
     /**
      * 查询一个话题收藏
-     * @param userId
-     * @return
      */
-    ConcernTopic findConcernTopicByUserId(int userId);
-
-    /**
-     * 查询所有话题收藏
-     * @return
-     */
-    List<ConcernTopic> getAllConcernTopic();
-
-    /**
-     * 按时间查询一个话题收藏
-     * @param concernTime
-     * @return
-     */
-    ConcernTopic  findConcernTopicByConcernTime(Date concernTime);
+    ConcernTopic findConcernTopicByUserIdAndTopicId(int userId,int topicId);
 
     /**
      * 增加一个话题收藏
-     * @param concernTopic
-     * @return
      */
     int saveConcernTopic(ConcernTopic concernTopic);
 
     /**
      * 删除一个话题收藏
-     * @param userId
-     * @return
      */
-    int  deleteConcernTopicByUserId(int userId);
+    int  deleteConcernTopicByUserId(int userId,int topicId);
 
+
+    /**
+     *查询该用户所有话题收藏
+     */
+    List<ConcernTopic> findAllByUserId(int userId);
 }

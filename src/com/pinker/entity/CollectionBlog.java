@@ -11,7 +11,31 @@ public class CollectionBlog {
     //用户Id
     private int userId;
     //收藏博文时间
+
+    public Blog getBlog() {
+        return blog;
+    }
+
+    public void setBlog(Blog blog) {
+        this.blog = blog;
+    }
+
+    public pk_user getUser() {
+        return user;
+    }
+
+    public void setUser(pk_user user) {
+        this.user = user;
+    }
+
     private Date collecttime;
+
+    /**
+     * 存放用户，博文内容的对象
+     */
+    Blog blog= new Blog();
+    pk_user user= new pk_user();
+
 
     public CollectionBlog(int blogId) {
         this.blogId = blogId;

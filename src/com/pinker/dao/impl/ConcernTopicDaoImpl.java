@@ -8,33 +8,43 @@ import java.util.Date;
 import java.util.List;
 
 public class ConcernTopicDaoImpl extends BaseDao<ConcernTopic> implements ConcernTopicDao {
+
+    /**
+     * 查询一个话题收藏
+     */
     @Override
-    public ConcernTopic findConcernTopicByUserId(int userId) {
-        String sql = "select userId, topicId, concerntime from pk_concerntopic where userId=?";
-        return this.getBean(sql, userId);
+    public ConcernTopic findConcernTopicByUserIdAndTopicId(int userId, int topicId) {
+        String sql="select * from pk_concerntopic where userId=? and topicId=?";
+        return this.getBean(sql,userId,topicId);
     }
 
-    @Override
-    public List<ConcernTopic> getAllConcernTopic() {
-        String sql = "select userId, topicId, concernTime from pk_concerntopic";
-        return this.getListBean(sql);
-    }
-
-    @Override
-    public ConcernTopic findConcernTopicByConcernTime(Date concernTime) {
-        String sql = "select userId, topicId, concerntime from pk_concerntopic where concerntime=?";
-        return this.getBean(sql, concernTime);
-    }
-
+    /**
+     * 增加一个话题收藏
+     */
     @Override
     public int saveConcernTopic(ConcernTopic concernTopic) {
         String sql = "insert into pk_concerntopic(userId, topicId, concerntime) values(?,?,?)";
         return this.update(sql, concernTopic.getUesrId(), concernTopic.getTopicId(), concernTopic.getConcernTime());
     }
 
+    /**
+     * 删除一个话题收藏
+     */
     @Override
-    public int deleteConcernTopicByUserId(int userId) {
-        String sql = "delete from pk_concerntopic where userId=?";
-        return this.update(sql, userId);
+    public int deleteConcernTopicByUserId(int userId, int topicId) {
+        String sql= "delete from pk_concerntopic where userId=? and topicId=?";
+        return this.update(sql,userId,topicId);
     }
+
+
+    /**
+     *查询该用户所有话题收藏
+     */
+    @Override
+    public List<ConcernTopic> findAllByUserId(int userId) {
+        String sql="select * from pk_concerntopic where userId=?";
+        return this.getListBean(sql,userId);
+    }
+
+
 }
