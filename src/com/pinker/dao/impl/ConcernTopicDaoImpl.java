@@ -7,6 +7,7 @@ import com.pinker.entity.ConcernTopic;
 import java.util.Date;
 import java.util.List;
 
+//修改版
 public class ConcernTopicDaoImpl extends BaseDao<ConcernTopic> implements ConcernTopicDao {
 
     /**
@@ -24,7 +25,7 @@ public class ConcernTopicDaoImpl extends BaseDao<ConcernTopic> implements Concer
     @Override
     public int saveConcernTopic(ConcernTopic concernTopic) {
         String sql = "insert into pk_concerntopic(userId, topicId, concerntime) values(?,?,?)";
-        return this.update(sql, concernTopic.getUesrId(), concernTopic.getTopicId(), concernTopic.getConcernTime());
+        return this.update(sql, concernTopic.getUesrId(), concernTopic.getTopicId(), new Date());
     }
 
     /**

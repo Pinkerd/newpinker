@@ -10,6 +10,7 @@ import java.util.List;
 
 public class CollectionBlogDaoImpl extends BaseDao<CollectionBlog> implements CollectionBlogDao {
 
+    //修改版
 
     @Override
     public CollectionBlog findCollectionBlogByUserIdAndBlogId(int userId, int blogId) {

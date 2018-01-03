@@ -1,6 +1,7 @@
 package com.pinker.service.Impl;
 
-import com.pinker.dao.BaseDao;
+
+//修改版
 import com.pinker.dao.ConcernTopicDao;
 import com.pinker.dao.TopicDao;
 import com.pinker.dao.UserDao;
@@ -12,7 +13,6 @@ import com.pinker.entity.pk_topic;
 import com.pinker.entity.pk_user;
 import com.pinker.service.ConcernTopicService;
 
-import java.util.Date;
 import java.util.List;
 
 public class ConcernTopicServiceImpl  implements ConcernTopicService {

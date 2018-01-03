@@ -1,6 +1,5 @@
 package com.pinker.service.Impl;
-
-import com.pinker.dao.BaseDao;
+//修改版
 import com.pinker.dao.BlogDao;
 import com.pinker.dao.CollectionBlogDao;
 import com.pinker.dao.UserDao;

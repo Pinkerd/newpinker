@@ -6,6 +6,7 @@ import com.pinker.entity.CollectionBlog;
 import java.util.Date;
 import java.util.List;
 
+//修改版
 public interface CollectionBlogDao {
 
 
