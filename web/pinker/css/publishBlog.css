@@ -1,0 +1,103 @@
+*{
+	margin: 0;
+	padding: 0;
+	font-family:consola;
+}
+
+#publisBlog-box{
+	max-width: 700px;
+	min-width: 700px;
+	height: 100%;
+	margin: 10px auto;
+}
+
+#blog-textdiv{
+	border: 1px solid gray;
+	min-height: 400px;
+	width: 660px;
+	border-radius: 10px;
+	outline: 0;
+	padding: 20px;
+	font-size: 19px;
+	line-height: 30px;
+	
+}
+
+#blog-textdiv div{
+	margin-top: 5px;
+}
+
+#publishBlog-tool{
+	margin: 10px 0px;
+		border-top:1px solid gray ;
+	border-bottom:1px solid gray ;
+}
+
+#publishBlog-tool button{
+	display: inline-block;
+	height: 35px;
+	width: 35px;
+	font-size: 27px;
+	border: 0;
+	color: rgb(100,100,100);
+	background: white;
+	outline: 0;
+
+}
+
+
+
+#publishBlog-tool button:hover{
+	cursor: pointer;
+	background: rgb(230,230,230);
+	border: 1px solid rgb(200,200,200);
+}
+
+.publishBlog-bold{
+	font-weight: bold;
+}
+
+.publishBlog-italic{
+	font-style: italic;
+}
+
+
+#blog-titlebox{
+	font-size: 27px;
+	font-weight: bold;
+	
+}
+.blogTitle-input{
+	display: inline-block;
+	width: 500px;
+	height:30px ;
+	font-size: 25px;
+	border: 0;
+	outline: 0;
+}
+
+#publishandsetting{
+	margin-top: 30px;
+	
+}
+
+#publishBlogBtn{
+	display: block;
+	height: 35px;
+	width: 100px;
+	color: white;
+	background: cornflowerblue;
+	border: 0;
+	border-radius: 5px;
+	float: right;
+}
+
+#publishBlogBtn:hover{
+	cursor: pointer;
+}
+
+#blog-textdiv{
+	
+	text-indent: 1em;
+}
+
