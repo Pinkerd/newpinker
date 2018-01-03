@@ -34,6 +34,11 @@ public class CollectionBlogServiceImpl implements CollectionBlogService {
 
     }
 
+    /**
+     * 查询一个blog收藏的方法
+     * @param userId
+     * @return
+     */
     @Override
     public CollectionBlog findCollectionBlogByUserIdAndBlogId(int userId, int blogId) {
         String sql="select * from pk_collectionblog where userId=? and blogId=?";
@@ -42,6 +47,11 @@ public class CollectionBlogServiceImpl implements CollectionBlogService {
         return collectionBlog;
     }
 
+    /**
+     * 增加一个blog收藏的方法
+     * @param collectionBlog
+     * @return
+     */
     @Override
     public int saveCollectionBlog(CollectionBlog collectionBlog) {
         return collectionBlogDao.saveCollectionBlog(collectionBlog);
@@ -49,11 +59,19 @@ public class CollectionBlogServiceImpl implements CollectionBlogService {
     }
 
 
+    /**
+     * 删除一个blog收藏的方法
+     * @param userId
+     * @return
+     */
     @Override
     public int deleteCollectionBlogByUserId(int userId, int blogId) {
         return collectionBlogDao.deleteCollectionBlogByUserId(userId,blogId);
     }
 
+    /**
+     * 查询该用户所有收藏博客方法
+     */
     @Override
     public List<CollectionBlog> findAllByUserId(int userId) {
         List<CollectionBlog> list=collectionBlogDao.findAllByUerId(userId);
