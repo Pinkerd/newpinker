@@ -1,6 +1,7 @@
 package com.pinker.service.serviceimpl;
 
 
+import com.pinker.dao.TopicDao;
 import com.pinker.dao.UserDao;
 import com.pinker.dao.impl.TopicDaoImpl;
 import com.pinker.dao.impl.UserDaoImpl;
@@ -15,7 +16,7 @@ import java.util.List;
  * 话题服务实现
  */
 public class TopicServiceImpl  implements TopicService {
-    TopicDaoImpl tdi = new TopicDaoImpl();
+    TopicDao tdi = new TopicDaoImpl();
     UserDao userDao=new UserDaoImpl();
 
 
@@ -104,4 +105,15 @@ public class TopicServiceImpl  implements TopicService {
         }
         return page;
     }
+
+    /**
+     * 按id查询
+     */
+    @Override
+    public pk_topic findByUserId(Integer userId) {
+        return tdi.findByUserId(userId);
+    }
+
+
+
 }

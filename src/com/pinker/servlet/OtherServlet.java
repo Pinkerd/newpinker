@@ -4,6 +4,8 @@ import com.pinker.entity.Friend;
 import com.pinker.entity.pk_user;
 import com.pinker.service.FriendService;
 import com.pinker.service.Impl.FriendServiceImpl;
+import com.pinker.service.Impl.UserServiceImpl;
+import com.pinker.service.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,6 +17,7 @@ import java.io.PrintWriter;
 
 @WebServlet(name = "OtherServlet",urlPatterns = {"/OtherServlet"})
 public class OtherServlet extends BaseServlet {
+    UserService userService= new UserServiceImpl();
     /**
      * 跳转到他人主页
      * @param request
@@ -26,6 +29,7 @@ public class OtherServlet extends BaseServlet {
         int userId=Integer.parseInt(request.getParameter("userId"));
         pk_user user=new pk_user();
         user.setId(userId);
+        user=userService.findByUserId(userId);
         request.setAttribute("other",user);
         request.getRequestDispatcher("pinker/othersPage.jsp").forward(request,response);
 

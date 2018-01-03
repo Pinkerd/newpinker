@@ -74,7 +74,7 @@
         <td>操作</td>
     </tr>
 
-    <c:forEach items="${page.date}" var="user">
+    <c:forEach  items="${page.data}" var="user">
         <tr>
             <td>${user.id}</td>
             <td>${user.loginName}</td>
@@ -115,11 +115,11 @@
     <a href="http://localhost:8080/pinker/UsersServlet?method=findUser&pageNumber=${page.pageNumber+1}"  class="endpage">下一页</a>
     <a href="http://localhost:8080/pinker/UsersServlet?method=findUser&pageNumber=${page.totalPage}"  class="endpage">末页</a>
     共${page.totalPage}页，${page.totalRecord}条记录 到第
-    <input value="${page.pageNumber}" name="pn" id="pn_input"/>页
+    <input value="${page.pageNumber}" name="pn" id="pn_input" style="width: 30px;height: 20px"/>页
     <input type="button" value="确定" id="jump" name="jump">
 </div>
 
-<script type="text/javascript"  src="../pinker/js/jquery-1.7.2.js"></script>
+<script type="text/javascript"  src="pinker/js/jquery-1.7.2.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
 

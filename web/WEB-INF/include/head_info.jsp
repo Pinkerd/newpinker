@@ -1,3 +1,8 @@
+<%@ page import="com.pinker.entity.Friend" %>
+<%@ page import="com.pinker.service.FriendService" %>
+<%@ page import="com.pinker.service.Impl.FriendServiceImpl" %>
+<%@ page import="com.pinker.entity.pk_user" %>
+<%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
@@ -37,21 +42,42 @@
                                 <img src="http://localhost:8080/pinker/IOServlet?method=loadHeadImg" height="40px" width="40px" />
                             </a>
                         </div>
-                        
-                        <c:if test="FriendServlet?method=haveFriendReq&userId=${user.id}">
+                            <input type="hidden" value="${user.id}" id="userId">
+                            <%--好友请求框--%>
                             <div class="friendRequest">
-                                <img src="pinker/img/朋友.png" height="30px" width="30px" >
+
+                                <%
+                                    pk_user user=(pk_user) request.getSession().getAttribute("user");
+
+                                        FriendService friendService=new FriendServiceImpl();
+                                        List<Friend> friList=friendService.getAllFriByUserIdAndStatue(user.getId(),0);
+                                        request.setAttribute("friList",friList);
+
+                                    List<Friend> trueFri=friendService.getAllFriByUserIdAndStatue(user.getId(),1);
+                                        request.setAttribute("trueFri",trueFri);
+                                %>
+                                <%--<img src="pinker/img/朋友.png" height="30px" width="30px" >--%>
+                                <div class="friendRequestwrap-box">
+                                    <table class="friendRequestwrap-table">
+                                        <c:forEach items="${friList}" var="fri">
+                                            <tr>
+                                                  <td>  ${fri.friend.username}</td>
+                                                <td>    <button onclick="receive(${fri.friend.id},$(this))">接受</button></td>
+                                            </tr>
+                                        </c:forEach>
+                                    </table>
+
+                                </div>
                             </div>
-                        </c:if>
-                        
+
 
                     </div>
                 </c:when>
 
                 <c:otherwise>
                     <div class="template-loginRegist">
-                        <a href="login.jsp">登录</a>
-                        <a href="login.jsp">注册</a>
+                        <a href="pinker/login.jsp">登录</a>
+                        <%--<a href="pinker/login.jsp">注册</a>--%>
                     </div>
                 </c:otherwise>
             </c:choose>

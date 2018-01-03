@@ -1,31 +1,28 @@
-﻿﻿
-/*顶部论题*/
+﻿/*顶部论题*/
 .page_top{
 	margin-top: 50px;
-	height: 208.35px;
-	/*width: 1498.89px;*/
-	    background: white;
-	/*border: 1px solid black;*/
+	height: 208px;
+    background: white;
 }
+
+
+
 .page_topHeader{
 	padding: 16px;
-	height: 208.35px;
+	height: 208px;
 	margin: 0 auto;
-	/*width: 1498.89px;*/
-	/*border: 1px solid black;*/
 }
+
 .page_topcontent{
 	height: 135.052px;
-	/*width: 1031.98px;*/
 	padding: 16px;
 	margin: 0 auto;
-	/*border: 1px solid black;*/
 }
+
 .page-border{
 	width: 1032px;
 	height: 135px;
 	margin: 0 auto;
-	/*border: 1px solid black;*/
 }
 
 .page_topcontentmain{
@@ -33,13 +30,11 @@
 	height: 135px;
 	display: inline-block;
 	margin: 0 auto;
-	/*border: 1px solid black;*/
 }
 .page_topcontenttags{
-	/*width: 667.049px;*/
 	height: 37.951px;
-	/*border: 1px solid black;*/
 }
+
 /*相关的论题*/
 .page_topcontenttags .page_topcontentTopics{
 	margin: 3px 5px 3px 0;

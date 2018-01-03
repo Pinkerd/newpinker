@@ -44,7 +44,9 @@ public class Friend {
                 "userId=" + userId +
                 ", friendId=" + friendId +
                 ", remark='" + remark + '\'' +
-                ", statue=" + statue+'\''+
+                ", statue=" + statue +
+                ", user=" + user +
+                ", friend=" + friend +
                 '}';
     }
 

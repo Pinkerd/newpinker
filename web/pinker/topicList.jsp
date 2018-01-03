@@ -1,16 +1,26 @@
+
+<%@ page import="java.util.List" %>
+<%@ page import="com.pinker.service.TopicService" %>
+<%@ page import="com.pinker.entity.pk_topic" %>
+<%@ page import="com.pinker.service.serviceimpl.TopicServiceImpl" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@include file="/WEB-INF/include/base_info.jsp" %>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<link rel="stylesheet" type="text/css" href="css/Template.css"/>
-		<link rel="stylesheet" type="text/css" href="css/topicList.css"/>
+		<link rel="stylesheet" type="text/css" href="CSS/Template.css"/>
+		<link rel="stylesheet" type="text/css" href="CSS/topicList.css"/>
 		<script src="js/jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript" src="js/Template.js"></script>
 		<title></title>
 	</head>
 
 	<body>
+
+
+
 		<!--模板容器-->
 		<div class="template-body">
 			<!--头部容器-->
@@ -23,7 +33,6 @@
 						<a href="topicList.jsp" class="template-header-navItem">话题</a>
 					</nav>
 					<!--搜索框-->
-
 
 					<div class="template-search-bar">
 						<input type="text" name="" id="" value="" placeholder="你感兴趣的话题。。。"/>
@@ -41,7 +50,7 @@
 
 					<div class="template-userInfo">
 						<div class="head-img">
-							<a href="PersonPage.htmls"><img src="img/default_head.png" height="40px" width="40px"/></a>
+							<a href="PersonPage.htmls"><img src="pinker/img/default_head.png" height="40px" width="40px"/></a>
 						</div>
 					</div>
 					</div>
@@ -54,156 +63,31 @@
 					<!--在这里写左边-->
 					<div class="template-body-left-1">
 						<div class="template-body-left-1-neirong" >
-							<div class="template-body-left-body">
-								<div class="content">
-									<a href="topic_blogList.jsp" class="item-link" style="background-image: url(品客picture/v2-7d4709aaeec63583d56d8c20a46ef62b_b.jpg);">
+							<%
+								TopicService top=new TopicServiceImpl();
+								List<pk_topic> list = top.selectAll();
+								request.setAttribute("list",list);
+							%>
+							<c:forEach items="${list}" var="topic">
+
+								<div class="template-body-left-body">
+									<div class="content">
+										<a href="topic_blogList.jsp" class="item-link" style="background-image: url(${topic.titleimg});">
 										<span class="mask">
-											<span class="name">纪录片后的真实世界</span>
+											<span class="name">${topic.title}</span>
 										</span>
-									</a>
-									<span class="visit">该圆桌被浏览****次</span>
+										</a>
+										<div class="visitFBZ">
+											发布者 : ${topic.userId}<br>
+												${topic.publishtime}
+										</div>
+										<%--<div class="visitFBSJ">发布时间 : ${topic.publishtime}</div>--%>
+									</div>
 								</div>
-							</div>
-							<div class="template-body-left-body">
-								<div class="content">
-									<a href="topic_blogList.jsp" class="item-link" style="background-image: url(品客picture/v2-1c0e457dff11aabd647f996e4f30ddad_b.png);">
-										<span class="mask">
-											<span class="name">增肌训练指南</span>
-										</span>
-									</a>
-									<span class="visit">该圆桌被浏览****次</span>
-								</div>
-							</div>
-							<div class="template-body-left-body">
-								<div class="content">
-									<a href="topic_blogList.jsp" class="item-link" style="background-image: url(品客picture/v2-1feb75da5ce168a72c8d48b84ccca58e_b.jpg);">
-										<span class="mask">
-											<span class="name">看不到的恋人</span>
-										</span>
-									</a>
-									<span class="visit">该圆桌被浏览****次</span>
-								</div>
-							</div>
-							<div class="template-body-left-body">
-								<div class="content">
-									<a href="topic_blogList.jsp" class="item-link" style="background-image: url(品客picture/v2-226429246fd0c99a1bd373c409635f1d_b.jpg);">
-										<span class="mask">
-											<span class="name">消费升级启示录</span>
-										</span>
-									</a>
-									<span class="visit">该圆桌被浏览****次</span>
-								</div>
-							</div>
-							<div class="template-body-left-body">
-								<div class="content">
-									<a href="topic_blogList.jsp" class="item-link" style="background-image: url(品客picture/v2-2997e13bcb234e56f311365f13f1f56f_b.png);">
-										<span class="mask">
-											<span class="name">建筑日用指南</span>
-										</span>
-									</a>
-									<span class="visit">该圆桌被浏览****次</span>
-								</div>
-							</div>
-							<div class="template-body-left-body">
-								<div class="content">
-									<a href="topic_blogList.jsp" class="item-link" style="background-image: url(品客picture/v2-37d58ac9870c766908e66c06d6bab782_b.png);">
-										<span class="mask">
-											<span class="name">残障:我和少数人的生活</span>
-										</span>
-									</a>
-									<span class="visit">该圆桌被浏览****次</span>
-								</div>
-							</div>
-							<div class="template-body-left-body">
-								<div class="content">
-									<a href="topic_blogList.jsp" class="item-link" style="background-image: url(品客picture/v2-4f01efeaef8e658236ae36700c5ec166_b.jpg);">
-										<span class="mask">
-											<span class="name">欧洲足坛</span>
-										</span>
-									</a>
-									<span class="visit">该圆桌被浏览****次</span>
-								</div>
-							</div>
-							<div class="template-body-left-body">
-								<div class="content">
-									<a href="topic_blogList.jsp" class="item-link" style="background-image: url(品客picture/v2-531a01db3774573ebf07c0ee7ddd3d76_b.png);">
-										<span class="mask">
-											<span class="name">2017诺贝尔奖巡礼</span>
-										</span>
-									</a>
-									<span class="visit">该圆桌被浏览****次</span>
-								</div>
-							</div>
-							<div class="template-body-left-body">
-								<div class="content">
-									<a href="topic_blogList.jsp" class="item-link" style="background-image: url(品客picture/v2-5351613e6a7e0456ff8855dd39cca340_b.png);">
-										<span class="mask">
-											<span class="name">玩转城市周边</span>
-										</span>
-									</a>
-									<span class="visit">该圆桌被浏览****次</span>
-								</div>
-							</div>
-							<div class="template-body-left-body">
-								<div class="content">
-									<a href="topic_blogList.jsp" class="item-link" style="background-image: url(品客picture/v2-7d4709aaeec63583d56d8c20a46ef62b_b.jpg);">
-										<span class="mask">
-											<span class="name">行为艺术</span>
-										</span>
-									</a>
-									<span class="visit">该圆桌被浏览****次</span>
-								</div>
-							</div>
-							<div class="template-body-left-body">
-								<div class="content">
-									<a href="topic_blogList.jsp" class="item-link" style="background-image: url(品客picture/v2-8786160588a72db7543eb565c21193e6_b.png);">
-										<span class="mask">
-											<span class="name">拯救室内空气</span>
-										</span>
-									</a>
-									<span class="visit">该圆桌被浏览****次</span>
-								</div>
-							</div>
-							<div class="template-body-left-body">
-								<div class="content">
-									<a href="topic_blogList.jsp" class="item-link" style="background-image: url(品客picture/v2-8bbbf198214e3a152d5c8476edb2c371_b.jpg);">
-										<span class="mask">
-											<span class="name">财务造假的背后</span>
-										</span>
-									</a>
-									<span class="visit">该圆桌被浏览****次</span>
-								</div>
-							</div>
-							<div class="template-body-left-body">
-								<div class="content">
-									<a href="topic_blogList.jsp" class="item-link" style="background-image: url(品客picture/v2-925a7fc9d3802991269ddb31d87fe8f6_b.jpg);">
-										<span class="mask">
-											<span class="name">中国桥文化之旅</span>
-										</span>
-									</a>
-									<span class="visit">该圆桌被浏览****次</span>
-								</div>
-							</div>
-							<div class="template-body-left-body">
-								<div class="content">
-									<a href="topic_blogList.jsp" class="item-link" style="background-image: url(品客picture/v2-e121d3053e96b8547a871fd7303088c4_b.jpg);">
-										<span class="mask">
-											<span class="name">机器学习，学以致用</span>
-										</span>
-									</a>
-									<span class="visit">该圆桌被浏览****次</span>
-								</div>
-							</div>
-							<div class="template-body-left-body">
-								<div class="content">
-									<a href="topic_blogList.jsp" class="item-link" style="background-image: url(品客picture/v2-ee283e1bf3b8dab2609fe8b24990652b_b.jpg);">
-										<span class="mask">
-											<span class="name">懂一点婚姻</span>
-										</span>
-									</a>
-									<span class="visit">该圆桌被浏览****次</span>
-								</div>
-							</div>
+
+							</c:forEach>
+							<%--<div><a href="zhwz1/pages/topicChange.jsp">发表话题</a>
+							</div>--%>
 						</div>
 						<!--底部更多按钮-->
 						<button class="db">

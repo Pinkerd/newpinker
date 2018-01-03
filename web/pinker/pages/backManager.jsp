@@ -1,11 +1,12 @@
 <%--
   Created by IntelliJ IDEA.
-  User: Administrator
+  User: Aries.gu
   Date: 2017/12/28
   Time: 17:07
-  To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<base href="http://localhost:8080/pinker/pinker/">
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>后台管理员系统</title>
@@ -23,7 +24,6 @@
             background-color:rgb(88,88,88);
             position: fixed;
             top:0px;
-           /* border: 2px black solid;*/
             border-top: none;
         }
         ul{
@@ -51,7 +51,6 @@
             width: 100%;
             background-color:rgb(59,89,153);
             position: fixed;
-           /* border: solid 2px black;*/
         }
         .toptitle{
             height: 100px;
@@ -71,13 +70,23 @@
             float: left;
             margin-top: 10px;
         }
+        .topadmin{
+            height: 100px;
+            width: 300px;
+            color: white;
+            line-height: 100px;
+            font-size: 30px;
+            float: right;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
 <div class="managerTop">
-    <img src="../images/logos.jpg" style="margin-left: 250px;width:100px;height: 100px;float: left">
+    <img src="images/logos.jpg" style="margin-left: 250px;width:100px;height: 100px;float: left">
     <div class="toptitle">品客</div>
     <div class="toparticle">后 台 管 理 系 统</div>
+    <div class="topadmin">欢迎,${admin.username}</div>
 </div>
 <iframe  src=""  class="box" id="sframe"></iframe>
 <div class="managerleft">
@@ -90,7 +99,7 @@
 </div>
 
 
-<script type="text/javascript"  src="../js/jquery-1.7.2.js"></script>
+<script type="text/javascript"  src="js/jquery-1.7.2.js"></script>
 <script type="text/javascript">
 
     $(document).ready(function () {
@@ -104,10 +113,10 @@
 
 
         $("li[id=tip]").click(function () {
-            alert("33");
+            $("#sframe").attr("src", "第三个网址")
         })
         $("li[id=topic]").click(function () {
-            alert("44");
+            $("#sframe").attr("src", "第四个网址")
         })
 
     })

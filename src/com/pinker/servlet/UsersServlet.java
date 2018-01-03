@@ -37,10 +37,16 @@ public class UsersServlet extends BaseServlet {
     protected void logIn(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("jump into logIn...");
 
-        String username = request.getParameter("username");
+        String loginname = request.getParameter("loginname");
         String password = request.getParameter("password");
-        pk_user login = usi.login(username, password);
-        System.out.println(login);
+        pk_user user = usi.login(loginname, password);
+        System.out.println(user);
+        request.getSession().setAttribute("user",user);
+        if(user!=null){
+            request.getRequestDispatcher("pinker/pages/index.jsp").forward(request,response);
+        }else{
+            response.sendRedirect(request.getContextPath()+"/pinker/login.jsp");
+        }
     }
     /*2.注册 添加新用户*/
     protected void saveUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -145,6 +151,21 @@ public class UsersServlet extends BaseServlet {
         }else{
             //如果从白名单 冻结  跳转去白名单
             response.sendRedirect(request.getContextPath()+"/UsersServlet?method=findUser");
+        }
+    }
+    /*11.登陆 根据登录名和密码登陆*/
+    protected void ManagerlogIn(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("jump into ManagerlogIn...");
+
+        String loginname = request.getParameter("loginname");
+        String password = request.getParameter("password");
+        System.out.println(loginname);
+        System.out.println(password);
+        pk_user admin = usi.login(loginname, password);
+        System.out.println(admin);
+        request.setAttribute("admin",admin);
+        if(admin.getRoleId()==2){
+            request.getRequestDispatcher("pinker/pages/backManager.jsp").forward(request,response);
         }
     }
 

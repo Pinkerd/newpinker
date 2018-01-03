@@ -35,4 +35,9 @@ public interface FriendService {
      */
     List<Friend> getAllFriByUserIdAndStatue(int userId,int statue);
 
+
+    /**
+     * 删除好友关系，相互删除两条数据
+     */
+    boolean deleteEachFri(Friend friend);
 }

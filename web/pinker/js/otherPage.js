@@ -42,11 +42,34 @@ function addFriend() {
         success:function (result) {
             if(result=="true"){
                 alert("发送好友请求成功");
-                $(this).css("display","none");
+                hideFriBtn();
+                $(".requetStatue").css("display","inline-block");
             }else{
                 alert("发送好友请求失败");
             }
         }
     });
+}
+
+function  deleteFriend() {
+    var userId=$("#userId").val();
+    var otherId=$("#otherId").val();
+    alert("aaa");
+    $.ajax({
+        url:"FriendServlet?method=deleteFri",
+        type:"post",
+        data:{friendId:otherId},
+        dataType:"text",
+        success:function (result) {
+            if(result=="true"){
+                hideFriBtn();
+                $(".addFriendBtn").css("display","inline-block");
+
+            }
+
+        }
+    })
+
+
 }
 

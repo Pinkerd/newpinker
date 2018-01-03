@@ -18,4 +18,6 @@ public interface TopicService {
      int delete(Integer id);
 
      Page<pk_topic> findTopic(Page<pk_topic> page);
+
+     pk_topic findByUserId(Integer userId);
 }

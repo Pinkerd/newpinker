@@ -32,7 +32,7 @@ public class IOUtil {
             }
             out.flush();
         }catch (Exception e){
-            e.printStackTrace();
+            System.out.println("使用默认头像");
         }finally {
             try {
                 out.close();

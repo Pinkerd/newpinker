@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="pinker/css/Template.css" />
     <link rel="stylesheet" type="text/css" href="pinker/css/PersonPage.css" />
     <script type="text/javascript" src="pinker/js/otherPage.js"></script>
+    <script type="text/javascript" src="pinker/js/head_info.js"></script>
     <style rel="stylesheet" type="text/css">
         .card-functionArea{
             position:absolute ;
@@ -82,7 +83,7 @@
                 <div class="addBtn-wrap">
                     <button class="addFriendBtn" onclick="addFriend()">加为好友</button>
                     <button class="requetStatue">待接受</button>
-                    <button class="deleteFriend" >删除好友</button>
+                    <button class="deleteFriend" onclick="deleteFriend()">删除好友</button>
                 </div>
             </div>
         </div>

@@ -1,7 +1,6 @@
 <%@ page import="com.pinker.service.BlogDaoService" %>
 <%@ page import="com.pinker.service.Impl.BlogDaoServiceImpl" %>
 <%@ page import="com.pinker.entity.Blog" %>
-<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -10,12 +9,16 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<link rel="stylesheet" type="text/css" href="css/Template.css" />
-		<link rel="stylesheet" type="text/css" href="css/PersonPage.css" />
-		<link rel="stylesheet" type="text/css" href="css/myblo.css"/>
-		<script src="js/jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
-		<script type="text/javascript" src="js/Template.js"></script>
-		<script type="text/javascript" src="js/personpage.js"></script>
+		<%@include file="/WEB-INF/include/base_info.jsp"%>
+		<link rel="stylesheet" type="text/css" href="pinker/css/Template.css" />
+		<link rel="stylesheet" type="text/css" href="pinker/css/PersonPage.css" />
+		<link rel="stylesheet" type="text/css" href="pinker/css/myblo.css"/>
+		<link rel="stylesheet" type="text/css" href="pinker/css/myblo1.css"/>
+		<link rel="stylesheet" type="text/css" href="pinker/css/head_info.css">
+		<script src="pinker/js/jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="pinker/js/Template.js"></script>
+		<script type="text/javascript" src="pinker/js/personpage.js"></script>
+		
 		<title></title>
 	</head>
 
@@ -31,61 +34,16 @@
 		<!--模板容器-->
 		<div class="template-body">
 			<!--头部容器-->
-			<div class="template-header">
-				<div class="template-header-wrap">
-					<span class="template-logo">品客·</span>
-					<nav class="template-header-nav">
-						<a href="index.jsp" class="template-header-navItem isActive">首页</a>
-						<a href="topicList.jsp" class="template-header-navItem">发现</a>
-						<a href="topicList.jsp" class="template-header-navItem">话题</a>
-					</nav>
-					<!--搜索框-->
+			
+			<%@include file="/WEB-INF/include/head_info.jsp"%>
 
-					<div class="template-search-bar">
-						<input type="text" name="" id="" value="" placeholder="你感兴趣的话题。。。" />
-
-					</div>
-					<div class="template-search-buttonWrap">
-						<input type="button" class="template-search-button" />
-					</div>
-					<!--右侧登录注册以及头像-->
-					<div class="right template-header-right">
-						<div class="template-loginRegist">
-							<a href="login.jsp">登录</a>
-							<a href="login.jsp">注册</a>
-						</div>
-
-						<div class="template-userInfo">
-							<div class="head-img">
-								<a href="#"><img src="img/default_head.png" height="40px" width="40px" /></a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
 
 			<!--模板结束-->
 			<div class="template-main-body">
 				<!--头像与背景显示-->
-				<div class="Card">
-					<div class="Card-showInfo">
-						<div class="shadow">
-							<div class="Card-headImg">
-								<a href="#"><img src="img/myHead.jpg" width="100px" height="100px" title="更换头像" /></a>
-							</div>
-						</div>
-						<div class="Card-nameAndIntro">
-							<div class="card-username">
-								<h3>隔壁老王</h3>
-							</div>
-
-							<div class="card-intro">
-								<span style="font-size: 13px;">你莫拽，我有你照片</span>
-							</div>
-						</div>
-					</div>
-
-				</div>
+				
+				<%@include file="/WEB-INF/include/headimg_info.jsp"%>
+				
 
 				<div class="template-body-left">
 					<!--在这里写左边-->
@@ -108,7 +66,7 @@
 						<c:forEach items="${list}" var="blog">
 						<div class="blog-wrap">
 							<div class="blog-title-wrap">
-								<a href="/pinker/BlogServlet?method=selectOne&blogId=${blog.id}">${blog.title}</a>
+								<a href="/pinker/BlogServlet?method=selectblogOne&blogId=${blog.id}">${blog.title}</a>
 							</div>
 							<div class="blog-info">
 								<span>2017-12-05</span>·<span>16 个回答</span>·<span>55 个关注</span>
@@ -117,48 +75,7 @@
 						</c:forEach>
 
 
-						<%--
-                            <div class="blog-wrap">
-                                <div class="blog-title-wrap">
-                                    <a href="blog.jsp"><h3>编程到底难在哪里？</h3></a>
-                                </div>
-                                <div class="blog-info">
-                                    <span>2017-12-05</span>·<span>16 个回答</span>·<span>55 个关注</span>
-                                </div>
-                            </div>
-
-
-                            <div class="blog-wrap">
-                                <div class="blog-title-wrap">
-                                    <a href="blog.jsp"><h3>说说你身边的收纳大师？</h3></a>
-                                </div>
-                                <div class="blog-info">
-                                    <span>2017-12-05</span>·<span>16 个回答</span>·<span>55 个关注</span>
-                                </div>
-                            </div>
-
-
-                            <div class="blog-wrap">
-                                <div class="blog-title-wrap">
-                                    <a href="blog.jsp"><h3>疑因内部宫斗被离职，中兴 70 后程序员从公司坠楼 ​​​​</h3></a>
-                                </div>
-                                <div class="blog-info">
-                                    <span>2017-12-05</span>·<span>16 个回答</span>·<span>55 个关注</span>
-                                </div>
-                            </div>
-
-                            <div class="blog-wrap">
-                                <div class="blog-title-wrap">
-                                    <a href="blog.jsp"><h3>如何看待美国谷歌女工程师马楚楚在旧金山湾身亡？</h3></a>
-                                </div>
-                                <div class="blog-info">
-                                    <span>2017-12-05</span>·<span>16 个回答</span>·<span>55 个关注</span>
-                                </div>
-                            </div>	--%>
-						
-						
 					</div>
-
 					<!--发布的话题-->
 					<div class="left-myTopic">
 

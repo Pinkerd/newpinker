@@ -5,7 +5,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title></title>	
-		<link rel="stylesheet" type="text/css" href="css/login.css"/>
+		<link rel="stylesheet" type="text/css" href="css/login.css" />
 		<style>
 			input[type="password"]{
 			width: 280px;
@@ -43,7 +43,7 @@
 			<%--登陆form表单--%>
 					<form action="http://localhost:8080/pinker/UsersServlet?method=logIn" method="post">
 						<div class="login-input-usernameWrap">
-						<input type="text" name="username" value="" placeholder="用户名"/>
+						<input type="text" name="loginname" value="" placeholder="用户名"/>
 						</div>
 						<div id="login-input-passwordWrap">
 						<input type="password" name="password"  value="" placeholder="密码"/>
@@ -68,10 +68,10 @@
 			</div>
 			
 		</div>
-		<iframe src="backgroud.html" width="100%" height="100%"></iframe>
+		<iframe src="pinker/background.jsp" width="100%" height="100%"></iframe>
 
 	</body>
-	<script type="text/javascript" src="js/jquery-1.7.2.js"></script>
+	<script type="text/javascript" src="pinker/js/jquery-1.7.2.js"></script>
 	<script type="text/javascript">
         $(function(){
             $(".index-register").click(function(){

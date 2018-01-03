@@ -1,10 +1,14 @@
 package com.pinker.servlet;
 
 import com.pinker.entity.Friend;
+import com.pinker.entity.pk_user;
 import com.pinker.service.FriendService;
 import com.pinker.service.Impl.FriendServiceImpl;
 import com.pinker.service.Impl.UserServiceImpl;
 import com.pinker.service.UserService;
+import net.sf.json.JSON;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -38,17 +42,67 @@ public class FriendServlet extends BaseServlet {
 
         PrintWriter out = response.getWriter();
         out.print(statue);
+        out.flush();
+        out.close();
+    }
+
+
+    /**
+     * 查询好友请求
+     */
+    protected void haveFriendReq(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        pk_user user=(pk_user) req.getSession().getAttribute("user");
+        int userId=user.getId();
+        List<Friend> list=friendService.getAllFriByUserIdAndStatue(userId,0);
+        System.out.println(list);
+        JSONArray json= JSONArray.fromObject(list.toArray());
+        System.out.println(json);
 
     }
 
 
     /**
-     * 查询收否有好友请求
+     * 接受好友请求
      */
-    protected void haveFriendReq(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Integer userId=Integer.parseInt(req.getParameter("userId"));
-        List<Friend> list=friendService.getAllFriByUserIdAndStatue(userId,0);
-        PrintWriter out = resp.getWriter();
+    protected void recieveFri(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        pk_user user=(pk_user) req.getSession().getAttribute("user");
+        int friId=Integer.parseInt(req.getParameter("userId"));
+        Friend friend= new Friend();
+        friend.setUserId(user.getId());
+        friend.setFriendId(friId);
+        boolean result=friendService.beFriend(friend);
+        String an="";
+        if(result){
+            an="true";
+        }else{
+            an="false";
+        }
+        PrintWriter out=resp.getWriter();
+        out.write(an);
+        out.flush();
+        out.close();
+    }
+
+
+    /**
+     * 删除好友关系
+     */
+    protected void deleteFri(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        pk_user user=(pk_user) req.getSession().getAttribute("user");
+        int friendId=Integer.parseInt(req.getParameter("friendId"));
+
+        Friend friend= new Friend();
+        friend.setUserId(user.getId());
+        friend.setFriendId(friendId);
+        boolean result=friendService.deleteEachFri(friend);
+        PrintWriter out=resp.getWriter();
+        if (result){
+            out.print("true");
+        }else{
+            out.print("false");
+        }
+        out.flush();
+        out.close();
 
     }
 }

@@ -12,7 +12,7 @@ public class  BaseServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        System.out.println("jump into servlet");
+//        System.out.println("jump into servlet");
         req.setCharacterEncoding("utf-8");
         String methodName=req.getParameter("method");
         try {

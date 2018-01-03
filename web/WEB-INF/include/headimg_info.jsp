@@ -11,7 +11,7 @@
     <div class="Card-showInfo">
         <div class="shadow">
             <div class="Card-headImg">
-                <a href="#"><img src="http://localhost:8080/pinker/IOServlet?method=loadHeadImg" width="100px" height="100px" title="更换头像" /></a>
+                <a href="javascript:void(0)"><img src="http://localhost:8080/pinker/IOServlet?method=loadHeadImg" width="100px" height="100px" title="更换头像" /></a>
             </div>
         </div>
         <div class="Card-nameAndIntro">

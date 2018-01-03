@@ -27,9 +27,13 @@ public class IOServlet extends BaseServlet {
     protected void loadHeadImg(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         pk_user user = (pk_user) request.getSession().getAttribute("user");
         if(user!=null) {
-            IOUtil.readImg("E:\\site\\images\\" + user.getId() + ".jpg", request, response);
+            try {
+                IOUtil.readImg("E:\\site\\images\\" + user.getId() + ".jpg", request, response);
+            }catch(Exception e){
+                IOUtil.readImg("E:\\site\\images\\default.png", request, response);
+            }
         }else {
-            IOUtil.readImg("E:\\site\\images\\default.jpg", request, response);
+            IOUtil.readImg("E:\\site\\images\\default.png", request, response);
         }
     }
 
@@ -42,7 +46,11 @@ public class IOServlet extends BaseServlet {
 
             String userId=request.getParameter("userId");
 
+        try {
             IOUtil.readImg("E:\\site\\images\\" + userId + ".jpg", request, response);
+        }catch(Exception e){
+            IOUtil.readImg("E:\\site\\images\\default.png", request, response);
+        }
 
     }
 }

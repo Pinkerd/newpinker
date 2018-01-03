@@ -52,7 +52,7 @@ public class FriendDaoImpl extends BaseDao<Friend> implements FriendDao {
     @Override
     public int insertFri(Friend friend, Integer statue) {
         String sql="insert into pk_friend values(?,?,?,?)";
-        return this.update(sql,friend.getUserId(),friend.getFriendId(),friend.getRemark(),0);
+        return this.update(sql,friend.getUserId(),friend.getFriendId(),friend.getRemark(),statue);
     }
 
 
@@ -101,5 +101,16 @@ public class FriendDaoImpl extends BaseDao<Friend> implements FriendDao {
     public List<Friend> selectFriByIdAndStatue(Friend friend) {
         String sql="select * from pk_friend where userId=? and statue=?";
         return this.getListBean(sql,friend.getUserId(),friend.getStatue());
+    }
+
+    /**
+     * 按用户Id,好友Id删除
+     * @param friend
+     * @return
+     */
+    @Override
+    public int deleteFri(Friend friend) {
+        String sql="delete from pk_friend where userId=? and friendId=?";
+        return this.update(sql,friend.getUserId(),friend.getFriendId());
     }
 }

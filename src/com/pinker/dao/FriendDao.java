@@ -53,4 +53,8 @@ public interface FriendDao {
     List<Friend> selectFriByIdAndStatue(Friend friend);
 
 
+    /**
+     * 按用户Id，friendId删除好友关系
+     */
+    int deleteFri(Friend friend);
 }

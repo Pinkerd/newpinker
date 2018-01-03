@@ -12,13 +12,13 @@
   </head>
   <body>
   $END$
-  <%
-    pk_user user=new pk_user();
-    user.setId(3);
-    user.setUsername("晕果");
-    request.getSession().setAttribute("user",user);
-  %>
+  <%--<%--%>
+    <%--pk_user user=new pk_user();--%>
+    <%--user.setId(3);--%>
+    <%--user.setUsername("晕果");--%>
+    <%--request.getSession().setAttribute("user",user);--%>
+  <%--%>--%>
 
-  <a href="OtherServlet?method=toOthersPage&userId=5">五号男嘉宾</a>
+  <a href="OtherServlet?method=toOthersPage&userId=6">6号男嘉宾</a>
   </body>
 </html>

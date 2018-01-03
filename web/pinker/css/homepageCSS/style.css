@@ -24,10 +24,8 @@
 
 /*----------banner部分----------*/
 .banner{
-   /* background: white;*/
-    width: 100%px;
+    width: 100%;
     height: 768px;
-  /*  border: solid 1px red;*/
     z-index:1;
 }
 

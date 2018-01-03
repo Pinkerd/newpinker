@@ -1,4 +1,9 @@
+<%@ page import="com.pinker.service.TopicService" %>
+<%@ page import="com.pinker.service.serviceimpl.TopicServiceImpl" %>
+<%@ page import="com.pinker.entity.pk_topic" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 
@@ -7,12 +12,17 @@
 		<link rel="stylesheet" type="text/css" href="css/Template.css" />
 		<link rel="stylesheet" type="text/css" href="css/PersonPage.css" />
 		<link rel="stylesheet" type="text/css" href="css/MyTopic.css" />
+		<link rel="stylesheet" type="text/css" href="css/MyTopic1.css" />
 		<script src="js/jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript" src="js/Template.js"></script>
 		<script type="text/javascript" src="js/personpage.js"></script>
 		<title></title>
 	</head>
-
+<%
+	TopicService top=new TopicServiceImpl();
+	List<pk_topic> list = top.selectAll();
+	request.setAttribute("list",list);
+%>
 	<body>
 		<!--模板容器-->
 		<div class="template-body">
@@ -89,34 +99,39 @@
 					<!--个人信息-->
 
 					<!--关注的话题-->
+
 					<div class="left-attentionTopic">
-						<div class="topic-wrap">
-							<div class="topic-img">
-								<img src="img/topic/283fcdadd_im.jpg" width="60px" height="60px" />
-							</div>
-							<div class="topic-title">
-								<a href="topic_blogList.jsp">
-									<h3>Git Hub</h3></a>
-								<div class="detail-wrap" hidden>
-									<div class="detail-img">
-										<img src="img/topic/283fcdadd_im.jpg" width="60px" height="60px"/>
-									</div>
+						<c:forEach items="${list}" var="topic">
+							<div class="topic-wrap">
+								<div class="topic-img">
+									<img src="${topic.titleimg}" width="60px" height="60px" />
+								</div>
+								<div style="width: 400px" class="topic-title">
+									<a href="topic_blogList.jsp"><h3>${topic.title}</h3></a>
+									<div class="detail-wrap" hidden>
+										<div class="detail-img">
+											<img src="${topic.titleimg}" width="60px" height="60px"/>
+										</div>
 
-									<div class="detail-introduce" >
-										<span class="detail-span">gitHub是一个面向开源及私有软件项目的托管平台，因为只支持git 作为唯一的版本库格式进行托管，故名gitHub。</span>
-									</div>
+										<div class="detail-introduce" >
+											<span class="detail-span">
+													${topic.content.substring(0,50)}
+											</span>
+										</div>
 
-									<div class="detail-buttonwrap">
-										<button class="attentionBtn">关注</button>
+										<div class="detail-buttonwrap">
+											<button class="attentionBtn">关注</button>
+										</div>
 									</div>
 								</div>
+								<div class="topic-introduce">
+										${topic.content.substring(0,15)}
+								</div>
 							</div>
-							<div class="topic-introduce">
-								开源基地
-							</div>
-						</div>
-						
-						
+						</c:forEach>
+						<%--
+
+
 						
 						<div class="topic-wrap">
 							<div class="topic-img">
@@ -280,7 +295,7 @@
 								开源基地
 							</div>
 
-						</div>
+						</div>--%>
 
 					</div>
 					

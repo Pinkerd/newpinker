@@ -62,8 +62,8 @@ public class FriendServiceImpl implements FriendService {
     public boolean beFriend(Friend friend) {
         friendDao.updateFri(friend,1);
         this.swapFriend(friend);
-        friendDao.insertFri(friend,1);
-        return false;
+        int row=friendDao.insertFri(friend,1);
+        return row!=0;
     }
 
     /**
@@ -90,15 +90,40 @@ public class FriendServiceImpl implements FriendService {
         }
     }
 
+
+
+
+
     /**
      * 按好友状态查询所有好友
      */
     @Override
     public List<Friend> getAllFriByUserIdAndStatue(int userId, int statue) {
         Friend friend=new Friend();
-        friend.setFriendId(userId);
+        friend.setUserId(userId);
         friend.setStatue(statue);
-        return friendDao.selectFriByIdAndStatue(friend);
+        List<Friend> list= friendDao.selectFriByIdAndStatue(friend);
+        for (Friend fri:list) {
+            setFull(fri);
+        }
+        return list;
+    }
+
+    /**
+     * 删除好友关系
+     * @param friend
+     * @return
+     */
+    @Override
+    public boolean deleteEachFri(Friend friend) {
+        System.out.println("deleteFri");
+       int i= friendDao.deleteFri(friend);
+        this.swapFriend(friend);
+       int j= friendDao.deleteFri(friend);
+       if(i!=0&&j!=0){
+           return true;
+       }
+        return false;
     }
 
 }
