@@ -71,7 +71,6 @@ function syncUpload(){
             if(data.state == 'ok'){
                 document.getElementById("upload").value = "";//重置文件域
                 layer.msg(data.msg);
-                CloseImg();
             }else if(data.state == 'error'){
                 layer.msg(data.msg);
             }
@@ -114,3 +113,33 @@ $(function () {
 })
 
 
+
+function toBold() {
+    window.getSelection().getRangeAt(0).surroundContents(document.createElement("b"));
+}
+
+function toItalic() {
+    window.getSelection().getRangeAt(0).surroundContents(document.createElement("i"));
+}
+
+function updateTopic(){
+    var blogData=$("#blog-textdiv").html();
+    var title=$(".blogTitle-input").val();
+    console.log(title);
+
+    $.ajax({
+        url:"BlogServlet?method=publishBlog",
+        type:"post",
+        data:{blogData:blogData,title:title,topicId:$(".topicId-home").val()},
+        dataType:"text",
+        success:function(result){
+            if(result="true"){
+                syncUpload();
+            }else{
+                alert("发布保存博文失败");
+            }
+        }
+    })
+
+
+}

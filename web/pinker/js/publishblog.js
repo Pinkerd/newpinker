@@ -1,14 +1,9 @@
-function ii() {
+function toBold() {
+    window.getSelection().getRangeAt(0).surroundContents(document.createElement("b"));
+}
 
-	var txt = "";
-	if(document.selection) {
-		txt = document.selection.createRange();
-	} else {
-		txt = document.getSelection();
-	}
-	
-	alert(txt);
-	
+function toItalic() {
+    window.getSelection().getRangeAt(0).surroundContents(document.createElement("i"));
 }
 
 function updateBlog(){

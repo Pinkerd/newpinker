@@ -10,6 +10,8 @@
 		<title></title>
 	</head>
 	<body>
+
+	<h1 align="center">博文发布</h1>
         <input type="hidden" class="topicId-home" value="1">
 		<div id="publisBlog-box">
 			<div id="blog-titlebox">
@@ -17,8 +19,8 @@
 			</div>
 			
 			<div id="publishBlog-tool">
-				<button class="publishBlog-bold">B</button>
-				<button class="publishBlog-italic">I</button>
+				<button class="publishBlog-bold" onclick="toBold()">B</button>
+				<button class="publishBlog-italic" onclick="toItalic()">I</button>
 			</div>
 			
 			<div id="blog-textdiv" contenteditable="true">
@@ -31,7 +33,7 @@
 			<div id="publishandsetting">
 				
 				<button id="publishBlogBtn" onclick="updateBlog()">提交博客</button>
-				<!--<button onclick="showHtml()">show</button>-->
+				<%--<button onclick="test()">show</button>--%>
 			</div>
 			
 		</div>
