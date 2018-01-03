@@ -63,9 +63,9 @@ public class TopicDaoImpl extends BaseDao<pk_topic> implements TopicDao {
     }
 
     @Override
-    public pk_topic findByUserId(Integer userid) {
+    public List<pk_topic> findByUserId(Integer userId) {
         String sql="select * from pk_topic where userId=?";
-        return  this.getBean(sql,userid);
+        return this.getListBean(sql,userId);
 
     }
 }

@@ -19,6 +19,6 @@ public interface TopicDao {
 
      Page<pk_topic> findTopic(Page<pk_topic> page);
 
-     pk_topic findByUserId(Integer userid);
+     List<pk_topic> findByUserId(Integer userId);
 
 }

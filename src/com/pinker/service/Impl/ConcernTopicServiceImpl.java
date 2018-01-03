@@ -30,7 +30,7 @@ public class ConcernTopicServiceImpl  implements ConcernTopicService {
         int topicId= concernTopic.getTopicId();
 
         pk_user user=userDao.findByUserId(userId);
-        pk_topic topic= topicDao.findByUserId(topicId);
+        pk_topic topic= topicDao.selectOne(topicId);
         concernTopic.setUser(user);
         concernTopic.setTopic(topic);
     }

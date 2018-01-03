@@ -48,7 +48,7 @@ public class pkTopicServlet extends BaseServlet {
         System.out.println("jinlai4");
         String i = request.getParameter("uid");
         Integer id = Integer.valueOf(i);
-        pk_topic pt = tsi.findByUserId(id);
+        List<pk_topic> pt = tsi.findByUserId(id);
         System.out.println(pt);
         request.setAttribute("abc",pt);
         request.getRequestDispatcher("/pages/topicDetailGly.jsp").forward(request,response);
