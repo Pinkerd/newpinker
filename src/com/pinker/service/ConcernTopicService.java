@@ -8,24 +8,12 @@ import java.util.List;
 public interface ConcernTopicService {
 
     /**
-     * 查询一个话题收藏
+     * 查询该用户所有话题收藏
      * @param userId
      * @return
      */
-    ConcernTopic findConcernTopicByUserId(int userId);
+    List<ConcernTopic> findConcernTopicByUserId(int userId);
 
-    /**
-     * 查询所有话题收藏
-     * @return
-     */
-    List<ConcernTopic> getAllConcernTopic();
-
-    /**
-     * 按时间查询一个话题收藏
-     * @param concernTime
-     * @return
-     */
-    ConcernTopic findConcernTopicByConcernTime(Date concernTime);
 
     /**
      * 增加一个话题收藏
@@ -36,8 +24,9 @@ public interface ConcernTopicService {
 
     /**
      * 删除一个话题收藏
-     * @param userId
+     * @param userId 用户ID
+     * @param topicId 话题ID
      * @return
      */
-    int  deleteConcernTopicByUserId(int userId);
+    int  deleteConcernTopicByUserId(int userId,int topicId);
 }
