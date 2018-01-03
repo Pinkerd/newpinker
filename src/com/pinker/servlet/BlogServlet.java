@@ -30,6 +30,7 @@ public class BlogServlet extends BaseServlet {
     protected void selectblogOne(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String blogId = request.getParameter("blogId");
+        //System.out.println(blogId);
         Integer integer = Integer.valueOf(blogId);
         Blog blogById = blogDaoService.getBlogById(integer);
         request.setAttribute("key",blogById);
