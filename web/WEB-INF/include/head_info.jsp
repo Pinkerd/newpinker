@@ -37,7 +37,7 @@
                 <c:when test="${user!=null}">
                     <div class="template-userInfo">
                         <div class="head-img">
-                            <a href="PersonPage.jsp">
+                            <a href="pinker/PersonPage.jsp">
                                 <span class="head-username">${user.username}</span>
                                 <img src="http://localhost:8080/pinker/IOServlet?method=loadHeadImg" height="40px" width="40px" />
                             </a>

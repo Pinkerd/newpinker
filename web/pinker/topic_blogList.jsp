@@ -41,7 +41,7 @@
 					  	<image width="200px" height="200px" src="http://localhost:8080/pinker/IOServlet?method=loadTopicImg&topicId=${thisTopic.id}" class="cztp" />
 						<div class = "content">
 							<div class = 'title'>
-								<a href="topic_blogList.jsp"> <span class="title1">${thisTopic.title}</span></a> <span class="status" >已结束</span>
+								<a > <span class="title1">${thisTopic.title}</span></a> <span class="status" >已结束</span>
 							</div>
 						</div>
 					   </a>
@@ -59,9 +59,9 @@
 
 					<div class="module">
 						<ul class="menu-nav-horizontal">
-							<li class = "block1"><a href="/roundtable/canzhang/comments">36 <span class="nowrap">条动态</span></a></li>
-							<li class = "block2" ><a href="/roundtable/canzhang/comments">31 <span class="nowrap">个问题</span></a></li>
-							<li class = "block3" ><a href="/roundtable/canzhang/comments">17 <span class="nowrap">条讨论</span></a></li>
+							<li class = "block1"><a href="pinker/publishBlog.jsp?topicId=${thisTopic.id}"><span class="nowrap">发表博文</span></a></li>
+							<li class = "block2" ><a href="">31 <span class="nowrap">个问题</span></a></li>
+							<li class = "block3" ><a href="">17 <span class="nowrap">条讨论</span></a></li>
 						</ul>
 					</div>
 
@@ -69,7 +69,7 @@
 					<c:forEach items="${thisBlogList}" var="blog">
 						<div class="main-article01">
 							<div class="main-article01-top" >
-								<a href="topic_blogList.jsp">${blog.title}</a>
+								<a href="pinker/blog.jsp?blogId=${blog.id}">${blog.title}</a>
 							</div>
 							<div class="author-info">
 								<a class="author-name" href="javascript:void(0)"><img class="author-img" src="http://localhost:8080/pinker/IOServlet?method=loadOtherHeadImg&userId=${blog.userId}" width="25px" style="border-radius: 3px;"/>${blog.user.username}</a>
@@ -77,7 +77,7 @@
 							</div>
 							
 							<div class="article-introduce">
-								${blog.content}
+								${blog.content.substring(0,120)}
 							</div>
 							
 							<div class="stylell">
