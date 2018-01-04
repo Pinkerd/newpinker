@@ -53,4 +53,15 @@ public class IOServlet extends BaseServlet {
         }
 
     }
+
+
+    /**
+     * 读取话题图
+     */
+    protected void loadTopicImg(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String topicId=req.getParameter("topicId");
+
+        IOUtil.readImg("E:\\site\\topicImg\\" + topicId + ".jpg", req, resp);
+
+    }
 }

@@ -31,8 +31,6 @@
         <img src="" id="yushow" onclick="uploadBtn()" title="更换头像" height="150px" width="150px"/>
         <button class="btn-uploading" onclick="syncUpload();"><i class="icon-uploading"></i>上传图片</button>
         <button class="img-cancel" id="cancel-Btn">取消</button>
-        <%--<a class="shan" onclick="deleteImg();"><img src="/images/www.jpg">删除图片</a>--%>
     </div>
     <input type="file" name="file" style="display:none;height: 200px;width: 200px;" onchange="previewImg(this);" id="upload" accept="image/*"/>
-    <%--<input type="button" class="startUpLoadBtn" value="开始上传" >--%>
 </div>

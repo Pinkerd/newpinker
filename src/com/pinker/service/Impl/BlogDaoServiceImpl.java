@@ -96,4 +96,26 @@ public class BlogDaoServiceImpl implements BlogDaoService {
         }
         return  blogPage;
     }
+
+    /**
+     * 根据用户查询博文内容
+     * @param userId
+     * @return
+     */
+    @Override
+    public List<Blog> findUser(int userId) {
+        List<Blog> list = blogDao.findUser(userId);
+        return  list;
+    }
+
+    @Override
+    public List<Blog> findTopicBlogList(int topicId) {
+
+
+        List<Blog> list = blogDao.findTopicBloglist(topicId);
+        for (Blog blog:list) {
+            this.setFull(blog);
+        }
+        return list;
+    }
 }

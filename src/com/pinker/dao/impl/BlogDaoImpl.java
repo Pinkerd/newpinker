@@ -68,4 +68,28 @@ public class BlogDaoImpl extends BaseDao<Blog> implements BlogDao {
         return page;
     }
 
+    /**
+     * 查询用户的博文
+     * @param userId
+     * @return
+     */
+    @Override
+    public List<Blog> findUser(int userId) {
+        String sql="select * from pk_blog where userId=?";
+        return this.getListBean(sql,userId);
+    }
+
+
+    /**
+     * 查询话题下博文列表
+     * @param topicId
+     * @return
+     */
+    @Override
+    public List<Blog> findTopicBloglist(int topicId) {
+        String sql= "select * from pk_blog where topicId=?";
+        return this.getListBean(sql,topicId);
+    }
+
+
 }

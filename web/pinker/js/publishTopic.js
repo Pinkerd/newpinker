@@ -61,9 +61,9 @@ function syncUpload(){
     imgFile = imgFile.substring(imgFile.indexOf(",")+1);//截取只保留图片的base64部分,去掉了data:image/jpeg;base64,这段内容
     imgFile = encodeURIComponent(imgFile);//把字符串作为 URI 组件进行编码。后台容器会自动解码一次
     name = encodeURIComponent(encodeURIComponent(name));//这里对中文参数进行了两次URI编码，后台容器自动解码了一次，获取到参数后还需要解码一次才能得到正确的参数内容
-    var mydata = "method=headChange&imgFile="+imgFile+"&imgName="+name;
+    var mydata = "method=publishTopicImg&imgFile="+imgFile+"&imgName="+name;
     $.ajax({
-        url: "/pinker/ImgServlet",
+        url: "/pinker/pkTopicServlet",
         data: mydata,
         type: "post",
         dataType: "json",
@@ -71,7 +71,6 @@ function syncUpload(){
             if(data.state == 'ok'){
                 document.getElementById("upload").value = "";//重置文件域
                 layer.msg(data.msg);
-                CloseImg();
             }else if(data.state == 'error'){
                 layer.msg(data.msg);
             }
@@ -114,3 +113,35 @@ $(function () {
 })
 
 
+
+function toBold() {
+    window.getSelection().getRangeAt(0).surroundContents(document.createElement("b"));
+}
+
+function toItalic() {
+    window.getSelection().getRangeAt(0).surroundContents(document.createElement("i"));
+}
+
+function updateTopic(){
+    var blogData=$("#blog-textdiv").html();
+    var title=$(".blogTitle-input").val();
+    console.log(title);
+
+    $.ajax({
+        url:"pkTopicServlet?method=publishTopic",
+        type:"post",
+        data:{topicData:blogData,title:title},
+        dataType:"text",
+        success:function(result){
+            if(result=="true"){
+                syncUpload();
+                alert("上传成功");
+                window.location.reload();
+            }else{
+                alert("发布保存博文失败");
+            }
+        }
+    })
+
+
+}

@@ -10,6 +10,7 @@ import com.pinker.entity.pk_topic;
 import com.pinker.entity.pk_user;
 import com.pinker.service.TopicService;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -110,10 +111,25 @@ public class TopicServiceImpl  implements TopicService {
      * 按id查询
      */
     @Override
-    public pk_topic findByUserId(Integer userId) {
-        return tdi.findByUserId(userId);
+    public List<pk_topic> findByUserId(Integer userId) {
+        List<pk_topic> list = tdi.findByUserId(userId);
+        return list;
     }
 
+
+    /**
+     * 上传话题
+     * @param id
+     * @param title
+     * @param content
+     * @param userId
+     * @return
+     */
+    @Override
+    public int uploadTopic(int id, String title, String content, int userId) {
+        return tdi.uploadTopic(id,title,content,userId,new Date());
+
+    }
 
 
 }

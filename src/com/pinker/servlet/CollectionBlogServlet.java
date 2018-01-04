@@ -1,81 +1,45 @@
 package com.pinker.servlet;
 
 import com.pinker.entity.CollectionBlog;
+import com.pinker.entity.pk_user;
 import com.pinker.service.CollectionBlogService;
 import com.pinker.service.Impl.CollectionBlogServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "CollectionBlogServlet")
-public class CollectionBlogServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+@WebServlet(name = "CollectionBlogServlet" ,urlPatterns = {"/CollectionBlogServlet"})
+public class CollectionBlogServlet extends BaseServlet {
 
-    private CollectionBlogService collectionBlogService = new CollectionBlogServiceImpl();
-
-    /**
-     * 删除blog收藏的方法
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException
-     */
-    protected void deleteCollectionBlog(HttpServletRequest request,
-                                      HttpServletResponse response) throws ServletException, IOException {
-        int userId = Integer.parseInt(request.getParameter("userId"));
-        collectionBlogService.deleteCollectionBlogByUserId(userId);
-        response.sendRedirect(request.getContextPath()+"/CollectionBlogServlet?method=#");
-
-    }
-
-
-    /**
-     * 添加话题收藏的方法
-     */
-    protected void doPost(HttpServletRequest request,
-                          HttpServletResponse response) throws ServletException, IOException {
+    private CollectionBlogService cbs=new CollectionBlogServiceImpl();
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         /**
-         * 获取从页面中输入的信息
+         * 1.从session域中获取user的对象
          */
-        CollectionBlog collectionBlog = new CollectionBlog();
+        pk_user collectBlogMy = (pk_user) req.getSession().getAttribute("user");
 
         /**
-         * 调用service中的增加信息的方法
+         * 2.从user中获取id
          */
-        collectionBlogService.saveCollectionBlog(collectionBlog);
-
+        Integer id = collectBlogMy.getId();
         /**
-         * 重定向到#方法
+         * 3.调用查询该用户所有收藏博客方法
          */
-        response.sendRedirect(request.getContextPath()+"/CollectionBlogServlet?method=#");
-
-    }
-
-    /**
-     * 查询所有blog收藏的信息并带着信息去页面
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException
-     */
-    protected void concernTopicList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        List<CollectionBlog> collectionBlog = collectionBlogService.getAllCollectionBlog();
-
+        List<CollectionBlog> collectBlog = cbs.findAllByUserId(id);
+        System.out.println(collectBlog);
         /**
-         * 将查询到的blog收藏对象放进请求域中
+         * 4.将获取的集合放到域中
          */
-        request.setAttribute("list", collectionBlog);
-
+        req.setAttribute("collectBlog",collectBlog);
         /**
-         * 转发到 #.jsp
+         * 5.转发到CollectBlog.jsp的页面
          */
-        request.getRequestDispatcher("#.jsp").forward(request, response);
+        req.getRequestDispatcher("/pinker/CollectBlog.jsp").forward(req,resp);
     }
 }

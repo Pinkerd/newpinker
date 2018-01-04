@@ -26,8 +26,11 @@
 
 	<%
 		BlogDaoService blog=new BlogDaoServiceImpl();
-		List<Blog> list = blog.getAllBlog();
-		request.setAttribute("list",list);
+		pk_user userMy = (pk_user) request.getSession().getAttribute("user");
+		Integer id = userMy.getId();
+
+		List<Blog> usersBlog = blog.findUser(id);
+		request.setAttribute("usersBlog",usersBlog);
 	%>
 
 
@@ -63,13 +66,13 @@
 					<!--收藏的博文-->
 					<div class="left-attentionBlog">
 
-						<c:forEach items="${list}" var="blog">
+						<c:forEach items="${usersBlog}" var="blog">
 						<div class="blog-wrap">
 							<div class="blog-title-wrap">
 								<a href="/pinker/BlogServlet?method=selectblogOne&blogId=${blog.id}">${blog.title}</a>
 							</div>
 							<div class="blog-info">
-								<span>2017-12-05</span>·<span>16 个回答</span>·<span>55 个关注</span>
+								<span>${blog.publishtime}</span>·<span>16 个回答</span>·<span>55 个关注</span>
 							</div>
 						</div>
 						</c:forEach>
@@ -114,7 +117,9 @@
 							</div>
 
 							<div class="menu-attentionBlog">
+								<a href="CollectionBlogServlet">
 								<li>收藏的博文</li>
+								</a>
 							</div>
 
 							<div class="menu-myTopic">
