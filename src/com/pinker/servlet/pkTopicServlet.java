@@ -2,8 +2,13 @@ package com.pinker.servlet;
 
 
 
+import com.pinker.dao.TopicDao;
 import com.pinker.entity.pk_topic;
+import com.pinker.entity.pk_user;
+import com.pinker.service.TopicService;
 import com.pinker.service.serviceimpl.TopicServiceImpl;
+import com.pinker.util.IDUtil;
+import com.pinker.util.IOUtil;
 import com.pinker.util.WEBUtils;
 
 import javax.servlet.ServletException;
@@ -11,11 +16,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 @WebServlet(name = "pkTopicServlet",urlPatterns = "/pkTopicServlet")
 public class pkTopicServlet extends BaseServlet {
-    TopicServiceImpl tsi = new TopicServiceImpl();
+    TopicService tsi = new TopicServiceImpl();
     protected void showAll(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("jinlai");
         List<pk_topic> list = tsi.selectAll();
@@ -60,7 +66,7 @@ public class pkTopicServlet extends BaseServlet {
         String i = request.getParameter("numb");
         Integer id = Integer.valueOf(i);
         tsi.delete(id);
-        response.sendRedirect(request.getContextPath()+"/pkTopicServlet?meth7od=showAll");
+        response.sendRedirect(request.getContextPath()+"/pkTopicServlet?method=showAll");
     }
     protected void changePkTopic(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("jinlaiXG");
@@ -83,4 +89,46 @@ public class pkTopicServlet extends BaseServlet {
     }
 
 
+
+    int topicId;
+
+
+    /**
+     * 上传话题
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
+    protected void publishTopic(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        topicId=Integer.parseInt(IDUtil.createID());
+        String title=req.getParameter("title");
+        String topicData=req.getParameter("topicData");
+        pk_user user= (pk_user) req.getSession().getAttribute("user");
+
+
+        PrintWriter out=resp.getWriter();
+        if(tsi.uploadTopic(topicId,title,topicData,user.getId())!=0){
+            out.write("true");
+        }else{
+            out.write("false");
+        }
+
+
+    }
+
+    /**
+     * 上传话题图
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
+    protected void publishTopicImg(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+
+        String filePath="E:\\site\\topicImg";
+        IOUtil.uploadImg(req,resp,filePath,topicId);
+
+    }
 }

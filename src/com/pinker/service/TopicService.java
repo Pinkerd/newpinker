@@ -4,6 +4,7 @@ package com.pinker.service;
 import com.pinker.entity.Page;
 import com.pinker.entity.pk_topic;
 
+import java.util.Date;
 import java.util.List;
 
 public interface TopicService {
@@ -60,4 +61,10 @@ public interface TopicService {
       * @return
       */
      List<pk_topic> findByUserId(Integer userId);
+
+
+     /**
+      * 上传话题
+      */
+     int uploadTopic(int id, String title, String content, int userId);
 }

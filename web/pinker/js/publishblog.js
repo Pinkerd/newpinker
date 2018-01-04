@@ -18,7 +18,8 @@ function updateBlog(){
 		dataType:"text",
 		success:function(result){
 			if(result="true"){
-
+				alert("发布成功");
+				window.location.reload();
 			}else{
 				alert("发布保存博文失败");
 			}

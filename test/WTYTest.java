@@ -1,6 +1,7 @@
 import com.pinker.dao.FriendDao;
 import com.pinker.service.FriendService;
 import com.pinker.service.Impl.FriendServiceImpl;
+import com.pinker.util.IDUtil;
 import com.pinker.util.JDBCUtils;
 import org.junit.jupiter.api.Test;
 
@@ -19,5 +20,11 @@ public class WTYTest {
         FriendService friendService=new FriendServiceImpl();
         FriendDao friendDao;
 
+    }
+
+    @Test
+    public void testTiemId(){
+
+        System.out.println(IDUtil.createID());
     }
 }

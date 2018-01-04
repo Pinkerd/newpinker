@@ -47,7 +47,7 @@
 			
 			<div id="publishandsetting">
 				
-				<button id="publishBlogBtn" onclick="updateBlog()">提交博客</button>
+				<button id="publishBlogBtn" onclick="updateTopic()">提交话题</button>
 				<%--<button onclick="test()">show</button>--%>
 			</div>
 			

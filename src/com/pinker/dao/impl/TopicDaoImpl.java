@@ -6,6 +6,7 @@ import com.pinker.dao.TopicDao;
 import com.pinker.entity.Page;
 import com.pinker.entity.pk_topic;
 
+import java.util.Date;
 import java.util.List;
 
 public class TopicDaoImpl extends BaseDao<pk_topic> implements TopicDao {
@@ -66,6 +67,24 @@ public class TopicDaoImpl extends BaseDao<pk_topic> implements TopicDao {
     public List<pk_topic> findByUserId(Integer userId) {
         String sql="select * from pk_topic where userId=?";
         return this.getListBean(sql,userId);
+
+    }
+
+
+    /**
+     * 上传话题，ID程序生成
+     * @param id
+     * @param title
+     * @param content
+     * @param userId
+     * @param publishtime
+     * @return
+     */
+    @Override
+    public int uploadTopic(int id, String title, String content, int userId, Date publishtime) {
+        String sql="insert into pk_topic (id,title,content,userId,publishtime) values (?,?,?,?,?)";
+
+        return this.update(sql,id,title,content,userId,publishtime);
 
     }
 }

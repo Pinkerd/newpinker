@@ -80,4 +80,16 @@ public class BlogDaoImpl extends BaseDao<Blog> implements BlogDao {
     }
 
 
+    /**
+     * 查询话题下博文列表
+     * @param topicId
+     * @return
+     */
+    @Override
+    public List<Blog> findTopicBloglist(int topicId) {
+        String sql= "select * from pk_blog where topicId=?";
+        return this.getListBean(sql,topicId);
+    }
+
+
 }
