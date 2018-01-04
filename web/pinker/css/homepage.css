@@ -1,0 +1,323 @@
+*{  margin: 0px; padding: 0px; }
+
+
+/*外层盒子*/
+.box{
+    width: 100%;
+    background:rgb(236,236,236);
+    background-size:cover ;
+    z-index:-100;
+}
+
+/*头部导航  登录注册*/
+.header{
+    width: 100%;
+    height: 50px;
+   /* border: solid 1px yellow;*/
+    position: absolute;
+    top: 0px;
+    display: none;
+}
+.logoTitle{
+   /* border: solid 1px red;*/
+    width: 100px;
+    height:30px;
+    text-align: center;
+    font-size: 30px;
+    line-height: 30px;
+    margin-top: 20px;
+    margin-left: 40px;
+    font-family: 微软雅黑;
+    font-weight: bold;
+    color: white;
+    float: left;
+}
+
+/*登陆注册*/
+.loginRegist{
+    width: 200px;
+    height: 30px;
+    /*border: solid 1px yellow;*/
+    margin-right: 100px;
+    color:white;
+    float: right;
+    margin-top: 20px;
+}
+
+.lrButton{
+    width: 70px;
+    height: 30px;
+    border: solid 1px white;
+    float: left;
+    text-align: center;
+    line-height: 30px;
+    margin-right: 20px;
+}
+.lrButton:hover{
+    background: white;
+}
+.lrButton a:link{
+    text-decoration: none;
+    color: white;
+}
+.lrButton:hover a{
+    text-decoration: none;
+    color: black;
+}
+
+/*用户名头像*/
+.headerName{
+    width: 160px;
+    height: 60px;
+   /* border: solid 1px green;*/
+    position: absolute;
+    top: 20px;
+    right:120px;
+}
+.userHeader{
+    width:60px;
+    height: 60px;
+    background: white;
+    display: inline-block;
+}
+.userName{
+    color: white;
+    font-size: 15px;
+    font-family: 黑体;
+}
+/*广告标语*/
+.slogen{
+    width: 300px;
+    height:40px;
+    line-height: 30px;
+    font-size:25px ;
+    font-weight: bold;
+   /* border: solid 1px yellow;*/
+    position: absolute;
+    top: 170px;
+    left: 290px;
+    display: block;
+    color:rgb(238,238,238);
+    display: none;
+}
+.slogen a{
+    font-size: 30px;
+    color: white;
+}
+.slogenC{
+    width: 600px;
+    height: 50px;
+    color: white;
+    font-size: 30px;
+    line-height: 50px;
+   /* border: solid 1px yellow;*/
+    position: absolute;
+    top: 200px;
+    left: 60px;
+    display: block;
+    font-family: 宋体;
+    display: none;
+}
+.slogenC span{
+    font-size:50px;
+    font-family: 黑体;
+}
+
+/*功能列表*/
+
+.funcList{
+   /* border: solid 1px red;*/
+    width: 300px;
+    height: 30px;
+    position: absolute;
+    top: 20px;
+    right: 400px;
+    display: none;
+}
+
+.funcUl{
+   /* border: solid 1px yellow;*/
+    list-style-type: none;
+    width: 300px;
+    height: 30px;
+}
+.funcLi{
+   /* border: solid 1px green;*/
+    list-style-type: none;
+    width: 70px;
+    height: 30px;
+    display: inline-block;
+    line-height: 30px;
+    margin-left:20px ;
+    text-align: center;
+    border-radius: 5px;
+}
+.funcLi a{
+    color: white;
+}
+.funcLi a:link{
+    text-decoration: none;
+}
+.funcLi:hover{
+    background: white;
+}
+.funcLi:hover a{
+    color: black;
+}
+
+.funcLi a:link{
+     color: white;
+     text-decoration: none;
+ }
+
+/*背景动画盒子*/
+.banner{
+    width: 100%;
+    height: 760px;
+    margin: 0px auto;
+    overflow: hidden;
+    z-index: -50;
+    background: black;
+}
+
+/*开始发现之旅*/
+.downBox{
+    width: 100%;
+    height: 100px;
+    /*border: solid 1px white;*/
+    position: absolute;
+    top: 650px;
+    display: none;
+}
+.startDiscover {
+    width: 300px;
+    height: 100px;
+    color: white;
+    font-size: 30px;
+    text-align: center;
+    line-height: 50px;
+   /* border: solid 1px white;*/
+    margin: 0px auto;
+
+}
+/*主体文章内容 （方块区）*/
+.section{
+    width: 100%;
+    height: 900px;
+   overflow: hidden;
+    background-image: url("../img/floor.jpg");
+}
+
+
+
+/*页脚联系我们*/
+.footer{
+    width: 100%;
+    height: 200px;
+    background: red;
+}
+#baseInfo{
+    width: 100%;
+    height:100px;
+    background:black;
+    z-index: 10;
+   /* border: 1px solid yellow;*/
+}
+.infoBanner{
+    width: 920px;
+   /* border: 1px solid red;*/
+margin: 0px auto;
+}
+
+
+.infoBox{
+    width: 300px;
+    height: 100px;
+    margin: 0px auto;
+    /*border: solid 1px black;*/
+    display: inline-block;
+    text-align: center;
+    float: left;
+}
+
+.infoTitle{
+    width:300px ;
+    height: 30px;
+    line-height: 30px;
+    font-size: 20px;
+    color: white;
+    font-family: 黑体;
+    margin: 0px auto 20px;
+}
+.infoBox #qq,#wechat,#weibo{
+    width: 40px;
+    height: 40px;
+    margin:10px ;
+}
+.Dcode1,.Dcode2,.Dcode3{
+    width: 100px;
+    height: 100px;
+    z-index: 20;
+}
+.Dcode1{
+    position: relative;
+    right: 60px;
+    display: none;
+}
+.Dcode2{
+    position: relative;
+    display: none;
+}
+.Dcode3{
+    position: relative;
+    left: 70px;
+    display: none;
+}
+.DcodeShow{
+    display: block;
+}
+.infoBox span{
+    color: white;
+}
+.infoBox span a:link{
+    text-decoration: none;
+    color: white;
+}
+.infoBox span a:active{
+    text-decoration: none;
+    color: white;
+}
+.infoBox span a:hover{
+    text-decoration: none;
+    color: white;
+}
+.infoBox span a:visited{
+    text-decoration: none;
+    color: white;
+}
+
+/*连接信息*/
+
+
+
+/*
+页脚最下版权信息*/
+.cpr{
+    width: 100%;
+    height: 30px;
+    background: black;
+    position: absolute;
+    bottom: 1px;
+    border-top: 1px solid white ;
+    z-index: 15;
+
+}
+.cprTitle{
+    width: 1000px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 15px;
+    color: white;
+    text-align: center;
+    margin: 0px auto;
+}

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<base href="http://localhost:8080/pinker/pinker/">
 <html>
 	<head>
 		<meta charset="UTF-8">
 		<title></title>	
 		<link rel="stylesheet" type="text/css" href="css/login.css" />
-		<%@include file="/WEB-INF/include/base_info.jsp"%>
 		<style>
 			input[type="password"]{
 			width: 280px;

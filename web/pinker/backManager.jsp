@@ -81,7 +81,7 @@
         }
     </style>
 </head>
-<body>
+<body> 
 <div class="managerTop">
     <img src="images/logos.jpg" style="margin-left: 250px;width:100px;height: 100px;float: left">
     <div class="toptitle">品客</div>
