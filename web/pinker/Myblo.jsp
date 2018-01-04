@@ -27,6 +27,7 @@
 	<%
 		BlogDaoService blog=new BlogDaoServiceImpl();
 		pk_user userMy = (pk_user) request.getSession().getAttribute("user");
+
 		Integer id = userMy.getId();
 
 		List<Blog> usersBlog = blog.findUser(id);

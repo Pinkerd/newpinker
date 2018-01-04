@@ -10,10 +10,10 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<link rel="stylesheet" type="text/css" href="CSS/Template.css"/>
-		<link rel="stylesheet" type="text/css" href="CSS/topicList.css"/>
-		<script src="js/jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
-		<script type="text/javascript" src="js/Template.js"></script>
+		<link rel="stylesheet" type="text/css" href="pinker/CSS/Template.css"/>
+		<link rel="stylesheet" type="text/css" href="pinker/CSS/topicList.css"/>
+		<script src="pinker/js/jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="pinker/js/Template.js"></script>
 		<title></title>
 	</head>
 
