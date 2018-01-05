@@ -15,7 +15,7 @@
     <link rel="stylesheet" type="text/css" href="pinker/css/MyTopic1.css" />
     <script type="text/javascript" src="pinker/js/otherPage.js"></script>
     <script type="text/javascript" src="pinker/js/head_info.js"></script>
-    <script type="text/javascript" src="pinker/js/otherpage/otherpageShow.js"></script>
+    <script type="text/javascript" src="pinker/js/otherpage/otherPageTopic.js"></script>
     <style rel="stylesheet" type="text/css">
         .card-functionArea{
             position:absolute ;
@@ -169,23 +169,14 @@
             <!--右侧-->
             <div class="right-menu">
                 <ul>
-                    <!--<div class="menu-personInfo isMenuActive">
-                        <li>个人资料管理</li>
-                    </div>-->
-
-
 
                     <div class="menu-myTopic">
-                        <a href="http://localhost:8080/pinker/pinker/othersPageTopic.jsp?otherId=${other.id}"><li>发布的话题</li></a>
+                       <a href="http://localhost:8080/pinker/pinker/othersPageTopic.jsp?otherId=${other.id}"><li>发布的话题</li></a>>
                     </div>
 
                     <div class="menu-myBlog">
-                        <a href="http://localhost:8080/pinker/pinker/othersPage.jsp?otherId=${other.id}"> <li>发布的博文</li></a>
+                       <a href="http://localhost:8080/pinker/pinker/othersPage.jsp?otherId=${other.id}"> <li>发布的博文</li></a>
                     </div>
-
-                    <!--<div class="menu-friend">
-                        <li>好友管理</li>
-                    </div>-->
 
                 </ul>
 
