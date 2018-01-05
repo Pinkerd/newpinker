@@ -7,6 +7,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
+
+<%
+	int topicId=Integer.parseInt(request.getParameter("topicId"));
+	TopicService topicService=new TopicServiceImpl();
+	BlogDaoService blogDaoService= new BlogDaoServiceImpl();
+	pk_topic topic=topicService.selectOne(topicId);
+	List<Blog> blogList=blogDaoService.findTopicBlogList(topicId);
+	request.setAttribute("thisTopic",topic);
+	request.setAttribute("thisBlogList",blogList);
+%>
 	<head>
 		<meta charset="UTF-8">
 		<%@include file="/WEB-INF/include/base_info.jsp"%>
@@ -14,18 +24,75 @@
 		<link rel="stylesheet" type="text/css" href="pinker/css/zhwz.css">
 		<link rel="stylesheet" type="text/css" href="pinkler/css/head_info.css">
 		<script type="text/javascript" src="pinker/js/Template.js"></script>
+		<script type="text/javascript">
+
+
+			$(function () {
+                 //获取serclet地址
+				var url="${pageContext.request.contextPath}/ConcernTopicServlet?method=hasConcern";
+
+				var data={topicId: ${thisTopic.id}}
+
+				/*关注按钮*/
+				var $conBtn=$("#title-attentionBtn");
+				$.post(url,data,function (result) {
+
+					if(result=="true"){/*存在的情况*/
+						$conBtn.text("取消关注");
+                        $conBtn.unbind("click");
+						$conBtn.click(deleteConcern);
+
+					}else{/*不存在的情况*/
+                        $conBtn.text("关注");
+                        $conBtn.unbind("click");
+                        $conBtn.click(concernTopic);
+					}
+                })
+
+
+                /**
+				 * 添加关注
+                 */
+				function concernTopic() {
+                    var url="${pageContext.request.contextPath}/ConcernTopicServlet?method=addConc";
+                    $.post(url,data,function (result) {
+                        if(result=="true"){
+                            $conBtn.text("取消关注");
+                            $conBtn.unbind("click");
+                            $conBtn.click(deleteConcern);
+                        }
+                    })
+                }
+
+                /**
+				 * 删除关注
+                 */
+                function deleteConcern() {
+                    var url="${pageContext.request.contextPath}/ConcernTopicServlet?method=deleteConc";
+                    $.post(url,data,function (result) {
+                        if(result=="true"){
+                            $conBtn.text("关注");
+                            $conBtn.unbind("click");
+                            $conBtn.click(concernTopic);
+                        }
+                    })
+                }
+
+
+
+            })
+
+
+		</script>
+
+
 		<title></title>
 	</head>
 
-	<%
-		int topicId=Integer.parseInt(request.getParameter("topicId"));
-		TopicService topicService=new TopicServiceImpl();
-		BlogDaoService blogDaoService= new BlogDaoServiceImpl();
-		pk_topic topic=topicService.selectOne(topicId);
-		 List<Blog> blogList=blogDaoService.findTopicBlogList(topicId);
-		request.setAttribute("thisTopic",topic);
-		request.setAttribute("thisBlogList",blogList);
-	%>
+
+
+
+
 
 
 		<div class="template-body">
@@ -52,7 +119,7 @@
 							<a class="button-link-share " href="#"><image src = "pinker/img/share.jpg" class="s-jpg" width="25px"/>分享</a>
 							<span class="visits-num">17921665 次浏览 •</span>
 							<span class="count" > 849</span> 人关注
-							<button class="title-attentionBtn">关注</button>
+							<button id="title-attentionBtn" style="background-color: #0f88eb" >关注</button>
 						  </div>
 				       </div>
 					</div>

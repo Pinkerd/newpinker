@@ -21,7 +21,7 @@ public class pkTopicServlet extends BaseServlet {
         List<pk_topic> list = tsi.selectAll();
         System.out.println(list);
         request.setAttribute("list",list);
-        request.getRequestDispatcher("/pages/topicListgly.jsp").forward(request,response);
+        request.getRequestDispatcher("/pinker/topicListgly.jsp").forward(request,response);
     }
 
     protected void selectOne(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

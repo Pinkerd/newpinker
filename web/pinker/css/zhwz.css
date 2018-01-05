@@ -100,12 +100,12 @@
 .title-attentionBtn{
 	margin-left: 20px;
 	display: inline-block;
-	width: 70px;
-	height: 30px;
+	width: 120px;
+	height: 40px;
 	border-radius: 3px;
-	border: 0;
-	color: white;
-	background: lightseagreen;
+	border: 0px;
+
+	background-color: #0f88eb;
 	outline: none;
 }
 

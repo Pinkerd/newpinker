@@ -71,4 +71,16 @@ public class ConcernTopicServiceImpl  implements ConcernTopicService {
     public int deleteConcernTopicByUserId(int userId, int topicId) {
         return concernTopicDao.deleteConcernTopicByUserId(userId,topicId);
     }
+
+    /**
+     * 查询一个。按userID和TopicId
+     *
+     * @param userId
+     * @param topicId
+     * @return
+     */
+    @Override
+    public ConcernTopic findByUsrIdAndTopicId(int userId, int topicId) {
+        return concernTopicDao.findConcernTopicByUserIdAndTopicId(userId,topicId);
+    }
 }

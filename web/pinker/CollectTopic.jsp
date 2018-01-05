@@ -1,8 +1,9 @@
 <%@ page import="com.pinker.service.TopicService" %>
 <%@ page import="com.pinker.service.serviceimpl.TopicServiceImpl" %>
-<%@ page import="com.pinker.entity.pk_topic" %>
 <%@ page import="java.util.List" %>
-<%@ page import="com.pinker.entity.pk_user" %>
+<%@ page import="com.pinker.service.ConcernTopicService" %>
+<%@ page import="com.pinker.service.Impl.ConcernTopicServiceImpl" %>
+<%@ page import="com.pinker.entity.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -20,13 +21,13 @@
 		<title></title>
 	</head>
 <%
-	TopicService top=new TopicServiceImpl();
+	ConcernTopicService con=new ConcernTopicServiceImpl();
 	pk_user TopMy = (pk_user) request.getSession().getAttribute("user");
 	System.out.println(TopMy);
 	Integer id = TopMy.getId();
-	List<pk_topic> userTopic = top.findByUserId(id);
-	System.out.println(userTopic);
-	request.setAttribute("userTopic",userTopic);
+	List<ConcernTopic> collectTopic = con.findConcernTopicByUserId(id);
+	request.setAttribute("collectTopic",collectTopic);
+
 %>
 	<body>
 		<!--模板容器-->
@@ -58,21 +59,20 @@
 					<!--关注的话题-->
 
 					<div class="left-attentionTopic">
-						<c:forEach items="${userTopic}" var="topic">
+						<c:forEach items="${collectTopic}" var="collectTop">
 							<div class="topic-wrap">
 								<div class="topic-img">
-									<img src="http://localhost:8080/pinker/IOServlet?method=loadTopicImg&topicId=${topic.id}" width="60px" height="60px" />
+									<img src="http://localhost:8080/pinker/IOServlet?method=loadTopicImg&topicId=${collectTop.topicId}" width="60px" height="60px" />
 								</div>
 								<div style="width: 400px" class="topic-title">
-									<a href="pinker/topic_blogList.jsp?topicId=${topic.id}"><h3>${topic.title}</h3></a>
+									<a href="pinker/topic_blogList.jsp?topicId=${collectTop.topicId}"><h3>${collectTop.topic.title}</h3></a>
 									<div class="detail-wrap" hidden>
 										<div class="detail-img">
-											<img src="http://localhost:8080/pinker/IOServlet?method=loadTopicImg&topicId=${topic.id}" width="60px" height="60px"/>
+											<img src="http://localhost:8080/pinker/IOServlet?method=loadTopicImg&topicId=${collectTop.topicId}" width="60px" height="60px"/>
 										</div>
 
 										<div class="detail-introduce" >
 											<span class="detail-span">
-													${topic.content.substring(0,50)}
 											</span>
 										</div>
 
@@ -82,7 +82,7 @@
 									</div>
 								</div>
 								<div class="topic-introduce">
-										${topic.content.substring(0,15)}
+										${collectTop.topic.content.substring(0,15)}
 								</div>
 							</div>
 						</c:forEach>
