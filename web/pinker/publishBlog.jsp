@@ -11,8 +11,13 @@
 	</head>
 	<body>
 
+	<%
+		String topicId=request.getParameter("topicId");
+	%>
+
+
 	<h1 align="center">博文发布</h1>
-        <input type="hidden" class="topicId-home" value="1">
+        <input type="hidden" class="topicId-home" value="<%=topicId%>">
 		<div id="publisBlog-box">
 			<div id="blog-titlebox">
 				<span>标题：</span><input type="text" class="blogTitle-input" value="" />
