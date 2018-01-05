@@ -6,9 +6,8 @@
     <meta charset="UTF-8">
     <title>知性网</title>
     <link rel="stylesheet" type="text/css" href="css/homepage.css"/>
-    <link rel="stylesheet" type="text/css" href="css/homepageCube.css"/>
     <link href="css/reset.css" rel="stylesheet" type="text/css">
-    <link href="css//font-awesome.css" rel="stylesheet" type="text/css">
+    <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
     <link href="css/showlist.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="js/modernizr.custom.js"></script>
 </head>
