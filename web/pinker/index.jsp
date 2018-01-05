@@ -1,17 +1,27 @@
+<%@ page import="com.pinker.entity.pk_user" %>
+<%@ page import="com.pinker.service.TopicService" %>
+<%@ page import="com.pinker.service.serviceimpl.TopicServiceImpl" %>
+<%@ page import="com.pinker.entity.Page" %>
+<%@ page import="com.pinker.entity.pk_topic" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<base href="http://localhost:8080/pinker/pinker/">
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>知性网</title>
-    <link rel="stylesheet" type="text/css" href="css/homepage.css"/>
-    <link href="css/reset.css" rel="stylesheet" type="text/css">
-    <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
-    <link href="css/showlist.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="js/modernizr.custom.js"></script>
+    <%@include file="/WEB-INF/include/base_info.jsp"%>
+    <link rel="stylesheet" type="text/css" href="pinker/css/homepage.css"/>
+    <link href="pinker/css/reset.css" rel="stylesheet" type="text/css">
+    <link href="pinker/css//font-awesome.css" rel="stylesheet" type="text/css">
+    <link href="pinker/css/showlist.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="pinker/js/modernizr.custom.js"></script>
+
 </head>
 <body>
+
+
+
     <%--外层盒子--%>
     <div class="box">
 
@@ -20,11 +30,12 @@
             <%--网站名字--%>
             <div class="logoTitle">SaO</div>
             <%--注册登录--%>
+                <c:if test="${user==null}">
             <div class="loginRegist">
-                <div class="lrButton"><a href="login.jsp">登录</a></div>
-                <div class="lrButton"><a href="login.jsp">注册</a></div>
+                <div class="lrButton"><a href="pinker/login.jsp">登录</a></div>
+                <div class="lrButton"><a href="pinker/login.jsp">注册</a></div>
             </div>
-
+                </c:if>
         </div>
 
         <%--标语slogen--%>
@@ -36,14 +47,12 @@
             <span>知识</span>从未如此<span>性感</span>与<span>开放</span>
         </div>
        <%-- 用户头像保持--%>
-
-        <%--<div class="headerName">
-            <div class="userHeader">
-                头像
-            </div>
-            <span class="userName">用户名</span>
-        </div>--%>
-
+                <c:if test="${user!=null}">
+                    <div class="headerName">
+                        <span class="userName">${user.username}</span>
+                        <img src="http://localhost:8080/pinker/IOServlet?method=loadHeadImg" height="20px" width="20px">
+                    </div>
+                </c:if>
          <%--功能列表 首页 发现  话题--%>
             <div class="funcList">
                 <ul class="funcUl">
@@ -58,20 +67,62 @@
         <div class="downBox">
             <div class="startDiscover">
                 <h2>开始知识的旅程</h2>
-                <img src="img/arrowDown.png" style="margin: 0px auto;width: 100px;height: 50px">
+                <img src="pinker/img/arrowDown.png" style="margin: 0px auto;width: 100px;height: 50px">
             </div>
         </div>
             </a>
         <%--banner--%>
         <div class="banner">
             <%--背景动画--%>
-            <iframe src="banner.html" style="width: 100%;height: 768px;"></iframe>
+            <iframe src="pinker/banner.html" style="width: 100%;height: 100%;"></iframe>
         </div>
 
         <%--中间方块展示部分--%>
         <div class="section">
             <div class="secInner">
                 <a name="down"></a>
+
+
+               <%
+                   TopicService topicService=new TopicServiceImpl();
+                   Page<pk_topic> topicPage=new Page();
+                   topicPage.setPageSize(9);
+                   topicPage.setPageNumber(1);
+                   topicPage=topicService.findTopic(topicPage);
+                   List<pk_topic> topicList=topicPage.getData();
+                    request.setAttribute("topicList",topicList);
+               %>
+
+
+                <c:forEach items="${topicList}" var="topic">
+
+                    <!-- 图片标题作者1 -->
+                    <div class="showListImages">
+                        <div class="showbox">
+                            <div class="showlist" style="overflow: hidden;">
+                                <div class="single-item single-item-1" style="position: absolute; left: 0px;">
+                                    <div class="single-item-main">
+                                        <div class="single-icon">
+                                            <ul class="grid cs-style-5">
+                                                <li>
+                                                    <figure>
+                                                        <img src="http://localhost:8080/pinker/IOServlet?method=loadTopicImg&topicId=${topic.id}" width="380" height="240">
+                                                        <figcaption>
+                                                            <h3>Web Design</h3>
+                                                            <span>Rasty James</span> <a href="#" class="button">
+                                                            <button class="btn btn-blue btn-3blue fa fa-share">查看详情</button>
+                                                        </a> </figcaption>
+                                                    </figure>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </c:forEach>
+
 
             <!-- 图片标题作者1 -->
             <div class="showListImages">
@@ -83,7 +134,7 @@
                                     <ul class="grid cs-style-5">
                                         <li>
                                             <figure>
-                                                <img src="img/image02.jpg" width="380" height="240">
+                                                <img src="pinker/img/image02.jpg" width="380" height="240">
                                                 <figcaption>
                                                     <h3>Web Design</h3>
                                                     <span>Rasty James</span> <a href="#" class="button">
@@ -109,7 +160,7 @@
                                     <ul class="grid cs-style-5">
                                         <li>
                                             <figure>
-                                                <img src="img/image01.jpg" width="380" height="240">
+                                                <img src="pinker/img/image01.jpg" width="380" height="240">
                                                 <figcaption>
                                                     <h3>Web Design</h3>
                                                     <span>Rasty James</span> <a href="#" class="button">
@@ -135,7 +186,7 @@
                                     <ul class="grid cs-style-5">
                                         <li>
                                             <figure>
-                                                <img src="img/image04.jpg" width="380" height="240">
+                                                <img src="pinker/img/image04.jpg" width="380" height="240">
                                                 <figcaption>
                                                     <h3>Web Design</h3>
                                                     <span>Rasty James</span> <a href="#" class="button">
@@ -160,7 +211,7 @@
                                     <ul class="grid cs-style-5">
                                         <li>
                                             <figure>
-                                                <img src="img/image03.jpg" width="380" height="240">
+                                                <img src="pinker/img/image03.jpg" width="380" height="240">
                                                 <figcaption>
                                                     <h3>Web Design</h3>
                                                     <span>Rasty James</span> <a href="#" class="button">
@@ -186,7 +237,7 @@
                                     <ul class="grid cs-style-5">
                                         <li>
                                             <figure>
-                                                <img src="img/image02.jpg" width="380" height="240">
+                                                <img src="pinker/img/image02.jpg" width="380" height="240">
                                                 <figcaption>
                                                     <h3>Web Design</h3>
                                                     <span>Rasty James</span> <a href="#" class="button">
@@ -212,7 +263,7 @@
                                     <ul class="grid cs-style-5">
                                         <li>
                                             <figure>
-                                                <img src="img/image01.jpg" width="380" height="240">
+                                                <img src="pinker/img/image01.jpg" width="380" height="240">
                                                 <figcaption>
                                                     <h3>Web Design</h3>
                                                     <span>Rasty James</span> <a href="#" class="button">
@@ -238,7 +289,7 @@
                                     <ul class="grid cs-style-5">
                                         <li>
                                             <figure>
-                                                <img src="img/image04.jpg" width="380" height="240">
+                                                <img src="pinker/img/image04.jpg" width="380" height="240">
                                                 <figcaption>
                                                     <h3>Web Design</h3>
                                                     <span>Rasty James</span> <a href="#" class="button">
@@ -263,7 +314,7 @@
                                     <ul class="grid cs-style-5">
                                         <li>
                                             <figure>
-                                                <img src="img/image03.jpg" width="380" height="240">
+                                                <img src="pinker/img/image03.jpg" width="380" height="240">
                                                 <figcaption>
                                                     <h3>Web Design</h3>
                                                     <span>Rasty James</span> <a href="#" class="button">
@@ -289,7 +340,7 @@
                                     <ul class="grid cs-style-5">
                                         <li>
                                             <figure>
-                                                <img src="img/image02.jpg" width="380" height="240">
+                                                <img src="pinker/img/image02.jpg" width="380" height="240">
                                                 <figcaption>
                                                     <h3>Web Design</h3>
                                                     <span>Rasty James</span> <a href="#" class="button">
@@ -327,12 +378,12 @@
                     </div>
                     <div class="infoBox">
                         <div class="infoTitle" style="margin: 0px auto 10px;">------关注我们------</div>
-                        <img src="img/Contact_wechat.png"   id="wechat"  >
-                        <img src="img/Contact_QQ.png"   id="qq" >
-                        <img src="img/Contact_weibo.png"   id="weibo" ><br>
-                        <img src="img/2Dcode.png" class="Dcode1">
-                        <img src="img/2Dcode.png" class="Dcode2">
-                        <img src="img/2Dcode.png" class="Dcode3">
+                        <img src="pinker/img/Contact_wechat.png"   id="wechat"  >
+                        <img src="pinker/img/Contact_QQ.png"   id="qq" >
+                        <img src="pinker/img/Contact_weibo.png"   id="weibo" ><br>
+                        <img src="pinker/img/2Dcode.png" class="Dcode1">
+                        <img src="pinker/img/2Dcode.png" class="Dcode2">
+                        <img src="pinker/img/2Dcode.png" class="Dcode3">
                     </div>
                 </div>
             </div>
@@ -368,7 +419,7 @@
 
     </div>
 
-    <script type="text/javascript" src="js/jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="pinker/js/jquery-1.7.2.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             /*头部淡入*/
@@ -404,7 +455,7 @@
     </script>
 
     <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
-    <script>
+    <script type="text/javascript">
         $(function(){
             //锚点跳转滑动效果
             $('a[href=#down],a[name=down]').click(function() {
@@ -429,9 +480,9 @@
 
 
 
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
-    <script type="text/javascript" src="js/jquery.contentcarousel.js"></script>
+    <script type="text/javascript" src="pinker/js/jquery.min.js"></script>
+    <script type="text/javascript" src="pinker/js/jquery.easing.1.3.js"></script>
+    <script type="text/javascript" src="pinker/js/jquery.contentcarousel.js"></script>
     <script type="text/javascript">
         $('#showbox').contentcarousel();;
     </script>
