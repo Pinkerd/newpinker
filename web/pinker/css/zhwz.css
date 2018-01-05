@@ -97,19 +97,19 @@
 	
 }
 
-.title-attentionBtn{
+#title-attentionBtn{
 	margin-left: 20px;
 	display: inline-block;
-	width: 120px;
-	height: 40px;
+	width: 70px;
+	height: 30px;
 	border-radius: 3px;
-	border: 0px;
-
-	background-color: #0f88eb;
+	border: 0;
+	color: white;
+	background: lightseagreen;
 	outline: none;
 }
 
-.title-attentionBtn:hover{
+#title-attentionBtn:hover{
 	outline: none;
 	cursor: pointer;
 }

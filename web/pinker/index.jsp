@@ -17,6 +17,7 @@
     <link href="pinker/css/showlist.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="pinker/js/modernizr.custom.js"></script>
 
+
 </head>
 <body>
 
@@ -63,14 +64,18 @@
             </div>
 
         <%--开始发现之旅--%>
-            <a href="#down">
+
         <div class="downBox">
+            <a href="#">
             <div class="startDiscover">
                 <h2>开始知识的旅程</h2>
                 <img src="pinker/img/arrowDown.png" style="margin: 0px auto;width: 100px;height: 50px">
             </div>
-        </div>
             </a>
+        </div>
+
+
+
         <%--banner--%>
         <div class="banner">
             <%--背景动画--%>
@@ -80,7 +85,7 @@
         <%--中间方块展示部分--%>
         <div class="section">
             <div class="secInner">
-                <a name="down"></a>
+
 
 
                <%
@@ -93,7 +98,7 @@
                     request.setAttribute("topicList",topicList);
                %>
 
-
+                &nbsp;<a id="down"></a>
                 <c:forEach items="${topicList}" var="topic">
 
                     <!-- 图片标题作者1 -->
@@ -108,8 +113,8 @@
                                                     <figure>
                                                         <img src="http://localhost:8080/pinker/IOServlet?method=loadTopicImg&topicId=${topic.id}" width="380" height="240">
                                                         <figcaption>
-                                                            <h3>Web Design</h3>
-                                                            <span>Rasty James</span> <a href="#" class="button">
+                                                            <h3>${topic.title}</h3>
+                                                            <span>${topic.user.username}</span> <a href="http://localhost:8080/pinker/pinker/topic_blogList.jsp?topicId=${topic.id}" class="button">
                                                             <button class="btn btn-blue btn-3blue fa fa-share">查看详情</button>
                                                         </a> </figcaption>
                                                     </figure>
@@ -123,238 +128,6 @@
                     </div>
                 </c:forEach>
 
-
-            <!-- 图片标题作者1 -->
-            <div class="showListImages">
-                <div class="showbox">
-                    <div class="showlist" style="overflow: hidden;">
-                        <div class="single-item single-item-1" style="position: absolute; left: 0px;">
-                            <div class="single-item-main">
-                                <div class="single-icon">
-                                    <ul class="grid cs-style-5">
-                                        <li>
-                                            <figure>
-                                                <img src="pinker/img/image02.jpg" width="380" height="240">
-                                                <figcaption>
-                                                    <h3>Web Design</h3>
-                                                    <span>Rasty James</span> <a href="#" class="button">
-                                                    <button class="btn btn-blue btn-3blue fa fa-share">查看详情</button>
-                                                </a> </figcaption>
-                                            </figure>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 图片标题作者2 -->
-            <div class="showListImages">
-                <div class="showbox">
-                    <div class="showlist" style="overflow: hidden;">
-                        <div class="single-item single-item-1" style="position: absolute; left: 0px;">
-                            <div class="single-item-main">
-                                <div class="single-icon">
-                                    <ul class="grid cs-style-5">
-                                        <li>
-                                            <figure>
-                                                <img src="pinker/img/image01.jpg" width="380" height="240">
-                                                <figcaption>
-                                                    <h3>Web Design</h3>
-                                                    <span>Rasty James</span> <a href="#" class="button">
-                                                    <button class="btn btn-blue btn-3blue fa fa-share">查看详情</button>
-                                                </a> </figcaption>
-                                            </figure>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 图片标题作者3 -->
-            <div class="showListImages">
-                <div class="showbox">
-                    <div class="showlist" style="overflow: hidden;">
-                        <div class="single-item single-item-1" style="position: absolute; left: 0px;">
-                            <div class="single-item-main">
-                                <div class="single-icon">
-                                    <ul class="grid cs-style-5">
-                                        <li>
-                                            <figure>
-                                                <img src="pinker/img/image04.jpg" width="380" height="240">
-                                                <figcaption>
-                                                    <h3>Web Design</h3>
-                                                    <span>Rasty James</span> <a href="#" class="button">
-                                                    <button class="btn btn-blue btn-3blue fa fa-share">查看详情</button>
-                                                </a> </figcaption>
-                                            </figure>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- 图片标题作者4 -->
-            <div class="showListImages">
-                <div class="showbox">
-                    <div class="showlist" style="overflow: hidden;">
-                        <div class="single-item single-item-1" style="position: absolute; left: 0px;">
-                            <div class="single-item-main">
-                                <div class="single-icon">
-                                    <ul class="grid cs-style-5">
-                                        <li>
-                                            <figure>
-                                                <img src="pinker/img/image03.jpg" width="380" height="240">
-                                                <figcaption>
-                                                    <h3>Web Design</h3>
-                                                    <span>Rasty James</span> <a href="#" class="button">
-                                                    <button class="btn btn-blue btn-3blue fa fa-share">查看详情</button>
-                                                </a> </figcaption>
-                                            </figure>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 图片标题作者5 -->
-            <div class="showListImages">
-                <div class="showbox">
-                    <div class="showlist" style="overflow: hidden;">
-                        <div class="single-item single-item-1" style="position: absolute; left: 0px;">
-                            <div class="single-item-main">
-                                <div class="single-icon">
-                                    <ul class="grid cs-style-5">
-                                        <li>
-                                            <figure>
-                                                <img src="pinker/img/image02.jpg" width="380" height="240">
-                                                <figcaption>
-                                                    <h3>Web Design</h3>
-                                                    <span>Rasty James</span> <a href="#" class="button">
-                                                    <button class="btn btn-blue btn-3blue fa fa-share">查看详情</button>
-                                                </a> </figcaption>
-                                            </figure>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 图片标题作者6 -->
-            <div class="showListImages">
-                <div class="showbox">
-                    <div class="showlist" style="overflow: hidden;">
-                        <div class="single-item single-item-1" style="position: absolute; left: 0px;">
-                            <div class="single-item-main">
-                                <div class="single-icon">
-                                    <ul class="grid cs-style-5">
-                                        <li>
-                                            <figure>
-                                                <img src="pinker/img/image01.jpg" width="380" height="240">
-                                                <figcaption>
-                                                    <h3>Web Design</h3>
-                                                    <span>Rasty James</span> <a href="#" class="button">
-                                                    <button class="btn btn-blue btn-3blue fa fa-share">查看详情</button>
-                                                </a> </figcaption>
-                                            </figure>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 图片标题作者7 -->
-            <div class="showListImages">
-                <div class="showbox">
-                    <div class="showlist" style="overflow: hidden;">
-                        <div class="single-item single-item-1" style="position: absolute; left: 0px;">
-                            <div class="single-item-main">
-                                <div class="single-icon">
-                                    <ul class="grid cs-style-5">
-                                        <li>
-                                            <figure>
-                                                <img src="pinker/img/image04.jpg" width="380" height="240">
-                                                <figcaption>
-                                                    <h3>Web Design</h3>
-                                                    <span>Rasty James</span> <a href="#" class="button">
-                                                    <button class="btn btn-blue btn-3blue fa fa-share">查看详情</button>
-                                                </a> </figcaption>
-                                            </figure>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- 图片标题作者8 -->
-            <div class="showListImages">
-                <div class="showbox">
-                    <div class="showlist" style="overflow: hidden;">
-                        <div class="single-item single-item-1" style="position: absolute; left: 0px;">
-                            <div class="single-item-main">
-                                <div class="single-icon">
-                                    <ul class="grid cs-style-5">
-                                        <li>
-                                            <figure>
-                                                <img src="pinker/img/image03.jpg" width="380" height="240">
-                                                <figcaption>
-                                                    <h3>Web Design</h3>
-                                                    <span>Rasty James</span> <a href="#" class="button">
-                                                    <button class="btn btn-blue btn-3blue fa fa-share">查看详情</button>
-                                                </a> </figcaption>
-                                            </figure>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 图片标题作者9 -->
-            <div class="showListImages">
-                <div class="showbox">
-                    <div class="showlist" style="overflow: hidden;">
-                        <div class="single-item single-item-1" style="position: absolute; left: 0px;">
-                            <div class="single-item-main">
-                                <div class="single-icon">
-                                    <ul class="grid cs-style-5">
-                                        <li>
-                                            <figure>
-                                                <img src="pinker/img/image02.jpg" width="380" height="240">
-                                                <figcaption>
-                                                    <h3>Web Design</h3>
-                                                    <span>Rasty James</span> <a href="#" class="button">
-                                                    <button class="btn btn-blue btn-3blue fa fa-share">查看详情</button>
-                                                </a> </figcaption>
-                                            </figure>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
             </div>
 

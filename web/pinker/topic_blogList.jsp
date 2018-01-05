@@ -119,7 +119,7 @@
 							<a class="button-link-share " href="#"><image src = "pinker/img/share.jpg" class="s-jpg" width="25px"/>分享</a>
 							<span class="visits-num">17921665 次浏览 •</span>
 							<span class="count" > 849</span> 人关注
-							<button id="title-attentionBtn" style="background-color: #0f88eb" >关注</button>
+							<button id="title-attentionBtn" >关注</button>
 						  </div>
 				       </div>
 					</div>
