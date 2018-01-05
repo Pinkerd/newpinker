@@ -40,25 +40,46 @@ public class UsersServlet extends BaseServlet {
         String loginname = request.getParameter("loginname");
         String password = request.getParameter("password");
         pk_user user = usi.login(loginname, password);
-        System.out.println(user);
         request.getSession().setAttribute("user",user);
-        if(user!=null){
-            request.getRequestDispatcher("pinker/pages/index.jsp").forward(request,response);
+        request.setAttribute("loginname",loginname);
+
+        if(user!=null && user.getStatus()==1){
+            request.getRequestDispatcher("pinker/index.jsp").forward(request,response);
         }else{
-            response.sendRedirect(request.getContextPath()+"/pinker/login.jsp");
+            request.setAttribute("LoginErrorMsg","登录名或密码错误，请重新输入！");
+            request.getRequestDispatcher("pinker/login.jsp").forward(request,response);
+
         }
+
+        System.out.println(user);
     }
     /*2.注册 添加新用户*/
     protected void saveUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("jump into saveUser...");
 
-        String username = request.getParameter("username");
+        String loginName = request.getParameter("loginName");
         String password = request.getParameter("password");
         String passwordAg = request.getParameter("passwordAg");
-        Date date = new Date();
-        boolean add = usi.add(username, password, date);
-        System.out.println("add:  "+add);
+        pk_user exsist = usi.findByLoginName(loginName);//先看账号有没有被注册
+        System.out.println(exsist);
+        if(exsist!=null){
+            //如果账号被注册了，返回注册页面，带回错误信息
+            request.setAttribute("RegErrorMsg","登录名已存在，请重新输入！");
+            request.getRequestDispatcher("pinker/login.jsp").forward(request,response);
+        }else {
 
+                //条件符合，可以进行注册
+                Date date = new Date();
+                boolean add = usi.add(loginName, password, date);
+                System.out.println("add:  "+add);
+                if(add){
+                    request.getRequestDispatcher("pinker/index.jsp").forward(request,response);
+                }else{
+                    request.setAttribute("RegErrorMsg","注册失败，请重新输入！");
+                    request.getRequestDispatcher("pinker/login.jsp").forward(request,response);
+                }
+
+        }
     }
     /*3.修改资料 更新信息*/
     protected void updateUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -114,7 +135,7 @@ public class UsersServlet extends BaseServlet {
         req.setAttribute("page",page);
 
         //转发到bookmanagger页面
-        req.getRequestDispatcher("pinker/pages/userManager.jsp").forward(req,resp);
+        req.getRequestDispatcher("pinker/userManager.jsp").forward(req,resp);
     }
     /*9.黑名单*/
     //分页信息的方法
@@ -130,7 +151,7 @@ public class UsersServlet extends BaseServlet {
         req.setAttribute("page",page);
 
         //转发到bookmanagger页面
-        req.getRequestDispatcher("pinker/pages/userUnfreeze.jsp").forward(req,resp);
+        req.getRequestDispatcher("pinker/userUnfreeze.jsp").forward(req,resp);
     }
     /*10.冻结、解冻的方法*/
     protected void freezeUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -159,14 +180,27 @@ public class UsersServlet extends BaseServlet {
 
         String loginname = request.getParameter("loginname");
         String password = request.getParameter("password");
-        System.out.println(loginname);
-        System.out.println(password);
+
         pk_user admin = usi.login(loginname, password);
-        System.out.println(admin);
-        request.setAttribute("admin",admin);
-        if(admin.getRoleId()==2){
-            request.getRequestDispatcher("pinker/pages/backManager.jsp").forward(request,response);
+        if(admin==null){
+            //先看账号密码对不对
+            request.setAttribute("errMsg","账号或密码错误，请重新输入！");
+            request.getRequestDispatcher("pinker/ManagerLogin.jsp").forward(request,response);
+        }else{
+            //账号密码对了
+            if(admin.getRoleId()!=2){
+                //看有没有权限
+                //没有权限
+                request.setAttribute("errMsg","没有权限！");
+                request.getRequestDispatcher("pinker/ManagerLogin.jsp").forward(request,response);
+            }else{
+                //没有权限，有权限就登陆
+                request.setAttribute("admin",admin);
+                request.getRequestDispatcher("pinker/backManager.jsp").forward(request,response);
+            }
         }
+
+
     }
 
 

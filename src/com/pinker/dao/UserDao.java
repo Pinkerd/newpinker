@@ -27,6 +27,8 @@ public interface UserDao {
     public pk_user findByUserId(Integer id);
     /*根据姓名查询用户*/
     public  List<pk_user> findByUserName(String name);
+    /*根据登陆名查询用户*/
+    public pk_user findByLoginName(String name);
 
 //管理员功能
     /*显示列表 查询所有用户*/

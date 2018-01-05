@@ -69,6 +69,14 @@ public class UserDaoImpl extends BaseDao<pk_user> implements UserDao {
         return listBean;
     }
 
+    @Override//根据用户名查询用户
+    public pk_user findByLoginName(String name) {
+        String sql="select * from pk_user where loginName=?" ;
+        pk_user user = this.getBean(sql, name);
+
+        return user;
+    }
+
     @Override//显示列表 查询所有用户 test pass
     public List<pk_user> findAll(int status) {
         String sql="select * from pk_user where status=?";
