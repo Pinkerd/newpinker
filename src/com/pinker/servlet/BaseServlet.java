@@ -14,6 +14,8 @@ public class  BaseServlet extends HttpServlet {
 
 //        System.out.println("jump into servlet");
         req.setCharacterEncoding("utf-8");
+        resp.setCharacterEncoding("utf-8");
+        resp.setHeader("Content-Type", "Text/html;Charset=utf-8");
         String methodName=req.getParameter("method");
         try {
             Method method=this.getClass().getDeclaredMethod(methodName,HttpServletRequest.class,HttpServletResponse.class);
