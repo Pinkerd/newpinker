@@ -58,6 +58,12 @@ public class UserServiceImpl implements UserService {
         return byUserName;
     }
 
+    @Override//根据账号名查询用户  test  pass
+    public pk_user findByLoginName(String name) {
+        pk_user byLoginName = userDao.findByLoginName(name);
+        return byLoginName;
+    }
+
     @Override//显示列表 查询所有用户  test  pass
     public List<pk_user> all(int status) {
         List<pk_user> all = userDao.findAll(status);

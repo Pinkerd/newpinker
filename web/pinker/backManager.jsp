@@ -5,8 +5,8 @@
   Time: 17:07
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<base href="http://localhost:8080/pinker/pinker/">
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<base href="http://localhost:8080/pinker/pinker/">
 <html>
 <head>
     <title>后台管理员系统</title>
@@ -84,7 +84,7 @@
 <body> 
 <div class="managerTop">
     <img src="images/logos.jpg" style="margin-left: 250px;width:100px;height: 100px;float: left">
-    <div class="toptitle">品客</div>
+    <div class="toptitle">知性</div>
     <div class="toparticle">后 台 管 理 系 统</div>
     <div class="topadmin">欢迎,${admin.username}</div>
 </div>
@@ -111,9 +111,8 @@
             $("#sframe").attr("src", "http://localhost:8080/pinker/UsersServlet?method=blackList")
         })
 
-
         $("li[id=tip]").click(function () {
-            $("#sframe").attr("src", "第三个网址")
+            $("#sframe").attr("src", "http://localhost:8080/pinker/pkTopicServlet?method=showAll")
         })
         $("li[id=topic]").click(function () {
             $("#sframe").attr("src", "第四个网址")

@@ -64,6 +64,10 @@
     text-decoration: none;
     color: black;
 }
+.lrButton a：visited{
+    text-decoration: none;
+    color: white;
+}
 
 /*用户名头像*/
 .headerName{

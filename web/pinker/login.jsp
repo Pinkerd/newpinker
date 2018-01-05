@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <base href="http://localhost:8080/pinker/pinker/">
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -26,10 +27,9 @@
 		<div class="index-main">
 			<div class="index-main-body">
 				<div class="index-header">
-					<h1>PINKER</h1>
-					<h3>寻找你的粉红色</h3>
+					<h1>SaO</h1>
+					<h3>知识从未如此性感</h3>
 				</div>
-				
 				<div class="index-main-login">
 					<div class="index-nav">
 						<a  class="index-login active" >登录</a>
@@ -40,6 +40,7 @@
 
 				<div class="form-body">
 					<div class="index-form-login  isActive" hidden="hidden">
+
 			<%--登陆form表单--%>
 					<form action="http://localhost:8080/pinker/UsersServlet?method=logIn" method="post">
 						<div class="login-input-usernameWrap">
@@ -48,30 +49,27 @@
 						<div id="login-input-passwordWrap">
 						<input type="password" name="password"  value="" placeholder="密码"/>
 						</div>
-						
+						<div id="LoginErrorMsg">${LoginErrorMsg}</div>
 						<input type="submit" id="login-commitBtn" value="登录"/>
 					</form>
 					</div>
 			<%--注册form表单--%>
 					<div class="index-form-regiser" hidden="hidden">
 						<form action="http://localhost:8080/pinker/UsersServlet?method=saveUser" method="post" id="#rgform">
-							<input type="text" name="username"  id="rgname" placeholder="用户名" value="" />
+							<input type="text" name="loginName"  id="rgname" placeholder="用户名" value="" />
 							<input type="password" name="password"  id="rgpsw1" placeholder="密码" value="" />
 							<input type="password" name="passwordAg"  id="rgpsw2" placeholder="确认密码" value="" />
+							<div id="RegErrorMsg">${RegErrorMsg}</div>
 							<input type="submit" id="index-register-commit" value="注册"/>
 						</form>
-
 					</div>
-
 				</div>
-
 			</div>
-			
 		</div>
-		<iframe src="pinker/background.jsp" width="100%" height="100%"></iframe>
+		<iframe src="background.jsp" width="100%" height="100%"></iframe>
 
 	</body>
-	<script type="text/javascript" src="pinker/js/jquery-1.7.2.js"></script>
+	<script type="text/javascript" src="js/jquery-1.7.2.js"></script>
 	<script type="text/javascript">
         $(function(){
             $(".index-register").click(function(){

@@ -22,8 +22,8 @@
             <div class="logoTitle">SaO</div>
             <%--注册登录--%>
             <div class="loginRegist">
-                <div class="lrButton"><a href="denglu">登录</a></div>
-                <div class="lrButton"><a href="zhuce">注册</a></div>
+                <div class="lrButton"><a href="login.jsp">登录</a></div>
+                <div class="lrButton"><a href="login.jsp">注册</a></div>
             </div>
 
         </div>
