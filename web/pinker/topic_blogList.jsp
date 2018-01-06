@@ -14,6 +14,68 @@
 		<link rel="stylesheet" type="text/css" href="pinker/css/zhwz.css">
 		<link rel="stylesheet" type="text/css" href="pinkler/css/head_info.css">
 		<script type="text/javascript" src="pinker/js/Template.js"></script>
+		<script type="text/javascript">
+
+
+            $(function () {
+                //获取serclet地址
+                var url="${pageContext.request.contextPath}/ConcernTopicServlet?method=hasConcern";
+
+                var data={topicId: ${thisTopic.id}}
+
+                /*关注按钮*/
+                var $conBtn=$("#title-attentionBtn");
+                $.post(url,data,function (result) {
+
+                    if(result=="true"){/*存在的情况*/
+                        $conBtn.text("取消关注");
+                        $conBtn.unbind("click");
+                        $conBtn.click(deleteConcern);
+
+                    }else{/*不存在的情况*/
+                        $conBtn.text("关注");
+                        $conBtn.unbind("click");
+                        $conBtn.click(concernTopic);
+                    }
+                })
+
+
+                /**
+                 * 添加关注
+                 */
+                function concernTopic() {
+                    var url="${pageContext.request.contextPath}/ConcernTopicServlet?method=addConc";
+                    $.post(url,data,function (result) {
+                        if(result=="true"){
+                            $conBtn.text("取消关注");
+                            $conBtn.unbind("click");
+                            $conBtn.click(deleteConcern);
+                        }
+                    })
+                }
+
+                /**
+                 * 删除关注
+                 */
+                function deleteConcern() {
+                    var url="${pageContext.request.contextPath}/ConcernTopicServlet?method=deleteConc";
+                    $.post(url,data,function (result) {
+                        if(result=="true"){
+                            $conBtn.text("关注");
+                            $conBtn.unbind("click");
+                            $conBtn.click(concernTopic);
+                        }
+                    })
+                }
+
+
+
+            })
+
+
+		</script>
+
+
 		<title></title>
 	</head>
 
