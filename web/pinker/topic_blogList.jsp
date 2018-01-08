@@ -147,7 +147,7 @@
 							</div>
 							
 							<div class="stylell">
-								<a href="#">
+								<a href="pinker/blog.jsp?blogId=${blog.id}">
 									<img src="img/icon/lr.jpg" class="head-img04">
 									<span class="txt-img04">浏览</span>
 								</a>
