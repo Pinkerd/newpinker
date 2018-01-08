@@ -75,7 +75,7 @@ public class FriendDaoImpl extends BaseDao<Friend> implements FriendDao {
         //偏移索引值
         int index=page.getIndex();
 
-        String listSql="select * from pk_friend where userId=? limit ?,?";
+        String listSql="select * from pk_friend where userId=? and statue=1 limit ?,?";
         List<Friend> list=this.getListBean(listSql,user.getId(),index,pageSize);
 
         page.setData(list);
