@@ -62,4 +62,26 @@ public class BlogServlet extends BaseServlet {
         request.setAttribute("list",allBlog);
         request.getRequestDispatcher("/pinker/topic_blogList.jsp").forward(request,response);
     }
+
+
+    /**
+     * 发布博文
+     */
+    protected void publishBlog(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int topicId= Integer.parseInt(req.getParameter("topicId"));
+        String blogData=req.getParameter("blogData");
+        String title=req.getParameter("title");
+        Blog blog=new Blog();
+        blog.setTitle(title);
+        blog.setTopicId(topicId);
+        blog.setContent(blogData);
+        int row=blogDaoService.SaveBlog(blog);
+        if(row!=0){
+            resp.getWriter().write("true");
+        }else{
+            resp.getWriter().write("false");
+        }
+
+
+    }
 }

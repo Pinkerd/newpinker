@@ -50,7 +50,7 @@
        <%-- 用户头像保持--%>
                 <c:if test="${user!=null}">
                     <div class="headerName">
-                        <a href="pinker/PersonPage.jsp">
+                        <a href="pinker/Myblo.jsp">
                         <span class="userName">${user.username}</span>
                         <img src="http://localhost:8080/pinker/IOServlet?method=loadHeadImg" height="20px" width="20px">
                         </a>

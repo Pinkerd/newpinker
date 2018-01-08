@@ -28,7 +28,7 @@ public class CollectionBlogServlet extends BaseServlet {
         System.out.print("jump into findCollectionBlogByUserId");
         int blogId= Integer.parseInt(request.getParameter("blogId")) ;
         pk_user user= (pk_user) request.getSession().getAttribute("user");
-        CollectionBlog collectionBlogByUserId = collectionBlogService.findCollectionBlogByUserId(blogId, user.getId());
+        CollectionBlog collectionBlogByUserId = collectionBlogService.findCollectionBlogByUserIdAndBlogId(blogId, user.getId());
         System.out.print(collectionBlogByUserId);
 
         Boolean result=null;
@@ -99,7 +99,8 @@ public class CollectionBlogServlet extends BaseServlet {
      */
     protected void concernTopicList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        List<CollectionBlog> collectionBlog = collectionBlogService.getAllCollectionBlog();
+        pk_user user= (pk_user) request.getSession().getAttribute("user");
+        List<CollectionBlog> collectionBlog = collectionBlogService.findAllByUserId(user.getId());
 
         /**
          * 将查询到的blog收藏对象放进请求域中
