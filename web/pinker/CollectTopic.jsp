@@ -1,9 +1,11 @@
-<%@ page import="com.pinker.service.BlogDaoService" %>
-<%@ page import="com.pinker.service.Impl.BlogDaoServiceImpl" %>
-<%@ page import="com.pinker.entity.Blog" %>
+<%@ page import="com.pinker.service.TopicService" %>
+<%@ page import="com.pinker.service.serviceimpl.TopicServiceImpl" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.pinker.service.ConcernTopicService" %>
+<%@ page import="com.pinker.service.Impl.ConcernTopicServiceImpl" %>
+<%@ page import="com.pinker.entity.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 
@@ -12,48 +14,36 @@
 		<%@include file="/WEB-INF/include/base_info.jsp"%>
 		<link rel="stylesheet" type="text/css" href="pinker/css/Template.css" />
 		<link rel="stylesheet" type="text/css" href="pinker/css/PersonPage.css" />
-		<link rel="stylesheet" type="text/css" href="pinker/css/myblo.css"/>
-		<link rel="stylesheet" type="text/css" href="pinker/css/myblo1.css"/>
-		<link rel="stylesheet" type="text/css" href="pinker/css/head_info.css">
-		<script src="pinker/js/jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="pinker/css/MyTopic.css" />
+		<link rel="stylesheet" type="text/css" href="pinker/css/MyTopic1.css" />
 		<script type="text/javascript" src="pinker/js/Template.js"></script>
 		<script type="text/javascript" src="pinker/js/personpage.js"></script>
 		<title></title>
-
-
-
 	</head>
+<%
+	ConcernTopicService con=new ConcernTopicServiceImpl();
+	pk_user TopMy = (pk_user) request.getSession().getAttribute("user");
+	System.out.println(TopMy);
+	Integer id = TopMy.getId();
+	List<ConcernTopic> collectTopic = con.findConcernTopicByUserId(id);
+	request.setAttribute("collectTopic",collectTopic);
 
+%>
 	<body>
-
-	<%
-		BlogDaoService blog=new BlogDaoServiceImpl();
-		pk_user userMy = (pk_user) request.getSession().getAttribute("user");
-
-		Integer id = userMy.getId();
-
-		List<Blog> usersBlog = blog.findUser(id);
-		request.setAttribute("usersBlog",usersBlog);
-	%>
-
-
 		<!--模板容器-->
 		<div class="template-body">
 			<!--头部容器-->
-			
+
 			<%@include file="/WEB-INF/include/head_info.jsp"%>
-
-
 			<!--模板结束-->
 			<div class="template-main-body">
 				<!--头像与背景显示-->
-				
-				<%@include file="/WEB-INF/include/headimg_info.jsp"%>
-				
 
+
+				<%@include file="/WEB-INF/include/headimg_info.jsp"%>
 				<div class="template-body-left">
 					<!--在这里写左边-->
-					
+
 					<!--左侧状态栏-->
 					<div class="left-status">
 						<ul class="left-statusUl">
@@ -63,25 +53,51 @@
 							<li class="left-status-perInfo">个人信息</li>
 						</ul>
 					</div>
-					
+
 					<!--个人信息-->
 
-					<!--收藏的博文-->
-					<div class="left-attentionBlog">
+					<!--关注的话题-->
 
-						<c:forEach items="${usersBlog}" var="blog">
-						<div class="blog-wrap">
-							<div class="blog-title-wrap">
-								<a href="/pinker/BlogServlet?method=selectblogOne&blogId=${blog.id}">${blog.title}</a>
+					<div class="left-attentionTopic">
+						<c:forEach items="${collectTopic}" var="collectTop">
+							<div class="topic-wrap">
+								<div class="topic-img">
+									<img src="http://localhost:8080/pinker/IOServlet?method=loadTopicImg&topicId=${collectTop.topicId}" width="60px" height="60px" />
+								</div>
+								<div style="width: 400px" class="topic-title">
+									<a href="pinker/topic_blogList.jsp?topicId=${collectTop.topicId}"><h3>${collectTop.topic.title}</h3></a>
+									<div class="detail-wrap" hidden>
+										<div class="detail-img">
+											<img src="http://localhost:8080/pinker/IOServlet?method=loadTopicImg&topicId=${collectTop.topicId}" width="60px" height="60px"/>
+										</div>
+
+										<div class="detail-introduce" >
+											<span class="detail-span">
+											</span>
+										</div>
+
+										<div class="detail-buttonwrap">
+
+										</div>
+									</div>
+								</div>
+								<div class="topic-introduce">
+										${collectTop.topic.content.substring(0,15)}
+								</div>
 							</div>
-							<div class="blog-info">
-								<span>${blog.publishtime}</span>·<span>16 个回答</span>·<span>55 个关注</span>
-							</div>
-						</div>
 						</c:forEach>
 
 
 					</div>
+					
+					
+					
+
+					<!--收藏的博文-->
+					<div class="left-attentionBlog">
+
+					</div>
+
 					<!--发布的话题-->
 					<div class="left-myTopic">
 
@@ -92,7 +108,7 @@
 
 					</div>
 
-				</div>
+				 </div>
 
 				<div class="template-body-right">
 					<!--在这里写右边-->
@@ -113,16 +129,16 @@
 					<!--右侧-->
 					<div class="right-menu">
 						<ul>
-							
+							<!--<div class="menu-personInfo isMenuActive">
+								<li>个人资料管理</li>
+							</div>-->
 
 							<div class="menu-attentionTopic">
 								<li>关注的话题</li>
 							</div>
 
 							<div class="menu-attentionBlog">
-								<a href="CollectionBlogServlet">
 								<li>收藏的博文</li>
-								</a>
 							</div>
 
 							<div class="menu-myTopic">
@@ -133,7 +149,9 @@
 								<li>发布的博文</li>
 							</div>
 
-							
+							<!--<div class="menu-friend">
+								<li>好友管理</li>
+							</div>-->
 
 						</ul>
 
@@ -143,7 +161,7 @@
 						<div class="friend-nav">
 							<h3>好友</h3>
 						</div>
-						
+
 						<hr />
 						<div class="right-friendwarp">
 							<div class="right-headIMG left">
@@ -168,7 +186,7 @@
 									<h4>David Lee</h4></a>
 								<span class="introduce">我爱你你却爱她，先森 </span>
 							</div>
-							<div class="friend-manager">
+							<div id="friend-manager">
 
 							</div>
 						</div>
@@ -182,7 +200,7 @@
 									<h4>我的小贱贱</h4></a>
 								<span class="introduce">我知道你爱她命里少我一个也没差</span>
 							</div>
-							<div class="friend-manager">
+							<div id="friend-manager">
 
 							</div>
 						</div>
@@ -196,7 +214,7 @@
 									<h4>建民质疑</h4></a>
 								<span class="introduce">良人未归途我念故人归</span>
 							</div>
-							<div class="friend-manager">
+							<div id="friend-manager">
 
 							</div>
 						</div>

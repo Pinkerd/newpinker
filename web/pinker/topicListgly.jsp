@@ -70,7 +70,8 @@
             <th>用户id</th>
             <th>发表时间</th>
             <th>操作</th>
-        </tr>  <C:forEach items="${list}" var="abc">
+        </tr>
+        <C:forEach items="${list}" var="abc">
         <tr>
             <td>${abc.id}</td>
             <td>${abc.title}</td>

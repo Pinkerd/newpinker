@@ -32,7 +32,7 @@ public class CollectionBlogServlet extends BaseServlet {
          * 3.调用查询该用户所有收藏博客方法
          */
         List<CollectionBlog> collectBlog = cbs.findAllByUserId(id);
-        System.out.println(collectBlog);
+
         /**
          * 4.将获取的集合放到域中
          */

@@ -87,4 +87,26 @@ public class TopicDaoImpl extends BaseDao<pk_topic> implements TopicDao {
         return this.update(sql,id,title,content,userId,publishtime);
 
     }
+
+
+   /* *//**
+     * 关注话题的方法
+     * @param topicId
+     * @return
+     *//*
+    @Override
+    public int topicadd(pk_topic topicId) {
+        String sql="insert into concerntopic(userId,topId,concerntime) values(?,?,NOW())";
+        return this.update(sql,topicId.getUserId());
+    }
+
+    *//**
+     * 取消关注的方法
+     * @param topicId
+     * @return
+     *//*
+    @Override
+    public int topicdelete(int topicId) {
+        return 0;
+    }*/
 }

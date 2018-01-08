@@ -26,6 +26,8 @@ public class BlogServlet extends BaseServlet {
     CommentDao commentDao=new CommentDaoImpl();
 
 
+
+
     /**
      * 查询单条blog数据库信息
      */

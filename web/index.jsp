@@ -1,588 +1,264 @@
+<%@ page import="com.pinker.entity.pk_user" %>
+<%@ page import="com.pinker.service.TopicService" %>
+<%@ page import="com.pinker.service.serviceimpl.TopicServiceImpl" %>
+<%@ page import="com.pinker.entity.Page" %>
+<%@ page import="com.pinker.entity.pk_topic" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<base href="http://localhost:8080/pinker/pinker/">
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>品客</title>
-    <link rel="stylesheet" type="text/css" href="css/homepageCSS/style.css"/>
-    <link rel="stylesheet" type="text/css" href="css/homepageCSS/header.css"/>
-    <link rel="stylesheet" type="text/css" href="css/homepageCSS/section.css" />
-    <link rel="stylesheet" type="text/css" href="css/homepageCSS/blank.css" />
-    <link rel="stylesheet" type="text/css" href="css/homepageCSS/hot.css" />
-    <link rel="stylesheet" type="text/css" href="css/homepageCSS/new.css" />
-    <link rel="stylesheet" type="text/css" href="css/homepageCSS/footer.css" />
+    <title>知性网</title>
+    <%@include file="/WEB-INF/include/base_info.jsp"%>
+    <link rel="stylesheet" type="text/css" href="pinker/css/homepage.css"/>
+    <link href="pinker/css/reset.css" rel="stylesheet" type="text/css">
+    <link href="pinker/css//font-awesome.css" rel="stylesheet" type="text/css">
+    <link href="pinker/css/showlist.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="pinker/js/modernizr.custom.js"></script>
+
+
 </head>
 <body>
-    <div class="backImg"></div>
+
+
+
+    <%--外层盒子--%>
     <div class="box">
-        <!--背景图片部分-->
 
-
-        <!--banner部分-->
-        <div class="banner">
-
-            <!--header-->
-            <!-- header -->
-            <div class="header">
-                <!--弹出菜单-->
-                <div class="menu left">
-                    <!--左边按钮-->
-                    <div class="open left">
-                        <div class="bar1"></div>
-                        <div class="bar2"></div>
-                    </div>
-
-                    <!--中间菜单内容-->
-                    <ul class="menuList left">
-                        <li><a href="index.jsp" class="active"> 首页</a></li>
-                        <li><a href="topic_blogList.jsp"> 发现</a></li>
-                        <li><a href="topicList.jsp">话题</a></li>
-                        <li><a href="topic_blogList.jsp">专栏</a></li>
-                        <li><a href="topicList.jsp">圆桌</a></li>
-                    </ul>
-
-                    <!--右边内容-->
-                    <div class="close right"></div>
-                </div>
-
-                <!--调整大小-->
-                <div  class="log right logAdjust2"><a href="contact.html"></a></div>
-                <div  class="log right logAdjust1"><a href="contact.html"></a></div>
-
-                <!--网站名字 登陆注册-->
-                <div class="logoName adjustName"><span>品客</span></div>
-                <div class="logoName" id="logIn"><a href="pages/login.jsp">登陆</a></div>
-                <div class="logoName" id="regist"><a href="pages/login.jsp">注册</a></div>
-
+        <%--头部导航--%>
+        <div class="header">
+            <%--网站名字--%>
+            <div class="logoTitle">SaO</div>
+            <%--注册登录--%>
+                <c:if test="${user==null}">
+            <div class="loginRegist">
+                <div class="lrButton"><a href="pinker/login.jsp">登录</a></div>
+                <div class="lrButton"><a href="pinker/login.jsp">注册</a></div>
             </div>
-            <!--Section-->
-            <div class="section">
-
-                <!--左右翻页-->
-                <div id="bannerBox"><!-- 最外层部分 -->
-                    <div id="banner"><!-- 轮播部分 -->
-                        <ul class="imgList"><!-- 图片部分 -->
-                            <li><a href="topic_blogList.jsp"><img src="images/homepageImages/1.jpg" alt="puss in boots1"></a></li>
-                            <li><a href="topic_blogList.jsp"><img src="images/homepageImages/2.jpg" alt="puss in boots2"></a></li>
-                            <li><a href="topic_blogList.jsp"><img src="images/homepageImages/3.jpg" alt="puss in boots3"></a></li>
-                            <li><a href="topic_blogList.jsp"><img src="images/homepageImages/4.jpg" alt="puss in boots4"></a></li>
-                            <li><a href="topic_blogList.jsp"><img src="images/homepageImages/5.jpg" alt="puss in boots5"></a></li>
-                        </ul>
-                        <!--前后按钮-->
-                        <img src="images/homepageImages/arrowLeft.png" width="33px" height="68px" id="prev">
-                        <img src="images/homepageImages/arrowRight.png" width="33px" height="68px" id="next">
-
-                        <ul class="infoList"><!-- 图片中间文字信息部分 -->
-                            <li class="infoOn">
-                               <a href="topic_blogList.jsp">
-                                   <div class="bannerTitile">标题1</div>
-                                   <div class="bannerSection">文字描述文字描述文字描述文字描述文字描述<br>
-                                       文字描述文字描述文字描述文字描述文字描述<br>文字描述文字描述文字描述文字描述文字描述<br>
-                                       文字描述文字描述文字描述文字描述文字描述<br>文字描述文字描述文字描述文字描述文字描述<br>
-                                       文字描述文字描述文字描述文字描述文字描述<br>文字描述文字描述文字描述文字描述文字描述<br>
-                                   </div>
-                               </a>
-                            </li>
-                            <li>
-                                <a href="topic_blogList.jsp">
-                                    <div class="bannerTitile">标题2</div>
-                                    <div class="bannerSection">文字描述文字描述文字描述文字描述文字描述<br>
-                                        文字描述文字描述文字描述文字描述文字描述<br>文字描述文字描述文字描述文字描述文字描述<br>
-                                        文字描述文字描述文字描述文字描述文字描述<br>文字描述文字描述文字描述文字描述文字描述<br>
-                                        文字描述文字描述文字描述文字描述文字描述<br>文字描述文字描述文字描述文字描述文字描述<br>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="topic_blogList.jsp">
-                                    <div class="bannerTitile">标题3</div>
-                                    <div class="bannerSection">文字描述文字描述文字描述文字描述文字描述<br>
-                                        文字描述文字描述文字描述文字描述文字描述<br>文字描述文字描述文字描述文字描述文字描述<br>
-                                        文字描述文字描述文字描述文字描述文字描述<br>文字描述文字描述文字描述文字描述文字描述<br>
-                                        文字描述文字描述文字描述文字描述文字描述<br>文字描述文字描述文字描述文字描述文字描述<br>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="topic_blogList.jsp">
-                                    <div class="bannerTitile">标题4</div>
-                                    <div class="bannerSection">文字描述文字描述文字描述文字描述文字描述<br>
-                                        文字描述文字描述文字描述文字描述文字描述<br>文字描述文字描述文字描述文字描述文字描述<br>
-                                        文字描述文字描述文字描述文字描述文字描述<br>文字描述文字描述文字描述文字描述文字描述<br>
-                                        文字描述文字描述文字描述文字描述文字描述<br>文字描述文字描述文字描述文字描述文字描述<br>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="topic_blogList.jsp">
-                                    <div class="bannerTitile">标题5</div>
-                                    <div class="bannerSection">文字描述文字描述文字描述文字描述文字描述<br>
-                                        文字描述文字描述文字描述文字描述文字描述<br>文字描述文字描述文字描述文字描述文字描述<br>
-                                        文字描述文字描述文字描述文字描述文字描述<br>文字描述文字描述文字描述文字描述文字描述<br>
-                                        文字描述文字描述文字描述文字描述文字描述<br>文字描述文字描述文字描述文字描述文字描述<br>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="indexList"><!-- 滚动球 -->
-                            <li class="indexOn"></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                        </ul>
-                    </div>
-                </div>
-
-
-
-            </div>
+                </c:if>
         </div>
 
-        <!--透明栏部分-->
-        <div class="middle">
-            <div class="blankLeft left">
+        <%--标语slogen--%>
+        <div class="slogen">
+            <a>S</a>exy  &nbsp;&nbsp;and &nbsp; <a>O</a>pen
+        </div>
 
-                <ul>
-                    <li>
-                        <div class="sortImg"><img src="images/homepageImages/s1.jpg" style="width: 80px;height: 80px"></div>
-                        <div class="sortTitle">1.运动</div>
-                    </li>
-                    <li>
-                        <div class="sortImg"><img src="images/homepageImages/s2.jpg" style="width: 80px;height: 80px"></div>
-                        <div class="sortTitle">2.游戏</div>
-                    </li>
-                    <li>
-                        <div class="sortImg"><img src="images/homepageImages/s3.jpg" style="width: 80px;height: 80px"></div>
-                        <div class="sortTitle">3.互联网</div>
-                    </li>
-                    <li>
-                        <div class="sortImg"><img src="images/homepageImages/s4.jpg" style="width: 80px;height: 80px"></div>
-                        <div class="sortTitle">4.艺术</div>
-                    </li>
-                    <li>
-                        <div class="sortImg"><img src="images/homepageImages/s5.jpg" style="width: 80px;height: 80px"></div>
-                        <div class="sortTitle">5.美食</div>
-                    </li>
-                    <li>
-                        <div class="sortImg"><img src="images/homepageImages/s6.jpg" style="width: 80px;height: 80px"></div>
-                        <div class="sortTitle">6.动漫</div>
-                    </li>
-                    <li>
-                        <div class="sortImg"><img src="images/homepageImages/s7.jpg" style="width: 80px;height: 80px"></div>
-                        <div class="sortTitle">7.汽车</div>
-                    </li>
-                    <li>
-                        <div class="sortImg"><img src="images/homepageImages/s8.jpg" style="width: 80px;height: 80px"></div>
-                        <div class="sortTitle">8.生活</div>
-                    </li>
-                    <li>
-                        <div class="sortImg"><img src="images/homepageImages/s9.jpg" style="width: 80px;height: 80px"></div>
-                        <div class="sortTitle">9.教育</div>
-                    </li>
-                    <li>
-                        <div class="sortImg"><img src="images/homepageImages/s10.jpg" style="width: 80px;height: 80px"></div>
-                        <div class="sortTitle">10.摄影</div>
-                    </li>
-                    <li>
-                        <div class="sortImg"><img src="images/homepageImages/s11.jpg" style="width: 80px;height: 80px"></div>
-                        <div class="sortTitle">11.文化</div>
-                    </li>
-                    <li>
-                        <div class="sortImg"><img src="images/homepageImages/s12.jpg" style="width: 80px;height: 80px"></div>
-                        <div class="sortTitle">12.历史</div>
-                    </li>
-                    <li>
-                        <div class="sortImg"><img src="images/homepageImages/s13.jpg" style="width: 80px;height: 80px"></div>
-                        <div class="sortTitle">13.旅行</div>
-                    </li>
-                    <li>
-                        <div class="sortImg"><img src="images/homepageImages/s14.jpg" style="width: 80px;height: 80px"></div>
-                        <div class="sortTitle">14.经济</div>
-                    </li>
-                    <li>
-                        <div class="sortImg"><img src="images/homepageImages/s15.jpg" style="width: 80px;height: 80px"></div>
-                        <div class="sortTitle">15.音乐</div>
-                    </li>
+        <div class="slogenC">
+            <span>知识</span>从未如此<span>性感</span>与<span>开放</span>
+        </div>
+       <%-- 用户头像保持--%>
+                <c:if test="${user!=null}">
+                    <div class="headerName">
+                        <span class="userName">${user.username}</span>
+                        <img src="http://localhost:8080/pinker/IOServlet?method=loadHeadImg" height="20px" width="20px">
+                    </div>
+                </c:if>
+         <%--功能列表 首页 发现  话题--%>
+            <div class="funcList">
+                <ul class="funcUl">
+                    <li class="funcLi"><a href="#">首页</a></li>
+                    <li class="funcLi"><a href="#">发现</a></li>
+                    <li class="funcLi"><a href="#">话题</a></li>
                 </ul>
             </div>
 
-            <div class="blankRight left">
-                <div>
-                    <img src="images/homepageImages/s1big.jpg" style="width: 366px;height: 300px">
-                </div>
+        <%--开始发现之旅--%>
+
+        <div class="downBox">
+            <a href="#">
+            <div class="startDiscover">
+                <h2>开始知识的旅程</h2>
+                <img src="pinker/img/arrowDown.png" style="margin: 0px auto;width: 100px;height: 50px">
             </div>
+            </a>
         </div>
 
-        <!--最热话题-->dfdfdcsdcsdcgv56t
-        <div class="hot">
-            <div class="hotTitle">
-                <h1>近 期 最 热 话 题</h1>
-            </div>
-            <div class="hotSection">
 
-                <div class="examples_body">
-                    <div class="examples_bg">
 
-                        <div class="mune_thumb">
-                            <ul>
-                                <li>
-                                    <a href="images/homepageImages/hot1.jpg">
-                                        <img src="images/homepageImages/h1.jpg" alt="Image Name" style="width:110px;height: 110px" /></a>
-                                    <div class="block left">
-                                        <h4 class="title02">小图1</h4>
-                                        <small>小图时间</small>
-                                        <div class="desc">
-                                            简短描述<br> 简短描述
+        <%--banner--%>
+        <div class="banner">
+            <%--背景动画--%>
+            <iframe src="pinker/banner.html" style="width: 100%;height: 100%;"></iframe>
+        </div>
+
+        <%--中间方块展示部分--%>
+        <div class="section">
+            <div class="secInner">
+
+
+
+               <%
+                   TopicService topicService=new TopicServiceImpl();
+                   Page<pk_topic> topicPage=new Page();
+                   topicPage.setPageSize(9);
+                   topicPage.setPageNumber(1);
+                   topicPage=topicService.findTopic(topicPage);
+                   List<pk_topic> topicList=topicPage.getData();
+                    request.setAttribute("topicList",topicList);
+               %>
+
+                &nbsp;<a id="down"></a>
+                <c:forEach items="${topicList}" var="topic">
+
+                    <!-- 图片标题作者1 -->
+                    <div class="showListImages">
+                        <div class="showbox">
+                            <div class="showlist" style="overflow: hidden;">
+                                <div class="single-item single-item-1" style="position: absolute; left: 0px;">
+                                    <div class="single-item-main">
+                                        <div class="single-icon">
+                                            <ul class="grid cs-style-5">
+                                                <li>
+                                                    <figure>
+                                                        <img src="http://localhost:8080/pinker/IOServlet?method=loadTopicImg&topicId=${topic.id}" width="380" height="240">
+                                                        <figcaption>
+                                                            <h3>${topic.title}</h3>
+                                                            <span>${topic.user.username}</span> <a href="http://localhost:8080/pinker/pinker/topic_blogList.jsp?topicId=${topic.id}" class="button">
+                                                            <button class="btn btn-blue btn-3blue fa fa-share">查看详情</button>
+                                                        </a> </figcaption>
+                                                    </figure>
+                                                </li>
+                                            </ul>
                                         </div>
-                                        <p>容内容内容内容内容内容内<br><br><br>容内容内容内容内容内容
-                                            内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
-                                            内容内容内容内容内容内容内容内容内容内容</p>
                                     </div>
-                                </li>
-
-                                <li>
-                                    <a href="images/homepageImages/hot2.jpg">
-                                        <img src="images/homepageImages/h2.jpg" alt="Image Name" style="width:110px;height: 110px" /></a>
-                                    <div class="block left">
-                                        <h4 class="title02">小图2</h4>
-                                        <small>小图时间</small>
-                                        <div class="desc">
-                                            简短描述<br> 简短描述
-                                        </div>
-                                        <p>容内容内容内容内容内容内容内容内容内容内容内容
-                                            内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
-                                            内容内容内容内容内容内容内容内容内容内容</p>
-                                    </div>
-                                </li>
-
-                                <li>
-                                    <a href="images/homepageImages/hot3.jpg">
-                                        <img src="images/homepageImages/h3.jpg" alt="Image Name" style="width:110px;height: 110px"  /></a>
-                                    <div class="block left">
-                                        <h4 class="title03">小图3</h4>
-                                        <small>小图时间</small>
-                                        <div class="desc">
-                                            简短描述<br> 简短描述
-                                        </div>
-                                        <p>容内容内容内容内容内容内容内容内容内容内容内容
-                                            内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
-                                            内容内容内容内容内容内容内容内容内容内容。</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <a href="images/homepageImages/hot4.jpg">
-                                        <img src="images/homepageImages/h4.jpg" alt="Image Name" style="width:110px;height: 110px"  /></a>
-                                    <div class="block left">
-                                        <h4 class="title04">小图4</h4>
-                                        <small>小图时间</small>
-                                        <div class="desc">
-                                            简短描述<br> 简短描述
-                                        </div>
-                                        <p>容内容内容内容内容内容内容内容内容内容内容内容
-                                            内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
-                                            内容内容内容内容内容内容内容内容内容内容</p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="examples_image">
-                            <img src="images/homepageImages/hot1.jpg" alt="" />
-                            <div class="desc">
-                                <a href="#" class="collapse"></a>
-                                <div class="block">
-                                    <h4>大图</h4>
-                                    <small>时间</small>
-                                    <p>大图内容大图内容大图内容大图内容大图内容大图内容大图内容大图内容大图内容
-                                        大图内容大图内容大图内容大图内容大图内容</p>
                                 </div>
                             </div>
                         </div>
-
                     </div>
+                </c:forEach>
 
+
+            </div>
+
+
+        <%--section--%>
+        </div>
+
+        <%--页脚部分--%>
+        <div class="footer">
+            <%--信息--%>
+            <div id="baseInfo">
+                <div class="infoBanner">
+                    <div class="infoBox">
+                        <div class="infoTitle">------我们在这-----</div>
+                        <span>南京市雨花台区小行路16号</span>
+                    </div>
+                    <div class="infoBox">
+                        <div class="infoTitle">------欢迎电邮------</div>
+                        <span>025-xxxxxxxx</span><br>
+                        <span>xxxxx@xxx.com</span>
+                    </div>
+                    <div class="infoBox">
+                        <div class="infoTitle" style="margin: 0px auto 10px;">------关注我们------</div>
+                        <img src="pinker/img/Contact_wechat.png"   id="wechat"  >
+                        <img src="pinker/img/Contact_QQ.png"   id="qq" >
+                        <img src="pinker/img/Contact_weibo.png"   id="weibo" ><br>
+                        <img src="pinker/img/2Dcode.png" class="Dcode1">
+                        <img src="pinker/img/2Dcode.png" class="Dcode2">
+                        <img src="pinker/img/2Dcode.png" class="Dcode3">
+                    </div>
                 </div>
-
             </div>
-        </div>
+            <%--信息--%>
 
-        <!--最新话题-->
-        <div class="new">
-            <div class="newTitle">
-                <h1>近 期 最 新 话 题</h1>
-            </div>
-            <div class="newSection">
-                <ul>
-                    <li>
-                        <a href="#">
-                            <div><img src="images/homepageImages/new1.jpg" style="width: 390px;height: 250px" class="newImg"></div>
-                            <div class="newText">标题<br>文字叙述文字叙述</div>
-                            <div class="newTextBg"></div>
-                        </a>
-                    </li>
 
-                    <li>
-                        <a href="#">
-                            <div><img src="images/homepageImages/new2.jpg" style="width: 390px;height: 250px" class="newImg"></div>
-                            <div class="newText">标题<br>文字叙述文字叙述</div>
-                            <div class="newTextBg"></div>
-                        </a>
-                    </li>
+                <%--相关连接--%>
+                <div id="baseInfo" style="padding-top: 40px">
+                    <div class="infoBanner">
+                        <div class="infoBox">
+                            <div class="infoTitle">------相关连接------</div>
+                            <span><a href="#">首页</a></span>&nbsp;&nbsp;
+                            <span><a href="#">发现</a></span>&nbsp;&nbsp;
+                            <span><a href="#">话题</a></span>
+                        </div>
+                        <div class="infoBox">
+                            <div class="infoTitle">------合作网站------</div>
+                            <span><a href="#">知乎</a></span>&nbsp;&nbsp;
+                            <span><a href="#">百度</a></span>&nbsp;&nbsp;
+                            <span><a href="#">微博</a></span>
 
-                    <li>
-                        <a href="#">
-                            <div><img src="images/homepageImages/new3.jpg" style="width: 390px;height: 250px" class="newImg"></div>
-                            <div class="newText">标题<br>文字叙述文字叙述</div>
-                            <div class="newTextBg"></div>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#">
-                            <div><img src="images/homepageImages/new4.jpg" style="width: 390px;height: 250px" class="newImg"></div>
-                            <div class="newText">标题<br>文字叙述文字叙述</div>
-                            <div class="newTextBg"></div>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#">
-                            <div><img src="images/homepageImages/new5.jpg" style="width: 390px;height: 250px" class="newImg"></div>
-                            <div class="newText">标题<br>文字叙述文字叙述</div>
-                            <div class="newTextBg"></div>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#">
-                            <div><img src="images/homepageImages/new6.jpg" style="width: 390px;height: 250px" class="newImg"></div>
-                            <div class="newText">标题<br>文字叙述文字叙述</div>
-                            <div class="newTextBg"></div>
-                        </a>
-                    </li>
-
-                </ul>
-            </div>
-
-        </div>
-
-        <!--页脚部分-->
-        <div class="foot">
-            <div class="footLeft left">
-                <br><h2>联系我们</h2>
-                <img src="images/homepageImages/电话.png" style="width: 20px;height:20px;margin-right: 10px;" >
-                XXX-XXX-XXXX<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;南京市雨花台区小行路16号
-            </div>
-
-            <div class="footMiddle left">
-                   <br><h2>关注我们</h2>
-                <img class="contact1" src="images/homepageImages/qq.png" style="width: 30px;height: 30px;margin-right: 30px;" >
-                <img class="contact2" src="images/homepageImages/微信.png" style="width: 35px;height: 28px;margin-right: 20px;" >
-                <img class="contact3" src="images/homepageImages/微博.png" style="width: 43px;height: 33px;" >
-
-            </div>
-
-            <div class="footRight left">
-                <br><h2>合作网站</h2>
-                <a href="https://www.zhihu.com/">知乎</a>&nbsp;&nbsp;&nbsp;
-                <a href="https://www.baidu.com/">百度</a><br>
-                <a href="https://www.wikipedia.org/">维基百科</a><br>
-            </div>
-
-            <div class="code left">
-                <img src="images/homepageImages/二维码.png" id="code1">
-                <img src="images/homepageImages/二维码.png" id="code2">
-                <img src="images/homepageImages/二维码.png" id="code3">
-                <div>
-                    <ul>
-                        <li><a href="#">首页</a></li>
-                        <li><a href="#">发现</a></li>
-                        <li><a href="#">品客话题</a></li>
-                        <li><a href="#">品客专栏</a></li>
-                        <li style="border: solid 1px black"><a href="#">品客圆桌</a></li>
-                    </ul>
+                        </div>
+                        <div class="infoBox">
+                            <div class="infoTitle" style="margin: 10px auto">知性网</div>
+                           <span> Copyright 	&copy;</span>
+                            <span>1998 - 2018 SaO.Company All Rights Reserved</span>
+                        </div>
+                    </div>
                 </div>
+                <%--连接--%>
 
-            </div>
-
-            <div class="footBottom left">
-                Copyright &copy; 2017. Pinker NetWork All rights reserved.
-            </div>
         </div>
+
     </div>
 
-<!--jquery-->
-<script src="js/jquery-1.7.2.js" type="text/javascript"></script>
-<script type="text/javascript">
-
-    $().ready(function () {
-    /*---------展开导航条----------*/
-        /*导航栏左边按钮*/
-        $(".open").click(function () {
-            $(".bar1").addClass("moveBar1");
-            $(".bar2").addClass("moveBar2");
-            $(".menu").css("width","1000px");
-            $(".menuList").css("display","block");
-            $(".logoName").css("display","none");
-
-        });
-        $(".close").click(function () {
-            $(".bar1").removeClass("moveBar1");
-            $(".bar2").removeClass("moveBar2");
-            $(".menu").css("width","50px");
-            $(".menuList").css("display","none");
-            $(".logoName").css("display","block");
-        });
-        /*---------展开导航条----------*/
-
-        /*---------二维码展开----------*/
-        $(".contact1").mouseover(function () {
-                $("#code1").css({ "display": "block"});
-        })
-        $(".contact2").mouseover(function () {
-            $("#code2").css({ "display": "block"});
-        })
-        $(".contact3").mouseover(function () {
-            $("#code3").css({ "display": "block"});
-        })
-
-        $(".contact1").mouseout(function () {
-            $("#code1").css({ "display": "none"});
-        })
-        $(".contact2").mouseout(function () {
-            $("#code2").css({ "display": "none"});
-        })
-        $(".contact3").mouseout(function () {
-            $("#code3").css({ "display": "none"});
-        })
-        /*---------二维码展开----------*/
-
-
-        /*---------点击切换大图----------*/
-        $(".examples_image .desc").show();
-        $(".examples_image .block").animate({ opacity: 0.85 }, 1 );
-
-        //Click and Hover events for thumbnail list
-        $(".mune_thumb ul li:first").addClass('active');
-        $(".mune_thumb ul li").click(function(){
-            //Set Variables
-            var imgAlt = $(this).find('img').attr("alt");
-            var imgTitle = $(this).find('a').attr("href");
-            var imgDesc = $(this).find('.block').html();
-            var imgDescHeight = $(".examples_image").find('.block').height();
-
-            if ($(this).is(".active")) {
-                return false;
-            } else {
-                //Animate
-                $(".examples_image .block").animate({ opacity: 0, marginBottom: -imgDescHeight }, 250 , function() {
-                    $(".examples_image .block").html(imgDesc).animate({ opacity: 0.85,	marginBottom: "0" }, 250 );
-                    $(".examples_image img").attr({ src: imgTitle , alt: imgAlt});
-                });
-            }
-
-            $(".mune_thumb ul li").removeClass('active');
-            $(this).addClass('active');
-            return false;
-
-        }) .hover(function(){
-            $(this).addClass('hover');
-        }, function() {
-            $(this).removeClass('hover');
-        });
-
-        $("a.collapse").click(function(){
-            $(".examples_image .block").slideToggle();
-            $("a.collapse").toggleClass("show");
-        });
-    })
-</script>
-
-
-<!--图片轮播js-->
-    <script type="text/javascript" src="js/jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="pinker/js/jquery-1.7.2.js"></script>
     <script type="text/javascript">
-        var curIndex = 0, //当前index
-            imgLen = $(".imgList li").length; //图片总数
-        // 定时器自动变换2.5秒每次
-        var autoChange = setInterval(function(){
-            if(curIndex < imgLen-1){
-                curIndex ++;
-            }else{
-                curIndex = 0;
-            }
-            //调用变换处理函数
-            changeTo(curIndex);
-        },2500);
-        //左箭头滑入滑出事件处理
-        $("#prev").hover(function(){
-            //滑入清除定时器
-            clearInterval(autoChange);
-        },function(){
-            //滑出则重置定时器
-            autoChangeAgain();
-        });
-        //左箭头点击处理
-        $("#prev").click(function(){
-            //根据curIndex进行上一个图片处理
-            curIndex = (curIndex > 0) ? (--curIndex) : (imgLen - 1);
-            changeTo(curIndex);
-        });
-        //右箭头滑入滑出事件处理
-        $("#next").hover(function(){
-            //滑入清除定时器
-            clearInterval(autoChange);
-        },function(){
-            //滑出则重置定时器
-            autoChangeAgain();
-        });
-        //右箭头点击处理
-        $("#next").click(function(){
-            curIndex = (curIndex < imgLen - 1) ? (++curIndex) : 0;
-            changeTo(curIndex);
-        });
-        //对右下角按钮index进行事件绑定处理等
-        $(".indexList").find("li").each(function(item){
-            $(this).hover(function(){
-                clearInterval(autoChange);
-                changeTo(item);
-                curIndex = item;
-            },function(){
-                autoChangeAgain();
-            });
-        });
-        //清除定时器时候的重置定时器--封装
-        function autoChangeAgain(){
-            autoChange = setInterval(function(){
-                if(curIndex < imgLen-1){
-                    curIndex ++;
-                }else{
-                    curIndex = 0;
+        $(document).ready(function () {
+            /*头部淡入*/
+            $(".header").fadeIn(3000);
+            $(".funcList").fadeIn(5000);
+            /*标语延迟进入*/
+            setTimeout(function () {
+                $(".slogenC").fadeIn(5000);
+                }, 1000);
+            setTimeout(function () {
+                $(".slogen").fadeIn(5000);
+            }, 2000);
+
+           /*向下开始淡入*/
+            setTimeout(function () {
+                $(".downBox").fadeIn(5000);
+            }, 4000);
+
+            /*关注我们*/
+            $("#wechat").click(function () {
+                $(".Dcode1").toggle();
+            })
+
+            $("#qq").click(function () {
+                $(".Dcode2").toggle();
+            })
+
+            $("#weibo").click(function () {
+                $(".Dcode3").toggle();
+            })
+
+        })
+    </script>
+
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            //锚点跳转滑动效果
+            $('a[href=#down],a[name=down]').click(function() {
+                console.log(this.pathname)
+                if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+                    var $target = $(this.hash);
+                    $target = $target.length && $target || $('[name=' + this.hash.slice(1) + ']');
+                    if ($target.length) {
+                        var targetOffset = $target.offset().top;
+                        $('html,body').animate({
+                                scrollTop: targetOffset
+                            },
+                            1000);
+                        return false;
+                    }
                 }
-                //调用变换处理函数
-                changeTo(curIndex);
-            },4000);
-        }
-        function changeTo(num){
-            var goLeft = num * 1366;
-            $(".imgList").animate({left: "-" + goLeft + "px"},500);
-            $(".infoList").find("li").removeClass("infoOn").eq(num).addClass("infoOn");
-            $(".indexList").find("li").removeClass("indexOn").eq(num).addClass("indexOn");
-        }
-    </script>
-
-    <script type="text/javascript" src="js/jquery-1.7.2.js"></script>
-    <script type="text/javascript">
-        $().ready(function () {
-            if(${user!=null}){
-                $("#logIn a ").text("");
-              /*  $("#logIn").css("background-image","url($(user.header))")*/
-                $("#regist a").text("${user.username}");   <%--${user.username}--%>
-            }
+            });
         })
     </script>
+
+
+
+
+
+    <script type="text/javascript" src="pinker/js/jquery.min.js"></script>
+    <script type="text/javascript" src="pinker/js/jquery.easing.1.3.js"></script>
+    <script type="text/javascript" src="pinker/js/jquery.contentcarousel.js"></script>
+    <script type="text/javascript">
+        $('#showbox').contentcarousel();;
+    </script>
+
 </body>
 </html>
