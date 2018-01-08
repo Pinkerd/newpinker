@@ -15,7 +15,7 @@ public interface CollectionBlogDao {
      * @param userId
      * @return
      */
-    CollectionBlog findCollectionBlogByUserIdAndBlogId(int userId,int blogId);
+    CollectionBlog findCollectionBlogByUserIdAndBlogId(int userId, int blogId);
 
 
 
@@ -31,7 +31,7 @@ public interface CollectionBlogDao {
      * @param userId
      * @return
      */
-    int  deleteCollectionBlogByUserId(int userId,int blogId);
+    int  deleteCollectionBlogByUserId(int userId, int blogId);
 
     /**
      * 按用户查找该用户所有收藏

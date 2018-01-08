@@ -4,6 +4,7 @@ import com.pinker.dao.BaseDao;
 import com.pinker.dao.FriendDao;
 import com.pinker.entity.Friend;
 import com.pinker.entity.Page;
+import com.pinker.entity.pk_user;
 
 import java.util.List;
 
@@ -60,12 +61,12 @@ public class FriendDaoImpl extends BaseDao<Friend> implements FriendDao {
      * 分页查询特定用户de好友
      */
     @Override
-    public Page<Friend> findFriendByUserId(Friend friend, Page<Friend> page){
+    public Page<Friend> findFriendByUserId(pk_user user, Page<Friend> page){
         String totalRecodeSql="select count(*) from pk_friend where userId=? and statue=1";
         //书总数
         long totalRecodeL= 0;
 
-        totalRecodeL = (long) this.getSingleValue(totalRecodeSql,friend.getUserId());
+        totalRecodeL = (long) this.getSingleValue(totalRecodeSql,user.getId());
 
         int totalRecode= (int) totalRecodeL;
         page.setTotalRecord(totalRecode);
@@ -75,7 +76,7 @@ public class FriendDaoImpl extends BaseDao<Friend> implements FriendDao {
         int index=page.getIndex();
 
         String listSql="select * from pk_friend where userId=? limit ?,?";
-        List<Friend> list=this.getListBean(listSql,index,pageSize);
+        List<Friend> list=this.getListBean(listSql,user.getId(),index,pageSize);
 
         page.setData(list);
         return page;

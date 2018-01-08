@@ -2,6 +2,7 @@ package com.pinker.dao;
 
 import com.pinker.entity.Friend;
 import com.pinker.entity.Page;
+import com.pinker.entity.pk_user;
 
 import java.util.List;
 
@@ -36,11 +37,11 @@ public interface FriendDao {
 
     /**
      * 分页查按照userID查询该用户好友
-     * @param friend
+     * @param
      * @param page
      * @return
      */
-    Page<Friend> findFriendByUserId(Friend friend, Page<Friend> page);
+    Page<Friend> findFriendByUserId(pk_user user, Page<Friend> page);
 
     /**
      * 更新好友状态

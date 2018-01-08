@@ -27,13 +27,8 @@ public interface TopicDao {
       */
      int uploadTopic(int id, String title, String content, int userId, Date publishtime);
 
-    /* *//**
-      * 关注话题的方法即增加的方法
-      *//*
-     int topicadd( pk_topic topicId);
-
-     *//**
-      * 取消关注的方法即删除的方法
-      *//*
-     int topicdelete(int topicId);*/
+     /**
+      * 模糊查询话题
+      */
+     List<pk_topic> fuzzSearchTopic(String key);
 }

@@ -33,10 +33,10 @@
 					<!--左侧状态栏-->
 					<div class="left-status">
 						<ul class="left-statusUl">
-							<li class="left-status-sate statusActive">动态</li>
+							<li class="left-status-sate">动态</li>
 							<li class="left-status-publish">发布</li>
 							<li class="left-status-attention">收藏与关注</li>
-							<li class="left-status-perInfo">个人信息</li>
+							<li class="left-status-perInfo statusActive">个人信息</li>
 						</ul>
 					</div>
 					
@@ -49,40 +49,76 @@
 								<table border="0" cellspacing="10" cellpadding="" class="personInfo-table">
 									<tr>
 										<td>登录名</td>
-										<td><span class="loginName">18260070151</span>
+										<td><span class="loginName">${user.loginName}</span>
 											<a href="#" class="changePassword">修改密码</a>
 										</td>
 									</tr>
 									<tr>
-										<td>邮箱</td>
-										<td><input type="email" name="left-info-email" id="left-info-email" value="786384149@qq.com" /></td>
-									</tr>
-									<tr>
-										<td>性别</td>
-										<td class="sexTd">
-											<input type="radio" name="sex" id="sex-male" value="1" checked/><label for="sex-male">&nbsp;男</label>
-											<span></span>
-											<input type="radio" name="sex" id="sex-female" value="0" /><label for="sex-female">&nbsp;女</label>
+										<td>
+											用户名
 										</td>
-									</tr>
-									<tr>
-										<td>性取向</td>
-										<td class="oritationTd">
-											<input checked type="radio" name="oritation" id="oritation-male" value="1" /><label for="oritation-male">&nbsp;男</label>
-											<span></span>
-											<input type="radio" name="oritation" id="oritation-female" value="0" /><label for="oritation-female">&nbsp;女</label>
+										<td>
+											<input type="text" name="username" rows="10" cols="50" value="${user.username}">
 										</td>
 									</tr>
 
+									<tr>
+										<td>邮箱</td>
+										<td><input type="email" name="left-info-email" id="left-info-email" value="${user.email}" /></td>
+									</tr>
+									<tr>
+										<td>性别</td>
+
+										<td class="sexTd">
+											<input type="radio" name="gender" id="sex-male" value="男"
+											<c:if test="${user.gender=='男'}">
+													checked
+											</c:if>
+											/><label for="sex-male">&nbsp;男</label>
+											<span></span>
+											<input type="radio" name="gender" id="sex-female" value="女"
+													<c:if test="${user.gender=='女'}">
+														checked
+													</c:if>
+											/><label for="sex-female">&nbsp;女</label>
+										</td>
+									</tr>
+									<%--<tr>--%>
+										<%--<td>性取向</td>--%>
+										<%--<td class="oritationTd">--%>
+											<%--<input checked type="radio" name="oritation" id="oritation-male" value="1" /><label for="oritation-male">&nbsp;男</label>--%>
+											<%--<span></span>--%>
+											<%--<input type="radio" name="oritation" id="oritation-female" value="0" /><label for="oritation-female">&nbsp;女</label>--%>
+										<%--</td>--%>
+									<%--</tr>--%>
+
+
+									<tr>
+										<td>
+											学校
+										</td>
+										<td>
+											<input type="text" name="school" rows="10" cols="50" value="${user.school}">
+										</td>
+									</tr>
+
+									<tr>
+										<td>
+											住址
+										</td>
+										<td>
+											<input type="text" name="residence" rows="10" cols="50" value="${user.residence}">
+										</td>
+									</tr>
 									<tr>
 										<td>
 											个人简介
 										</td>
 										<td>
-											<textarea name="introduce" rows="10" cols="50"></textarea>
-
+											<textarea name="introduction" class="personIntroduction-textarea" rows="10" cols="50">${user.introduction}</textarea>
 										</td>
 									</tr>
+
 								</table>
 
 								<input type="submit" value="保存" />
@@ -131,42 +167,51 @@
 					</div>
 
 					<!--右侧-->
-					<div class="right-menu">
-						<ul>
-							<!--<div class="menu-personInfo isMenuActive">
-								<li>个人资料管理</li>
-							</div>-->
+					<%@include file="/WEB-INF/include/person_menu.jsp"%>
 
-							<div class="menu-attentionTopic">
-								<li>关注的话题</li>
-							</div>
-
-							<div class="menu-attentionBlog">
-								<li>收藏的博文</li>
-							</div>
-
-							<div class="menu-myTopic">
-								<li>发布的话题</li>
-							</div>
-
-							<div class="menu-myBlog">
-								<li>发布的博文</li>
-							</div>
-
-							<!--<div class="menu-friend">
-								<li>好友管理</li>
-							</div>-->
-
-						</ul>
-
-					</div>
-
-					<%@include file="/WEB-INF/include/friend_info.jsp"%>
+					<%@include file="/WEB-INF/include/footer_info.jsp"%>
 
 				</div>
 			</div>
 
 		</div>
+
+	<div id="changePassword-box">
+
+		<h3>修改密码</h3>
+		<hr>
+		<table align="center">
+			<tr>
+				<td>
+					原密码
+				</td>
+				<td>
+					<input type="password" class="oldPassword">
+				</td>
+			</tr>
+
+			<tr>
+				<td>
+					新密码
+				</td>
+				<td>
+					<input type="password" class="oldPassword">
+				</td>
+			</tr>
+
+			<tr>
+				<td>
+					重复密码
+				</td>
+				<td>
+					<input type="password" class="oldPassword">
+				</td>
+			</tr>
+		</table>
+		<button class="changePasswordBtn">修改密码</button>
+		<button class="changePasswordCancelBtn">取消</button>
+	</div>
+
 
 
 	</body>

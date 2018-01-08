@@ -16,7 +16,7 @@ public interface CollectionBlogService {
      * @param userId
      * @return
      */
-    CollectionBlog findCollectionBlogByUserIdAndBlogId(int userId,int blogId);
+    CollectionBlog findCollectionBlogByUserIdAndBlogId(int userId, int blogId);
 
 
 
@@ -32,7 +32,7 @@ public interface CollectionBlogService {
      * @param userId
      * @return
      */
-    int  deleteCollectionBlogByUserId(int userId,int blogId);
+    int  deleteCollectionBlogByUserId(int userId, int blogId);
 
     /**
      * 查询该用户所有收藏博客方法

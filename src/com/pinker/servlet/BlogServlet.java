@@ -15,9 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sound.midi.Soundbank;
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 
 @WebServlet(name = "BlogServlet",urlPatterns = ("/BlogServlet"))
@@ -26,15 +24,12 @@ public class BlogServlet extends BaseServlet {
     CommentDao commentDao=new CommentDaoImpl();
 
 
-
-
     /**
      * 查询单条blog数据库信息
      */
     protected void selectblogOne(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String blogId = request.getParameter("blogId");
-        //System.out.println(blogId);
         Integer integer = Integer.valueOf(blogId);
         Blog blogById = blogDaoService.getBlogById(integer);
         request.setAttribute("key",blogById);
@@ -68,23 +63,25 @@ public class BlogServlet extends BaseServlet {
         request.getRequestDispatcher("/pinker/topic_blogList.jsp").forward(request,response);
     }
 
+
     /**
      * 发布博文
      */
     protected void publishBlog(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String title=req.getParameter("title");
+        int topicId= Integer.parseInt(req.getParameter("topicId"));
         String blogData=req.getParameter("blogData");
-        int topicId=Integer.parseInt(req.getParameter("topicId"));
-        pk_user user= (pk_user) req.getSession().getAttribute("user");
-
+        String title=req.getParameter("title");
         Blog blog=new Blog();
         blog.setTitle(title);
-        blog.setUserId(user.getId());
-        blog.setContent(blogData);
-        blog.setPublishtime(new Date());
         blog.setTopicId(topicId);
-        blogDaoService.SaveBlog(blog);
+        blog.setContent(blogData);
+        int row=blogDaoService.SaveBlog(blog);
+        if(row!=0){
+            resp.getWriter().write("true");
+        }else{
+            resp.getWriter().write("false");
+        }
+
+
     }
-
-
 }

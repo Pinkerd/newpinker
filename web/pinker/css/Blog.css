@@ -450,3 +450,23 @@ button:hover{
 	background: white;
 	border-radius: 3px;
 }
+
+#comment-ulwrap{
+	padding: 10px;
+	list-style-type: none;
+}
+
+
+#comment-ulwrap li{
+
+	min-height: 60px;
+	border-bottom: 1px solid rgb(50,50,50);
+	margin-top: 10px;
+}
+
+#comment-ulwrap li span{
+	position: relative;
+	left:10px;
+	top:-5px;
+
+}

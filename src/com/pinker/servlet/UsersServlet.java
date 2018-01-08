@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -44,7 +45,7 @@ public class UsersServlet extends BaseServlet {
         request.setAttribute("loginname",loginname);
 
         if(user!=null && user.getStatus()==1){
-            request.getRequestDispatcher("pinker/index.jsp").forward(request,response);
+            request.getRequestDispatcher("index.jsp").forward(request,response);
         }else{
             request.setAttribute("LoginErrorMsg","登录名或密码错误，请重新输入！");
             request.getRequestDispatcher("pinker/login.jsp").forward(request,response);
@@ -106,7 +107,7 @@ public class UsersServlet extends BaseServlet {
         list.add(byUserId);
 
         request.setAttribute("userlist",list);
-        request.getRequestDispatcher("pinker/pages/userResult.jsp").forward(request,response);
+        request.getRequestDispatcher("pinker/userResult.jsp").forward(request,response);
     }
     
     /*7.根据姓名查询用户*/
@@ -118,7 +119,7 @@ public class UsersServlet extends BaseServlet {
         List<pk_user> list = usi.findByUserName(byName);
 
         request.setAttribute("userlist",list);
-        request.getRequestDispatcher("pinker/pages/userResult.jsp").forward(request,response);
+        request.getRequestDispatcher("pinker/userResult.jsp").forward(request,response);
     }
 
     /*8.白名单*/
@@ -201,8 +202,13 @@ public class UsersServlet extends BaseServlet {
         }
 
 
+
+
     }
 
-
-
+    /*退出登录*/
+    protected void loginOut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getSession().removeAttribute("user");
+        resp.getWriter().write("ok");
+    }
 }

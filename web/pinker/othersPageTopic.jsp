@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="pinker/css/myblo1.css"/>
     <link rel="stylesheet" type="text/css" href="pinker/css/MyTopic.css" />
     <link rel="stylesheet" type="text/css" href="pinker/css/MyTopic1.css" />
+    <link rel="stylesheet" type="text/css" href="pinker/css/head_info.css">
     <script type="text/javascript" src="pinker/js/otherPage.js"></script>
     <script type="text/javascript" src="pinker/js/head_info.js"></script>
     <script type="text/javascript" src="pinker/js/otherpage/otherPageTopic.js"></script>

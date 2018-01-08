@@ -131,5 +131,10 @@ public class TopicServiceImpl  implements TopicService {
 
     }
 
+    @Override
+    public List<pk_topic> fuzzSearch(String key) {
+        return tdi.fuzzSearchTopic(key);
+    }
+
 
 }
