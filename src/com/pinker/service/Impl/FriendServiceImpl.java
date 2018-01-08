@@ -46,7 +46,9 @@ public class FriendServiceImpl implements FriendService {
     @Override
     public Page<Friend> findFriendByUserId(Page<Friend> page, pk_user user) {
         Page<Friend> friendPage=friendDao.findFriendByUserId(user,page);
-
+        for (Friend friend:friendPage.getData()) {
+            this.setFull(friend);
+        }
         return friendPage;
     }
 
@@ -87,10 +89,6 @@ public class FriendServiceImpl implements FriendService {
         }
     }
 
-
-
-
-
     /**
      * 按好友状态查询所有好友
      */
@@ -122,5 +120,8 @@ public class FriendServiceImpl implements FriendService {
        }
         return false;
     }
+
+
+
 
 }

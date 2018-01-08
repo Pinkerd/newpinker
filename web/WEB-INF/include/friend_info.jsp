@@ -20,7 +20,7 @@
     <%
         FriendService friendService=new FriendServiceImpl();
         pk_user friendUser= (pk_user) request.getSession().getAttribute("user");
-        Page<Friend> friendPage=new Page<Friend>();
+        Page<Friend> friendPage=new Page<>();
         friendPage.setPageSize(5);
         friendPage.setPageNumber(1);
         friendPage=friendService.findFriendByUserId(friendPage,friendUser);
@@ -38,13 +38,14 @@
         <div class="right-friendInfo">
             <a href="OtherServlet?method=toOthersPage&userId=${fri.friendId}">
                 <h4>${fri.friend.username}</h4></a>
-            <span class="introduce">人最软弱的地方，是舍不得。</span>
+            <span class="introduce">${fri.friend.introduction}</span>
         </div>
         <div class="friend-manager">
 
         </div>
     </div>
     </c:forEach>
+    
     <div class="friend-manager">
         <button class="friend-up">上一页</button>
         <input readonly="" type="text" name="pageCode" id="pageCode" value="1/178" class="friend-pageCode" />

@@ -6,6 +6,7 @@ import com.pinker.dao.BlogDao;
 import com.pinker.entity.Blog;
 import com.pinker.entity.Page;
 
+import java.util.Date;
 import java.util.List;
 
 public class BlogDaoImpl extends BaseDao<Blog> implements BlogDao {
@@ -15,7 +16,7 @@ public class BlogDaoImpl extends BaseDao<Blog> implements BlogDao {
     @Override
     public int SaveBlog(Blog blog) {
         String sql="insert into pk_blog(title,content,titleimg,publishtime,userId,topicId) values(?,?,?,?,?,?)";
-        return this.update(sql,blog.getTitle(),blog.getContent(),blog.getTitleimg(),blog.getPublishtime(),blog.getUserId(),blog.getTopicId());
+        return this.update(sql,blog.getTitle(),blog.getContent(),blog.getTitleimg(),new Date(),blog.getUserId(),blog.getTopicId());
     }
     /**
      *查询所有数据

@@ -132,7 +132,7 @@
 								</a>
 							</div>
 							<div class="AuthorInfo-detail">
-								人人都能看懂，但只有一部分人才会喜欢的泛心理学
+								${thisBlog.user.introduction}
 							</div>
 						</div>
 
@@ -269,23 +269,7 @@
      *  评论框的显示和隐藏
      */
     $(document).ready(function() {
-        $(".left-comment").click(function() {
-            $.ajax({
-                url:"http://localhost:8080/pinker/CommentServlet?method=saveCom",
-                type:"post",
-                data:{blogId:blogId},
-                dataType:"text",
-                success:function (result) {
-                    if(result!=0){
-                        var list=JSON.parse(result);
-                        for (var a=0;a<list.length;a++){
-                            alert(result.name)
-                        }
-                    }
-                }
-            })
-           // $(".Comments-container").slideToggle(700);
-        });
+
 
         /**
          * 点击进入查询一个的方法
@@ -323,7 +307,7 @@ function save() {
         data:{blogId:blogId},
         dataType:"text",
         success:function (result) {
-            if(result!=0){
+            if(result!="0"){
                 //（删除数据）取消关注后，显示关注问题文字
                 $(".page-attention").unbind("click");
                 $(".page-attention").click(del);
@@ -340,7 +324,7 @@ function del() {
         data:{blogId:blogId},
         dataType:"text",
         success:function (result) {
-            if (result!=0){
+            if (result!="0"){
                 //（增加数据）点击关注，显示取消问题文字
                 $(".page-attention").unbind("click");
                 $(".page-attention").click(save);

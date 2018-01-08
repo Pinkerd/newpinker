@@ -14,7 +14,7 @@ public class CollectionBlogDaoImpl extends BaseDao<CollectionBlog> implements Co
 
     @Override
     public CollectionBlog findCollectionBlogByUserIdAndBlogId(int userId, int blogId) {
-        String sql="select * from pk_blog where userId=? and blogId=?";
+        String sql="select * from pk_collectionblog where userId=? and blogId=?";
         return this.getBean(sql,userId,blogId);
     }
 
@@ -27,7 +27,7 @@ public class CollectionBlogDaoImpl extends BaseDao<CollectionBlog> implements Co
     @Override
     public int deleteCollectionBlogByUserId(int userId, int blogId) {
         String sql = "delete from pk_collectionblog where userId=? and blogId=?";
-        return this.update(sql, userId);
+        return this.update(sql, userId,blogId);
     }
 
     @Override

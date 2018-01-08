@@ -1,0 +1,81 @@
+.show-friendBox,.friend-requestBox{
+    height: 300px;
+    border:1px solid grey;
+    width: 200px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.show-friendUl,.friRequest-ul{
+    display: block;
+    height: 230px;
+    margin-bottom: 30px;
+    padding-left: 20px;
+}
+
+.friend-speak-wrap li{
+    list-style-type: none;
+    height: 50px;
+    border-bottom: 1px solid rgba(30,30,30,0.3);
+    line-height:50px;
+}
+
+.friend-speak-wrap li span{
+    display: inline-block;
+    height: 50px;
+    line-height: 50px;
+}
+
+.friend-speak-wrap li img{
+    margin-right: 20px;
+    position: relative;
+    top:10px;
+}
+
+.friend-receive{
+    border:0;
+    background: forestgreen;
+    color: white;
+    border-radius: 3px;
+}
+
+.friend-refuse{
+    border:0;
+    background: darkred;
+    color: white;
+    border-radius: 3px;
+}
+
+.prev-friendpage,.next-friendpage{
+    border:0;
+    background: pink;
+    color: white;
+    border-radius: 3px;
+    margin-left: 20px;
+}
+
+
+.show-friendBox{
+    position: fixed;
+    right: 0px;
+    bottom: 30px;
+}
+
+.friend-requestBox{
+    position: fixed;
+    right: 250px;
+    bottom: 30px;
+}
+
+#showFriendBtn{
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+}
+
+#friend-request{
+    position: fixed;
+    right: 250px;
+    bottom: 0px;
+
+}
