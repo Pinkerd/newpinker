@@ -2,12 +2,9 @@ package com.pinker.servlet;
 
 
 import com.pinker.entity.ConcernTopic;
-import com.pinker.entity.pk_topic;
 import com.pinker.entity.pk_user;
 import com.pinker.service.ConcernTopicService;
 import com.pinker.service.Impl.ConcernTopicServiceImpl;
-import com.pinker.service.TopicService;
-import com.pinker.service.serviceimpl.TopicServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Date;
-import java.util.List;
 
 
 @WebServlet(name = "ConcernTopicServlet",urlPatterns = {"/ConcernTopicServlet"})

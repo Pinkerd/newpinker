@@ -11,8 +11,7 @@ public class  BaseServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-//        System.out.println("jump into servlet");
+        System.out.println("jump into baseServlet");
         req.setCharacterEncoding("utf-8");
         resp.setCharacterEncoding("utf-8");
         resp.setHeader("Content-Type", "Text/html;Charset=utf-8");

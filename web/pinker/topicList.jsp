@@ -2,7 +2,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.pinker.service.TopicService" %>
 <%@ page import="com.pinker.entity.pk_topic" %>
-<%@ page import="com.pinker.service.serviceimpl.TopicServiceImpl" %>
+<%@ page import="com.pinker.service.Impl.TopicServiceImpl" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
