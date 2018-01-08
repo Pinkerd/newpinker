@@ -1,14 +1,19 @@
-<%@ page import="java.security.Key" %>
+<%@ page import="com.pinker.service.BlogDaoService" %>
+<%@ page import="com.pinker.service.Impl.BlogDaoServiceImpl" %>
+<%@ page import="com.pinker.entity.Blog" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
-<base href="http://localhost:8080/pinker/pinker/">
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="css/Template.css" />
-	<link rel="stylesheet" type="text/css" href="css/Blog.css">
-	<link rel="stylesheet" type="text/css" href="css/left.css" />
-	<link rel="stylesheet" type="text/css" href="css/right.css" />
+	<%@include file="/WEB-INF/include/base_info.jsp"%>
+	<link rel="stylesheet" type="text/css" href="pinker/css/Template.css" />
+	<link rel="stylesheet" type="text/css" href="pinker/css/Blog.css">
+	<link rel="stylesheet" type="text/css" href="pinker/css/left.css" />
+	<link rel="stylesheet" type="text/css" href="pinker/css/right.css" />
+	<link rel="stylesheet" type="text/css" href="pinker/css/head_info.css">
+	<script type="text/javascript" src="pinker/js/head_info.js"></script>
+	<script type="text/javascript" src="pinker/js/blog.js"></script>
 
 
 	<title></title>
@@ -18,39 +23,18 @@
 <!--模板容器-->
 <div class="template-body">
 	<!--头部容器-->
-	<div class="template-header">
-		<div class="template-header-wrap">
-			<span class="template-logo">品客·</span>
-			<nav class="template-header-nav">
-				<a href="index.jsp" class="template-header-navItem isActive">首页</a>
-				<a href="#" class="template-header-navItem">发现</a>
-				<a href="topicList.jsp" class="template-header-navItem">话题</a>
-			</nav>
-			<!--搜索框-->
-
-			<div class="template-search-bar">
-				<input type="text" name="" id="" value="" placeholder="你感兴趣的话题。。。" />
-
-			</div>
-			<div class="template-search-buttonWrap">
-				<input type="button" class="template-search-button" />
-			</div>
-			<!--右侧登录注册以及头像-->
-			<div class="right template-header-right">
-				<div class="template-loginRegist">
-					<a href="login.jsp">登录</a>
-					<a href="login.jsp">注册</a>
-				</div>
-
-				<div class="template-userInfo">
-					<div class="head-img">
-						<a href="#"><img src="pinker/img/default_head.png" height="40px" width="40px" /></a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	<%@include file="/WEB-INF/include/head_info.jsp"%>
 	<!--论题-->
+	<%
+		int blogId=Integer.parseInt(request.getParameter("blogId"));
+		BlogDaoService blogDaoService= new BlogDaoServiceImpl();
+		Blog thisBlog=blogDaoService.getBlogById(blogId);
+
+		request.setAttribute("thisBlog",thisBlog);
+ 	%>
+
+
+	<input type="hidden" value="${thisBlog.id}" id="blogId">
 
 	<div class="page_top">
 		<!--论题头部-->
@@ -79,13 +63,9 @@
 							</div>
 						</div>
 						<h1 class="page_topcontenttitle">
-							${key.title}
+							${thisBlog.title}
 						</h1>
-						<%--<div class="page_topcontentdetail">
-                            <span class="RichText">最近贾樟柯导演拍了新短片，
-                            讲 3 个年轻人因为陌陌找到同类化解孤独。目前社交网络越来越发达，
-                            这种突破地域和空间的限制，强调人与人之间的连接，是否会对人…</span>
-                        </div>--%>
+
 					</div>
 
 					<div class="page_topcontentside">
@@ -100,6 +80,7 @@
 
 					</div>
 					<!--讨论论题的底部-->
+
 					<div class="page_topfoot">
 						<div class="page_topfootmain">
 							<div class="page_topfootGroup">
@@ -109,13 +90,13 @@
 							<div class="page_topfootAction">
 								<div class="page_topfootActioncomment">
 									<button class="button3">
-										<img class="button3-img" src="img/评论.png" width="20px " height="20px"/>
+										<img class="button3-img" src="pinker/img/评论.png" width="20px " height="20px"/>
 										5条评论
 									</button>
 								</div>
 								<div class="page_topfootActionshareMenu">
 									<button class="button4">
-										<img src="img/分享.png" width="20px" height="20px"/>
+										<img src="pinker/img/分享.png" width="20px" height="20px"/>
 										转发
 									</button>
 								</div>
@@ -142,12 +123,12 @@
 				<div class="contentITem-meta">
 					<div class="author-info">
 						<div class="Popover">
-							<img src="img/rBACE1QVCzTBwmNzAAC99vs-BW0180_200x200_3.png" width="37px" height="37px" />
+							<img src="http://localhost:8080/pinker/IOServlet?method=loadOtherHeadImg&userId=${thisBlog.user.id}" width="37px" height="37px" />
 						</div>
 						<div class="AuthorInfo-content">
 							<div class="AuthorInfo-head">
 								<a href="#">
-									${key.user.username}
+									${thisBlog.user.username}
 								</a>
 							</div>
 							<div class="AuthorInfo-detail">
@@ -163,7 +144,7 @@
 				</div>
 				<div class="RichContent-inner">
 							<span class="RichText">
-								${key.content}
+								${thisBlog.content}
 							</span>
 				</div>
 				<div class="ContentItem-time">
@@ -173,22 +154,22 @@
 				<div class="ContentItem-actions">
 							<span>
 								<button  class="left-Thumb">
-									<img src="img/点赞.png" width="25px" height="20px" id="zan"/>
+									<img src="pinker/img/点赞.png" width="25px" height="20px" id="zan"/>
 								</button>
 
 							</span>
 					<button class="left-comment">
-						<img class="button3-img" src="img/评论.png" width="20px" height="20px" style="position: relative;bottom: 7px;"/>
+						<img class="button3-img" src="pinker/img/评论.png" width="20px" height="20px" style="position: relative;bottom: 7px;"/>
 						<a style="display: inline-block;position: relative;bottom:2px;left: 6px;">22条评论</a>
 					</button>
 
 					<button class="left-dividual">
-						<img src="img/分享.png" width="20px" height="20px" style="position: relative;top: 3px;"/>
+						<img src="pinker/img/分享.png" width="20px" height="20px" style="position: relative;top: 3px;"/>
 						<a style="display: inline-block;position: relative;bottom:2px;left: 4px;">分享</a>
 					</button>
 
 					<button class="left-collect">
-						<img src="img/收藏.png" width="20px" height="20px" style="position: relative;top: 3px;"/>
+						<img src="pinker/img/收藏.png" width="20px" height="20px" style="position: relative;top: 3px;"/>
 						<a style="display: inline-block;position: relative;bottom:2px;left: 4px;">收藏</a>
 					</button>
 				</div>
@@ -204,46 +185,27 @@
 					</div>
 					<hr />
 
-					<div>
-						<div class="commentList">
 
-							<div class="CommentItem">
-								<div>
-									<div class="CommentItem-meta">
-										<div class="Popover">
-											<img src="img/de6b65d85e1d9434!400x400_big.jpg" width="23px" height="23px" alt="熊本熊" /> 熊本熊
-										</div>
-									</div>
 
-									<div class="CommentItem-content">
-										<p>有的人只活在线上而忽略了线下。最后线上线下都失去了那才叫一种孤独！</p>
-									</div>
 
-									<div class="CommentItem-footer">
-										<button class="CommentItem-Thumb">
-											<img src="img/点赞.png" width="25px" height="20px"/>赞
-										</button>
+					<ul id="comment-ulwrap">
+						<%--<li>--%>
+							<%--<img src="pinker/img/111.jpg" height="30px" width="30px"><span><a href="">我叫神仙</a></span>--%>
+							<%--<div>nude我的大额的的的的的 </div>--%>
+						<%--</li>--%>
+					</ul>
 
-										<button class="CommentItem-revert">
-											<img src="img/回复.png" width="16px" height="16px"/>回复
-										</button>
 
-									</div>
 
-								</div>
-								<hr />
-							</div>
-
-						</div>
-					</div>
+					<c:if test="${user!=null}">
 
 					<div class="Comments-foot">
-						<form action="/pinker/BlogServlet?method=insertComment" method="post">
-							<div class="foot-comment"><input type="text" name="comment" placeholder="写下你的评论" />
-								<button type="submit" id="foot-comment">评论</button>
+							<div class="foot-comment">
+								<input type="text" name="comment" id="comment-input" placeholder="写下你的评论" />
+								<button id="foot-comment">评论</button>
 							</div>
-						</form>
 					</div>
+					</c:if>
 				</div>
 			</div>
 		</div>
@@ -276,57 +238,116 @@
 						<a href="blog.jsp" target="_blank">朋友圈里常发什么样的图片的人比较讨厌</a>
 						3021个回答
 					</div>
-
 				</div>
-
 			</div>
-
 		</div>
 	</div>
-
 </div>
+
 
 </body>
 <script type="text/javascript" src="js/jquery-1.7.2.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $("#zan").click(function () {
+            alert("666");
             /*  $("#zan").attr("src", "img/已赞.png");*/
-
-            if($("#zan").attr("src")=="img/点赞.png"){
+            if($("#zan").attr("src")=="/img/点赞.png"){
                 $("#zan").attr("src", "img/已赞.png");
             }else{
                 $("#zan").attr("src", "img/点赞.png");
             }
-
         })
-
     })
 </script>
+
 <script src="js/jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" src="js/Template.js"></script>
 <script type="text/javascript">
+    var blogId= $("#blogId").val();
     /**
      *  评论框的显示和隐藏
      */
     $(document).ready(function() {
         $(".left-comment").click(function() {
-            /*   $(".Comments-container").toggle();*/
-            $(".Comments-container").slideToggle(700);
+            $.ajax({
+                url:"http://localhost:8080/pinker/CommentServlet?method=saveCom",
+                type:"post",
+                data:{blogId:blogId},
+                dataType:"text",
+                success:function (result) {
+                    if(result!=0){
+                        var list=JSON.parse(result);
+                        for (var a=0;a<list.length;a++){
+                            alert(result.name)
+                        }
+                    }
+                }
+            })
+           // $(".Comments-container").slideToggle(700);
         });
+
+        /**
+         * 点击进入查询一个的方法
+         */
+        $.ajax({
+            url:"http://localhost:8080/pinker/CollectionBlogServlet?method=findCollectionBlogByUserId",
+            type:"post",
+            data:{blogId:blogId},
+            dataType:"text",
+            success:function (result) {
+                //alert(result);
+                //这个result是个字符串
+                if (result=="true"){
+                    //alert("true")
+                    //能查到id说明已关注  点击取消关注
+                    $(".page-attention").html("取消问题");
+                 // $(".page-attention").unbind("click");
+                    $(".page-attention").click(del);
+                }else{
+                    //alert("false")
+                    //为null说明没关注  点击关注
+                    $(".page-attention").html("关注问题");
+                //    $(".page-attention").unbind("click");
+                    $(".page-attention").click(save);
+                }
+            }
+        })
     });
-    /**
-     *  关注问题和取消关注
-     */
-    $(function(){
-        $(".page-attention").toggle(
 
-            function() {$(".page-attention").html("关注问题");},
-            function() {$(".page-attention").html("取消关注");}
-        )
+function save() {
+    //关注
+    $.ajax({
+        url:"http://localhost:8080/pinker/CollectionBlogServlet?method=saveCollectionBlog",
+        type:"post",
+        data:{blogId:blogId},
+        dataType:"text",
+        success:function (result) {
+            if(result!=0){
+                //（删除数据）取消关注后，显示关注问题文字
+                $(".page-attention").unbind("click");
+                $(".page-attention").click(del);
+                $(".page-attention").html("取消关注");
+            }
+        }
     })
+}
+function del() {
+    //取关
+    $.ajax({
+        url:"http://localhost:8080/pinker/CollectionBlogServlet?method=deleteCollectionBlog",
+        type:"post",
+        data:{blogId:blogId},
+        dataType:"text",
+        success:function (result) {
+            if (result!=0){
+                //（增加数据）点击关注，显示取消问题文字
+                $(".page-attention").unbind("click");
+                $(".page-attention").click(save);
+                $(".page-attention").html("关注问题");
+            }
+        }
+    })
+}
 </script>
-
-
-
 </html>

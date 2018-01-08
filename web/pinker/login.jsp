@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<base href="http://localhost:8080/pinker/pinker/">
+<base href="http://localhost:8080/pinker/">
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 	<head>
 		<meta charset="UTF-8">
 		<title></title>	
-		<link rel="stylesheet" type="text/css" href="css/login.css" />
+		<link rel="stylesheet" type="text/css" href="pinker/css/login.css" />
+		<script type="text/javascript" src="pinker/js/jquery-1.7.2.js"></script>
 		<style>
 			input[type="password"]{
 			width: 280px;
@@ -21,6 +22,22 @@
 			background: rgba(250,250,250,0.7);
 		}
 		</style>
+
+		<script type="text/javascript">
+
+			$(function () {
+
+                $("input").keypress(function () {
+                    if(event.keyCode==32){
+                        event.returnValue==false;
+                    }
+                })
+            })
+
+
+
+
+		</script>
 
 	</head>
 	<body>
@@ -44,10 +61,10 @@
 			<%--登陆form表单--%>
 					<form action="http://localhost:8080/pinker/UsersServlet?method=logIn" method="post">
 						<div class="login-input-usernameWrap">
-						<input type="text" name="loginname" value="" placeholder="用户名"/>
+						<input type="text" name="loginname" value="" placeholder="用户名" onkeyup="this.value=this.value.replace(/[, ]/g,'')"/>
 						</div>
 						<div id="login-input-passwordWrap">
-						<input type="password" name="password"  value="" placeholder="密码"/>
+						<input type="password" name="password"  value="" placeholder="密码" onkeyup="this.value=this.value.replace(/[, ]/g,'')"/>
 						</div>
 						<div id="LoginErrorMsg">${LoginErrorMsg}</div>
 						<input type="submit" id="login-commitBtn" value="登录"/>
@@ -55,10 +72,10 @@
 					</div>
 			<%--注册form表单--%>
 					<div class="index-form-regiser" hidden="hidden">
-						<form action="http://localhost:8080/pinker/UsersServlet?method=saveUser" method="post" id="#rgform">
-							<input type="text" name="loginName"  id="rgname" placeholder="用户名" value="" />
-							<input type="password" name="password"  id="rgpsw1" placeholder="密码" value="" />
-							<input type="password" name="passwordAg"  id="rgpsw2" placeholder="确认密码" value="" />
+						<form action="http://localhost:8080/pinker/UsersServlet?method=saveUser" method="post" id="#rgform" >
+							<input type="text" name="loginName"  id="rgname" placeholder="用户名" value="" onkeyup="this.value=this.value.replace(/[, ]/g,'')"/>
+							<input type="password" name="password"  id="rgpsw1" placeholder="密码" value="" onkeyup="this.value=this.value.replace(/[, ]/g,'')" />
+							<input type="password" name="passwordAg"  id="rgpsw2" placeholder="确认密码" value="" onkeyup="this.value=this.value.replace(/[, ]/g,'')" />
 							<div id="RegErrorMsg">${RegErrorMsg}</div>
 							<input type="submit" id="index-register-commit" value="注册"/>
 						</form>
@@ -66,7 +83,7 @@
 				</div>
 			</div>
 		</div>
-		<iframe src="background.jsp" width="100%" height="100%"></iframe>
+		<iframe src="pinker/background.jsp" width="100%" height="100%"></iframe>
 
 	</body>
 	<script type="text/javascript" src="js/jquery-1.7.2.js"></script>

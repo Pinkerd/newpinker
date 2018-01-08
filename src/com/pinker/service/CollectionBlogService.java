@@ -1,7 +1,5 @@
 package com.pinker.service;
 
-
-//修改版
 import com.pinker.entity.CollectionBlog;
 
 import java.util.Date;
@@ -9,16 +7,24 @@ import java.util.List;
 
 public interface CollectionBlogService {
 
-
+    /**
+     * 查询所有blog收藏的方法
+     */
+    List<CollectionBlog> getAllCollectionBlog();
 
     /**
      * 查询一个blog收藏的方法
      * @param userId
      * @return
      */
-    CollectionBlog findCollectionBlogByUserIdAndBlogId(int userId,int blogId);
+    CollectionBlog findCollectionBlogByUserId(int blogId, int userId);
 
-
+    /**
+     * 通过时间查询一个blog收藏的方法
+     * @param collectTime
+     * @return
+     */
+    CollectionBlog findCollectionBlogByCollectTime(Date collectTime);
 
     /**
      * 增加一个blog收藏的方法
@@ -32,11 +38,5 @@ public interface CollectionBlogService {
      * @param userId
      * @return
      */
-    int  deleteCollectionBlogByUserId(int userId,int blogId);
-
-    /**
-     * 查询该用户所有收藏博客方法
-     */
-    List<CollectionBlog> findAllByUserId(int userId);
-
+    int  deleteCollectionBlogByUserId(int blogId, int userId);
 }

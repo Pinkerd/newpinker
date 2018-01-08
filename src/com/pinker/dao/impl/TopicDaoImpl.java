@@ -88,25 +88,17 @@ public class TopicDaoImpl extends BaseDao<pk_topic> implements TopicDao {
 
     }
 
-
-   /* *//**
-     * 关注话题的方法
-     * @param topicId
+    /**
+     * 模糊查询话题
+     * @param key
      * @return
-     *//*
+     */
     @Override
-    public int topicadd(pk_topic topicId) {
-        String sql="insert into concerntopic(userId,topId,concerntime) values(?,?,NOW())";
-        return this.update(sql,topicId.getUserId());
+    public List<pk_topic> fuzzSearchTopic(String key) {
+        String sql="select * from pk_topic where title like ?";
+        return this.getListBean(sql,"%"+key+"%");
+
     }
 
-    *//**
-     * 取消关注的方法
-     * @param topicId
-     * @return
-     *//*
-    @Override
-    public int topicdelete(int topicId) {
-        return 0;
-    }*/
+
 }

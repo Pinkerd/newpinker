@@ -67,4 +67,10 @@ public interface TopicService {
       * 上传话题
       */
      int uploadTopic(int id, String title, String content, int userId);
+
+     /**模糊查询话题
+      *
+      */
+     List<pk_topic> fuzzSearch(String key);
+
 }

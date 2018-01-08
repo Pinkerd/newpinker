@@ -41,15 +41,17 @@ public class CommentServiceImpl implements CommentService {
     }
 
     /**
-     * 查询一个的方法
+     * 查询博客下所有评论的方法
      * @param blogId
      * @return
      */
     @Override
-    public Comment getselect(int blogId) {
-        Comment comment = comm.getselect(blogId);
-        this.setFull(comment);
-        return comment;
+    public List<Comment> getselect(int blogId) {
+        List<Comment> list=comm.getselect(blogId);
+        for (Comment comment:list ) {
+            this.setFull(comment);
+        }
+        return list;
     }
 
     /**

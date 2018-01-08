@@ -41,15 +41,12 @@ public class FriendServiceImpl implements FriendService {
     /**
      * 通过userID查询该用户所有好友信息
      * @param page
-     * @param friend
      * @return
      */
     @Override
-    public Page<Friend> findFriendByUserId(Page<Friend> page, Friend friend) {
-        Page<Friend> friendPage=friendDao.findFriendByUserId(friend,page);
-        for (Friend frienb:friendPage.getData()) {
-            setFull(friend);
-        }
+    public Page<Friend> findFriendByUserId(Page<Friend> page, pk_user user) {
+        Page<Friend> friendPage=friendDao.findFriendByUserId(user,page);
+
         return friendPage;
     }
 

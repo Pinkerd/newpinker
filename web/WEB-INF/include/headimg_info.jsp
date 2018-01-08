@@ -20,7 +20,7 @@
             </div>
 
             <div class="card-intro">
-                <span style="font-size: 13px;">你莫拽，我有你照片</span>
+                <span style="font-size: 13px;">${user.introduction}</span>
             </div>
         </div>
     </div>

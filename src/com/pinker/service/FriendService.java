@@ -2,6 +2,7 @@ package com.pinker.service;
 
 import com.pinker.entity.Friend;
 import com.pinker.entity.Page;
+import com.pinker.entity.pk_user;
 
 import java.util.List;
 
@@ -9,10 +10,10 @@ public interface FriendService {
     /**
      * 通过userID分页查询该用户所有好友信息
      * @param page
-     * @param friend
+     * @param
      * @return
      */
-    Page<Friend> findFriendByUserId(Page<Friend> page, Friend friend);
+    Page<Friend> findFriendByUserId(Page<Friend> page, pk_user user);
 
 
     /**

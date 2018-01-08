@@ -1,23 +1,30 @@
 package com.pinker.dao;
 
-import com.pinker.entity.Blog;
 import com.pinker.entity.CollectionBlog;
 
 import java.util.Date;
 import java.util.List;
 
-//修改版
 public interface CollectionBlogDao {
 
+    /**
+     * 查询所有blog收藏的方法
+     */
+    List<CollectionBlog> getAllCollectionBlog();
 
     /**
      * 查询一个blog收藏的方法
      * @param userId
      * @return
      */
-    CollectionBlog findCollectionBlogByUserIdAndBlogId(int userId,int blogId);
+    CollectionBlog findCollectionBlogByUserId(int blogId, int userId);
 
-
+    /**
+     * 通过时间查询一个blog收藏的方法
+     * @param collectTime
+     * @return
+     */
+    CollectionBlog  findCollectionBlogByCollectTime(Date collectTime);
 
     /**
      * 增加一个blog收藏的方法
@@ -31,11 +38,7 @@ public interface CollectionBlogDao {
      * @param userId
      * @return
      */
-    int  deleteCollectionBlogByUserId(int userId,int blogId);
+    int  deleteCollectionBlogByUserId(int blogId, int userId);
 
-    /**
-     * 按用户查找该用户所有收藏
-     */
-    List<CollectionBlog> findAllByUerId(int userId);
 
 }

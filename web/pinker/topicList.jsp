@@ -5,14 +5,16 @@
 <%@ page import="com.pinker.service.serviceimpl.TopicServiceImpl" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="/WEB-INF/include/base_info.jsp" %>
+
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<link rel="stylesheet" type="text/css" href="pinker/CSS/Template.css"/>
-		<link rel="stylesheet" type="text/css" href="pinker/CSS/topicList.css"/>
-		<script src="pinker/js/jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
+		<%@include file="/WEB-INF/include/base_info.jsp" %>
+		<link rel="stylesheet" type="text/css" href="pinker/css/Template.css"/>
+		<link rel="stylesheet" type="text/css" href="pinker/css/topicList.css"/>
+		<link rel="stylesheet"  type="text/css" href="pinker/css/head_info.css">
+		<script  type="text/javascript" src="pinker/js/head_info.js"></script>
 		<script type="text/javascript" src="pinker/js/Template.js"></script>
 		<title></title>
 	</head>
@@ -24,38 +26,8 @@
 		<!--模板容器-->
 		<div class="template-body">
 			<!--头部容器-->
-			<div class="template-header">
-				<div class="template-header-wrap">
-					<span class="template-logo">品客·</span>
-					<nav class="template-header-nav">
-						<a href="index.jsp" class="template-header-navItem isActive">首页</a>
-						<a href="topicList.jsp" class="template-header-navItem">发现</a>
-						<a href="topicList.jsp" class="template-header-navItem">话题</a>
-					</nav>
-					<!--搜索框-->
+			<%@include file="/WEB-INF/include/head_info.jsp"%>
 
-					<div class="template-search-bar">
-						<input type="text" name="" id="" value="" placeholder="你感兴趣的话题。。。"/>
-
-					</div>
-					<div class="template-search-buttonWrap">
-						<input type="button"  class="template-search-button"/>
-					</div>
-					<!--右侧登录注册以及头像-->
-					<div class="right template-header-right">
-					<div class="template-loginRegist">
-						<a href="login.jsp">登录</a>
-						<a href="login.jsp">注册</a>
-					</div>
-
-					<div class="template-userInfo">
-						<div class="head-img">
-							<a href="PersonPage.htmls"><img src="pinker/img/default_head.png" height="40px" width="40px"/></a>
-						</div>
-					</div>
-					</div>
-				</div>
-			</div>
 
 			<!--模板结束-->
 			<div class="template-main-body">
@@ -72,22 +44,19 @@
 
 								<div class="template-body-left-body">
 									<div class="content">
-										<a href="topic_blogList.jsp" class="item-link" style="background-image: url(${topic.titleimg});">
-										<span class="mask">
+										<a href="pinker/topic_blogList.jsp?topicId=${topic.id}" class="item-link" style="background-image: url(http://localhost:8080/pinker/IOServlet?method=loadTopicImg&topicId=${topic.id});">
+										<span class="mask" >
 											<span class="name">${topic.title}</span>
 										</span>
 										</a>
 										<div class="visitFBZ">
-											发布者 : ${topic.userId}<br>
+											发布者 : ${topic.user.username}<br>
 												${topic.publishtime}
 										</div>
-										<%--<div class="visitFBSJ">发布时间 : ${topic.publishtime}</div>--%>
 									</div>
 								</div>
 
 							</c:forEach>
-							<%--<div><a href="zhwz1/pages/topicChange.jsp">发表话题</a>
-							</div>--%>
 						</div>
 						<!--底部更多按钮-->
 						<button class="db">

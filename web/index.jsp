@@ -45,13 +45,15 @@
         </div>
 
         <div class="slogenC">
-            <span>知识</span>从未如此<span>性感</span>与<span>开放</span>
+            <span>知识</span><a href=""></a>从未如此<span>性感</span>与<span>开放</span>
         </div>
        <%-- 用户头像保持--%>
                 <c:if test="${user!=null}">
                     <div class="headerName">
+                        <a href="pinker/PersonPage.jsp">
                         <span class="userName">${user.username}</span>
                         <img src="http://localhost:8080/pinker/IOServlet?method=loadHeadImg" height="20px" width="20px">
+                        </a>
                     </div>
                 </c:if>
          <%--功能列表 首页 发现  话题--%>
@@ -59,14 +61,14 @@
                 <ul class="funcUl">
                     <li class="funcLi"><a href="#">首页</a></li>
                     <li class="funcLi"><a href="#">发现</a></li>
-                    <li class="funcLi"><a href="#">话题</a></li>
+                    <li class="funcLi"><a href="pinker/topicList.jsp">话题</a></li>
                 </ul>
             </div>
 
         <%--开始发现之旅--%>
 
         <div class="downBox">
-            <a href="#">
+            <a href="#down">
             <div class="startDiscover">
                 <h2>开始知识的旅程</h2>
                 <img src="pinker/img/arrowDown.png" style="margin: 0px auto;width: 100px;height: 50px">
@@ -146,8 +148,8 @@
                     </div>
                     <div class="infoBox">
                         <div class="infoTitle">------欢迎电邮------</div>
-                        <span>025-xxxxxxxx</span><br>
-                        <span>xxxxx@xxx.com</span>
+                        <span>025-12345678</span><br>
+                        <span>786384149@qq.com</span>
                     </div>
                     <div class="infoBox">
                         <div class="infoTitle" style="margin: 0px auto 10px;">------关注我们------</div>

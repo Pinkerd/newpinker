@@ -28,7 +28,7 @@
     <div class="friend-requestBox">
         <ul>
             <li>
-                <span></span>
+                <span class="friend-name"> </span>
                 <button class="friend-receive">接受</button>
                 <button class="friend-refuse">拒绝</button>
             </li>

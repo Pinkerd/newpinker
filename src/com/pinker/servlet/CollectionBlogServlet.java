@@ -7,39 +7,125 @@ import com.pinker.service.Impl.CollectionBlogServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Date;
 import java.util.List;
 
-@WebServlet(name = "CollectionBlogServlet" ,urlPatterns = {"/CollectionBlogServlet"})
+@WebServlet(name = "CollectionBlogServlet",urlPatterns = {"/CollectionBlogServlet"})
 public class CollectionBlogServlet extends BaseServlet {
+    private static final long serialVersionUID = 1L;
 
-    private CollectionBlogService cbs=new CollectionBlogServiceImpl();
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    private CollectionBlogService collectionBlogService = new CollectionBlogServiceImpl();
+    /**
+     * 查询一个博文收藏的方法  根据userid 和blogid
+     */
+
+    protected void findCollectionBlogByUserId(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.print("jump into findCollectionBlogByUserId");
+        int blogId= Integer.parseInt(request.getParameter("blogId")) ;
+        pk_user user= (pk_user) request.getSession().getAttribute("user");
+        CollectionBlog collectionBlogByUserId = collectionBlogService.findCollectionBlogByUserId(blogId, user.getId());
+        System.out.print(collectionBlogByUserId);
+
+        Boolean result=null;
+        if (collectionBlogByUserId!=null){
+            result=true;
+        }else if (collectionBlogByUserId==null){
+            result=false;
+        }
+        System.out.println(result);
+        response.getWriter().print(result);
+    }
+
+    /**
+     * 删除blog收藏的方法
+     * blog
+     */
+    protected void deleteCollectionBlog(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.print("jump into delete...");
+        /**
+         * 获取blog页面传来的博客id，在本表删除
+         */
+        int blogId= Integer.parseInt(request.getParameter("blogId")) ;
+        /**
+         * 获取session域中的user
+         */
+        pk_user user= (pk_user) request.getSession().getAttribute("user");
+        /**
+         * ajax返回
+         */
+        Integer row=collectionBlogService.deleteCollectionBlogByUserId(blogId,user.getId());
+        response.getWriter().print(row.toString());
+    }
+
+
+    /**
+     * 添加博文关注的方法
+     * blog
+     */
+    protected void saveCollectionBlog(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.print("jump into save...");
+        /**
+        * 获取blog页面传来的博客id，在本表删除
+        */
+        int blogId= Integer.parseInt(request.getParameter("blogId")) ;
+        /**
+         * 获取session域中的user
+         */
+        pk_user user= (pk_user) request.getSession().getAttribute("user");
+        /**
+         * 获取点击博文关注
+         */
+        CollectionBlog collectionBlog = new CollectionBlog(blogId,user.getId(),new Date());
 
         /**
-         * 1.从session域中获取user的对象
+         * 调用service中的增加信息的方法
          */
-        pk_user collectBlogMy = (pk_user) req.getSession().getAttribute("user");
+        Integer row = collectionBlogService.saveCollectionBlog(collectionBlog);
+        PrintWriter out = response.getWriter();
+        out.print(row.toString());
+    }
+
+    /**
+     * 查询所有blog收藏的信息并带着信息去页面
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
+    protected void concernTopicList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        List<CollectionBlog> collectionBlog = collectionBlogService.getAllCollectionBlog();
 
         /**
-         * 2.从user中获取id
+         * 将查询到的blog收藏对象放进请求域中
          */
-        Integer id = collectBlogMy.getId();
-        /**
-         * 3.调用查询该用户所有收藏博客方法
-         */
-        List<CollectionBlog> collectBlog = cbs.findAllByUserId(id);
+        request.setAttribute("list", collectionBlog);
 
         /**
-         * 4.将获取的集合放到域中
+         * 转发到 #.jsp
          */
-        req.setAttribute("collectBlog",collectBlog);
+        request.getRequestDispatcher("#.jsp").forward(request, response);
+    }
+
+
+
+    protected void isCollect(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         /**
-         * 5.转发到CollectBlog.jsp的页面
+         * 获取blog页面传来的博客id，在本表删除
          */
-        req.getRequestDispatcher("/pinker/CollectBlog.jsp").forward(req,resp);
+        int blogId= Integer.parseInt(req.getParameter("blogId")) ;
+        /**
+         * 获取session域中的user
+         */
+        pk_user user= (pk_user) req.getSession().getAttribute("user");
+
+
+
+
     }
 }

@@ -19,9 +19,9 @@ public interface CommentService {
      */
     boolean getdelct(Comment comment);
     /**
-     * 查询单条评论
+     * 查询博客下所有评论
      */
-    Comment getselect(int blogId);
+    List<Comment> getselect(int blogId);
     /**
      * 查询多个评论
      */

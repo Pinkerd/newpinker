@@ -30,15 +30,7 @@ public class CommentDaoImplTest {
         int getdelct = com.getdelct(comment);
     }
 
-    /**
-     * 查询一个测试
-     * @throws Exception
-     */
-    @Test
-    public void getselect() throws Exception {
-        Comment getselect = com.getselect(3);
-        System.out.println(getselect.toString());
-    }
+
 
     /**
      * 查询多个测试

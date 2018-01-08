@@ -15,8 +15,10 @@
 		<link rel="stylesheet" type="text/css" href="pinker/css/PersonPage.css" />
 		<link rel="stylesheet" type="text/css" href="pinker/css/MyTopic.css" />
 		<link rel="stylesheet" type="text/css" href="pinker/css/MyTopic1.css" />
+		<link rel="stylesheet" type="text/css" href="pinker/css/head_info.css" />
 		<script type="text/javascript" src="pinker/js/Template.js"></script>
 		<script type="text/javascript" src="pinker/js/personpage.js"></script>
+		<script type="text/javascript" src="pinker/js/head_info.js"></script>
 		<title></title>
 	</head>
 <%
@@ -47,7 +49,7 @@
 					<div class="left-status">
 						<ul class="left-statusUl">
 							<li class="left-status-sate statusActive">动态</li>
-							<li class="left-status-publish">发布</li>
+							<li class="left-status-publish statusActive">发布</li>
 							<li class="left-status-attention">收藏与关注</li>
 							<li class="left-status-perInfo">个人信息</li>
 						</ul>
@@ -127,117 +129,9 @@
 					</div>
 
 					<!--右侧-->
-					<div class="right-menu">
-						<ul>
-							<!--<div class="menu-personInfo isMenuActive">
-								<li>个人资料管理</li>
-							</div>-->
+					<%@include file="/WEB-INF/include/person_menu.jsp"%>
 
-							<div class="menu-attentionTopic">
-								<li>关注的话题</li>
-							</div>
-
-							<div class="menu-attentionBlog">
-								<li>收藏的博文</li>
-							</div>
-
-							<div class="menu-myTopic">
-								<li>发布的话题</li>
-							</div>
-
-							<div class="menu-myBlog">
-								<li>发布的博文</li>
-							</div>
-
-							<!--<div class="menu-friend">
-								<li>好友管理</li>
-							</div>-->
-
-						</ul>
-
-					</div>
-
-					<div class="right-myFriend">
-						<div class="friend-nav">
-							<h3>好友</h3>
-						</div>
-
-						<hr />
-						<div class="right-friendwarp">
-							<div class="right-headIMG left">
-								<img src="img/headimg/111.jpg" height="50px" width="50px" />
-							</div>
-							<div class="right-friendInfo">
-								<a href="PersonPage.jsp">
-									<h4>时间高手</h4></a>
-								<span class="introduce">人最软弱的地方，是舍不得。</span>
-							</div>
-							<div id="friend-manager">
-
-							</div>
-						</div>
-
-						<div class="right-friendwarp">
-							<div class="right-headIMG left">
-								<img src="img/headimg/ti111mg.jpg" height="50px" width="50px" />
-							</div>
-							<div class="right-friendInfo">
-								<a href="PersonPage.jsp">
-									<h4>David Lee</h4></a>
-								<span class="introduce">我爱你你却爱她，先森 </span>
-							</div>
-							<div id="friend-manager">
-
-							</div>
-						</div>
-
-						<div class="right-friendwarp">
-							<div class="right-headIMG left">
-								<img src="img/headimg/ti1mg.jpg" height="50px" width="50px" />
-							</div>
-							<div class="right-friendInfo">
-								<a href="PersonPage.jsp">
-									<h4>我的小贱贱</h4></a>
-								<span class="introduce">我知道你爱她命里少我一个也没差</span>
-							</div>
-							<div id="friend-manager">
-
-							</div>
-						</div>
-
-						<div class="right-friendwarp">
-							<div class="right-headIMG left">
-								<img src="img/headimg/ti66mg.jpg" height="50px" width="50px" />
-							</div>
-							<div class="right-friendInfo">
-								<a href="PersonPage.jsp">
-									<h4>建民质疑</h4></a>
-								<span class="introduce">良人未归途我念故人归</span>
-							</div>
-							<div id="friend-manager">
-
-							</div>
-						</div>
-
-						<div class="right-friendwarp">
-							<div class="right-headIMG left">
-								<img src="img/headimg/tim11g.jpg" height="50px" width="50px" />
-							</div>
-							<div class="right-friendInfo">
-								<a href="PersonPage.jsp">
-									<h4>Party Time</h4></a>
-								<span class="introduce">不要暗示我，我知道暗室欺人</span>
-							</div>
-
-						</div>
-
-						<div class="friend-manager">
-							<button class="friend-up">上一页</button>
-							<input readonly="" type="text" name="pageCode" id="pageCode" value="1/178" class="friend-pageCode" />
-							<button class="friend-down">下一页</button>
-						</div>
-
-					</div>
+					<%@include file="/WEB-INF/include/footer_info.jsp"%>
 
 				</div>
 			</div>

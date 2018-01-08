@@ -29,14 +29,14 @@ public class CommentDaoImpl extends BaseDao<Comment> implements CommentDao {
         return this.update(sql,comment.getBlogId());
     }
     /**
-     * 查询单条评论的方法
+     * 查询博客下所有评论的方法
      * @param
      * @return
      */
     @Override
-    public Comment getselect(int blogId) {
+    public List<Comment> getselect(int blogId) {
         String sql="select blogId,userId,content,publishtime from pk_comment where blogId=?";
-        return this.getBean(sql,blogId);
+        return this.getListBean(sql,blogId);
     }
     /**
      * 查询多条评论的方法
