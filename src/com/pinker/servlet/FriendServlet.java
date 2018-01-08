@@ -1,6 +1,8 @@
 package com.pinker.servlet;
 
+import com.google.gson.Gson;
 import com.pinker.entity.Friend;
+import com.pinker.entity.Page;
 import com.pinker.entity.pk_user;
 import com.pinker.service.FriendService;
 import com.pinker.service.Impl.FriendServiceImpl;
@@ -23,6 +25,8 @@ import java.util.List;
 public class FriendServlet extends BaseServlet {
     FriendService friendService= new FriendServiceImpl();
     UserService userService=new UserServiceImpl();
+
+    Gson gson=new Gson();
 
     /**
      * 查询好友状态 0：好友邀请 1：好友 2：无关系
@@ -54,10 +58,8 @@ public class FriendServlet extends BaseServlet {
         pk_user user=(pk_user) req.getSession().getAttribute("user");
         int userId=user.getId();
         List<Friend> list=friendService.getAllFriByUserIdAndStatue(userId,0);
-        System.out.println(list);
-        JSONArray json= JSONArray.fromObject(list.toArray());
-        System.out.println(json);
-
+        String listJ=gson.toJson(list);
+        resp.getWriter().write(listJ);
     }
 
 
@@ -103,6 +105,21 @@ public class FriendServlet extends BaseServlet {
         }
         out.flush();
         out.close();
+
+    }
+
+    /**
+     * 分页查询好友
+     */
+    protected void findFriendPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int index= Integer.parseInt(req.getParameter("index"));
+        Page<Friend> page=new Page<>();
+        pk_user user= (pk_user) req.getSession().getAttribute("user");
+        page.setPageNumber(index);
+        page.setPageSize(5);
+        page=friendService.findFriendByUserId(page,user);
+        String pageJ=gson.toJson(page);
+        resp.getWriter().write(pageJ);
 
     }
 }

@@ -71,10 +71,12 @@ public class BlogServlet extends BaseServlet {
         int topicId= Integer.parseInt(req.getParameter("topicId"));
         String blogData=req.getParameter("blogData");
         String title=req.getParameter("title");
+        pk_user user= (pk_user) req.getSession().getAttribute("user");
         Blog blog=new Blog();
         blog.setTitle(title);
         blog.setTopicId(topicId);
         blog.setContent(blogData);
+        blog.setUserId(user.getId());
         int row=blogDaoService.SaveBlog(blog);
         if(row!=0){
             resp.getWriter().write("true");

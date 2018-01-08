@@ -40,7 +40,6 @@ public class CollectionBlogServiceImpl implements CollectionBlogService {
      */
     @Override
     public CollectionBlog findCollectionBlogByUserIdAndBlogId(int userId, int blogId) {
-        String sql="select * from pk_collectionblog where userId=? and blogId=?";
         CollectionBlog collectionBlog=collectionBlogDao.findCollectionBlogByUserIdAndBlogId(userId,blogId);
         this.setFull(collectionBlog);
         return collectionBlog;

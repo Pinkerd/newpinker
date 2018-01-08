@@ -9,6 +9,8 @@
 <html>
 <head>
     <title>Title</title>
+    <link type="text/css" rel="stylesheet" href="/pinker/pinker/css/chat_friend.css">
+    <script type="text/javascript" src="/pinker/pinker/js/jquery-1.7.2.js"></script>
 </head>
 <body>
 
