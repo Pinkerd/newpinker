@@ -1,6 +1,6 @@
 <%@ page import="com.pinker.entity.pk_user" %>
 <%@ page import="com.pinker.service.TopicService" %>
-<%@ page import="com.pinker.service.serviceimpl.TopicServiceImpl" %>
+<%@ page import="com.pinker.service.Impl.TopicServiceImpl" %>
 <%@ page import="com.pinker.entity.Page" %>
 <%@ page import="com.pinker.entity.pk_topic" %>
 <%@ page import="java.util.List" %>
@@ -250,9 +250,6 @@
             });
         })
     </script>
-
-
-
 
 
     <script type="text/javascript" src="pinker/js/jquery.min.js"></script>

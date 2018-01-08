@@ -1,7 +1,7 @@
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="com.pinker.entity.User" %><%--
+<%@ page import="com.pinker.entity.pk_user" %><%--
   Created by IntelliJ IDEA.
-  User: Administrator
+  pk_user: Administrator
   Date: 2017/12/28
   Time: 8:32
   To change this template use File | Settings | File Templates.

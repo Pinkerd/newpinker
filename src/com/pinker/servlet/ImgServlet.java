@@ -2,15 +2,12 @@ package com.pinker.servlet;
 
 import com.pinker.entity.pk_user;
 import com.pinker.util.IOUtil;
-import net.sf.json.JSONObject;
-import sun.misc.BASE64Decoder;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.net.URLDecoder;
 
 @WebServlet(name = "ImgServlet",urlPatterns = {"/ImgServlet"})
 public class ImgServlet extends BaseServlet {

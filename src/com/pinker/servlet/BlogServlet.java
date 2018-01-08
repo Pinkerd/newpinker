@@ -1,15 +1,10 @@
 package com.pinker.servlet;
 
-import com.pinker.dao.BlogDao;
 import com.pinker.dao.CommentDao;
-import com.pinker.dao.impl.BlogDaoImpl;
 import com.pinker.dao.impl.CommentDaoImpl;
 import com.pinker.entity.Blog;
-import com.pinker.entity.Comment;
-import com.pinker.entity.pk_user;
 import com.pinker.service.BlogDaoService;
 import com.pinker.service.Impl.BlogDaoServiceImpl;
-import com.pinker.util.WEBUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

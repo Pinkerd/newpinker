@@ -1,5 +1,5 @@
 <%@ page import="com.pinker.service.TopicService" %>
-<%@ page import="com.pinker.service.serviceimpl.TopicServiceImpl" %>
+<%@ page import="com.pinker.service.Impl.TopicServiceImpl" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.pinker.service.ConcernTopicService" %>
 <%@ page import="com.pinker.service.Impl.ConcernTopicServiceImpl" %>
