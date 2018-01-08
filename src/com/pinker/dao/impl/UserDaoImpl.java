@@ -5,6 +5,7 @@ import com.pinker.dao.UserDao;
 import com.pinker.entity.Page;
 import com.pinker.entity.pk_user;
 
+
 import java.util.Date;
 import java.util.List;
 
@@ -24,12 +25,14 @@ public class UserDaoImpl extends BaseDao<pk_user> implements UserDao {
 
     @Override //修改资料 更新信息 test pass
     public boolean updateUser(pk_user pkuser) {
-        String sql="update pk_user set loginName=?,password=?,username=?,email=?,roleId=?,status=?,createtime=?,lastlogin=?,residence=?,school=?,gender=?,birthday=?,constellation=?,introduction=?,header=?  where id=?";
+        String sql="update pk_user set loginName=?,password=?,username=?,email=?,roleId=?,status=?,createtime=?,lastlogin=?,residence=?,school=?,gender=?,birthday=?,constellation=?,introduction=?,header=?,pswQ1=?,pswA1=?,pswQ2=?,pswA2=?,pswQ3=?,pswA3=?  where id=?";
         int update =
                 this.update(sql, pkuser.getLoginName(), pkuser.getPassword(), pkuser.getUsername(), pkuser.getEmail(),
                         pkuser.getRoleId(), pkuser.getStatus(), pkuser.getCreatetime(), pkuser.getLastlogin(),
                         pkuser.getResidence(), pkuser.getSchool(), pkuser.getGender(), pkuser.getBirthday(),
-                        pkuser.getConstellation(), pkuser.getIntroduction(), pkuser.getHeader(),pkuser.getId());
+                        pkuser.getConstellation(), pkuser.getIntroduction(), pkuser.getHeader(),
+                        pkuser.getPswQ1(),pkuser.getPswA1(),pkuser.getPswQ2(),pkuser.getPswA2(),
+                        pkuser.getPswQ3(),pkuser.getPswA3(),pkuser.getId());
         return update!=0;
     }
 
@@ -38,6 +41,14 @@ public class UserDaoImpl extends BaseDao<pk_user> implements UserDao {
         String sql="select * from pk_user where loginName=? and password=?";
         pk_user bean = getBean(sql, loginName, password);
         return bean;
+    }
+
+    @Override// 修改密码
+    public boolean updatePassword(Integer id, String newPassword) {
+        String sql="update pk_user set password=? where id=?";
+        int update =
+                this.update(sql,newPassword,id);
+        return update!=0;
     }
 
     @Override//好友推荐 寻找相同学校的人 test pass
@@ -77,10 +88,16 @@ public class UserDaoImpl extends BaseDao<pk_user> implements UserDao {
         return user;
     }
 
+    @Override//根据id查询用户状态
+    public Integer findStatusById(Integer id) {
+        String sql="select * from pk_user where id=?" ;
+        pk_user user = this.getBean(sql, id);
+        return  user.getStatus();
+    }
+
     @Override//显示列表 查询所有用户 test pass
     public List<pk_user> findAll(int status) {
         String sql="select * from pk_user where status=?";
-
         List<pk_user> listBean = this.getListBean(sql,status);
         return listBean;
     }
@@ -93,7 +110,6 @@ public class UserDaoImpl extends BaseDao<pk_user> implements UserDao {
         }else{
             status=1;
         }
-
         int update = this.update(sql, status,id);
         return update!=0;
     }

@@ -4,7 +4,7 @@ package com.pinker.servlet;
 
 import com.google.gson.Gson;
 import com.pinker.entity.pk_topic;
-import com.pinker.service.serviceimpl.TopicServiceImpl;
+import com.pinker.service.Impl.TopicServiceImpl;
 import com.pinker.util.WEBUtils;
 
 import javax.servlet.ServletException;

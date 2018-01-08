@@ -1,6 +1,5 @@
 package com.pinker.servlet;
 
-import com.pinker.entity.User;
 import com.pinker.entity.pk_user;
 import com.pinker.service.Impl.UserServiceImpl;
 import com.pinker.service.UserService;
@@ -8,7 +7,6 @@ import com.pinker.util.IOUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;

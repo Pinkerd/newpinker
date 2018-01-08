@@ -1,9 +1,7 @@
 package com.pinker.service;
 
-import com.pinker.service.serviceimpl.TopicServiceImpl;
+import com.pinker.service.Impl.TopicServiceImpl;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class TopicServiceTest {
     @Test
