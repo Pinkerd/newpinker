@@ -51,9 +51,10 @@
     background: pink;
     color: white;
     border-radius: 3px;
+}
+.prev-friendpage{
     margin-left: 20px;
 }
-
 
 .show-friendBox{
     position: fixed;
@@ -78,4 +79,9 @@
     right: 250px;
     bottom: 0px;
 
+}
+
+.pagebum-span{
+    display: inline-block;
+    width: 2em;
 }
