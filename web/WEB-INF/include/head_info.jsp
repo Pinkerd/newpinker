@@ -13,6 +13,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!--头部容器-->
+
+
 <div class="template-header">
     <div class="template-header-wrap">
         <span class="template-logo">SaO·</span>
@@ -50,32 +52,7 @@
                             <img id="head-personheadimg" src="http://localhost:8080/pinker/IOServlet?method=loadHeadImg" height="30px" width="30px" style="margin-top: 8px"/>
                         </div>
                             <input type="hidden" value="${user.id}" id="userId">
-                            <%--好友请求框--%>
-                            <%--<div class="friendRequest">--%>
 
-                                <%--<%--%>
-                                    <%--pk_user user=(pk_user) request.getSession().getAttribute("user");--%>
-
-                                        <%--FriendService friendService=new FriendServiceImpl();--%>
-                                        <%--List<Friend> friList=friendService.getAllFriByUserIdAndStatue(user.getId(),0);--%>
-                                        <%--request.setAttribute("friList",friList);--%>
-
-                                    <%--List<Friend> trueFri=friendService.getAllFriByUserIdAndStatue(user.getId(),1);--%>
-                                        <%--request.setAttribute("trueFri",trueFri);--%>
-                                <%--%>--%>
-                                <%--&lt;%&ndash;<img src="pinker/img/朋友.png" height="30px" width="30px" >&ndash;%&gt;--%>
-                                <%--<div class="friendRequestwrap-box">--%>
-                                    <%--<table class="friendRequestwrap-table">--%>
-                                        <%--<c:forEach items="${friList}" var="fri">--%>
-                                            <%--<tr>--%>
-                                                  <%--<td>  ${fri.friend.username}</td>--%>
-                                                <%--<td>    <button onclick="receive(${fri.friend.id},$(this))">接受</button></td>--%>
-                                            <%--</tr>--%>
-                                        <%--</c:forEach>--%>
-                                    <%--</table>--%>
-
-                                <%--</div>--%>
-                            <%--</div>--%>
 
 
                     </div>

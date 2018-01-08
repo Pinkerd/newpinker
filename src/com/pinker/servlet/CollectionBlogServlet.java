@@ -27,7 +27,7 @@ public class CollectionBlogServlet extends BaseServlet {
         System.out.print("jump into findCollectionBlogByUserId");
         int blogId= Integer.parseInt(request.getParameter("blogId")) ;
         pk_user user= (pk_user) request.getSession().getAttribute("user");
-        CollectionBlog collectionBlogByUserId = collectionBlogService.findCollectionBlogByUserId(blogId, user.getId());
+        CollectionBlog collectionBlogByUserId = collectionBlogService.findCollectionBlogByUserIdAndBlogId(user.getId(), blogId);
         System.out.print(collectionBlogByUserId);
 
         Boolean result=null;
@@ -57,7 +57,7 @@ public class CollectionBlogServlet extends BaseServlet {
         /**
          * ajax返回
          */
-        Integer row=collectionBlogService.deleteCollectionBlogByUserId(blogId,user.getId());
+        Integer row=collectionBlogService.deleteCollectionBlogByUserId(user.getId(),blogId);
         response.getWriter().print(row.toString());
     }
 
@@ -67,7 +67,6 @@ public class CollectionBlogServlet extends BaseServlet {
      * blog
      */
     protected void saveCollectionBlog(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.print("jump into save...");
         /**
         * 获取blog页面传来的博客id，在本表删除
         */
@@ -98,7 +97,8 @@ public class CollectionBlogServlet extends BaseServlet {
      */
     protected void concernTopicList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        List<CollectionBlog> collectionBlog = collectionBlogService.getAllCollectionBlog();
+        pk_user user= (pk_user) request.getSession().getAttribute("user");
+        List<CollectionBlog> collectionBlog = collectionBlogService.findAllByUserId(user.getId());
 
         /**
          * 将查询到的blog收藏对象放进请求域中
