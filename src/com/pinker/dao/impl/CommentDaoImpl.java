@@ -72,4 +72,10 @@ public class CommentDaoImpl extends BaseDao<Comment> implements CommentDao {
 
 
     }
+
+    @Override
+    public long findcount(int blogId) {
+        String sql="select count(*) from pk_comment where blogId = ?";
+        return (long) this.getSingleValue(sql,blogId);
+    }
 }

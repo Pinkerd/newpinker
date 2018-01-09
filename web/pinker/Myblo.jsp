@@ -35,7 +35,7 @@
 		pk_user userMy = (pk_user) request.getSession().getAttribute("user");
 
 		Integer id = userMy.getId();
-
+		List<Blog> allBlog = blog.getAllBlog();
 		List<Blog> usersBlog = blog.findUser(id);
 		request.setAttribute("usersBlog",usersBlog);
 	%>

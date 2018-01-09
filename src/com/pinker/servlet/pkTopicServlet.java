@@ -13,11 +13,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-
+/**
+ * Created by Liu on 2017/12/26.
+ * user管理servlet
+ * function：
+ * 1.查询所有topic
+ * 2.根据id查询topic
+ * 3.根据用户id查询 用户关注的话题
+ * 4.删除话题
+ * 5.修改话题
+ * 6.新增话题
+ * 7.根据标题模糊查询
+ */
 @WebServlet(name = "pkTopicServlet",urlPatterns = "/pkTopicServlet")
 public class pkTopicServlet extends BaseServlet {
     TopicServiceImpl tsi = new TopicServiceImpl();
     Gson gson=new Gson();
+    /*1.查询所有topic*/
     protected void showAll(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("jinlai");
         List<pk_topic> list = tsi.selectAll();
@@ -25,7 +37,7 @@ public class pkTopicServlet extends BaseServlet {
         request.setAttribute("list",list);
         request.getRequestDispatcher("/pinker/topicListgly.jsp").forward(request,response);
     }
-
+    /*2.根据id查询topic*/
     protected void selectOne(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("jinlai2");
         String i = request.getParameter("numb");
@@ -35,7 +47,7 @@ public class pkTopicServlet extends BaseServlet {
         request.setAttribute("abc",pt);
         request.getRequestDispatcher("topicDetailGly.jsp").forward(request,response);
     }
-
+    /*2.根据id查询topic*/
     protected void selectById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("jinlai3");
         String i = request.getParameter("id");
@@ -45,7 +57,7 @@ public class pkTopicServlet extends BaseServlet {
         request.setAttribute("abc",pt);
         request.getRequestDispatcher("topicDetailGly.jsp").forward(request,response);
     }
-
+    /*3.根据用户id查询 用户关注的话题*/
     protected void findByUserId(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("jinlai4");
         String i = request.getParameter("uid");
@@ -56,14 +68,14 @@ public class pkTopicServlet extends BaseServlet {
         request.getRequestDispatcher("topicDetailGly.jsp").forward(request,response);
     }
 
-
-
+    /*4.删除话题*/
     protected void deletePkTopic(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String i = request.getParameter("numb");
         Integer id = Integer.valueOf(i);
         tsi.delete(id);
         response.sendRedirect(request.getContextPath()+"/pkTopicServlet?meth7od=showAll");
     }
+    /*5.修改话题*/
     protected void changePkTopic(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("jinlaiXG");
         String t = request.getParameter("numb");
@@ -73,6 +85,7 @@ public class pkTopicServlet extends BaseServlet {
         request.getRequestDispatcher("topicChange.jsp").forward(request,response);
 
     }
+    /*6新增话题*/
     protected void updateTopic(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         pk_topic topic = WEBUtils.para2bean(request,pk_topic.class);
          if(topic.getId()==0){
@@ -86,7 +99,7 @@ public class pkTopicServlet extends BaseServlet {
 
 
     /**
-     * 模糊搜索
+     * 7.根据标题模糊查询
      */
     protected void fuzzSearch(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String key=req.getParameter("searchKey");

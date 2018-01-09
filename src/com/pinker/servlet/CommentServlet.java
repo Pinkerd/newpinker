@@ -15,7 +15,11 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * yt
+ * Created by Yang on 2017/12/26.
+ * Comment管理servlet
+ * function：
+ * 1.查询博客下所有的评论
+ * 2.添加评论
  */
 @WebServlet(name = "CommentServlet",urlPatterns = ("/CommentServlet"))
 public class CommentServlet extends BaseServlet {
@@ -47,5 +51,16 @@ public class CommentServlet extends BaseServlet {
         Comment comment1=new Comment(blogId,user.getId(),comment,new Date());
         Boolean savecom = com.savecom(comment1);
         resp.getWriter().print(savecom);
+    }
+    /**
+     * 根据blogId查询该博文下的所有评论记录数
+     */
+    protected void findCountbyBlogId(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.print("jump into findCountbyBlogId...");
+        int blogId = Integer.parseInt(req.getParameter("blogId"));
+        long findcount = com.findcount(blogId);
+        System.out.print(findcount);
+
+        resp.getWriter().print(findcount);
     }
 }

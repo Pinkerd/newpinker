@@ -42,4 +42,10 @@ public class CommentDaoImplTest {
         System.out.println(comments.toString());
     }
 
+    @Test
+    private void findcount() throws Exception{
+       CommentDao commentDao=new CommentDaoImpl();
+        long findcount = commentDao.findcount(27);
+        System.out.print(findcount);
+    }
 }

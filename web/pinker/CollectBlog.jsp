@@ -55,19 +55,16 @@
 
 					<!--收藏的博文-->
 					<div class="left-attentionBlog">
-
-						<c:forEach items="${collectBlog}" var="collect">
+						<c:forEach items="${list}" var="collect">
 						<div class="blog-wrap">
 							<div class="blog-title-wrap">
 								<a href="/pinker/BlogServlet?method=selectblogOne&blogId=${collect.blogId}">${collect.blog.title}</a>
 							</div>
 							<div class="blog-info">
-								<span>${blog.publishtime}</span>·<span>16 个回答</span>·<span>55 个关注</span>
+								<span>${collect.collecttime}</span>·<span>16 个回答</span>·<span>55 个关注</span>
 							</div>
 						</div>
 						</c:forEach>
-
-
 					</div>
 					<!--发布的话题-->
 					<div class="left-myTopic">

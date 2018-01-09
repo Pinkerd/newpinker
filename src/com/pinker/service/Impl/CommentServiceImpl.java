@@ -95,5 +95,10 @@ public class CommentServiceImpl implements CommentService {
         return commentPage;
     }
 
+    @Override
+    public long findcount(int blogId) {
+        return comm.findcount(blogId);
+    }
+
 
 }

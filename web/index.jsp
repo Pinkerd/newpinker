@@ -88,8 +88,6 @@
         <div class="section">
             <div class="secInner">
 
-
-
                <%
                    TopicService topicService=new TopicServiceImpl();
                    Page<pk_topic> topicPage=new Page();
@@ -99,6 +97,7 @@
                    List<pk_topic> topicList=topicPage.getData();
                     request.setAttribute("topicList",topicList);
                %>
+
 
                 &nbsp;<a id="down"></a>
                 <c:forEach items="${topicList}" var="topic">
@@ -164,7 +163,6 @@
             </div>
             <%--信息--%>
 
-
                 <%--相关连接--%>
                 <div id="baseInfo" style="padding-top: 40px">
                     <div class="infoBanner">
@@ -179,7 +177,6 @@
                             <span><a href="#">知乎</a></span>&nbsp;&nbsp;
                             <span><a href="#">百度</a></span>&nbsp;&nbsp;
                             <span><a href="#">微博</a></span>
-
                         </div>
                         <div class="infoBox">
                             <div class="infoTitle" style="margin: 10px auto">知性网</div>
@@ -189,7 +186,6 @@
                     </div>
                 </div>
                 <%--连接--%>
-
         </div>
 
     </div>
@@ -207,21 +203,17 @@
             setTimeout(function () {
                 $(".slogen").fadeIn(5000);
             }, 2000);
-
            /*向下开始淡入*/
             setTimeout(function () {
                 $(".downBox").fadeIn(5000);
             }, 4000);
-
             /*关注我们*/
             $("#wechat").click(function () {
                 $(".Dcode1").toggle();
             })
-
             $("#qq").click(function () {
                 $(".Dcode2").toggle();
             })
-
             $("#weibo").click(function () {
                 $(".Dcode3").toggle();
             })

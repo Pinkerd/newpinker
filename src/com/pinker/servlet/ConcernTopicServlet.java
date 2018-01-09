@@ -13,13 +13,20 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Date;
 
-
+/**
+ * Created by Zhuang on 2017/12/26.
+ * Topic关注管理servlet
+ * function：
+ * 1.查询是否关注
+ * 2.添加topic关注
+ * 3.取消关注
+ */
 @WebServlet(name = "ConcernTopicServlet",urlPatterns = {"/ConcernTopicServlet"})
 public class ConcernTopicServlet extends BaseServlet {
 
 private ConcernTopicService con=new ConcernTopicServiceImpl();
     /**
-     * 查询的方法
+     * 1.查询是否关注
      * @param req
      * @param resp
      * @throws ServletException
@@ -41,10 +48,9 @@ private ConcernTopicService con=new ConcernTopicServiceImpl();
         }
         //将获取的值发送到界面
         resp.getWriter().print(result);
-
     }
     /**
-     * 增加的方法
+     * 2.添加topic关注
      */
     protected void addConc(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //1.从页面获取话题
@@ -67,7 +73,7 @@ private ConcernTopicService con=new ConcernTopicServiceImpl();
     }
 
     /**
-     * 删除的方法
+     * 3.取消关注
      */
     protected void deleteConc(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("删除");
