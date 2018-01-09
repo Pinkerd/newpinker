@@ -31,4 +31,8 @@ public interface CommentService {
      * 分页查询
      */
     Page<Comment> findComment(Page<Comment> page);
+    /**
+     * 根据blogId查询该博文下的所有评论记录数
+     */
+    long findcount(int blogId);
 }

@@ -97,10 +97,10 @@ public class CollectionBlogServlet extends BaseServlet {
      * @throws IOException
      */
     protected void concernTopicList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        System.out.print("jump into concernTopicList...");
         pk_user user= (pk_user) request.getSession().getAttribute("user");
         List<CollectionBlog> collectionBlog = collectionBlogService.findAllByUserId(user.getId());
-
+        System.out.print(collectionBlog);
         /**
          * 将查询到的blog收藏对象放进请求域中
          */
@@ -109,7 +109,7 @@ public class CollectionBlogServlet extends BaseServlet {
         /**
          * 转发到 #.jsp
          */
-        request.getRequestDispatcher("#.jsp").forward(request, response);
+        request.getRequestDispatcher("/pinker/CollectBlog.jsp").forward(request, response);
     }
 
 

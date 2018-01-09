@@ -15,7 +15,8 @@
         </div>
 
         <div class="menu-attentionBlog">
-          <a href="pinker/CollectBlog.jsp">  <li>收藏的博文</li></a>
+          <%--<a href="pinker/CollectBlog.jsp">  <li>收藏的博文</li></a>--%>
+              <a href="CollectionBlogServlet?method=concernTopicList">  <li>收藏的博文</li></a>
         </div>
 
         <div class="menu-myTopic">

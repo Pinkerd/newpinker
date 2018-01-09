@@ -1,5 +1,6 @@
 package com.pinker.dao;
 
+import com.pinker.entity.Blog;
 import com.pinker.entity.Comment;
 import com.pinker.entity.Page;
 
@@ -32,4 +33,9 @@ public interface CommentDao {
    * 分页查询
    */
   Page<Comment> findComment(Page<Comment> page);
+
+  /**
+   * 根据blogId查询该博文下的所有评论记录数
+   */
+  long findcount(int blogId);
 }

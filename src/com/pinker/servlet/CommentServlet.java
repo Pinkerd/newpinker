@@ -49,4 +49,15 @@ public class CommentServlet extends BaseServlet {
         Boolean savecom = com.savecom(comment1);
         resp.getWriter().print(savecom);
     }
+    /**
+     * 根据blogId查询该博文下的所有评论记录数
+     */
+    protected void findCountbyBlogId(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.print("jump into findCountbyBlogId...");
+        int blogId = Integer.parseInt(req.getParameter("blogId"));
+        long findcount = com.findcount(blogId);
+        System.out.print(findcount);
+
+        resp.getWriter().print(findcount);
+    }
 }
