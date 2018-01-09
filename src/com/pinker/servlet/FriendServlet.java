@@ -119,4 +119,17 @@ public class FriendServlet extends BaseServlet {
         resp.getWriter().write(pageJ);
 
     }
+
+    /**
+     * 查询用户所有好友请求数
+     */
+    protected void countRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        pk_user user= (pk_user) req.getSession().getAttribute("user");
+        long count=friendService.countRequest(user.getId());
+        PrintWriter out=resp.getWriter();
+        out.print(count);
+        out.flush();
+        out.close();
+
+    }
 }

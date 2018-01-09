@@ -5,6 +5,7 @@
 	border-radius: 3px;
 	margin-top: 2px;
 	height: 1000px;
+    position: relative;
 }
 
 .topic-title{
@@ -86,3 +87,10 @@ margin-top: 10px;
 	background: cornflowerblue;
 	margin: 8px auto 0px;
 }
+
+.topicStatusWrap{
+	position: absolute;
+	right: 20px;
+	top:40%;
+}
+

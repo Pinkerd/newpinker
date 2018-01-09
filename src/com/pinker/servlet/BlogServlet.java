@@ -3,6 +3,7 @@ package com.pinker.servlet;
 import com.pinker.dao.CommentDao;
 import com.pinker.dao.impl.CommentDaoImpl;
 import com.pinker.entity.Blog;
+import com.pinker.entity.pk_user;
 import com.pinker.service.BlogDaoService;
 import com.pinker.service.Impl.BlogDaoServiceImpl;
 

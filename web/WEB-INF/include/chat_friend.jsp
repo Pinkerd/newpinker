@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<div class="friend-speak-wrap">
-    <div class="show-friendBox">
+<div class="friend-speak-wrap" >
+    <div class="show-friendBox" hidden>
         <ul class="show-friendUl">
 
         </ul>
@@ -10,7 +10,7 @@
         <button class="next-friendpage">下一页</button>
     </div>
 
-    <div class="friend-requestBox">
+    <div class="friend-requestBox" hidden>
         <ul class="friRequest-ul">
 
         </ul>
@@ -34,6 +34,15 @@
         loadFriend(1);
         prev.click(loadFriend(pageNum-1));
         next.click(loadFriend(pageNum+1));
+
+        $("#showFriendBtn").click(function () {
+            $(".show-friendBox").toggle();
+        })
+
+        $("#friend-request").click(function () {
+            $(".friend-requestBox").toggle();
+        })
+
 
 
     })
@@ -71,10 +80,14 @@
     }
 
     /**
-     * 删除好友
+     * 查询好友数量
      */
-    function deleteFri(friId) {
+    function loadCountRequest() {
+        $.post("http://localhost:8080/pinker/FriendServlet?method=countRequest",function (result) {
 
+            $("#friend-request").text("好友请求("+result+")");
+
+        })
 
     }
 
@@ -84,6 +97,7 @@
      */
     function loadRequest() {
         $.post("http://localhost:8080/pinker/FriendServlet?method=haveFriendReq",function (listJ) {
+            loadCountRequest();
             var list=JSON.parse(listJ);
             var ul=$(".friRequest-ul");
             ul.html("");
@@ -116,10 +130,10 @@
      */
     function refuse(friId) {
         $.post("http://localhost:8080/pinker/FriendServlet?method=deleteFri",{friendId:friId},function (result) {
-            if(result=="true"){
+
                 loadRequest();
                 loadFriend(1);
-            }
+
         })
     }
 
