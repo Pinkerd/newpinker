@@ -15,7 +15,11 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * yt
+ * Created by Yang on 2017/12/26.
+ * Comment管理servlet
+ * function：
+ * 1.查询博客下所有的评论
+ * 2.添加评论
  */
 @WebServlet(name = "CommentServlet",urlPatterns = ("/CommentServlet"))
 public class CommentServlet extends BaseServlet {
