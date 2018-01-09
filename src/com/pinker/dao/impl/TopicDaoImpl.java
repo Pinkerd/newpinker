@@ -112,6 +112,12 @@ public class TopicDaoImpl extends BaseDao<pk_topic> implements TopicDao {
         return this.update(sql,status,topicId);
     }
 
+    /**
+     * 分页按状态查询
+     * @param status
+     * @param page
+     * @return
+     */
     @Override
     public Page<pk_topic> findTopicByStatus(int status,Page<pk_topic> page) {
         String totalRecordSql="select count(*) from pk_topic where status=?";
@@ -123,7 +129,10 @@ public class TopicDaoImpl extends BaseDao<pk_topic> implements TopicDao {
         //偏移值
         int index=page.getIndex();
 
-        return null;
+        String listSql="select * from pk_topic where status=? limit ?,?";
+        List<pk_topic> list=this.getListBean(listSql,status,index,pageSize);
+        page.setData(list);
+        return page;
     }
 
 

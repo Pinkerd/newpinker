@@ -131,9 +131,25 @@ public class TopicServiceImpl  implements TopicService {
 
     }
 
+    /**
+     * 模糊查询
+     * @param key
+     * @return
+     */
     @Override
     public List<pk_topic> fuzzSearch(String key) {
         return tdi.fuzzSearchTopic(key);
+    }
+
+    /**
+     * 按照状态分页查询
+     * @param status
+     * @param page
+     * @return
+     */
+    @Override
+    public Page<pk_topic> findTopicByStatus(int status, Page<pk_topic> page) {
+        return tdi.findTopicByStatus(status,page);
     }
 
 

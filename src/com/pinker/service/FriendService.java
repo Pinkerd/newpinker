@@ -2,6 +2,7 @@ package com.pinker.service;
 
 import com.pinker.entity.Friend;
 import com.pinker.entity.Page;
+import com.pinker.entity.pk_topic;
 import com.pinker.entity.pk_user;
 
 import java.util.List;
@@ -46,6 +47,7 @@ public interface FriendService {
      * 查询该用户所有好友请求
      */
     long countRequest(int userId);
+
 
 
 }

@@ -94,4 +94,21 @@ public class pkTopicServlet extends BaseServlet {
         String listJ=gson.toJson(list);
         resp.getWriter().write(listJ);
     }
+
+    /**
+     * 审核话题
+     */
+    protected void topicCheck(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int topicId= Integer.parseInt(req.getParameter("topicId"));
+        String check=req.getParameter("check");
+        int status=0;
+        if(check=="yes"){
+            status=1;
+        }else if(check=="no"){
+            status=2;
+        }
+
+
+
+    }
 }
