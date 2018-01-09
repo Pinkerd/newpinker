@@ -21,7 +21,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
-
+/**
+ * Created by OldOne on 2017/12/26.
+ * 修改头像管理servlet
+ * function：
+ * 1.跳转到他人主页
+ * 2.好友请求
+ * 3.查询该用户所有博文
+ * 4.查询该用户所有话题
+ */
 @WebServlet(name = "OtherServlet",urlPatterns = {"/OtherServlet"})
 public class OtherServlet extends BaseServlet {
     UserService userService= new UserServiceImpl();
@@ -31,7 +39,7 @@ public class OtherServlet extends BaseServlet {
     Gson gson=new Gson();
 
     /**
-     * 跳转到他人主页
+     * 1.跳转到他人主页
      * @param request
      * @param response
      * @throws ServletException
@@ -49,7 +57,7 @@ public class OtherServlet extends BaseServlet {
 
     FriendService friendService =new FriendServiceImpl();
     /**
-     * 好友请求
+     * 2.好友请求
      * @param req
      * @param resp
      * @throws ServletException
@@ -67,7 +75,7 @@ public class OtherServlet extends BaseServlet {
     }
 
     /**
-     * 查询该用户所有博文
+     * 3.查询该用户所有博文
      */
     protected void findOtherBlog(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int otherId=Integer.parseInt(req.getParameter("otherId"));
@@ -81,7 +89,7 @@ public class OtherServlet extends BaseServlet {
 
 
     /**
-     * 查询该用户所有话题
+     * 4.查询该用户所有话题
      */
     protected void findOtherTopic(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int otherId=Integer.parseInt(req.getParameter("otherId"));

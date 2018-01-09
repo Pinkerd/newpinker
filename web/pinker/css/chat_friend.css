@@ -4,6 +4,7 @@
     width: 200px;
     padding: 10px;
     border-radius: 10px;
+    background: rgba(50,50,50,0.7);
 }
 
 .show-friendUl,.friRequest-ul{
@@ -84,4 +85,19 @@
 .pagebum-span{
     display: inline-block;
     width: 2em;
+}
+
+#showFriendBtn,#friend-request{
+    display: inline-block;
+    height: 30px;
+    width: 100px;
+    background: pink;
+    outline: none;
+    border: 0;
+    color: white;
+    border-radius: 5px;
+}
+
+#showFriendBtn:hover,#friend-request:hover{
+    cursor: pointer;
 }

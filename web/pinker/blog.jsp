@@ -9,8 +9,6 @@
 	<%@include file="/WEB-INF/include/base_info.jsp"%>
 	<link rel="stylesheet" type="text/css" href="pinker/css/Template.css" />
 	<link rel="stylesheet" type="text/css" href="pinker/css/Blog.css">
-	<link rel="stylesheet" type="text/css" href="pinker/css/left.css" />
-	<link rel="stylesheet" type="text/css" href="pinker/css/right.css" />
 	<link rel="stylesheet" type="text/css" href="pinker/css/head_info.css">
 	<script type="text/javascript" src="pinker/js/head_info.js"></script>
 	<script type="text/javascript" src="pinker/js/blog.js"></script>
@@ -84,7 +82,7 @@
 					<div class="page_topfoot">
 						<div class="page_topfootmain">
 							<div class="page_topfootGroup">
-								<button class="page-attention">关注问题</button>
+								<button class="page-attention"></button>
 								<a class="page-review" href="#">我要评论</a>
 							</div>
 							<div class="page_topfootAction">
@@ -177,15 +175,18 @@
 				<div class="Comments-container">
 					<div class="Comments-top">
 						<div class="Topbar-title">
-							<div>
-								<h2>22条评论</h2>
+							<div class="pl-count">
+								<h2><span class="commentCountBox"></span>条评论</h2>
 							</div>
 						</div>
 
 					</div>
 					<hr />
+					<div>
+						<div class="commentList">
 
-
+						</div>
+					</div>
 
 
 					<ul id="comment-ulwrap">
@@ -246,7 +247,7 @@
 
 
 </body>
-<script type="text/javascript" src="js/jquery-1.7.2.js"></script>
+
 <script type="text/javascript">
     $(document).ready(function () {
         $("#zan").click(function () {
@@ -261,17 +262,12 @@
     })
 </script>
 
-<script src="js/jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript" src="js/Template.js"></script>
+
 <script type="text/javascript">
+
     var blogId= $("#blogId").val();
 
     $(document).ready(function() {
-
-
-        /**
-         * 点击进入查询一个的方法
-         */
         $.ajax({
             url:"http://localhost:8080/pinker/CollectionBlogServlet?method=findCollectionBlogByUserId",
             type:"post",
@@ -283,13 +279,13 @@
                 if (result=="true"){
                     //alert("true")
                     //能查到id说明已关注  点击取消关注
-                    $(".page-attention").html("取消问题");
+                    $(".page-attention").html("取消收藏");
                  // $(".page-attention").unbind("click");
                     $(".page-attention").click(del);
                 }else{
                     //alert("false")
                     //为null说明没关注  点击关注
-                    $(".page-attention").html("关注问题");
+                    $(".page-attention").html("收藏");
                 //    $(".page-attention").unbind("click");
                     $(".page-attention").click(save);
                 }
@@ -309,7 +305,7 @@ function save() {
                 //（删除数据）取消关注后，显示关注问题文字
                 $(".page-attention").unbind("click");
                 $(".page-attention").click(del);
-                $(".page-attention").html("取消关注");
+                $(".page-attention").html("取消收藏");
             }
         }
     })
@@ -326,7 +322,7 @@ function del() {
                 //（增加数据）点击关注，显示取消问题文字
                 $(".page-attention").unbind("click");
                 $(".page-attention").click(save);
-                $(".page-attention").html("关注问题");
+                $(".page-attention").html("收藏");
             }
         }
     })

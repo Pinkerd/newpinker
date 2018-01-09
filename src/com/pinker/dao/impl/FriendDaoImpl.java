@@ -114,4 +114,16 @@ public class FriendDaoImpl extends BaseDao<Friend> implements FriendDao {
         String sql="delete from pk_friend where userId=? and friendId=?";
         return this.update(sql,friend.getUserId(),friend.getFriendId());
     }
+
+
+    /**
+     * 查询用户好友数量
+     * @param userId
+     * @return
+     */
+    @Override
+    public long countRequest(int userId) {
+        String sql= "select count(*) from pk_friend where userId=? and statue=0";
+        return (long) this.getSingleValue(sql,userId);
+    }
 }

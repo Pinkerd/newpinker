@@ -42,5 +42,10 @@ public interface FriendService {
      */
     boolean deleteEachFri(Friend friend);
 
+    /**
+     * 查询该用户所有好友请求
+     */
+    long countRequest(int userId);
+
 
 }

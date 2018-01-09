@@ -13,7 +13,14 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
-
+/**
+ * Created by Yang on 2017/12/26.
+ * Blog收藏管理servlet
+ * function：
+ * 1.查询一个博文收藏的方法  根据userid 和blogid
+ * 2.删除blog收藏的方法
+ * 3.添加博文关注的方法
+ */
 @WebServlet(name = "CollectionBlogServlet",urlPatterns = {"/CollectionBlogServlet"})
 public class CollectionBlogServlet extends BaseServlet {
     private static final long serialVersionUID = 1L;
@@ -96,10 +103,10 @@ public class CollectionBlogServlet extends BaseServlet {
      * @throws IOException
      */
     protected void concernTopicList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        System.out.print("jump into concernTopicList...");
         pk_user user= (pk_user) request.getSession().getAttribute("user");
         List<CollectionBlog> collectionBlog = collectionBlogService.findAllByUserId(user.getId());
-
+        System.out.print(collectionBlog);
         /**
          * 将查询到的blog收藏对象放进请求域中
          */
@@ -108,23 +115,7 @@ public class CollectionBlogServlet extends BaseServlet {
         /**
          * 转发到 #.jsp
          */
-        request.getRequestDispatcher("#.jsp").forward(request, response);
+        request.getRequestDispatcher("/pinker/CollectBlog.jsp").forward(request, response);
     }
 
-
-
-    protected void isCollect(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        /**
-         * 获取blog页面传来的博客id，在本表删除
-         */
-        int blogId= Integer.parseInt(req.getParameter("blogId")) ;
-        /**
-         * 获取session域中的user
-         */
-        pk_user user= (pk_user) req.getSession().getAttribute("user");
-
-
-
-
-    }
 }

@@ -58,4 +58,10 @@ public interface FriendDao {
      * 按用户Id，friendId删除好友关系
      */
     int deleteFri(Friend friend);
+
+    /**
+     * 查询用户好友邀请数量
+     */
+    long countRequest(int userId);
+
 }
