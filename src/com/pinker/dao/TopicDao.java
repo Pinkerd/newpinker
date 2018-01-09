@@ -31,4 +31,16 @@ public interface TopicDao {
       * 模糊查询话题
       */
      List<pk_topic> fuzzSearchTopic(String key);
+
+
+     /**
+      *更新话题状态
+      */
+     int updateStaus(int topicId ,int status);
+
+
+     /**
+      * 按照话题状态查询话题
+      */
+     Page<pk_topic> findTopicByStatus(int status,Page<pk_topic> page);
 }

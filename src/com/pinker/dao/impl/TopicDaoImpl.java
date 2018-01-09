@@ -82,7 +82,7 @@ public class TopicDaoImpl extends BaseDao<pk_topic> implements TopicDao {
      */
     @Override
     public int uploadTopic(int id, String title, String content, int userId, Date publishtime) {
-        String sql="insert into pk_topic (id,title,content,userId,publishtime) values (?,?,?,?,?)";
+        String sql="insert into pk_topic (id,title,content,userId,publishtime,status) values (?,?,?,?,?,0)";
 
         return this.update(sql,id,title,content,userId,publishtime);
 
@@ -98,6 +98,32 @@ public class TopicDaoImpl extends BaseDao<pk_topic> implements TopicDao {
         String sql="select * from pk_topic where title like ?";
         return this.getListBean(sql,"%"+key+"%");
 
+    }
+
+    /**
+     * 更新话题状态
+     * @param topicId
+     * @param status
+     * @return
+     */
+    @Override
+    public int updateStaus(int topicId, int status) {
+        String sql="update pk_topic set status=? where id=?";
+        return this.update(sql,status,topicId);
+    }
+
+    @Override
+    public Page<pk_topic> findTopicByStatus(int status,Page<pk_topic> page) {
+        String totalRecordSql="select count(*) from pk_topic where status=?";
+        long totalRecordL= (Long) this.getSingleValue(totalRecordSql,status);
+        page.setTotalRecord((int)totalRecordL );
+
+        //显示行数
+        int pageSize=page.getPageSize();
+        //偏移值
+        int index=page.getIndex();
+
+        return null;
     }
 
 
