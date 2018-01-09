@@ -29,11 +29,18 @@ private ConcernTopicService con=new ConcernTopicServiceImpl();
         //1.从页面获取话题
         String topicId = req.getParameter("topicId");
         int topid = Integer.parseInt(topicId);
+
+       /* //2.从页面获取博文
+        String blogId = req.getParameter("blogId");
+        int blgId = Integer.parseInt(blogId);
+*/
         //2.从域中获取user
         pk_user user = (pk_user) req.getSession().getAttribute("user");
         Integer id = user.getId();
-
+         //调用根据userID，topicId查询一个的方法
         ConcernTopic byUsrIdAndTopicId = con.findByUsrIdAndTopicId(id, topid);
+
+
 
         String result="false";
         if(byUsrIdAndTopicId!=null){
@@ -44,7 +51,7 @@ private ConcernTopicService con=new ConcernTopicServiceImpl();
 
     }
     /**
-     * 增加的方法
+     *  关注话题的方法
      */
     protected void addConc(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //1.从页面获取话题
@@ -67,7 +74,7 @@ private ConcernTopicService con=new ConcernTopicServiceImpl();
     }
 
     /**
-     * 删除的方法
+     * 取消关注话题的方法
      */
     protected void deleteConc(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("删除");
@@ -88,4 +95,6 @@ private ConcernTopicService con=new ConcernTopicServiceImpl();
         resp.getWriter().print(result);
 
     }
+
+
 }

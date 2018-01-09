@@ -265,9 +265,7 @@
 <script type="text/javascript" src="js/Template.js"></script>
 <script type="text/javascript">
     var blogId= $("#blogId").val();
-    /**
-     *  评论框的显示和隐藏
-     */
+
     $(document).ready(function() {
 
 

@@ -17,6 +17,7 @@
 		<script type="text/javascript" src="pinker/js/head_info.js"></script>
 
 		<%
+			//页面获取话题id
 			int topicId=Integer.parseInt(request.getParameter("topicId"));
 			TopicService topicService=new TopicServiceImpl();
 			BlogDaoService blogDaoService= new BlogDaoServiceImpl();
@@ -24,6 +25,9 @@
 			List<Blog> blogList=blogDaoService.findTopicBlogList(topicId);
 			request.setAttribute("thisTopic",topic);
 			request.setAttribute("thisBlogList",blogList);
+
+
+
 		%>
 
 		<script type="text/javascript">
@@ -31,20 +35,21 @@
 
             $(function () {
                 //获取serclet地址
-                var url="${pageContext.request.contextPath}/ConcernTopicServlet?method=hasConcern";
+                var url = "${pageContext.request.contextPath}/ConcernTopicServlet?method=hasConcern";
 
-                var data={topicId: ${thisTopic.id}}
+                var data = {topicId: ${thisTopic.id}}
+
 
                 /*关注按钮*/
-                var $conBtn=$("#title-attentionBtn");
-                $.post(url,data,function (result) {
+                var $conBtn = $("#title-attentionBtn");
+                $.post(url, data, function (result) {
 
-                    if(result=="true"){/*存在的情况*/
+                    if (result == "true") {/*存在的情况*/
                         $conBtn.text("取消关注");
                         $conBtn.unbind("click");
                         $conBtn.click(deleteConcern);
 
-                    }else{/*不存在的情况*/
+                    } else {/*不存在的情况*/
                         $conBtn.text("关注");
                         $conBtn.unbind("click");
                         $conBtn.click(concernTopic);
@@ -56,9 +61,9 @@
                  * 添加关注
                  */
                 function concernTopic() {
-                    var url="${pageContext.request.contextPath}/ConcernTopicServlet?method=addConc";
-                    $.post(url,data,function (result) {
-                        if(result=="true"){
+                    var url = "${pageContext.request.contextPath}/ConcernTopicServlet?method=addConc";
+                    $.post(url, data, function (result) {
+                        if (result == "true") {
                             $conBtn.text("取消关注");
                             $conBtn.unbind("click");
                             $conBtn.click(deleteConcern);
@@ -70,9 +75,9 @@
                  * 删除关注
                  */
                 function deleteConcern() {
-                    var url="${pageContext.request.contextPath}/ConcernTopicServlet?method=deleteConc";
-                    $.post(url,data,function (result) {
-                        if(result=="true"){
+                    var url = "${pageContext.request.contextPath}/ConcernTopicServlet?method=deleteConc";
+                    $.post(url, data, function (result1) {
+                        if (result1 == "true") {
                             $conBtn.text("关注");
                             $conBtn.unbind("click");
                             $conBtn.click(concernTopic);
@@ -80,9 +85,58 @@
                     })
                 }
 
+             /*   //收藏博文和取消收藏博文的方法
+                var data1={<%--${thisBlogList.id}--%>};
+               //收藏的按钮
+                var $conBtn1 = $(".txt-img05");
+                $.post(url, data1, function (result1) {
 
+                    if (result1 == "true") {/!*存在的情况*!/
+                        $conBtn1.text("取消收藏");
+                        $conBtn1.unbind("click");
+                        $conBtn1.click(deletecollect);
+
+                    } else {/!*不存在的情况*!/
+                        $conBtn1.text("收藏");
+                        $conBtn1.unbind("click");
+                        $conBtn1.click(concernBlog);
+                    }
+                })
+
+                /!**
+                 * 添加收藏
+                 *!/
+                function concernBlog() {
+                    var url = "<%--${pageContext.request.contextPath}--%>/ConcernTopicServlet?method=addCocBlog";
+                    $.post(url, data, function (result1) {
+                        if (result1 == "true") {
+                            $conBtn.text("取消收藏");
+                            $conBtn.unbind("click");
+                            $conBtn.click(deletecollect);
+                        }
+                    })
+                }
+
+                /!**
+                 * 删除收藏
+                 *!/
+                function deletecollect() {
+                    var url = "<%--${pageContext.request.contextPath}--%>/ConcernTopicServlet?method=deleteConcBlog";
+                    $.post(url, data, function (result) {
+                        if (result == "true") {
+                            $conBtn.text("收藏");
+                            $conBtn.unbind("click");
+                            $conBtn.click(concernBlog);
+                        }
+                    })
+                }
+
+*/
 
             })
+
+
+
 
 
 		</script>
@@ -151,8 +205,11 @@
 									<img src="img/icon/lr.jpg" class="head-img04">
 									<span class="txt-img04">浏览</span>
 								</a>
-								<a href="#">
-									<img src="img/icon/pl.jpg" class="head-img05">
+							<%--	javascript:void(0)
+							使页面不会跳转
+							--%>
+								<a href="#" style="display: none">
+								<img src="img/icon/pl.jpg" class="head-img05">
 									<span class="txt-img05">收藏</span>
 								</a>
 							</div>
