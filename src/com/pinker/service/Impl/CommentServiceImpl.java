@@ -1,4 +1,4 @@
-package com.pinker.service.serviceimpl;
+package com.pinker.service.Impl;
 
 import com.pinker.dao.BlogDao;
 import com.pinker.dao.CommentDao;

@@ -75,7 +75,7 @@ public class FriendDaoImpl extends BaseDao<Friend> implements FriendDao {
         //偏移索引值
         int index=page.getIndex();
 
-        String listSql="select * from pk_friend where userId=? limit ?,?";
+        String listSql="select * from pk_friend where userId=? and statue=1 limit ?,?";
         List<Friend> list=this.getListBean(listSql,user.getId(),index,pageSize);
 
         page.setData(list);
@@ -113,5 +113,17 @@ public class FriendDaoImpl extends BaseDao<Friend> implements FriendDao {
     public int deleteFri(Friend friend) {
         String sql="delete from pk_friend where userId=? and friendId=?";
         return this.update(sql,friend.getUserId(),friend.getFriendId());
+    }
+
+
+    /**
+     * 查询用户好友数量
+     * @param userId
+     * @return
+     */
+    @Override
+    public long countRequest(int userId) {
+        String sql= "select count(*) from pk_friend where userId=? and statue=0";
+        return (long) this.getSingleValue(sql,userId);
     }
 }

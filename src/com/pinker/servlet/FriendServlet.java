@@ -8,13 +8,10 @@ import com.pinker.service.FriendService;
 import com.pinker.service.Impl.FriendServiceImpl;
 import com.pinker.service.Impl.UserServiceImpl;
 import com.pinker.service.UserService;
-import net.sf.json.JSON;
 import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -120,6 +117,19 @@ public class FriendServlet extends BaseServlet {
         page=friendService.findFriendByUserId(page,user);
         String pageJ=gson.toJson(page);
         resp.getWriter().write(pageJ);
+
+    }
+
+    /**
+     * 查询用户所有好友请求数
+     */
+    protected void countRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        pk_user user= (pk_user) req.getSession().getAttribute("user");
+        long count=friendService.countRequest(user.getId());
+        PrintWriter out=resp.getWriter();
+        out.print(count);
+        out.flush();
+        out.close();
 
     }
 }

@@ -121,7 +121,15 @@ public class FriendServiceImpl implements FriendService {
         return false;
     }
 
-
+    /**
+     * 查询用户所有好友请求数
+     * @param userId
+     * @return
+     */
+    @Override
+    public long countRequest(int userId) {
+        return friendDao.countRequest(userId);
+    }
 
 
 }

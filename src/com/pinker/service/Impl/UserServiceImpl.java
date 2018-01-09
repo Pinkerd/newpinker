@@ -34,6 +34,12 @@ public class UserServiceImpl implements UserService {
         return login;
     }
 
+    @Override//修改密码
+    public boolean updatePassword(Integer id, String newPassword) {
+        boolean b = userDao.updatePassword(id, newPassword);
+        return b;
+    }
+
     @Override//好友推荐 寻找相同学校的人  test  pass
     public List<pk_user> findUsersBySchool(pk_user pkuser) {
         List<pk_user> usersBySchool = userDao.findUsersBySchool(pkuser);
@@ -62,6 +68,12 @@ public class UserServiceImpl implements UserService {
     public pk_user findByLoginName(String name) {
         pk_user byLoginName = userDao.findByLoginName(name);
         return byLoginName;
+    }
+
+    @Override
+    public Integer findStatusById(Integer id) {
+        Integer statusById = userDao.findStatusById(id);
+        return statusById;
     }
 
     @Override//显示列表 查询所有用户  test  pass

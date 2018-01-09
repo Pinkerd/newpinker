@@ -16,6 +16,7 @@
 		<link rel="stylesheet" type="text/css" href="pinker/css/myblo.css"/>
 		<link rel="stylesheet" type="text/css" href="pinker/css/myblo1.css"/>
 		<link rel="stylesheet" type="text/css" href="pinker/css/head_info.css">
+		<link rel="stylesheet" type="text/css" href="pinker/css/chat_friend.css">
 		<script src="pinker/js/jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript" src="pinker/js/Template.js"></script>
 		<script type="text/javascript" src="pinker/js/personpage.js"></script>
@@ -78,7 +79,8 @@
 								<a href="pinker/blog.jsp?blogId=${blog.id}">${blog.title}</a>
 							</div>
 							<div class="blog-info">
-								<span>${blog.publishtime}</span>·<span>16 个回答</span>·<span>55 个关注</span>
+								<span>${blog.publishtime}</span>·
+								<%--<span>16 个回答</span>·<span>55 个关注</span>--%>
 							</div>
 						</div>
 						</c:forEach>
@@ -124,6 +126,10 @@
 			</div>
 
 		</div>
+
+
+	<%@include file="/WEB-INF/include/chat_friend.jsp"%>
+
 
 	</body>
 

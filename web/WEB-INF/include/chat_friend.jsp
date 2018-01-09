@@ -1,25 +1,18 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<div class="friend-speak-wrap">
-    <div class="show-friendBox">
+<div class="friend-speak-wrap" >
+    <div class="show-friendBox" hidden>
         <ul class="show-friendUl">
-            <li>
-                <img src="http://localhost:8080/pinker/IOServlet?method=loadOtherHeadImg&userId=" width="40px" height="40px"/>
-                <a href="http://localhost:8080/pinker/pinker/othersPage.jsp?otherId="><span>老王</span></a>
-            </li>
+
         </ul>
         <button class="prev-friendpage">上一页</button>
-        第<span>1</span>页
+        第<span class="pagebum-span">1</span>页
         <button class="next-friendpage">下一页</button>
     </div>
 
-    <div class="friend-requestBox">
+    <div class="friend-requestBox" hidden>
         <ul class="friRequest-ul">
-            <li>
-                <span class="friend-name">周杰伦 </span>
-                <button class="friend-receive" onclick="receive()">接受</button>
-                <button class="friend-refuse" onclick="refuse()">拒绝</button>
-            </li>
+
         </ul>
     </div>
 
@@ -34,7 +27,24 @@
 <script type="text/javascript">
 
     $(function () {
+        loadRequest();
+        var pageNum=parseInt($(".pagebum-span").text());
+        var prev=$(".prev-friendpage");
+        var next=$(".next-friendpage");
         loadFriend(1);
+        prev.click(loadFriend(pageNum-1));
+        next.click(loadFriend(pageNum+1));
+
+        $("#showFriendBtn").click(function () {
+            $(".show-friendBox").toggle();
+        })
+
+        $("#friend-request").click(function () {
+            $(".friend-requestBox").toggle();
+        })
+
+
+
     })
 
 
@@ -44,23 +54,40 @@
     function loadFriend(index) {
         $.post("http://localhost:8080/pinker/FriendServlet?method=findFriendPage",{index:index},function (pageJ) {
             var page=JSON.parse(pageJ);
-            var ul=$(".show-friendBox");
-            ul.val("");
-            for(var i=0;i<page.data.length;i++) {
-                var li = $(" <img src=\"http://localhost:8080/pinker/IOServlet?method=loadOtherHeadImg&userId="+page.data[i].friendId+"\" width=\"40px\" height=\"40px\"/>\n" +
-                    "                <a href=\"http://localhost:8080/pinker/pinker/othersPage.jsp?otherId="+page.data[i].friendId+"\"><span>"+page.data[i].friend.username+"</span></a>");
+            var ul=$(".show-friendUl");
+            var pageNum=$(".pagebum-span");
+            var prev=$(".prev-friendpage");
+            var next=$(".next-friendpage");
 
+            prev.attr("disable",false);
+            next.attr("disable",false);
+            ul.html("");
+            for(var i=0;i<page.data.length;i++) {
+                var li = $("<li> <img src=\"http://localhost:8080/pinker/IOServlet?method=loadOtherHeadImg&userId="+page.data[i].friendId+"\" width=\"40px\" height=\"40px\"/>\n" +
+                    "                <a href=\"http://localhost:8080/pinker/pinker/othersPage.jsp?otherId="+page.data[i].friendId+"\"><span>"+page.data[i].friend.username+"</span></a></li>");
                 ul.append(li);
+            }
+            pageNum.text(page.pageNumber);
+            if(page.pageNumber>=page.totalPage){
+                prev.attr("disable",true);
+            }
+
+            if(page.pageNum<=page.totalPage){
+                next.attr("disable",true);
             }
 
         })
     }
 
     /**
-     * 删除好友
+     * 查询好友数量
      */
-    function deleteFri(friId) {
+    function loadCountRequest() {
+        $.post("http://localhost:8080/pinker/FriendServlet?method=countRequest",function (result) {
 
+            $("#friend-request").text("好友请求("+result+")");
+
+        })
 
     }
 
@@ -70,10 +97,12 @@
      */
     function loadRequest() {
         $.post("http://localhost:8080/pinker/FriendServlet?method=haveFriendReq",function (listJ) {
+            loadCountRequest();
             var list=JSON.parse(listJ);
             var ul=$(".friRequest-ul");
+            ul.html("");
             for(var i=0;i<list.length;i++){
-                ul.val("");
+
             var li=$("<li>\n" +
                 "                <span class=\"friend-name\">"+list[i].friend.username+" </span>\n" +
                 "                <button class=\"friend-receive\" onclick=\"receive("+list[i].friendId+")\">接受</button>\n" +
@@ -90,10 +119,9 @@
      * 接受申请
      */
     function receive(friId) {
-        $.post("FriendServlet?method=recieveFri",{userId:friId},function (result) {
-            if(result=="true"){
+        $.post("http://localhost:8080/pinker/FriendServlet?method=recieveFri",{userId:friId},function (result) {
                 loadRequest();
-            }
+            loadFriend(1);
         })
     }
 
@@ -101,10 +129,11 @@
      * 拒绝申请
      */
     function refuse(friId) {
-        $.post("FriendServlet?method=deleteFri",{friendId:friId},function (result) {
-            if(result=="true"){
+        $.post("http://localhost:8080/pinker/FriendServlet?method=deleteFri",{friendId:friId},function (result) {
+
                 loadRequest();
-            }
+                loadFriend(1);
+
         })
     }
 

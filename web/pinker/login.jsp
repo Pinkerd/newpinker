@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<base href="http://localhost:8080/pinker/">
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 	<head>
 		<meta charset="UTF-8">
 		<title></title>	
+		<%@include file="/WEB-INF/include/base_info.jsp"%>
 		<link rel="stylesheet" type="text/css" href="pinker/css/login.css" />
 		<script type="text/javascript" src="pinker/js/jquery-1.7.2.js"></script>
 		<style>

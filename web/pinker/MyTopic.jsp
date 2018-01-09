@@ -1,5 +1,5 @@
 <%@ page import="com.pinker.service.TopicService" %>
-<%@ page import="com.pinker.service.serviceimpl.TopicServiceImpl" %>
+<%@ page import="com.pinker.service.Impl.TopicServiceImpl" %>
 <%@ page import="com.pinker.entity.pk_topic" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.pinker.entity.pk_user" %>
@@ -16,6 +16,7 @@
 		<link rel="stylesheet" type="text/css" href="pinker/css/MyTopic.css" />
 		<link rel="stylesheet" type="text/css" href="pinker/css/MyTopic1.css" />
 		<link rel="stylesheet" type="text/css" href="pinker/css/head_info.css" />
+        <link rel="stylesheet" type="text/css" href="pinker/css/chat_friend.css">
 		<script type="text/javascript" src="pinker/js/Template.js"></script>
 		<script type="text/javascript" src="pinker/js/personpage.js"></script>
 		<script type="text/javascript" src="pinker/js/head_info.js"></script>
@@ -86,6 +87,24 @@
 								<div class="topic-introduce">
 										${topic.content.substring(0,15)}
 								</div>
+
+								<div class="topicStatusWrap">
+									<c:choose>
+										<c:when test="${topic.status==0}">
+                                            <span style="color: grey">待审核</span>
+										</c:when>
+										<c:when test="${topic.status==1}">
+                                            <span style="color: green">已通过</span>
+										</c:when>
+										<c:when test="${topic.status==2}">
+                                            <span style="color: red">审核不通过</span>
+										</c:when>
+
+									</c:choose>
+
+
+								</div>
+
 							</div>
 						</c:forEach>
 
@@ -137,7 +156,7 @@
 			</div>
 
 		</div>
-
+        <%@include file="/WEB-INF/include/chat_friend.jsp"%>
 	</body>
 
 </html>
