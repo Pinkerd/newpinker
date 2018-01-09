@@ -8,7 +8,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-
+/**
+ * Created by OldOne on 2017/12/26.
+ * 修改头像管理servlet
+ * function：
+ * 1.修改头像
+ */
 @WebServlet(name = "ImgServlet",urlPatterns = {"/ImgServlet"})
 public class ImgServlet extends BaseServlet {
     /**
@@ -19,8 +24,6 @@ public class ImgServlet extends BaseServlet {
      * @throws IOException
      */
     protected void headChange(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
 
         pk_user user= (pk_user) request.getSession().getAttribute("user");
         int userId=user.getId();

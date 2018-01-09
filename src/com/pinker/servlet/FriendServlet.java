@@ -17,7 +17,16 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
-
+/**
+ * Created by OldOne on 2017/12/26.
+ * 好友管理servlet
+ * function：
+ * 1.查询好友状态 0：好友邀请 1：好友 2：无关系
+ * 2.查询好友请求
+ * 3.接受好友请求
+ * 4.删除好友关系
+ * 5.分页查询好友
+ */
 @WebServlet(name = "FriendServlet",urlPatterns = {"/FriendServlet"})
 public class FriendServlet extends BaseServlet {
     FriendService friendService= new FriendServiceImpl();
@@ -26,7 +35,7 @@ public class FriendServlet extends BaseServlet {
     Gson gson=new Gson();
 
     /**
-     * 查询好友状态 0：好友邀请 1：好友 2：无关系
+     * 1.查询好友状态 0：好友邀请 1：好友 2：无关系
      * @param request
      * @param response
      * @throws ServletException
@@ -49,7 +58,7 @@ public class FriendServlet extends BaseServlet {
 
 
     /**
-     * 查询好友请求
+     * 2.查询好友请求
      */
     protected void haveFriendReq(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         pk_user user=(pk_user) req.getSession().getAttribute("user");
@@ -61,7 +70,7 @@ public class FriendServlet extends BaseServlet {
 
 
     /**
-     * 接受好友请求
+     * 3.接受好友请求
      */
     protected void recieveFri(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         pk_user user=(pk_user) req.getSession().getAttribute("user");
@@ -84,7 +93,7 @@ public class FriendServlet extends BaseServlet {
 
 
     /**
-     * 删除好友关系
+     * 4.删除好友关系
      */
     protected void deleteFri(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         pk_user user=(pk_user) req.getSession().getAttribute("user");
@@ -106,7 +115,7 @@ public class FriendServlet extends BaseServlet {
     }
 
     /**
-     * 分页查询好友
+     * 5.分页查询好友
      */
     protected void findFriendPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int index= Integer.parseInt(req.getParameter("index"));

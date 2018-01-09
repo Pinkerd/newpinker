@@ -13,7 +13,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-
+/**
+ * Created by Yang on 2017/12/26.
+ * Blog管理servlet
+ * function：
+ * 1.查询单条blog数据库信息
+ * 2.查询所有
+ * 3.发布博文
+ */
 @WebServlet(name = "BlogServlet",urlPatterns = ("/BlogServlet"))
 public class BlogServlet extends BaseServlet {
     BlogDaoService blogDaoService=new BlogDaoServiceImpl();
@@ -79,7 +86,5 @@ public class BlogServlet extends BaseServlet {
         }else{
             resp.getWriter().write("false");
         }
-
-
     }
 }

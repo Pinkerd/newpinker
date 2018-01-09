@@ -10,13 +10,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
+/**
+ * Created by OldOne on 2017/12/26.
+ * 修改头像管理servlet
+ * function：
+ * 1.读取本用户头像
+ * 2.读取他人头像
+ * 3.读取话题图
+ */
 @WebServlet(name = "IOServlet",urlPatterns = {"/IOServlet"})
 public class IOServlet extends BaseServlet {
 
     /**
      *
-     * 读取本用户头像
+     * 1.读取本用户头像
      * @param request
      * @param response
      * @throws ServletException
@@ -38,7 +45,7 @@ public class IOServlet extends BaseServlet {
     UserService userService=new UserServiceImpl();
 
     /**
-     * 读取他人头像
+     * 2.读取他人头像
      */
     protected void loadOtherHeadImg(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -54,7 +61,7 @@ public class IOServlet extends BaseServlet {
 
 
     /**
-     * 读取话题图
+     * 3.读取话题图
      */
     protected void loadTopicImg(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String topicId=req.getParameter("topicId");

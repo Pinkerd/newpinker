@@ -19,20 +19,20 @@ import java.util.List;
  * Created by Aries.Gu on 2017/12/26.
  * user管理servlet
  * function：
- * 1.根据登录名和密码登陆    done
- * 2.注册 添加新用户         done
- * 3.修改资料 更新信息       done
- * 4.好友推荐 寻找相同学校的人
- * 5.好友推荐 寻找相同居住地的人
- * 6.根据id查询用户          done
- * 7.根据姓名查询用户        done
- * 8.白名单                  done
- * 9.黑名单                  done
- * 10.冻结/解冻方法          done
- * 11.管理员登陆             done
- * 12.退出登陆               done
- * 13.修改密码               done
- * 14.根据id查询当前用户的状态
+ * 1.根据登录名和密码登陆          done
+ * 2.注册 添加新用户               done
+ * 3.修改资料 更新信息             done
+ * 4.好友推荐 寻找相同学校的人     unused
+ * 5.好友推荐 寻找相同居住地的人   unused
+ * 6.根据id查询用户                done
+ * 7.根据姓名查询用户              done
+ * 8.白名单                        done
+ * 9.黑名单                        done
+ * 10.冻结/解冻方法                done
+ * 11.管理员登陆                   done
+ * 12.退出登陆                     done
+ * 13.修改密码                     done
+ * 14.根据id查询当前用户的状态     done
  */
 
 @WebServlet(name = "UsersServlet",urlPatterns = ("/UsersServlet"))
@@ -233,14 +233,12 @@ public class UsersServlet extends BaseServlet {
         }
 
     }
-
     /*12.退出登录*/
     protected void loginOut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("jump into loginOut...");
         req.getSession().removeAttribute("user");
         resp.getWriter().write("ok");
     }
-
     /*13.修改密码*/
     protected void updatePassword(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("jump into updatePassword...");
