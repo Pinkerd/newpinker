@@ -3,6 +3,7 @@ package com.pinker.servlet;
 
 
 import com.google.gson.Gson;
+import com.pinker.entity.Page;
 import com.pinker.entity.pk_topic;
 import com.pinker.entity.pk_user;
 import com.pinker.service.Impl.TopicServiceImpl;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 /**
  * Created by Liu on 2017/12/26.
@@ -42,26 +44,20 @@ public class pkTopicServlet extends BaseServlet {
         request.setAttribute("list",list);
         request.getRequestDispatcher("/pinker/topicListgly.jsp").forward(request,response);
     }
-    /*2.根据id查询topic*/
+    /*2.根据话题id查询topic*/
     protected void selectOne(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("jinlai2");
         String i = request.getParameter("numb");
         Integer id = Integer.valueOf(i);
-        pk_topic pt = tsi.selectOne(id);
-        System.out.println(pt);
-        request.setAttribute("abc",pt);
-        request.getRequestDispatcher("topicDetailGly.jsp").forward(request,response);
+        pk_topic pk = tsi.selectOne(id);
+        System.out.println(pk);
+        List<pk_topic> list = new ArrayList();
+        list.add(pk);
+        request.setAttribute("topic",list);
+        request.getRequestDispatcher("/pinker/topicDetailGly.jsp").forward(request,response);
     }
-    /*2.根据id查询topic*/
-    protected void selectById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("jinlai3");
-        String i = request.getParameter("id");
-        Integer id = Integer.valueOf(i);
-        pk_topic pt = tsi.selectOne(id);
-        System.out.println(pt);
-        request.setAttribute("abc",pt);
-        request.getRequestDispatcher("topicDetailGly.jsp").forward(request,response);
-    }
+
+
     /*3.根据用户id查询 用户关注的话题*/
     protected void findByUserId(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("jinlai4");
@@ -101,6 +97,34 @@ public class pkTopicServlet extends BaseServlet {
          }
         response.sendRedirect(request.getContextPath()+"/pkTopicServlet?method=showAll");
     }
+
+    /*管理员在后台进行话题查询*/
+    protected void mhFind(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("进来模糊查询啦");
+        String ps = request.getParameter("htbt");
+        System.out.println(ps);
+        List<pk_topic> list6 = tsi.mhFind(ps);
+        System.out.println(list6);
+        request.setAttribute("topic",list6);
+        request.getRequestDispatcher("/pinker/topicDetailGly.jsp").forward(request,response);
+    }
+
+
+    /*后台分页*/
+    protected void findBook(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("进来分页");
+        Page<pk_topic> page1 =new Page() ;
+        int pageNumber= Integer.parseInt(request.getParameter("pn"));
+        page1.setPageSize(4);
+        page1.setPageNumber(pageNumber);
+        System.out.println(page1);
+        Page<pk_topic> page2 = tsi.findTopic(page1);
+        System.out.println(page2);
+        request.setAttribute("page6",page2);
+        request.getRequestDispatcher("/pinker/topicListgly.jsp").forward(request,response);
+
+    }
+
 
 
     /**

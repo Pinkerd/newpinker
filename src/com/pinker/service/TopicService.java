@@ -85,4 +85,7 @@ public interface TopicService {
      */
     int updateStatus(int topicId,int status);
 
+
+     /*管理员后台模糊查询话题*/
+     List<pk_topic> mhFind(String ps);
 }

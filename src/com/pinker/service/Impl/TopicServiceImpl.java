@@ -164,4 +164,9 @@ public class TopicServiceImpl  implements TopicService {
     }
 
 
+    public List<pk_topic> mhFind(String ps) {
+        List<pk_topic> list = tdi.mhFind(ps);
+        return list;
+    }
+
 }

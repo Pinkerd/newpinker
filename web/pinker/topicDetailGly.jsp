@@ -23,15 +23,17 @@
                 <td>发布者</td>
                 <td>发布时间</td>
             </tr>
+            <c:forEach items="${topic}" var="topicDetail">
             <tr>
-                <td> <img src="${abc.titleimg}" class="tdtp1" width="180px" height="180px"> </td>
-                <td>${abc.title}</td>
-                <td>${abc.content}</td>
-                <td>发布者:${abc.id}</td>
-                <td>发布时间:${abc.publishtime}</td>
+                <td> <img src="http://localhost:8080/pinker/IOServlet?method=loadTopicImg&topicId=${topicDetail.id}" class="tdtp1" width="180px" height="180px"> </td>
+                <td>${topicDetail.title}</td>
+                <td>${topicDetail.content}</td>
+                <td>发布者:${topicDetail.id}</td>
+                <td>发布时间:${topicDetail.publishtime}</td>
             </tr>
+            </c:forEach>
         </table>
-   <div class="glfhzy"> <a href = "http://localhost:8080/zhwz1/pkTopicServlet?method=showAll">返回主页</a></div>
+   <div class="glfhzy"> <a href = "http://localhost:8080/pinker/pkTopicServlet?method=findBook&pn=1">返回主页</a></div>
 </body>
 </html>
 

@@ -139,20 +139,42 @@ public class UsersServlet extends BaseServlet {
     protected void findId(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("jump into findId...");
         Integer byId = Integer.valueOf(request.getParameter("byId"));
-        pk_user byUserId = usi.findByUserId(byId);
-        ArrayList<pk_user> list=new ArrayList<pk_user>();
-        list.add(byUserId);
-        request.setAttribute("userlist",list);
+        Integer status = Integer.valueOf(request.getParameter("status"));
+        //获取页面传入的当前页
+        String pageNumber = request.getParameter("pageNumber");
+        //设置每页显示的条数
+        int pageSize=10;
+        //调用根据id查询的方法
+        Page<pk_user> page = usi.findIdResult(pageNumber, pageSize,byId,status);
+
+        System.out.println(page);
+        //将查询到的信息放进域中
+        request.setAttribute("page",page);
+        //转发到bookmanagger页面
         request.getRequestDispatcher("pinker/userResult.jsp").forward(request,response);
+
     }
     
     /*7.根据姓名查询用户*/
     protected void findName(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("jump into findName...");
         String byName = request.getParameter("byName");
-        List<pk_user> list = usi.findByUserName(byName);
-        request.setAttribute("userlist",list);
+        System.out.println(byName);
+        Integer status = Integer.valueOf(request.getParameter("status"));
+
+        //获取页面传入的当前页
+        String pageNumber = request.getParameter("pageNumber");
+        //设置每页显示的条数
+        int pageSize=10;
+        //调用查询方法
+        Page<pk_user> page = usi.findNameResult(pageNumber, pageSize,byName,status);
+        System.out.println(page);
+
+        //将查询到的信息放进域中
+        request.setAttribute("page",page);
+        //转发到bookmanagger页面
         request.getRequestDispatcher("pinker/userResult.jsp").forward(request,response);
+
     }
 
     /*8.白名单*/
@@ -198,6 +220,9 @@ public class UsersServlet extends BaseServlet {
         //执行冻结、解冻操作
         boolean delete = usi.freeze(freeze,id);
 
+		//查询新的用户状态并且放入session中、
+        request.getSession().setAttribute("user",usi.findByUserId(id));
+		
         if(freeze==1){
             //如果从黑名单 解冻  跳转去黑名单
             response.sendRedirect(request.getContextPath()+"/UsersServlet?method=blackList");

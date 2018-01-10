@@ -19,7 +19,7 @@ public interface UserDao {
     /*登陆 根据登录名和密码登陆*/
     public pk_user login(String loginName, String password);
     /*修改密码*/
-    public boolean updatePassword(Integer id ,String newPassword);
+    public boolean updatePassword(Integer id, String newPassword);
 
     /*好友推荐 寻找相同学校的人*/
     public List<pk_user> findUsersBySchool(pk_user pkuser);
@@ -40,7 +40,11 @@ public interface UserDao {
     public List<pk_user> findAll(int status);
     /*根据id删除用户*/
     public boolean freezeUserById(Integer status, Integer id);
-    /* 查询页码的方法 */
+    /*黑白名单查询页码的方法 */
     Page<pk_user> findUser(Page<pk_user> page, Integer status);
+    /*黑白名单 id 分页查询*/
+    Page<pk_user> findIdResult(Page<pk_user> page, Integer id, Integer status);
+    /*黑白名单 用户名 分页查询*/
+    Page<pk_user> findNameResult(Page<pk_user> page, String username, Integer status);
 
 }

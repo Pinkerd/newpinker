@@ -135,7 +135,7 @@ function updateTopic(){
             if(result!="0"){
                 syncUpload();
                 alert("上传成功");
-                // window.location.reload();
+                window.location.href="http://localhost:8080/pinker/pinker/MyTopic.jsp";
             }else{ 
                 alert("发布保存博文失败");
             }

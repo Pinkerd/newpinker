@@ -32,6 +32,9 @@ public interface TopicDao {
       */
      List<pk_topic> fuzzSearchTopic(String key);
 
+     /*管理员通过相关字段查询话题*/
+     List<pk_topic> mhFind(String ps);
+
 
      /**
       *更新话题状态

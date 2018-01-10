@@ -67,24 +67,24 @@
 
 					</div>
 
-					<div class="page_topcontentside">
-						<div class="page-collector">
-							<div class="collector-name">收藏者</div>
-							<div class="collector-value">4875</div>
-						</div>
-						<div class="item">
-							<div class="item-name">被浏览</div>
-							<div class="item-value">509544</div>
-						</div>
+					<%--<div class="page_topcontentside">--%>
+						<%--<div class="page-collector">--%>
+							<%--<div class="collector-name">收藏者</div>--%>
+							<%--<div class="collector-value">4875</div>--%>
+						<%--</div>--%>
+						<%--<div class="item">--%>
+							<%--<div class="item-name">被浏览</div>--%>
+							<%--<div class="item-value">509544</div>--%>
+						<%--</div>--%>
 
-					</div>
+					<%--</div>--%>
 					<!--讨论论题的底部-->
 
 					<div class="page_topfoot">
 						<div class="page_topfootmain">
 							<div class="page_topfootGroup">
 								<button class="page-attention"></button>
-								<a class="page-review" href="#">我要评论</a>
+								<a class="page-review" href="#iwantCommment">我要评论</a>
 							</div>
 							<%--<div class="page_topfootAction">
 								<div class="page_topfootActioncomment">
@@ -205,7 +205,7 @@
 
 
 					<c:if test="${user!=null}">
-
+					<a id="iwantComment"></a>
 					<div class="Comments-foot">
 							<div class="foot-comment">
 								<input type="text" name="comment" id="comment-input" placeholder="写下你的评论" />

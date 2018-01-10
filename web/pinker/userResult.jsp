@@ -12,6 +12,14 @@
 <head>
     <title>查询结果</title>
 </head>
+<style>
+    #page_nav{
+        width: 100%;
+        height: 10px;
+        margin: auto;
+        text-align: center;
+    }
+</style>
 <body>
 <h1 align="center">查询结果</h1>
 
@@ -37,7 +45,7 @@
                 <td>操作</td>
             </tr>
 
-            <c:forEach items="${userlist}" var="user">
+             <c:forEach  items="${page.data}" var="user">
                 <tr>
                     <td>${user.id}</td>
                     <td>${user.loginName}</td>
@@ -65,6 +73,56 @@
 
         </table>
 
+<%--分页--%>
+<br>
 
+<div id="page_nav">
+    <a href="http://localhost:8080/pinker/UsersServlet?method=findUser&pageNumber=1" class="firstpage">首页</a>
+    <a href="http://localhost:8080/pinker/UsersServlet?method=findUser&pageNumber=${page.pageNumber-1}" class="firstpage">上一页</a>
+    <%--遍历生成页码--%>
+    <c:forEach begin="1" end="${page.totalPage}" var="index">
+        <c:choose>
+            <c:when test="${index==page.pageNumber}">
+                <span style="color: deeppink">[${page.pageNumber}]</span>
+            </c:when>
+            <c:otherwise>
+                <a href="http://localhost:8080/pinker/UsersServlet?method=findUser&pageNumber=${index}">
+                        ${index}</a>
+            </c:otherwise>
+        </c:choose>
+    </c:forEach>
+
+    <a href="http://localhost:8080/pinker/UsersServlet?method=findUser&pageNumber=${page.pageNumber+1}"  class="endpage">下一页</a>
+    <a href="http://localhost:8080/pinker/UsersServlet?method=findUser&pageNumber=${page.totalPage}"  class="endpage">末页</a>
+    共${page.totalPage}页，${page.totalRecord}条记录 到第
+    <input value="${page.pageNumber}" name="pn" id="pn_input" style="width: 30px;height: 20px"/>页
+    <input type="button" value="确定" id="jump" name="jump">
+</div>
+
+<script type="text/javascript"  src="pinker/js/jquery-1.7.2.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        if (${page.pageNumber==1}){
+            $(".firstpage").css("display", "none");
+        }
+        if (${page.pageNumber==page.totalPage}){
+            $(".endpage").css("display", "none");
+        }
+
+        $("#jump").click(function () {
+            var no= $("#pn_input").val();
+            var i=parseInt(no);
+            if(i>${page.totalPage}){
+                i=${page.totalPage};
+            }
+            if(i<1){
+                i=1;
+            }
+            location.href="http://localhost:8080/pinker/UsersServlet?method=findUser&pageNumber="+i;
+        })
+
+    });
+</script>
 </body>
 </html>

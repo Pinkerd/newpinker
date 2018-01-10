@@ -67,15 +67,15 @@ public class UserDaoImpl extends BaseDao<pk_user> implements UserDao {
 
     @Override//根据id查询用户  test pass
     public pk_user findByUserId(Integer id) {
-        String sql="select * from pk_user where id=?";
-        pk_user bean = this.getBean(sql, id);
+        String sql="select * from pk_user where id=? ";
+        pk_user bean = this.getBean(sql, id );
         return bean;
     }
 
     @Override//根据姓名查询用户 test pass
     public  List<pk_user> findByUserName(String name) {
         String newname="%"+name+"%";
-        String sql="select * from pk_user where username like ?" ;
+        String sql="select * from pk_user where username like ? " ;
         List<pk_user> listBean = this.getListBean(sql, newname);
         return listBean;
     }
@@ -114,7 +114,7 @@ public class UserDaoImpl extends BaseDao<pk_user> implements UserDao {
         return update!=0;
     }
 
-    /* 查询user类分页信息的方法
+    /* 查询user类黑白名单分页信息的方法
     *  pageNumber pagesize已设置 index
     * totalpage totalrecord date未设置
     * */
@@ -129,6 +129,43 @@ public class UserDaoImpl extends BaseDao<pk_user> implements UserDao {
         /*设置date*/
         sql="select * from pk_user where status=? limit ?,?";
         List<pk_user> listBean = this.getListBean(sql,status, page.getIndex(), page.getPageSize());
+        page.setData(listBean);
+        return page;
+    }
+
+    @Override
+    public Page<pk_user> findIdResult(Page<pk_user> page, Integer id,Integer status) {
+
+       /* String sql="select * from pk_user where id=? having status=?";*/
+       /* String newname="%"+name+"%";
+        String sql="select * from pk_user where username like ?  having status=?" ;*/
+
+        /*设置totalrecord*/
+        String sql="select count(*) from pk_user  where id=? and status=?";  //查询到所有的记录数
+        long totalrecord = (long) this.getSingleValue(sql,id,status);//获得查询结果
+        page.setTotalRecord((int) totalrecord);     //设置所有记录数
+
+        /*设置date*/
+        sql="select * from pk_user where   id=? and status=? limit ?,?";
+        List<pk_user> listBean = this.getListBean(sql,id,status, page.getIndex(), page.getPageSize());
+        page.setData(listBean);
+        return page;
+    }
+
+    @Override
+    public Page<pk_user> findNameResult(Page<pk_user> page, String username, Integer status) {
+
+        String newname="%"+username+"%";
+
+
+        /*设置totalrecord*/
+        String sql="select count(*) from pk_user where loginName like ?  and status=?";  //查询到所有的记录数
+        long totalrecord = (long) this.getSingleValue(sql,newname,status);//获得查询结果
+        page.setTotalRecord((int) totalrecord);     //设置所有记录数
+
+        /*设置date*/
+        sql="select * from pk_user where  loginName like ? and status=?  limit ?,?";
+        List<pk_user> listBean = this.getListBean(sql,newname,status, page.getIndex(), page.getPageSize());
         page.setData(listBean);
         return page;
     }
