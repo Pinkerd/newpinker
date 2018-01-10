@@ -44,4 +44,10 @@ public interface BlogDao {
      */
     List<Blog> findTopicBloglist(int topicId);
 
+    /**
+     * 根据话题的id查询博文的个数
+     */
+    long findBlogCount(int topicId);
+
+
 }

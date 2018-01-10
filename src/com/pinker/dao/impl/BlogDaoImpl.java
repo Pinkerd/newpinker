@@ -93,5 +93,16 @@ public class BlogDaoImpl extends BaseDao<Blog> implements BlogDao {
     }
 
 
+    /**
+     * 根据话题的id查询博文的个数
+     */
+    @Override
+    public long findBlogCount(int topicId) {
+
+        String sql="select count(*) from pk_blog where topicId = ?";
+
+        return (long) this.getSingleValue(sql,topicId);
+    }
+
 
 }
