@@ -12,7 +12,7 @@ public interface TopicDao {
 
      List<pk_topic> selectAll();
 
-     int add(String title, String content, String titleimg, Integer userId);
+     int add(int topicId,String title, String content, String titleimg, Integer userId);
 
      int change(String title, String content, String titleimg, Integer userId);
 

@@ -48,7 +48,6 @@
 			<div id="publishandsetting">
 				
 				<button id="publishBlogBtn" onclick="updateTopic()">提交话题</button>
-				<%--<button onclick="test()">show</button>--%>
 			</div>
 			
 		</div>
@@ -56,8 +55,6 @@
 	<div class="head-img-box" >
 		<div class="img-box">
 
-			<%--<button class="btn-uploading" onclick="syncUpload();"><i class="icon-uploading"></i>上传图片</button>--%>
-			<%--<button class="img-cancel" id="cancel-Btn">取消</button>--%>
 		</div>
 		<input type="file" name="file" style="display:none;height: 200px;width: 200px;" onchange="previewImg(this);" id="upload" accept="image/*"/>
 	</div>
