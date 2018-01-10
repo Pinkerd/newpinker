@@ -83,4 +83,9 @@ public class ConcernTopicServiceImpl  implements ConcernTopicService {
     public ConcernTopic findByUsrIdAndTopicId(int userId, int topicId) {
         return concernTopicDao.findConcernTopicByUserIdAndTopicId(userId,topicId);
     }
+
+    @Override
+    public long findConcerntcount(int topicId) {
+        return concernTopicDao.findConcerntcount(topicId);
+    }
 }

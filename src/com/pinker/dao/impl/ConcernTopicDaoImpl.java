@@ -47,5 +47,12 @@ public class ConcernTopicDaoImpl extends BaseDao<ConcernTopic> implements Concer
         return this.getListBean(sql,userId);
     }
 
+    @Override
+    public long findConcerntcount(int topicId) {
+        String sql="select count(*) from pk_concerntopic where topicId = ?";
+
+        return (long) this.getSingleValue(sql,topicId);
+    }
+
 
 }

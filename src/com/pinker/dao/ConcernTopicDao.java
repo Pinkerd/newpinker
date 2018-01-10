@@ -28,4 +28,9 @@ public interface ConcernTopicDao {
      *查询该用户所有话题收藏
      */
     List<ConcernTopic> findAllByUserId(int userId);
+
+    /**
+     * 根据话题id查询关注的人数
+     */
+    long findConcerntcount(int topicId);
 }

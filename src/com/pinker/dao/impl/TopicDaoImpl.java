@@ -23,8 +23,8 @@ public class TopicDaoImpl extends BaseDao<pk_topic> implements TopicDao {
     }
 
     @Override
-    public int add(String title, String content, String titleimg, Integer userId) {
-        String sql = "insert into pk_topic(title,content,titleimg,userId,publishtime) values(?,?,?,?,NOW())";
+    public int add(int topicId,String title, String content, String titleimg, Integer userId) {
+        String sql = "insert into pk_topic(id,title,content,titleimg,userId,publishtime,status) values(?,?,?,?,?,NOW(),status)";
         return update(sql,title,content,titleimg,userId);
 }
 
@@ -95,7 +95,7 @@ public class TopicDaoImpl extends BaseDao<pk_topic> implements TopicDao {
      */
     @Override
     public List<pk_topic> fuzzSearchTopic(String key) {
-        String sql="select * from pk_topic where title like ?";
+        String sql="select * from pk_topic where title like ? and status=1";
         return this.getListBean(sql,"%"+key+"%");
 
     }
@@ -112,6 +112,12 @@ public class TopicDaoImpl extends BaseDao<pk_topic> implements TopicDao {
         return this.update(sql,status,topicId);
     }
 
+    /**
+     * 分页按状态查询
+     * @param status
+     * @param page
+     * @return
+     */
     @Override
     public Page<pk_topic> findTopicByStatus(int status,Page<pk_topic> page) {
         String totalRecordSql="select count(*) from pk_topic where status=?";
@@ -123,7 +129,10 @@ public class TopicDaoImpl extends BaseDao<pk_topic> implements TopicDao {
         //偏移值
         int index=page.getIndex();
 
-        return null;
+        String listSql="select * from pk_topic where status=? limit ?,?";
+        List<pk_topic> list=this.getListBean(listSql,status,index,pageSize);
+        page.setData(list);
+        return page;
     }
 
 

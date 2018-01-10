@@ -12,7 +12,7 @@ public interface TopicDao {
 
      List<pk_topic> selectAll();
 
-     int add(String title, String content, String titleimg, Integer userId);
+     int add(int topicId,String title, String content, String titleimg, Integer userId);
 
      int change(String title, String content, String titleimg, Integer userId);
 
@@ -23,7 +23,7 @@ public interface TopicDao {
      List<pk_topic> findByUserId(Integer userId);
 
      /**
-      * 上传话题
+      * 上传话题..
       */
      int uploadTopic(int id, String title, String content, int userId, Date publishtime);
 
@@ -43,4 +43,6 @@ public interface TopicDao {
       * 按照话题状态查询话题
       */
      Page<pk_topic> findTopicByStatus(int status,Page<pk_topic> page);
+
+
 }

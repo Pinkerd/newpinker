@@ -65,8 +65,8 @@ public class TopicServiceImpl  implements TopicService {
      * @return
      */
     @Override
-    public int add(String title, String content, String titleimg, Integer userId) {
-        return tdi.add(title,content,titleimg,userId);
+    public int add(int topicId,String title, String content, String titleimg, Integer userId) {
+        return tdi.add(topicId,title,content,titleimg,userId);
     }
 
 
@@ -131,9 +131,36 @@ public class TopicServiceImpl  implements TopicService {
 
     }
 
+    /**
+     * 模糊查询
+     * @param key
+     * @return
+     */
     @Override
     public List<pk_topic> fuzzSearch(String key) {
         return tdi.fuzzSearchTopic(key);
+    }
+
+    /**
+     * 按照状态分页查询
+     * @param status
+     * @param page
+     * @return
+     */
+    @Override
+    public Page<pk_topic> findTopicByStatus(int status, Page<pk_topic> page) {
+        return tdi.findTopicByStatus(status,page);
+    }
+
+    /**
+     * 更新话题状态
+     * @param topicId
+     * @param status
+     * @return
+     */
+    @Override
+    public int updateStatus(int topicId, int status) {
+        return tdi.updateStaus(topicId,status);
     }
 
 
