@@ -266,9 +266,7 @@
 <script type="text/javascript">
 
     var blogId= $("#blogId").val();
-    /**
-     *  评论框的显示和隐藏
-     */
+
     $(document).ready(function() {
         $.ajax({
             url:"http://localhost:8080/pinker/CollectionBlogServlet?method=findCollectionBlogByUserId",

@@ -43,4 +43,6 @@ public interface TopicDao {
       * 按照话题状态查询话题
       */
      Page<pk_topic> findTopicByStatus(int status,Page<pk_topic> page);
+
+
 }

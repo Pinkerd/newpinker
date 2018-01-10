@@ -36,4 +36,9 @@ public interface ConcernTopicService {
      */
     ConcernTopic findByUsrIdAndTopicId(int userId,int topicId);
 
+
+    /**
+     * 根据话题id查询关注的人数
+     */
+    long findConcerntcount(int topicId);
 }
