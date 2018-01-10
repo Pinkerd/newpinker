@@ -5,12 +5,12 @@ $.post("CommentServlet?method=getselectAll",{blogId:blogId},function (listJ) {
     var list=JSON.parse(listJ);
 
     for(var i=0;i<list.length;i++){
-        /*var li=$("<li>\n" +
+        var li=$("<li>\n" +
             "<img src=\"http://localhost:8080/pinker/IOServlet?method=loadOtherHeadImg&userId="+list[i].user.id+"\" height=\"25px\" width=\"25px\"><span><a href=\"http://localhost:8080/pinker/pinker/othersPage.jsp?otherId="+list[i].userId+"\">"+list[i].user.username+"</a></span>\n" +
             "<div>"+list[i].content+" </div>\n" +
             "</li>");
-        $("#comment-ulwrap").append(li);*/
-        var Li=$(
+        $("#comment-ulwrap").append(li);
+        /*var Li=$(
             "<div class='CommentItem'>"+
             "<div>"+
             "<div class='CommentItem-meta'>"+
@@ -21,19 +21,19 @@ $.post("CommentServlet?method=getselectAll",{blogId:blogId},function (listJ) {
             "<div class='CommentItem-content'>"+
             "<p>"+list[i].content+"</p>"+
             "</div>"+
-            "<div class='CommentItem-footer'>"+
-            "<button class='CommentItem-Thumb'>"+
+            //"<div class='CommentItem-footer'>"+
+           /!* "<button class='CommentItem-Thumb'>"+
             "<img src='img/点赞.png' width='25px' height='20px'/>"+"赞"+
             "</button>"+
             "<button class='CommentItem-revert'>"+
             "<img src='img/回复.png' width='16px' height='16px'/>"+"回复"+
-            "</button>"+
-            "</div>"+
+            "</button>"+*!/
+           // "</div>"+
             "</div>"+
             "<hr />"+
             "</div>"
         )
-        $(".commentList").append(Li);
+        $(".commentList").append(Li);*/
     }
 })
 }
