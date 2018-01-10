@@ -9,7 +9,7 @@ public class pk_topic {
     private String titleimg;//标题路径
     private Integer userId;//用户ID
     private Date publishtime;//发布时间
-    private int status;//话题状态 0:待审核 1:审核通过 2:审核不通过
+    private int status;//话题状态 0:待审核 1:审核通过 2:审核不通过.
 
     public int getStatus() {
         return status;

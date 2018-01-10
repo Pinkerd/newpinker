@@ -73,4 +73,11 @@ public interface TopicService {
       */
      List<pk_topic> fuzzSearch(String key);
 
+
+     /**
+      * 按状态分页查询话题
+      */
+
+     Page<pk_topic> findTopicByStatus(int status, Page<pk_topic> page);
+
 }

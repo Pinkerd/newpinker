@@ -23,7 +23,7 @@ public interface TopicDao {
      List<pk_topic> findByUserId(Integer userId);
 
      /**
-      * 上传话题
+      * 上传话题..
       */
      int uploadTopic(int id, String title, String content, int userId, Date publishtime);
 

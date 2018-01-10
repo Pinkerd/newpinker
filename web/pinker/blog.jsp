@@ -130,7 +130,7 @@
 								</a>
 							</div>
 							<div class="AuthorInfo-detail">
-								${thisBlog.user.introduction}
+								${thisBlog.user.introduction }
 							</div>
 						</div>
 
