@@ -113,7 +113,7 @@ public class CollectionBlogServlet extends BaseServlet {
         request.setAttribute("list", collectionBlog);
 
         /**
-         * 转发到 #.jsp
+         * 转发到 /pinker/CollectBlog.jsp
          */
         request.getRequestDispatcher("/pinker/CollectBlog.jsp").forward(request, response);
     }
