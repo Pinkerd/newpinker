@@ -26,8 +26,8 @@ public class TopicServiceImpl  implements TopicService {
      * @param topic
      */
     private void setFull(pk_topic topic){
-        pk_user user=userDao.findByUserId(topic.getUserId());
-        topic.setUser(user);
+       /* pk_user user=userDao.findByUserId(topic.getUserId());
+        topic.setUser(user);*/
     }
 
 
@@ -150,6 +150,17 @@ public class TopicServiceImpl  implements TopicService {
     @Override
     public Page<pk_topic> findTopicByStatus(int status, Page<pk_topic> page) {
         return tdi.findTopicByStatus(status,page);
+    }
+
+    /**
+     * 更新话题状态
+     * @param topicId
+     * @param status
+     * @return
+     */
+    @Override
+    public int updateStatus(int topicId, int status) {
+        return tdi.updateStaus(topicId,status);
     }
 
 

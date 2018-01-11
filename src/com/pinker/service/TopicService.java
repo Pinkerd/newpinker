@@ -80,4 +80,9 @@ public interface TopicService {
 
      Page<pk_topic> findTopicByStatus(int status, Page<pk_topic> page);
 
+    /**
+     * 更新话题状态
+     */
+    int updateStatus(int topicId, int status);
+
 }

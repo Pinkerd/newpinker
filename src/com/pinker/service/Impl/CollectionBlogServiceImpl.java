@@ -25,11 +25,11 @@ public class CollectionBlogServiceImpl implements CollectionBlogService {
         int userId=collectionBlog.getUserId();
         int blogId=collectionBlog.getBlogId();
 
-        pk_user user=userDao.findByUserId(userId);
+      /*  pk_user user=userDao.findByUserId(userId);*/
         Blog blog= blogDao.getBlogById(blogId);
 
         collectionBlog.setBlog(blog);
-        collectionBlog.setUser(user);
+        /*collectionBlog.setUser(user);*/
 
     }
 

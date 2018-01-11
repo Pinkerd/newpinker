@@ -33,6 +33,8 @@ import java.util.List;
  * 12.退出登陆                     done
  * 13.修改密码                     done
  * 14.根据id查询当前用户的状态     done
+ * 15.根据账号查找用户             done
+ * 16.密码取回验证                 done
  */
 
 @WebServlet(name = "UsersServlet",urlPatterns = ("/UsersServlet"))
@@ -70,13 +72,14 @@ public class UsersServlet extends BaseServlet {
             request.setAttribute("RegErrorMsg","登录名已存在，请重新输入！");
             request.getRequestDispatcher("pinker/login.jsp").forward(request,response);
         }else {
-
                 //条件符合，可以进行注册
                 Date date = new Date();
                 boolean add = usi.add(loginName, password, date);
                 System.out.println("add:  "+add);
                 if(add){
-                    request.getRequestDispatcher("pinker/index.jsp").forward(request,response);
+                    pk_user byLoginName = usi.findByLoginName(loginName);
+                    request.getSession().setAttribute("user",byLoginName);
+                    request.getRequestDispatcher("index.jsp").forward(request,response);
                 }else{
                     request.setAttribute("RegErrorMsg","注册失败，请重新输入！");
                     request.getRequestDispatcher("pinker/login.jsp").forward(request,response);
@@ -117,7 +120,7 @@ public class UsersServlet extends BaseServlet {
             boolean update = usi.update(user);
             if(update){
                 pk_user byUserId = usi.findByUserId(id);
-                request.setAttribute("user",byUserId);
+                request.getSession().setAttribute("user",byUserId);
                 request.getRequestDispatcher("pinker/PersonPage.jsp").forward(request,response);
             }
         } catch (Exception e) {
@@ -139,20 +142,42 @@ public class UsersServlet extends BaseServlet {
     protected void findId(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("jump into findId...");
         Integer byId = Integer.valueOf(request.getParameter("byId"));
-        pk_user byUserId = usi.findByUserId(byId);
-        ArrayList<pk_user> list=new ArrayList<pk_user>();
-        list.add(byUserId);
-        request.setAttribute("userlist",list);
+        Integer status = Integer.valueOf(request.getParameter("status"));
+        //获取页面传入的当前页
+        String pageNumber = request.getParameter("pageNumber");
+        //设置每页显示的条数
+        int pageSize=10;
+        //调用根据id查询的方法
+        Page<pk_user> page = usi.findIdResult(pageNumber, pageSize,byId,status);
+
+        System.out.println(page);
+        //将查询到的信息放进域中
+        request.setAttribute("page",page);
+        //转发到bookmanagger页面
         request.getRequestDispatcher("pinker/userResult.jsp").forward(request,response);
+
     }
     
     /*7.根据姓名查询用户*/
     protected void findName(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("jump into findName...");
         String byName = request.getParameter("byName");
-        List<pk_user> list = usi.findByUserName(byName);
-        request.setAttribute("userlist",list);
+        System.out.println(byName);
+        Integer status = Integer.valueOf(request.getParameter("status"));
+
+        //获取页面传入的当前页
+        String pageNumber = request.getParameter("pageNumber");
+        //设置每页显示的条数
+        int pageSize=10;
+        //调用查询方法
+        Page<pk_user> page = usi.findNameResult(pageNumber, pageSize,byName,status);
+        System.out.println(page);
+
+        //将查询到的信息放进域中
+        request.setAttribute("page",page);
+        //转发到bookmanagger页面
         request.getRequestDispatcher("pinker/userResult.jsp").forward(request,response);
+
     }
 
     /*8.白名单*/
@@ -256,7 +281,7 @@ public class UsersServlet extends BaseServlet {
             if(change){
                 System.out.println("修改成功，开始转发");
                 pk_user byUserId = usi.findByUserId(id);
-                req.setAttribute("user",byUserId);
+                req.getSession().setAttribute("user",byUserId);
                 req.getRequestDispatcher("pinker/PersonPage.jsp").forward(req,resp);
             }
         }
@@ -268,5 +293,58 @@ public class UsersServlet extends BaseServlet {
 
         Integer id = Integer.valueOf(req.getParameter("id"));
         usi.findStatusById(id);
+    }
+
+    /*15.根据账号查找用户*/
+    protected void findByLoginName(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("jump into  findByLoginName...");
+
+        String loginName = req.getParameter("loginName");
+        pk_user user = usi.findByLoginName(loginName);
+        if(user!=null){
+            //存在用户，转发至验证第二步
+            req.getSession().setAttribute("user",user);
+            req.getRequestDispatcher("pinker/pswTakeBack2.jsp").forward(req,resp);
+
+        }else{
+            //不存在，带回错误信息
+            req.setAttribute("errMsg","账号输入错误或不存在！");
+            req.setAttribute("loginName",loginName);
+            req.getRequestDispatcher("pinker/pswTakeBack1.jsp").forward(req,resp);
+        }
+    }
+    /*16.密码提示问题验证*/
+    protected void testPswQA(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("jump into  testPswQA...");
+
+        String pswA1 = req.getParameter("pswA1");
+        String pswA2 = req.getParameter("pswA2");
+        String pswA3 = req.getParameter("pswA3");
+        Integer id = Integer.valueOf(req.getParameter("id"));
+
+        pk_user user = usi.findByUserId(id);
+
+        System.out.println(user);
+
+        String A1 = user.getPswA1();
+        String A2 = user.getPswA2();
+        String A3 = user.getPswA3();
+
+        if(A1.equals(pswA1) && A2.equals(pswA2)  && A3.equals(pswA3) ){
+            //三个都相同才能通过验证,转发至第三部
+            req.setAttribute("user",user);
+            req.getRequestDispatcher("pinker/pswTakeBack3.jsp").forward(req,resp);
+        }else{
+            //带回错误信息
+            req.setAttribute("errMsg","验证失败，请重新输入！");
+            req.setAttribute("pswA1",pswA1);
+            req.setAttribute("pswA2",pswA2);
+            req.setAttribute("pswA3",pswA3);
+            req.getRequestDispatcher("pinker/pswTakeBack2.jsp").forward(req,resp);
+
+        }
+
+
+
     }
 }

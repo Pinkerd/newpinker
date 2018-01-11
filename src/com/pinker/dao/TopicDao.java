@@ -36,11 +36,11 @@ public interface TopicDao {
      /**
       *更新话题状态
       */
-     int updateStaus(int topicId ,int status);
+     int updateStaus(int topicId, int status);
 
 
      /**
       * 按照话题状态查询话题
       */
-     Page<pk_topic> findTopicByStatus(int status,Page<pk_topic> page);
+     Page<pk_topic> findTopicByStatus(int status, Page<pk_topic> page);
 }

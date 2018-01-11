@@ -57,7 +57,7 @@ public class BlogDaoServiceImpl implements BlogDaoService {
         int topicId=blog.getTopicId();
         int userId=blog.getUserId();
         blog.setTopic(topicDao.selectOne(topicId));//填充话题属性
-        blog.setUser(userDao.findByUserId(userId));//填充用户属性
+      /*  blog.setUser(userDao.findByUserId(userId));//填充用户属性*/
     }
 
     /**
