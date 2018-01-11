@@ -3,7 +3,9 @@ package com.pinker.servlet;
 
 import com.pinker.entity.ConcernTopic;
 import com.pinker.entity.pk_user;
+import com.pinker.service.BlogDaoService;
 import com.pinker.service.ConcernTopicService;
+import com.pinker.service.Impl.BlogDaoServiceImpl;
 import com.pinker.service.Impl.ConcernTopicServiceImpl;
 
 import javax.servlet.ServletException;
@@ -25,6 +27,7 @@ import java.util.Date;
 public class ConcernTopicServlet extends BaseServlet {
 
 private ConcernTopicService con=new ConcernTopicServiceImpl();
+private BlogDaoService blog=new BlogDaoServiceImpl();
     /**
      * 1.查询是否关注
      * @param req
@@ -93,5 +96,33 @@ private ConcernTopicService con=new ConcernTopicServiceImpl();
         }
         resp.getWriter().print(result);
 
+    }
+
+    /**
+     * 关注话题的人数
+     */
+
+    protected void concernCout(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //1.从页面获取话题
+        String topicId = req.getParameter("topicId");
+        int topid = Integer.parseInt(topicId);
+        System.out.println(topid);
+        //调用根据话题id查询关注的人数的方法
+        long concerntcount = con.findConcerntcount(topid);
+        System.out.println(concerntcount);
+        resp.getWriter().print(concerntcount);
+    }
+
+    /**
+     * 查询博文条数
+     */
+    protected void blogCout(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //1.从页面获取话题
+        String topicId = req.getParameter("topicId");
+        int topid = Integer.parseInt(topicId);
+        System.out.println(topid);
+        //调用根据话题的id查询博文的个数
+        long blogCount = blog.findBlogCount(topid);
+        resp.getWriter().print(blogCount);
     }
 }

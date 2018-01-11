@@ -24,7 +24,7 @@
     Page<pk_topic> topicPage =new Page<>();
     topicPage.setPageSize(5);
     topicPage.setPageNumber(pageNum);
-    topicPage=topicService.findTopicByStatus(1,topicPage);
+    topicPage=topicService.findTopicByStatus(0,topicPage);
     request.setAttribute("topicPage",topicPage);
 %>
 <table align="center" border="1" cellspacing="0" class="topicChecktable" width="900px" >

@@ -10,9 +10,15 @@ import java.util.Date;
 import java.util.List;
 
 public class TopicDaoImpl extends BaseDao<pk_topic> implements TopicDao {
+
+    public List<pk_topic> mhFind(String ps) {
+        String sql="select * from pk_topic where title like ?";
+        return this.getListBean(sql,"%"+ps+"%");
+    }
+
     @Override
     public pk_topic selectOne(Integer id) {
-      String sql = "select id,title,content,titleimg,userId,publishtime from pk_topic where id =?";
+      String sql = "select id,title,content,titleimg,userId,publishtime,status from pk_topic where id =?";
         return getBean(sql,id);
     }
 
@@ -23,8 +29,8 @@ public class TopicDaoImpl extends BaseDao<pk_topic> implements TopicDao {
     }
 
     @Override
-    public int add(String title, String content, String titleimg, Integer userId) {
-        String sql = "insert into pk_topic(title,content,titleimg,userId,publishtime) values(?,?,?,?,NOW())";
+    public int add(int topicId,String title, String content, String titleimg, Integer userId) {
+        String sql = "insert into pk_topic(id,title,content,titleimg,userId,publishtime,status) values(?,?,?,?,?,NOW(),status)";
         return update(sql,title,content,titleimg,userId);
 }
 
@@ -95,7 +101,7 @@ public class TopicDaoImpl extends BaseDao<pk_topic> implements TopicDao {
      */
     @Override
     public List<pk_topic> fuzzSearchTopic(String key) {
-        String sql="select * from pk_topic where title like ?";
+        String sql="select * from pk_topic where title like ? and status=1";
         return this.getListBean(sql,"%"+key+"%");
 
     }

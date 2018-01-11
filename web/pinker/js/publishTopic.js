@@ -125,7 +125,6 @@ function toItalic() {
 function updateTopic(){
     var blogData=$("#blog-textdiv").html();
     var title=$(".blogTitle-input").val();
-    console.log(title);
 
     $.ajax({
         url:"pkTopicServlet?method=publishTopic",
@@ -133,11 +132,11 @@ function updateTopic(){
         data:{topicData:blogData,title:title},
         dataType:"text",
         success:function(result){
-            if(result=="true"){
+            if(result!="0"){
                 syncUpload();
                 alert("上传成功");
-                window.location.reload();
-            }else{
+                window.location.href="http://localhost:8080/pinker/pinker/MyTopic.jsp";
+            }else{ 
                 alert("发布保存博文失败");
             }
         }

@@ -89,12 +89,12 @@
 }
 
 .visits-num{
-	display: inline-block;
+	display: none;
 	margin-left: 90px;
 }
 
 .count{
-	
+	margin-left: 300px;
 }
 
 #title-attentionBtn{
@@ -130,7 +130,7 @@
 }
 
 .button-link-share{
-	display: inline-block;
+	display: none;
 }
 
 .main-article01{

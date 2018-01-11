@@ -53,7 +53,7 @@ public class IOUtil {
 
 
 
-    public static void uploadImg(HttpServletRequest request, HttpServletResponse response, String filePath, int userId){
+    public static void uploadImg(HttpServletRequest request, HttpServletResponse response, String filePath, int topicId){
 
         try {
             System.out.println("=================《《图片开始上传》》===================");
@@ -90,7 +90,7 @@ public class IOUtil {
             //String path = "/site/images"+File.separator+imgName;//Linux文件保存路径
 //            String path = "E:\\site\\images"+ File.separator+imgName;
 //            String path = filePath+ File.separator+imgName;//Windows文件保存路径
-            String path = filePath+ "\\"+userId+imgName.substring(imgName.lastIndexOf("."));
+            String path = filePath+ "\\"+topicId+imgName.substring(imgName.lastIndexOf("."));
             System.out.println(path);
             //File file = new File("/site/images");
             File file = new File(filePath);

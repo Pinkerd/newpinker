@@ -5,7 +5,6 @@ package com.pinker.servlet;
 import com.google.gson.Gson;
 import com.pinker.entity.pk_topic;
 import com.pinker.service.Impl.TopicServiceImpl;
-import com.pinker.service.TopicService;
 import com.pinker.util.WEBUtils;
 
 import javax.servlet.ServletException;
@@ -121,7 +120,7 @@ public class pkTopicServlet extends BaseServlet {
         }else if(check=="no"){
             status=2;
         }
-        tsi.updateStatus(topicId,status);
+
 
 
     }

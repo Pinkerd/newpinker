@@ -60,7 +60,6 @@ public class CommentServlet extends BaseServlet {
         int blogId = Integer.parseInt(req.getParameter("blogId"));
         long findcount = com.findcount(blogId);
         System.out.print(findcount);
-
         resp.getWriter().print(findcount);
     }
 }

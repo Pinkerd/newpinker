@@ -118,4 +118,9 @@ public class BlogDaoServiceImpl implements BlogDaoService {
         }
         return list;
     }
+
+    @Override
+    public long findBlogCount(int topicId) {
+        return blogDao.findBlogCount(topicId);
+    }
 }

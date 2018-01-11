@@ -115,6 +115,7 @@
 						</div>
 					</div>
 
+
 					<!--右侧-->
 					<%@include file="/WEB-INF/include/person_menu.jsp"%>
 

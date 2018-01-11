@@ -9,6 +9,8 @@
 	<%@include file="/WEB-INF/include/base_info.jsp"%>
 	<link rel="stylesheet" type="text/css" href="pinker/css/Template.css" />
 	<link rel="stylesheet" type="text/css" href="pinker/css/Blog.css">
+	<link rel="stylesheet" type="text/css" href="pinker/css/left.css" />
+	<link rel="stylesheet" type="text/css" href="pinker/css/right.css" />
 	<link rel="stylesheet" type="text/css" href="pinker/css/head_info.css">
 	<script type="text/javascript" src="pinker/js/head_info.js"></script>
 	<script type="text/javascript" src="pinker/js/blog.js"></script>
@@ -27,7 +29,6 @@
 		int blogId=Integer.parseInt(request.getParameter("blogId"));
 		BlogDaoService blogDaoService= new BlogDaoServiceImpl();
 		Blog thisBlog=blogDaoService.getBlogById(blogId);
-
 		request.setAttribute("thisBlog",thisBlog);
  	%>
 
@@ -66,26 +67,26 @@
 
 					</div>
 
-					<div class="page_topcontentside">
-						<div class="page-collector">
-							<div class="collector-name">收藏者</div>
-							<div class="collector-value">4875</div>
-						</div>
-						<div class="item">
-							<div class="item-name">被浏览</div>
-							<div class="item-value">509544</div>
-						</div>
+					<%--<div class="page_topcontentside">--%>
+						<%--<div class="page-collector">--%>
+							<%--<div class="collector-name">收藏者</div>--%>
+							<%--<div class="collector-value">4875</div>--%>
+						<%--</div>--%>
+						<%--<div class="item">--%>
+							<%--<div class="item-name">被浏览</div>--%>
+							<%--<div class="item-value">509544</div>--%>
+						<%--</div>--%>
 
-					</div>
+					<%--</div>--%>
 					<!--讨论论题的底部-->
 
 					<div class="page_topfoot">
 						<div class="page_topfootmain">
 							<div class="page_topfootGroup">
 								<button class="page-attention"></button>
-								<a class="page-review" href="#">我要评论</a>
+								<a class="page-review" href="#iwantCommment">我要评论</a>
 							</div>
-							<div class="page_topfootAction">
+							<%--<div class="page_topfootAction">
 								<div class="page_topfootActioncomment">
 									<button class="button3">
 										<img class="button3-img" src="pinker/img/评论.png" width="20px " height="20px"/>
@@ -98,19 +99,12 @@
 										转发
 									</button>
 								</div>
-							</div>
+							</div>--%>
 						</div>
-
 					</div>
-
-
-
 				</div>
 			</div>
-
-
 		</div>
-
 	</div>
 
 	<!--模板结束-->
@@ -158,7 +152,7 @@
 							</span>
 					<button class="left-comment">
 						<img class="button3-img" src="pinker/img/评论.png" width="20px" height="20px" style="position: relative;bottom: 7px;"/>
-						<a style="display: inline-block;position: relative;bottom:2px;left: 6px;">22条评论</a>
+						<a style="display: inline-block;position: relative;bottom:2px;left: 6px;"><span class="commentCountBox"></span>条评论</a>
 					</button>
 
 					<button class="left-dividual">
@@ -177,6 +171,18 @@
 						<div class="Topbar-title">
 							<div class="pl-count">
 								<h2><span class="commentCountBox"></span>条评论</h2>
+									<%--<script type="text/javascript" src="js/jquery-1.7.2.js"></script>
+									<script type="text/javascript">
+                                        (document).ready(function () {
+                                            var blogId=$("#blogId").val();
+                                            $.post("http://localhost:8080/pinker/CommentServlet?method=findCountbyBlogId",{blogId:blogId},function (findcountJ) {
+                                                var findCount=JSON.parse(findcountJ);
+                                                var number=$(
+                                                    "<h2>"+findCount+"条评论"+"</h2>"
+                                                );
+                                                $(".pl-count").append(number);
+                                            })
+									</script>--%>
 							</div>
 						</div>
 
@@ -199,7 +205,7 @@
 
 
 					<c:if test="${user!=null}">
-
+					<a id="iwantComment"></a>
 					<div class="Comments-foot">
 							<div class="foot-comment">
 								<input type="text" name="comment" id="comment-input" placeholder="写下你的评论" />
@@ -247,7 +253,7 @@
 
 
 </body>
-
+<script type="text/javascript" src="js/jquery-1.7.2.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $("#zan").click(function () {
@@ -262,13 +268,12 @@
     })
 </script>
 
-
+<script src="js/jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="js/Template.js"></script>
 <script type="text/javascript">
 
     var blogId= $("#blogId").val();
-    /**
-     *  评论框的显示和隐藏
-     */
+
     $(document).ready(function() {
         $.ajax({
             url:"http://localhost:8080/pinker/CollectionBlogServlet?method=findCollectionBlogByUserId",

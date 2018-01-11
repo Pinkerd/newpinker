@@ -26,7 +26,7 @@
     </div>
 </div>
 
-<div class="head-img-box" >
+<div class="head-img-box" style="z-index: 1000">
     <div class="img-box">
         <img src="" id="yushow" onclick="uploadBtn()" title="更换头像" height="150px" width="150px"/>
         <button class="btn-uploading" onclick="syncUpload();"><i class="icon-uploading"></i>上传图片</button>

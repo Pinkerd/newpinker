@@ -14,6 +14,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!--头部容器-->
 
+<c:if test="${user.status==0}">
+    ${pageContext.request.session.removeAttribute("user")}
+    <script type="text/javascript">
+        $(function () {
+            alert("您的账号已冻结即将跳转主页");
+            setTimeout(window.location.href="http://localhost:8080/pinker",2000);
+        })
+
+    </script>
+</c:if>
 
 <div class="template-header">
     <div class="template-header-wrap">
