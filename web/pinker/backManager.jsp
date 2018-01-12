@@ -115,7 +115,7 @@
             $("#sframe").attr("src", "http://localhost:8080/pinker/pkTopicServlet?method=showAll")
         })
         $("li[id=topic]").click(function () {
-            $("#sframe").attr("src", "第四个网址")
+            $("#sframe").attr("src", "http://localhost:8080/pinker/pinker/topicCheck.jsp?pageNum=1")
         })
 
     })

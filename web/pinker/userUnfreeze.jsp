@@ -31,7 +31,7 @@
 <body>
 <h1 align="center">黑名单列表</h1>
 <div class="box">
-    <form action="http://localhost:8080/pinker/UsersServlet?method=findId" method="post" id="idFrom">
+    <form action="http://localhost:8080/pinker/UsersServlet?method=findId&status=0" method="post" id="idFrom">
         <table  align="center" class="search">
             <tr>
                 <td>
@@ -45,7 +45,7 @@
 
         </table>
     </form>
-    <form action="http://localhost:8080/pinker/UsersServlet?method=findName" method="post">
+    <form action="http://localhost:8080/pinker/UsersServlet?method=findName&status=0" method="post">
         <table align="center" class="search" style="margin-left:300px;float: right">
             <tr>
                 <td>

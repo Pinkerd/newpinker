@@ -75,7 +75,7 @@
 
 										<div class="detail-introduce" >
 											<span class="detail-span">
-													${topic.content.substring(0,50)}
+													${topic.content.length()>50?topic.content.substring(0,50):topic.content}
 											</span>
 										</div>
 
@@ -85,7 +85,7 @@
 									</div>
 								</div>
 								<div class="topic-introduce">
-										${topic.content.substring(0,15)}
+										${topic.content.length()>50?topic.content.substring(0,50):topic.content}
 								</div>
 
 								<div class="topicStatusWrap">

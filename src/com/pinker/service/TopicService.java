@@ -29,7 +29,7 @@ public interface TopicService {
       * @param userId
       * @return
       */
-     int add(int topicId,String title, String content, String titleimg, Integer userId);
+     int add(String title, String content, String titleimg, Integer userId);
 
      /**
       * 修改话题的方法
@@ -79,10 +79,5 @@ public interface TopicService {
       */
 
      Page<pk_topic> findTopicByStatus(int status, Page<pk_topic> page);
-
-    /**
-     * 更新话题状态
-     */
-    int updateStatus(int topicId,int status);
 
 }

@@ -48,6 +48,14 @@
 
 		%>
 
+		<c:if test="${thisTopic.status==2}">
+			<script type="text/javascript">
+				alert("该话题未通过审核");
+				window.history.back();
+			</script>
+
+		</c:if>
+
 		<input type="hidden" value="${thisTopic.id}" id="topicId">
 
 

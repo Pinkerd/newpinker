@@ -42,4 +42,13 @@ public interface UserService {
 
     /*查询user类分页信息的方法*/
     Page<pk_user> findUser(String pageNumber, int pageSize, Integer status);
+    /*查询user类分页信息的方法*/
+    Page<pk_user> findIdResult(String pageNumber, int pageSize, Integer id, Integer status);
+    /*查询user类分页信息的方法*/
+    Page<pk_user> findNameResult(String pageNumber, int pageSize, String username,Integer status);
+
+
+
+
+
 }

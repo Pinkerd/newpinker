@@ -4,11 +4,7 @@ package com.pinker.servlet;
 
 import com.google.gson.Gson;
 import com.pinker.entity.pk_topic;
-import com.pinker.entity.pk_user;
 import com.pinker.service.Impl.TopicServiceImpl;
-import com.pinker.service.TopicService;
-import com.pinker.util.IDUtil;
-import com.pinker.util.IOUtil;
 import com.pinker.util.WEBUtils;
 
 import javax.servlet.ServletException;
@@ -16,7 +12,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 /**
  * Created by Liu on 2017/12/26.
@@ -94,7 +89,7 @@ public class pkTopicServlet extends BaseServlet {
     protected void updateTopic(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         pk_topic topic = WEBUtils.para2bean(request,pk_topic.class);
          if(topic.getId()==0){
-//             tsi.add(topic.getTitle(),topic.getContent(),topic.getTitleimg(),topic.getUserId());
+             tsi.add(topic.getTitle(),topic.getContent(),topic.getTitleimg(),topic.getUserId());
          }
          else {
              tsi.change(topic.getTitle(),topic.getContent(),topic.getTitleimg(),topic.getUserId());
@@ -114,46 +109,19 @@ public class pkTopicServlet extends BaseServlet {
     }
 
     /**
-     * 8.审核话题
+     * 审核话题
      */
     protected void topicCheck(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int topicId= Integer.parseInt(req.getParameter("topicId"));
         String check=req.getParameter("check");
         int status=0;
-        if(check.equals("yes")){
+        if(check=="yes"){
             status=1;
-        }else if(check.equals("no")){
+        }else if(check=="no"){
             status=2;
         }
-        int row=tsi.updateStatus(topicId,status);
-        PrintWriter out=resp.getWriter();
-        out.print(row);
-        out.flush();
-        out.close();
 
-    }
 
-    private int topicId;
-    /**
-     * 9.发布话题
-     */
-    protected void publishTopic(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        pk_user user= (pk_user) req.getSession().getAttribute("user");
-        String title= req.getParameter("title");
-        String content=req.getParameter("topicData");
-        topicId= Integer.parseInt(IDUtil.createID());
-        int row=tsi.uploadTopic(topicId,title,content,user.getId());
-        PrintWriter out=resp.getWriter();
-        out.print(row);
-        out.flush();
-        out.close();
-    }
-
-    /**
-     * 10.上传话题图
-     */
-    protected void publishTopicImg(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        IOUtil.uploadImg(req,resp,"E:\\site\\topicImg",topicId);
 
     }
 }

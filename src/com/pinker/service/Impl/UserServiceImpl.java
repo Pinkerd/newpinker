@@ -56,12 +56,14 @@ public class UserServiceImpl implements UserService {
     public pk_user findByUserId(Integer id) {
         pk_user byUserId = userDao.findByUserId(id);
         return byUserId;
+
     }
 
     @Override//根据姓名查询用户  test  pass
     public List<pk_user> findByUserName(String name) {
         List<pk_user> byUserName = userDao.findByUserName(name);
         return byUserName;
+
     }
 
     @Override//根据账号名查询用户  test  pass
@@ -104,5 +106,41 @@ public class UserServiceImpl implements UserService {
         page.setPageSize(pageSize);    //设置每页几个
 
         return userDao.findUser(page,status);
+    }
+
+    @Override
+    public Page<pk_user> findIdResult(String pageNumber, int pageSize, Integer id, Integer status) {
+        /*pageNumber传进来转换成int 如果用户输入错误  默认1*/
+        int pn=1;   //默认在第一页
+        try {
+            //将传入的String类型转换成int
+            //如果输入abc则会报错
+            pn = Integer.parseInt(pageNumber);
+        } catch (Exception e) {
+        }
+
+        Page<pk_user> page=new  Page<pk_user>();
+        page.setPageNumber(pn);         //设置当前页
+        page.setPageSize(pageSize);    //设置每页几个
+
+        return userDao.findIdResult(page,id,status);
+    }
+
+    @Override
+    public Page<pk_user> findNameResult(String pageNumber, int pageSize, String username, Integer status) {
+          /*pageNumber传进来转换成int 如果用户输入错误  默认1*/
+        int pn=1;   //默认在第一页
+        try {
+            //将传入的String类型转换成int
+            //如果输入abc则会报错
+            pn = Integer.parseInt(pageNumber);
+        } catch (Exception e) {
+        }
+
+        Page<pk_user> page=new  Page<pk_user>();
+        page.setPageNumber(pn);         //设置当前页
+        page.setPageSize(pageSize);    //设置每页几个
+
+        return userDao.findNameResult(page,username,status);
     }
 }

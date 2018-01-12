@@ -40,7 +40,11 @@ public interface UserDao {
     public List<pk_user> findAll(int status);
     /*根据id删除用户*/
     public boolean freezeUserById(Integer status, Integer id);
-    /* 查询页码的方法 */
+    /*黑白名单查询页码的方法 */
     Page<pk_user> findUser(Page<pk_user> page, Integer status);
+    /*黑白名单 id 分页查询*/
+    Page<pk_user> findIdResult(Page<pk_user> page, Integer id,Integer status);
+    /*黑白名单 用户名 分页查询*/
+    Page<pk_user> findNameResult(Page<pk_user> page,  String username,Integer status);
 
 }

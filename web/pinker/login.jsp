@@ -22,6 +22,13 @@
 			opacity: 0.6;
 			background: rgba(250,250,250,0.7);
 		}
+			#pswTakeBack{
+				margin:10px auto 0px;
+				font-size: 10px;
+				display: inline-block;
+				float: right;
+				color: #003b81;
+			}
 		</style>
 
 		<script type="text/javascript">
@@ -34,9 +41,6 @@
                     }
                 })
             })
-
-
-
 
 		</script>
 
@@ -68,6 +72,11 @@
 						<input type="password" name="password"  value="" placeholder="密码" onkeyup="this.value=this.value.replace(/[, ]/g,'')"/>
 						</div>
 						<div id="LoginErrorMsg">${LoginErrorMsg}</div>
+						<div>
+							<a href="pinker/pswTakeBack1.jsp" id="pswTakeBack">
+								忘记密码了？找回密码
+							</a>
+						</div>
 						<input type="submit" id="login-commitBtn" value="登录"/>
 					</form>
 					</div>
