@@ -76,7 +76,7 @@ public class UsersServlet extends BaseServlet {
                 boolean add = usi.add(loginName, password, date);
                 System.out.println("add:  "+add);
                 if(add){
-                    request.getRequestDispatcher("pinker/index.jsp").forward(request,response);
+                    request.getRequestDispatcher("index.jsp").forward(request,response);
                 }else{
                     request.setAttribute("RegErrorMsg","注册失败，请重新输入！");
                     request.getRequestDispatcher("pinker/login.jsp").forward(request,response);
