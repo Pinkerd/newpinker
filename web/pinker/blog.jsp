@@ -67,24 +67,25 @@
 
 					</div>
 
-					<%--<div class="page_topcontentside">--%>
-						<%--<div class="page-collector">--%>
-							<%--<div class="collector-name">收藏者</div>--%>
-							<%--<div class="collector-value">4875</div>--%>
-						<%--</div>--%>
-						<%--<div class="item">--%>
-							<%--<div class="item-name">被浏览</div>--%>
-							<%--<div class="item-value">509544</div>--%>
-						<%--</div>--%>
+					<div class="page_topcontentside">
+						<div class="page-collector">
+							<div class="collector-name">收藏者</div>
+							<div class="collector-value">4875</div>
+						</div>
+						<div class="item">
+							<div class="item-name">被浏览</div>
+							<div class="item-value">509544</div>
+						</div>
 
-					<%--</div>--%>
+					</div>
+
 					<!--讨论论题的底部-->
 
 					<div class="page_topfoot">
 						<div class="page_topfootmain">
 							<div class="page_topfootGroup">
 								<button class="page-attention"></button>
-								<a class="page-review" href="#iwantCommment">我要评论</a>
+								<a class="page-review" href="#mao">我要评论</a>
 							</div>
 							<%--<div class="page_topfootAction">
 								<div class="page_topfootActioncomment">
@@ -162,7 +163,7 @@
 
 					<button class="left-collect">
 						<img src="pinker/img/收藏.png" width="20px" height="20px" style="position: relative;top: 3px;"/>
-						<a style="display: inline-block;position: relative;bottom:2px;left: 4px;">收藏</a>
+						<a style="display: inline-block;position: relative;bottom:2px;left: 4px;" id="sc">收藏</a>
 					</button>
 				</div>
 				<%--评论框--%>
@@ -171,18 +172,6 @@
 						<div class="Topbar-title">
 							<div class="pl-count">
 								<h2><span class="commentCountBox"></span>条评论</h2>
-									<%--<script type="text/javascript" src="js/jquery-1.7.2.js"></script>
-									<script type="text/javascript">
-                                        (document).ready(function () {
-                                            var blogId=$("#blogId").val();
-                                            $.post("http://localhost:8080/pinker/CommentServlet?method=findCountbyBlogId",{blogId:blogId},function (findcountJ) {
-                                                var findCount=JSON.parse(findcountJ);
-                                                var number=$(
-                                                    "<h2>"+findCount+"条评论"+"</h2>"
-                                                );
-                                                $(".pl-count").append(number);
-                                            })
-									</script>--%>
 							</div>
 						</div>
 
@@ -196,16 +185,13 @@
 
 
 					<ul id="comment-ulwrap">
-						<%--<li>--%>
-							<%--<img src="pinker/img/111.jpg" height="30px" width="30px"><span><a href="">我叫神仙</a></span>--%>
-							<%--<div>nude我的大额的的的的的 </div>--%>
-						<%--</li>--%>
+
 					</ul>
 
 
-
+					<a name="mao">评论框</a>
 					<c:if test="${user!=null}">
-					<a id="iwantComment"></a>
+
 					<div class="Comments-foot">
 							<div class="foot-comment">
 								<input type="text" name="comment" id="comment-input" placeholder="写下你的评论" />
@@ -287,14 +273,18 @@
                     //alert("true")
                     //能查到id说明已关注  点击取消关注
                     $(".page-attention").html("取消收藏");
+                    $("#sc").html("取消收藏");
                  // $(".page-attention").unbind("click");
                     $(".page-attention").click(del);
+                    $(".left-collect").click(del);
                 }else{
                     //alert("false")
                     //为null说明没关注  点击关注
                     $(".page-attention").html("收藏");
+                    $("#sc").html("收藏")
                 //    $(".page-attention").unbind("click");
                     $(".page-attention").click(save);
+                    $(".left-collect").click(save)
                 }
             }
         })
@@ -308,11 +298,15 @@ function save() {
         data:{blogId:blogId},
         dataType:"text",
         success:function (result) {
-            if(result!="0"){
+            if(result=="true"){
                 //（删除数据）取消关注后，显示关注问题文字
                 $(".page-attention").unbind("click");
                 $(".page-attention").click(del);
                 $(".page-attention").html("取消收藏");
+
+                $(".left-collect").unbind("click")
+                $(".left-collect").click(del);
+                $("#sc").html("取消收藏");
             }
         }
     })
@@ -325,11 +319,15 @@ function del() {
         data:{blogId:blogId},
         dataType:"text",
         success:function (result) {
-            if (result!="0"){
+            if (result=="true"){
                 //（增加数据）点击关注，显示取消问题文字
                 $(".page-attention").unbind("click");
                 $(".page-attention").click(save);
                 $(".page-attention").html("收藏");
+
+                $(".left-collect").unbind("click")
+                $(".left-collect").click(save);
+                $("#sc").html("收藏");
             }
         }
     })

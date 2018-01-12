@@ -34,7 +34,6 @@ public class CommentServlet extends BaseServlet {
         List<Comment> list=com.getselect(blogId);
         String listJ=gson.toJson(list);
         resp.getWriter().print(listJ);
-
     }
 
     /**
