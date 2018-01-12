@@ -90,6 +90,11 @@
 	<script type="text/javascript" src="js/jquery-1.7.2.js"></script>
 	<script type="text/javascript">
         $(function(){
+            <c:if test="${RegErrorMsg!=null}">
+				$(".index-register").trigger("click");
+
+			</c:if>
+
             $(".index-register").click(function(){
                 $("#index-slider").removeClass("toleft");
                 $("#index-slider").addClass("toright");
@@ -111,6 +116,14 @@
                 $(".index-register").removeClass("active");
                 $(".index-login").addClass("active");
             })
+
+
+
+
+            <c:if test="${RegErrorMsg!=null}">
+            $(".index-register").trigger("click");
+
+            </c:if>
 			/*正则表单验证*/
             $("#index-register-commit").click(function () {
                 var name = $("[id=rgname]").val();
