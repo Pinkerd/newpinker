@@ -19,7 +19,7 @@ public interface UserService {
     /*登陆 根据登录名和密码登陆*/
     public pk_user login(String loginName, String password);
     /*修改密码*/
-    public boolean updatePassword(Integer id, String newPassword);
+    public boolean updatePassword(Integer id ,String newPassword);
     /*好友推荐 寻找相同学校的人*/
     public List<pk_user> findUsersBySchool(pk_user pkuser);
     /*好友推荐 寻找相同居住地的人*/
@@ -45,7 +45,7 @@ public interface UserService {
     /*查询user类分页信息的方法*/
     Page<pk_user> findIdResult(String pageNumber, int pageSize, Integer id, Integer status);
     /*查询user类分页信息的方法*/
-    Page<pk_user> findNameResult(String pageNumber, int pageSize, String username, Integer status);
+    Page<pk_user> findNameResult(String pageNumber, int pageSize, String username,Integer status);
 
 
 

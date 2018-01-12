@@ -12,7 +12,7 @@ public interface TopicDao {
 
      List<pk_topic> selectAll();
 
-     int add(int topicId,String title, String content, String titleimg, Integer userId);
+     int add(String title, String content, String titleimg, Integer userId);
 
      int change(String title, String content, String titleimg, Integer userId);
 
@@ -32,9 +32,6 @@ public interface TopicDao {
       */
      List<pk_topic> fuzzSearchTopic(String key);
 
-     /*管理员通过相关字段查询话题*/
-     List<pk_topic> mhFind(String ps);
-
 
      /**
       *更新话题状态
@@ -46,6 +43,4 @@ public interface TopicDao {
       * 按照话题状态查询话题
       */
      Page<pk_topic> findTopicByStatus(int status,Page<pk_topic> page);
-
-
 }

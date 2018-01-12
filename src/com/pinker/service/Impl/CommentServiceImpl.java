@@ -73,10 +73,10 @@ public class CommentServiceImpl implements CommentService {
      */
     private void setFull(Comment comment){
         Blog blog=blogDao.getBlogById(comment.getBlogId());
-        pk_user user=userDao.findByUserId(comment.getUserId());
+       /* pk_user user=userDao.findByUserId(comment.getUserId());*/
 
         comment.setBlog(blog);
-        comment.setUser(user);
+        /*comment.setUser(user);*/
     }
 
 

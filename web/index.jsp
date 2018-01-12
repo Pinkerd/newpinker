@@ -13,7 +13,7 @@
     <%@include file="/WEB-INF/include/base_info.jsp"%>
     <link rel="stylesheet" type="text/css" href="pinker/css/homepage.css"/>
     <link href="pinker/css/reset.css" rel="stylesheet" type="text/css">
-    <link href="pinker/css//font-awesome.css" rel="stylesheet" type="text/css">
+    <link href="pinker/css/font-awesome.css" rel="stylesheet" type="text/css">
     <link href="pinker/css/showlist.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="pinker/js/modernizr.custom.js"></script>
 
@@ -33,8 +33,8 @@
             <%--注册登录--%>
                 <c:if test="${user==null}">
             <div class="loginRegist">
-                <div class="lrButton"><a href="pinker/login.jsp">登录</a></div>
-                <div class="lrButton"><a href="pinker/login.jsp">注册</a></div>
+                <div class="lrButton"><a href="pinker/login.jsp" id="way1login">登录</a></div>
+                <div class="lrButton"><a href="pinker/login.jsp" id="way2regist">注册</a></div>
             </div>
                 </c:if>
         </div>

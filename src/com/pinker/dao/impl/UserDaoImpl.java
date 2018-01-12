@@ -133,7 +133,7 @@ public class UserDaoImpl extends BaseDao<pk_user> implements UserDao {
         return page;
     }
 
-    @Override
+    @Override//根据ID查询分页的方法
     public Page<pk_user> findIdResult(Page<pk_user> page, Integer id,Integer status) {
 
        /* String sql="select * from pk_user where id=? having status=?";*/
@@ -152,11 +152,10 @@ public class UserDaoImpl extends BaseDao<pk_user> implements UserDao {
         return page;
     }
 
-    @Override
+    @Override//根据登陆名查询分页的方法
     public Page<pk_user> findNameResult(Page<pk_user> page, String username, Integer status) {
 
         String newname="%"+username+"%";
-
 
         /*设置totalrecord*/
         String sql="select count(*) from pk_user where loginName like ?  and status=?";  //查询到所有的记录数
