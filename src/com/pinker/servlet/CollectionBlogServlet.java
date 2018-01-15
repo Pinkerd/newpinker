@@ -37,12 +37,13 @@ public class CollectionBlogServlet extends BaseServlet {
         CollectionBlog collectionBlogByUserId = collectionBlogService.findCollectionBlogByUserIdAndBlogId(user.getId(), blogId);
         System.out.print(collectionBlogByUserId);
 
-        Boolean result=null;
+        String result="false";
+        //Boolean result=null;
         if (collectionBlogByUserId!=null){
-            result=true;
-        }else if (collectionBlogByUserId==null){
+            result="true";
+        }/*else if (collectionBlogByUserId==null){
             result=false;
-        }
+        }*/
         System.out.println(result);
         response.getWriter().print(result);
     }
@@ -65,7 +66,12 @@ public class CollectionBlogServlet extends BaseServlet {
          * ajax返回
          */
         Integer row=collectionBlogService.deleteCollectionBlogByUserId(user.getId(),blogId);
-        response.getWriter().print(row.toString());
+        //response.getWriter().print(row.toString());
+        String result="false";
+        if(row!=0){
+            result="true";
+        }
+        response.getWriter().print(result);
     }
 
 
@@ -87,12 +93,19 @@ public class CollectionBlogServlet extends BaseServlet {
          */
         CollectionBlog collectionBlog = new CollectionBlog(blogId,user.getId(),new Date());
 
+
         /**
          * 调用service中的增加信息的方法
          */
         Integer row = collectionBlogService.saveCollectionBlog(collectionBlog);
-        PrintWriter out = response.getWriter();
-        out.print(row.toString());
+        System.out.print(row);
+        String result="false";
+        if(row!=0){
+            result="true";
+        }
+        response.getWriter().print(result);
+        /*PrintWriter out = response.getWriter();
+        out.print(row.toString());*/
     }
 
     /**

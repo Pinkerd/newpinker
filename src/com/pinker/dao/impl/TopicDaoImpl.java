@@ -23,7 +23,7 @@ public class TopicDaoImpl extends BaseDao<pk_topic> implements TopicDao {
     }
 
     @Override
-    public int add(int topicId,String title, String content, String titleimg, Integer userId) {
+    public int add(String title, String content, String titleimg, Integer userId) {
         String sql = "insert into pk_topic(id,title,content,titleimg,userId,publishtime,status) values(?,?,?,?,?,NOW(),status)";
         return update(sql,title,content,titleimg,userId);
 }
