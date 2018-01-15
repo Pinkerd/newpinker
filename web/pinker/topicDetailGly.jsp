@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page errorPage="errorPage.jsp"%><%@ page errorPage="errorPage.jsp"%>
 <%@include file="/WEB-INF/include/base_info.jsp" %>
 <html>
 <head>

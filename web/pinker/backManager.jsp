@@ -5,6 +5,7 @@
   Time: 17:07
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page errorPage="errorPage.jsp"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <base href="http://localhost:8080/pinker/pinker/">
 <html>

@@ -2,7 +2,7 @@
 <%@ page import="com.pinker.service.Impl.BlogDaoServiceImpl" %>
 <%@ page import="com.pinker.entity.Blog" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<%@ page errorPage="errorPage.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>

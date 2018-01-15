@@ -5,6 +5,7 @@
 <%@ page import="com.pinker.service.Impl.TopicServiceImpl" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page errorPage="errorPage.jsp"%><%@ page errorPage="errorPage.jsp"%>
 
 <!DOCTYPE html>
 <html>

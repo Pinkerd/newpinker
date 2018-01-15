@@ -4,6 +4,7 @@
 <%@ page import="com.pinker.entity.Page" %>
 <%@ page import="com.pinker.entity.pk_topic" %>
 <%@ page import="java.util.List" %>
+<%@ page errorPage="/pinker/errorPage.jsp"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
