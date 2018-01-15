@@ -2,6 +2,7 @@
 <%@ page import="com.pinker.service.Impl.TopicServiceImpl" %>
 <%@ page import="com.pinker.entity.pk_topic" %>
 <%@ page import="com.pinker.entity.Page" %>
+<%@ page errorPage="errorPage.jsp"%>
 <%--
   Created by IntelliJ IDEA.
   User: Administrator

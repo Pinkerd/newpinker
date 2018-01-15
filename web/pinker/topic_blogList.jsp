@@ -7,6 +7,7 @@
 <%@ page import="com.pinker.service.ConcernTopicService" %>
 <%@ page import="com.pinker.service.Impl.ConcernTopicServiceImpl" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page errorPage="errorPage.jsp"%>
 <!DOCTYPE html>
 <html>
 	<head>

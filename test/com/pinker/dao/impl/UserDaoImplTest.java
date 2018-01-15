@@ -3,8 +3,13 @@ package com.pinker.dao.impl;
 import com.pinker.dao.UserDao;
 import com.pinker.entity.Page;
 import com.pinker.entity.pk_user;
+import com.pinker.util.JDBCUtils;
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.junit.Test;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -67,10 +72,24 @@ public class UserDaoImplTest {
 
     @Test
     public void findByLoginName() throws Exception {
-        pk_user caiyingshi = ud.findByLoginName("caiyingshi");
+        pk_user caiyingshi = ud.findByLoginName("caoyingshi1");
         System.out.println(caiyingshi);
+    }
+
+    @Test
+    public void findByEmail(){
+        String sql="select * from pk_user where email=?";
+        QueryRunner runner= new QueryRunner();
+
+        try {
+            Connection connection= JDBCUtils.getConnection();
+            System.out.println(runner.query(connection,sql,new BeanHandler<pk_user>(pk_user.class),"123@qq.com"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
 
     }
+
 
 }
