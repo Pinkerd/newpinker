@@ -13,6 +13,16 @@ import java.util.List;
 
 public class UserDaoImplTest {
     UserDao ud=new UserDaoImpl();
+
+    @Test
+    public void findUserByEmail() throws Exception {
+       /* "674675741@qq.com"*/
+
+        pk_user userByEmail   = ud.findUserByEmail("caiyingshi1@qq.com");
+        System.out.println(userByEmail);
+    }
+
+
     @Test
     public void findIdResult() throws Exception {
         Page<pk_user> page=new  Page<pk_user>();

@@ -10,15 +10,9 @@ import java.util.Date;
 import java.util.List;
 
 public class TopicDaoImpl extends BaseDao<pk_topic> implements TopicDao {
-
-    public List<pk_topic> mhFind(String ps) {
-        String sql="select * from pk_topic where title like ?";
-        return this.getListBean(sql,"%"+ps+"%");
-    }
-
     @Override
     public pk_topic selectOne(Integer id) {
-      String sql = "select id,title,content,titleimg,userId,publishtime,status from pk_topic where id =?";
+      String sql = "select id,title,content,titleimg,userId,publishtime from pk_topic where id =?";
         return getBean(sql,id);
     }
 
@@ -44,6 +38,11 @@ public class TopicDaoImpl extends BaseDao<pk_topic> implements TopicDao {
     public int delete(Integer id) {
         String sql = "delete from pk_topic where id=?";
         return update(sql,id);
+    }
+
+    public List<pk_topic> mhFind(String ps) {
+        String sql="select * from pk_topic where title like ?";
+        return this.getListBean(sql,"%"+ps+"%");
     }
 
     @Override

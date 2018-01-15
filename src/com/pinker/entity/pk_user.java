@@ -33,6 +33,8 @@ public class pk_user {
     private  String pswQ3;               //密码提示问题1
     private  String pswA3;               //密码提示答案1
 
+    private String randomCode;          //邮箱找回用随机码
+
 
     public pk_user() {
     }
@@ -270,5 +272,13 @@ public class pk_user {
 
     public void setPswA3(String pswA3) {
         this.pswA3 = pswA3;
+    }
+
+    public String getRandomCode() {
+        return randomCode;
+    }
+
+    public void setRandomCode(String randomCode) {
+        this.randomCode = randomCode;
     }
 }

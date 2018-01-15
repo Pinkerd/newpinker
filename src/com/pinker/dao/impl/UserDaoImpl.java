@@ -95,6 +95,14 @@ public class UserDaoImpl extends BaseDao<pk_user> implements UserDao {
         return  user.getStatus();
     }
 
+
+    @Override//根据email查询用户
+    public  pk_user findUserByEmail(String email) {
+        String sql="select * from `pk_user` where `email` = ? ";
+        pk_user bean = this.getBean(sql, email);
+        return bean;
+    }
+
     @Override//显示列表 查询所有用户 test pass
     public List<pk_user> findAll(int status) {
         String sql="select * from pk_user where status=?";

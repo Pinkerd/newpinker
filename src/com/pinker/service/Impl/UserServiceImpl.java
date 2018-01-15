@@ -78,6 +78,13 @@ public class UserServiceImpl implements UserService {
         return statusById;
     }
 
+    @Override
+    public pk_user findUserByEmail(String email) {
+       /* pk_user user = userDao.findUserByEmail(email);
+        return user;*/
+       return null;
+    }
+
     @Override//显示列表 查询所有用户  test  pass
     public List<pk_user> all(int status) {
         List<pk_user> all = userDao.findAll(status);

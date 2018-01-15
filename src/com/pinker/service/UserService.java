@@ -33,6 +33,8 @@ public interface UserService {
     public pk_user findByLoginName(String name);
     /*根据id查用户状态*/
     public Integer findStatusById(Integer id);
+    /*根据email查询用户*/
+    public pk_user findUserByEmail(String email);
 
     //管理员功能
     /*显示列表 查询所有用户*/

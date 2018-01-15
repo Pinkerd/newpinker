@@ -11,6 +11,12 @@ import java.util.List;
  */
 
 public class UserServiceImplTest {
+    @Test
+    public void findUserByEmail() throws Exception {
+        pk_user userByEmail = us.findUserByEmail("674675741@qq.com");
+        System.out.println(userByEmail);
+    }
+
     UserService us=new UserServiceImpl();
     @Test
     public void findByUserId() throws Exception {

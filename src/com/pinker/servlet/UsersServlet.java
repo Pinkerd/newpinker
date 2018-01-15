@@ -3,6 +3,7 @@ package com.pinker.servlet;
 import com.pinker.entity.Page;
 import com.pinker.entity.pk_user;
 import com.pinker.service.Impl.UserServiceImpl;
+import com.pinker.util.EmailUtils;
 
 
 import javax.servlet.ServletException;
@@ -341,10 +342,26 @@ public class UsersServlet extends BaseServlet {
             req.setAttribute("pswA2",pswA2);
             req.setAttribute("pswA3",pswA3);
             req.getRequestDispatcher("pinker/pswTakeBack2.jsp").forward(req,resp);
+        }
+    }
 
+    protected void emailTakeBack(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("jump into emailTakeBack...");
+
+        String email = request.getParameter("email");
+        pk_user user = usi.findUserByEmail(email);
+
+        if (user == null) {
+            request.setAttribute("errorMsg",  "用户不存在！");
+            request.getRequestDispatcher("pinker/emailTakeBack1.jsp").forward(request, response);
+            return;
         }
 
+        // 发送重新设置密码的链接
+        EmailUtils.sendResetPasswordEmail(user);
 
+        request.setAttribute("sendMailMsg", "您的申请已提交成功，请查看您的"+user.getEmail()+"邮箱。");
 
+        request.getRequestDispatcher("/WEB-INF/pages/forgotPwdSuccess.jsp").forward(request, response);
     }
 }

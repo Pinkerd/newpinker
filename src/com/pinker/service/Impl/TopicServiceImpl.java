@@ -65,8 +65,8 @@ public class TopicServiceImpl  implements TopicService {
      * @return
      */
     @Override
-    public int add(String title, String content, String titleimg, Integer userId) {
-        return tdi.add(title,content,titleimg,userId);
+    public int add(int topicId,String title, String content, String titleimg, Integer userId) {
+        return tdi.add(topicId,title,content,titleimg,userId);
     }
 
 
@@ -91,6 +91,13 @@ public class TopicServiceImpl  implements TopicService {
     @Override
     public int delete(Integer id) {
         return tdi.delete(id);
+    }
+
+
+
+    public List<pk_topic> mhFind(String ps) {
+        List<pk_topic> list = tdi.mhFind(ps);
+        return list;
     }
 
     /**
@@ -150,6 +157,17 @@ public class TopicServiceImpl  implements TopicService {
     @Override
     public Page<pk_topic> findTopicByStatus(int status, Page<pk_topic> page) {
         return tdi.findTopicByStatus(status,page);
+    }
+
+    /**
+     * 更新话题状态
+     * @param topicId
+     * @param status
+     * @return
+     */
+    @Override
+    public int updateStatus(int topicId, int status) {
+        return tdi.updateStaus(topicId,status);
     }
 
 

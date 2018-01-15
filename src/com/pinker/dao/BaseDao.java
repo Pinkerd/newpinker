@@ -59,7 +59,7 @@ public T getBean(String sql, Object... args) {
         Connection con = JDBCUtils.getConnection();
         try {
             //调用工具类的查询一个的方法
-            t = run.query(con, sql, new BeanHandler<>(type), args);
+            t = run.query(con, sql, new BeanHandler<T>(type), args);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
