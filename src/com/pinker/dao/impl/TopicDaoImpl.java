@@ -9,7 +9,7 @@ import com.pinker.entity.pk_topic;
 import java.util.Date;
 import java.util.List;
 
-public class TopicDaoImpl extends BaseDao<pk_topic> implements TopicDao {
+public class TopicDaoImpl extends BaseDao<pk_topic > implements TopicDao {
     @Override
     public pk_topic selectOne(Integer id) {
       String sql = "select id,title,content,titleimg,userId,publishtime from pk_topic where id =?";
@@ -23,10 +23,10 @@ public class TopicDaoImpl extends BaseDao<pk_topic> implements TopicDao {
     }
 
     @Override
-    public int add(String title, String content, String titleimg, Integer userId) {
-        String sql = "insert into pk_topic(id,title,content,titleimg,userId,publishtime,status) values(?,?,?,?,?,NOW(),status)";
-        return update(sql,title,content,titleimg,userId);
-}
+    public int add(int topicId,String title, String content, String titleimg, Integer userId) {
+        String sql = "insert into pk_topic(id,title,content,titleimg,userId,publishtime,status) values(?,?,?,?,?,NOW(),0)";
+        return update(sql,topicId,title,content,titleimg,userId);
+    }
 
     @Override
     public int change(String title,String content,String titleimg,Integer userId) {

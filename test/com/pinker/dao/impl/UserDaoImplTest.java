@@ -23,7 +23,7 @@ public class UserDaoImplTest {
     public void findUserByEmail() throws Exception {
        /* "674675741@qq.com"*/
 
-        pk_user userByEmail   = ud.findUserByEmail("caiyingshi1@qq.com");
+        pk_user userByEmail   = ud.findUserByEmail("123@qq.com");
         System.out.println(userByEmail);
     }
 
