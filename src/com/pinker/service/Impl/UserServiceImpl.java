@@ -40,6 +40,11 @@ public class UserServiceImpl implements UserService {
         return b;
     }
 
+    @Override// 修改密码安全问题
+    public boolean updatePswQA(String Q1, String A1, String Q2, String A2, String Q3, String A3, Integer id) {
+        return userDao.updatePswQA(Q1,A1,Q2,A2,Q3,A3,id);
+    }
+
     @Override//好友推荐 寻找相同学校的人  test  pass
     public List<pk_user> findUsersBySchool(pk_user pkuser) {
         List<pk_user> usersBySchool = userDao.findUsersBySchool(pkuser);

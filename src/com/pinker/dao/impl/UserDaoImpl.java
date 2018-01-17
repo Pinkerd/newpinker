@@ -25,14 +25,12 @@ public class UserDaoImpl extends BaseDao<pk_user> implements UserDao {
 
     @Override //修改资料 更新信息 test pass
     public boolean updateUser(pk_user pkuser) {
-        String sql="update pk_user set loginName=?,password=?,username=?,email=?,roleId=?,status=?,createtime=?,lastlogin=?,residence=?,school=?,gender=?,birthday=?,constellation=?,introduction=?,header=?,pswQ1=?,pswA1=?,pswQ2=?,pswA2=?,pswQ3=?,pswA3=?  where id=?";
+        String sql="update pk_user set loginName=?,password=?,username=?,email=?,roleId=?,status=?,createtime=?,lastlogin=?,residence=?,school=?,gender=?,birthday=?,constellation=?,introduction=?,header=?  where id=?";
         int update =
                 this.update(sql, pkuser.getLoginName(), pkuser.getPassword(), pkuser.getUsername(), pkuser.getEmail(),
                         pkuser.getRoleId(), pkuser.getStatus(), pkuser.getCreatetime(), pkuser.getLastlogin(),
                         pkuser.getResidence(), pkuser.getSchool(), pkuser.getGender(), pkuser.getBirthday(),
-                        pkuser.getConstellation(), pkuser.getIntroduction(), pkuser.getHeader(),
-                        pkuser.getPswQ1(),pkuser.getPswA1(),pkuser.getPswQ2(),pkuser.getPswA2(),
-                        pkuser.getPswQ3(),pkuser.getPswA3(),pkuser.getId());
+                        pkuser.getConstellation(), pkuser.getIntroduction(), pkuser.getHeader(),pkuser.getId());
         return update!=0;
     }
 
@@ -50,6 +48,15 @@ public class UserDaoImpl extends BaseDao<pk_user> implements UserDao {
                 this.update(sql,newPassword,id);
         return update!=0;
     }
+
+    @Override
+    public boolean updatePswQA(String Q1, String A1, String Q2, String A2, String Q3, String A3,Integer id) {
+        String sql="update pk_user set pswQ1=?,pswA1=?,pswQ2=?,pswA2=?,pswQ3=?,pswA3=? where id=?";
+        int update =
+                this.update(sql, Q1,A1,Q2,A2,Q3,A3,id);
+        return update!=0;
+    }
+
 
     @Override//好友推荐 寻找相同学校的人 test pass
     public List<pk_user> findUsersBySchool(pk_user pkuser) {

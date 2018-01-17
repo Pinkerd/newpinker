@@ -13,9 +13,8 @@ import javax.mail.internet.MimeMessage;
 
 public class SendMail extends Thread {
 
-
         //用于给用户发送邮件的邮箱
-        private String from = "ff978043238@sohu.com";
+        private String from = "ff978043238@qq.com";
         //邮箱的用户名
         private String username = "978043238";
         //邮箱的密码

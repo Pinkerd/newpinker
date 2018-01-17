@@ -12,6 +12,12 @@ import java.util.List;
 
 public class UserServiceImplTest {
     @Test
+   public  void updatePswQA()   throws Exception{
+        boolean b = us.updatePswQA("asdasd", "111", "qweqwe", "222", "333", "zczxz", 1);
+        System.out.println(b);
+    }
+
+    @Test
     public void findUserByEmail() throws Exception {
         pk_user userByEmail = us.findUserByEmail("674675741@qq.com");
         System.out.println(userByEmail);

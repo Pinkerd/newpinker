@@ -20,7 +20,8 @@ public interface UserDao {
     public pk_user login(String loginName, String password);
     /*修改密码*/
     public boolean updatePassword(Integer id ,String newPassword);
-
+    /*修改密码安全问题*/
+    public boolean updatePswQA(String Q1,String A1,String Q2,String A2,String Q3,String A3,Integer id);
     /*好友推荐 寻找相同学校的人*/
     public List<pk_user> findUsersBySchool(pk_user pkuser);
     /*好友推荐 寻找相同居住地的人*/

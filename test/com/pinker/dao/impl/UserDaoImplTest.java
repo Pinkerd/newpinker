@@ -16,14 +16,21 @@ import java.util.List;
  * Created by Aries.Gu on 2018/1/5.
  */
 
-public class UserDaoImplTest {
+public class UserDaoImplTest  {
     UserDao ud=new UserDaoImpl();
+    @Test
+    public void updatePswQA()  throws Exception{
+        boolean b = ud.updatePswQA("asd", "asd1", "qwe", "qwe2", "zxc", "zxc3", 6);
+        System.out.println(b);
+    }
+
+
 
     @Test
     public void findUserByEmail() throws Exception {
        /* "674675741@qq.com"*/
 
-        pk_user userByEmail   = ud.findUserByEmail("123@qq.com");
+        pk_user userByEmail   = ud.findUserByEmail("674675741@qq.com");
         System.out.println(userByEmail);
     }
 

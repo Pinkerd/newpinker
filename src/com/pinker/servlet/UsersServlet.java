@@ -108,15 +108,10 @@ public class UsersServlet extends BaseServlet {
         String birth = request.getParameter("birthday");
         Date birthday = new SimpleDateFormat("yyyy-MM-dd").parse(birth);    //birthday Date
         String constellation = request.getParameter("constellation");           //constellation String
-            String header = request.getParameter("header");
-            String pswQ1 = request.getParameter("pswQ1");
-        String pswA1 = request.getParameter("pswA1");
-        String pswQ2 = request.getParameter("pswQ2");
-        String pswA2 = request.getParameter("pswA2");
-        String pswQ3 = request.getParameter("pswQ3");
-        String pswA3 = request.getParameter("pswA3");
+        String header = request.getParameter("header");
+
         String introduction = request.getParameter("introduction");
-            pk_user user = new pk_user(id, loginName, password, username, email, roleId, status, createtime, lastlogin, residence, school, gender, birthday, constellation, introduction, header, pswQ1, pswA1, pswQ2, pswA2, pswQ3, pswA3);
+            pk_user user = new pk_user(id, loginName, password, username, email, roleId, status, createtime, lastlogin, residence, school, gender, birthday, constellation, introduction, header, null, null, null, null, null, null);
             System.out.println(user);
             boolean update = usi.update(user);
             if(update){
@@ -314,54 +309,35 @@ public class UsersServlet extends BaseServlet {
             req.getRequestDispatcher("pinker/pswTakeBack1.jsp").forward(req,resp);
         }
     }
-    /*16.密码提示问题验证*/
-    protected void testPswQA(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("jump into  testPswQA...");
 
-        String pswA1 = req.getParameter("pswA1");
-        String pswA2 = req.getParameter("pswA2");
-        String pswA3 = req.getParameter("pswA3");
-        Integer id = Integer.valueOf(req.getParameter("id"));
 
-        pk_user user = usi.findByUserId(id);
+   /* 修改QA的方法*/
+    protected void updateQA(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
 
-        System.out.println(user);
+        System.out.println("jump into updateQA...");
+        Integer id = Integer.valueOf(request.getParameter("id"));
+        String pswQ1 = request.getParameter("pswQ1");
+        String pswA1 = request.getParameter("pswA1");
+        String pswQ2 = request.getParameter("pswQ2");
+        String pswA2 = request.getParameter("pswA2");
+        String pswQ3 = request.getParameter("pswQ3");
+        String pswA3 = request.getParameter("pswA3");
 
-        String A1 = user.getPswA1();
-        String A2 = user.getPswA2();
-        String A3 = user.getPswA3();
+        boolean updatePswQA = usi.updatePswQA(pswQ1, pswA1, pswQ2, pswA2, pswQ3, pswA3, id);
 
-        if(A1.equals(pswA1) && A2.equals(pswA2)  && A3.equals(pswA3) ){
-            //三个都相同才能通过验证,转发至第三部
-            req.setAttribute("user",user);
-            req.getRequestDispatcher("pinker/pswTakeBack3.jsp").forward(req,resp);
+        if(updatePswQA){
+            /*成功，跳转到个人信息界面*/
+            pk_user user = usi.findByUserId(id);
+            request.setAttribute("user",user);
+            request.getRequestDispatcher("").forward(request,resp);
         }else{
-            //带回错误信息
-            req.setAttribute("errMsg","验证失败，请重新输入！");
-            req.setAttribute("pswA1",pswA1);
-            req.setAttribute("pswA2",pswA2);
-            req.setAttribute("pswA3",pswA3);
-            req.getRequestDispatcher("pinker/pswTakeBack2.jsp").forward(req,resp);
-        }
-    }
-
-    protected void emailTakeBack(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("jump into emailTakeBack...");
-
-        String email = request.getParameter("email");
-        pk_user user = usi.findUserByEmail(email);
-
-        if (user == null) {
-            request.setAttribute("errorMsg",  "用户不存在！");
-            request.getRequestDispatcher("pinker/emailTakeBack1.jsp").forward(request, response);
-            return;
+            /*失败，返回修改页面，显示错误信息*/
+            String errorMsg="对不起，修改失败";
+            request.setAttribute("errorMsg",errorMsg);
+            request.getRequestDispatcher( "").forward(request,resp);
         }
 
-        // 发送重新设置密码的链接
-        EmailUtils.sendResetPasswordEmail(user);
-
-        request.setAttribute("sendMailMsg", "您的申请已提交成功，请查看您的"+user.getEmail()+"邮箱。");
-
-        request.getRequestDispatcher("/WEB-INF/pages/forgotPwdSuccess.jsp").forward(request, response);
     }
+
+
 }

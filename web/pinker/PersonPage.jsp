@@ -53,9 +53,8 @@
 
 									<tr>
 										<td>登录名</td>
-										<td><span class="loginName">${user.loginName}</span>
-											<input type="text" name="loginName" style="display: none" value="${user.password}">
-											<a class="changePassword" id="changePassword">修改密码</a>
+										<td><span class="loginName" name="loginName">${user.loginName}</span>
+											<input type="text" name="password" style="display: none" value="${user.password}">
 										</td>
 									</tr>
 
@@ -140,88 +139,6 @@
 										</td>
 									</tr>
 
-									<tr>
-										<td>提示问题1</td>
-										<td>
-											<select name="pswQ1" style="width: 250px;height: 30px;text-align: center" value="${user.pswQ1}">
-												<option value="${user.pswQ1}">${user.pswQ1}</option>
-												<option value="你父亲的姓名">你父亲的姓名</option>
-												<option value="你父亲的职业">你父亲的职业</option>
-												<option value="你父亲的生日">你父亲的生日</option>
-												<option value="你母亲的姓名">你母亲的姓名</option>
-												<option value="你母亲的职业">你母亲的职业</option>
-												<option value="你母亲的生日">你母亲的生日</option>
-												<option value="你配偶的姓名">你配偶的姓名</option>
-												<option value="你配偶的职业">你配偶的职业</option>
-												<option value="你配偶的生日">你配偶的生日</option>
-												<option value="你的出生地">你的出生地</option>
-												<option value="你学号(工号)">你学号(工号)</option>
-												<option value="小学班主任名字">小学班主任名字</option>
-												<option value="初中班主任名字">初中班主任名字</option>
-												<option value="高中班主任名字">高中班主任名字</option>
-											</select>
-										</td>
-									</tr>
-									<tr>
-										<td>答案1</td>
-										<td><input type="text" name="pswA1" rows="10" cols="50" value="${user.pswA1}"  style="font-size: 15px"></td>
-									</tr>
-
-									<tr>
-										<td>提示问题2</td>
-										<td>
-											<select name="pswQ2" style="width: 250px;height: 30px;text-align: center">
-												<option value="${user.pswQ2}">${user.pswQ2}</option>
-												<option value="你父亲的姓名">你父亲的姓名</option>
-												<option value="你父亲的职业">你父亲的职业</option>
-												<option value="你父亲的生日">你父亲的生日</option>
-												<option value="你母亲的姓名">你母亲的姓名</option>
-												<option value="你母亲的职业">你母亲的职业</option>
-												<option value="你母亲的生日">你母亲的生日</option>
-												<option value="你配偶的姓名">你配偶的姓名</option>
-												<option value="你配偶的职业">你配偶的职业</option>
-												<option value="你配偶的生日">你配偶的生日</option>
-												<option value="你的出生地">你的出生地</option>
-												<option value="你学号(工号)">你学号(工号)</option>
-												<option value="小学班主任名字">小学班主任名字</option>
-												<option value="初中班主任名字">初中班主任名字</option>
-												<option value="高中班主任名字">高中班主任名字</option>
-											</select>
-										</td>
-									</tr>
-									<tr>
-										<td>答案2</td>
-										<td><input type="text" name="pswA2" rows="10" cols="50"  value="${user.pswA2}"  style="font-size: 15px"></td>
-									</tr>
-
-									<tr>
-										<td>提示问题3</td>
-										<td>
-											<select name="pswQ3" style="width: 250px;height: 30px;text-align: center">
-												<option value="${user.pswQ3}">${user.pswQ3}</option>
-												<option value="你父亲的姓名">你父亲的姓名</option>
-												<option value="你父亲的职业">你父亲的职业</option>
-												<option value="你父亲的生日">你父亲的生日</option>
-												<option value="你母亲的姓名">你母亲的姓名</option>
-												<option value="你母亲的职业">你母亲的职业</option>
-												<option value="你母亲的生日">你母亲的生日</option>
-												<option value="你配偶的姓名">你配偶的姓名</option>
-												<option value="你配偶的职业">你配偶的职业</option>
-												<option value="你配偶的生日">你配偶的生日</option>
-												<option value="你的出生地">你的出生地</option>
-												<option value="你学号(工号)">你学号(工号)</option>
-												<option value="小学班主任名字">小学班主任名字</option>
-												<option value="初中班主任名字">初中班主任名字</option>
-												<option value="高中班主任名字">高中班主任名字</option>
-											</select>
-										</td>
-									</tr>
-									<tr>
-										<td>答案3</td>
-										<td><input type="text" name="pswA3" rows="10" cols="50"  value="${user.pswA3}"  style="font-size: 15px"></td>
-									</tr>
-
-
 
 									<tr>
 										<td>
@@ -289,76 +206,11 @@
 
 		</div>
 
-	<div id="changePassword-box">
-		<form action="UsersServlet?method=updatePassword" method="post">
-		<h3>修改密码</h3>
-		<hr>
-		<table align="center">
-			<input type="text" name="id" value="${user.id}" style="display: none" />
-			<tr>
-				<td>原密码</td>
-				<td><input type="password" class="oldPassword" name="oldPassword" id="oldPassword"></td>
-			</tr>
 
-			<tr>
-				<td>新密码</td>
-				<td><input type="password" class="newPassword" name="newPassword" id="newPassword"></td>
-			</tr>
-
-			<tr>
-				<td>重复密码</td>
-				<td><input type="password" class="newPassword" name="newPasswordAg" id="newPasswordAg"></td>
-			</tr>
-		</table>
-		<input type="submit" class="changePasswordBtn" id="changePasswordBtn" value="修改">
-		<input type="button"  class="changePasswordCancelBtn" id="cancelChange" value="取消">
-		</form>
-	</div>
 
 	</body>
 
-<script type="text/javascript" src="js/jquery-1.7.2.js"></script>
-<script type="text/javascript">
-	$(document).ready(function () {
-		$("#changePassword").click(function () {
-			$("#changePassword-box").toggle();
-        })
-		$("#cancelChange").click(function () {
-            $("#changePassword-box").toggle();
-        })
-		/*密码表单验证*/
-        $("#changePasswordBtn").click(function () {
-            var oldPsw=$("#oldPassword").val();
-           var psw="${user.password}";
-		  var psw1 = $("[id=newPassword]").val();
-		   var psw2 = $("[id=newPasswordAg]").val();
-		   var pswPatrn = /^[a-zA-Z0-9_-]{6,18}$/;  //校验密码：只能输入6-20个字母、数字、下划线
-		   //密码的验证和判断
-		   if (!pswPatrn.test(psw1)) {
-			   alert("密码需要是6~20位的字母数字下划线和横线！");
-			   return false;
-		   }
-		   //确认密码的判断
-            if(oldPsw!=psw){
-                alert("旧密码输入错误！")
-            }
-		   if (psw1 != psw2) {
-			   alert("两次密码输入的不一致！");
-			   return false;
-		   }
-            if (psw1== psw) {
-                alert("新密码不能与旧密码一致！");
-                return false;
-            }
-            if (psw2== psw) {
-                alert("新密码不能与旧密码一致！");
-                return false;
-            }
 
-        })
-
-    })
-</script>
 
 
 </html>
