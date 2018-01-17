@@ -14,7 +14,7 @@
 <style>
     *{margin: 0px;padding: 0px}
     .step{
-        width: 400px;
+        width: 300px;
         height: 50px;
         line-height:50px;
         font-size: 20px;
@@ -37,83 +37,41 @@
     #nextStep{
         width: 100px;
         height: 30px;
-        margin: 30px auto;
-        /*    background: red;*/
+        margin: 100px auto;
+    /*    background: red;*/
     }
     .errMsg{
         color: red;
         text-align: center;
     }
-    #first{ background-color:dodgerblue }
-    #second{background:orange }
+    #first{ background-color: dodgerblue}
+    #second{background: orange}
     #third{background: dodgerblue}
+    #fourth{background: dodgerblue}
+
     .InnerBox{
-        width: 300px;
+        width: 400px;
         height: 30px;
         line-height: 30px;
-        margin: 20px auto;
-       /* background: red;*/
+        margin: 100px auto;
+        /*background: red;*/
     }
 </style>
 <body>
-<div class="allStep">
-    <div class="step" id="first">一、填写个人邮箱</div>
-    <div class="step" id="second">二、密码提示问题验证</div>
-    <div class="step" id="third">三、修改密码</div>
-
-</div>
-<div class="fullIn">
-    <form action="UsersServlet?method=testPswQA" method="post">
-
-       <input type="text"  name="id" value="${user.id}" style="display:none">
-
-        <div class="InnerBox">
-            <span>提示问题： </span>
-            <input type="text" name="pswQ1" value="${user.pswQ1}" readonly style="width: 200px;height: 25px">
-        </div>
-        <div class="InnerBox">
-            <span>输入答案： </span>
-            <input type="text" name="pswA1" value="${pswA1}"  style="width: 200px;height: 25px">
-        </div>
-        <div class="InnerBox">
-            <span>提示问题： </span>
-            <input type="text" name="pswQ2" value="${user.pswQ2}" readonly style="width: 200px;height: 25px">
-        </div>
-        <div class="InnerBox">
-            <span>输入答案： </span>
-            <input type="text" name="pswA2" value="${pswA2}"  style="width: 200px;height: 25px">
-        </div>
-        <div class="InnerBox">
-            <span>提示问题： </span>
-            <input type="text" name="pswQ3" value="${user.pswQ3}" readonly style="width: 200px;height: 25px">
-        </div>
-        <div class="InnerBox">
-            <span>输入答案： </span>
-            <input type="text" name="pswA3" value="${pswA3}"  style="width: 200px;height: 25px">
-            <div class="errMsg">${errMsg}</div>
-        </div>
-
-
-
-
-
-        <div  id="nextStep"> <input type="submit" value="下一步" id="goNext" style="width: 100px;height: 30px"></div>
-    </form>
-</div>
-<script type="text/javascript" src="js/jquery-1.7.2.js"></script>
+    <div class="allStep">
+        <div class="step" id="first">一、填写个人邮箱</div>
+        <div class="step" id="second">二、前往邮箱验证</div>
+        <div class="step" id="third">三、修改密码</div>
+        <div class="step" id="fourth">四、修改成功</div>
+    </div>
+    <div class="fullIn">
+            <h1 align="center">前往您的邮箱验证</h1>
+        <c:if test="${!empty user}">
+        <a align="center" href="http://${user.email}">http://${user.email}</a>
+        </c:if>
+    </div>
 <script type="text/javascript">
-    $(document).ready(function () {
-        $("#goNext").click(function () {
-
-            var namePatrn = /^[a-z0-9_-]{3,16}$/;
-            var name = $("[name=loginName]").val();
-            //密码的验证和判断
-            if (!namePatrn.test(name)) {
-                alert("登录名需要是3~16位的字母数字下划线和横线");
-                return false;
-            }
-        })
-    })
+  
 </script>
 </body>
 </html>

@@ -14,7 +14,7 @@
 <style>
     *{margin: 0px;padding: 0px}
     .step{
-        width: 400px;
+        width: 300px;
         height: 50px;
         line-height:50px;
         font-size: 20px;
@@ -47,6 +47,8 @@
     #first{ background-color: orange}
     #second{background: dodgerblue}
     #third{background: dodgerblue}
+    #fourth{background: dodgerblue}
+
     .InnerBox{
         width: 400px;
         height: 30px;
@@ -58,15 +60,15 @@
 <body>
     <div class="allStep">
         <div class="step" id="first">一、填写个人邮箱</div>
-        <div class="step" id="second">二、密码提示问题验证</div>
+        <div class="step" id="second">二、前往邮箱验证</div>
         <div class="step" id="third">三、修改密码</div>
-
+        <div class="step" id="fourth">四、修改成功</div>
     </div>
     <div class="fullIn">
        <form action="UsersServlet?method=emailTakeBack" method="post">
            <div class="InnerBox">
                <span>请输入您的邮箱： </span>
-               <input type="text" name="loginName" value="${email}" style="width: 200px;height: 25px">
+               <input type="text" name="email" value="${email}" style="width: 200px;height: 25px">
                <div class="errMsg">${errorMsg}</div>
            </div>
 

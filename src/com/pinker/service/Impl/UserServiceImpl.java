@@ -85,9 +85,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public pk_user findUserByEmail(String email) {
-       /* pk_user user = userDao.findUserByEmail(email);
-        return user;*/
-       return null;
+        pk_user user = userDao.findUserByEmail(email);
+        return user;
+
     }
 
     @Override//显示列表 查询所有用户  test  pass
@@ -155,4 +155,14 @@ public class UserServiceImpl implements UserService {
 
         return userDao.findNameResult(page,username,status);
     }
+
+    //    更新randomCode
+    @Override
+    public int updateRandom(pk_user user) {
+        return userDao.updateRandomCode(user);
+    }
+
+
+
+
 }

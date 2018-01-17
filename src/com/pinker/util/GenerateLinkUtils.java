@@ -1,11 +1,14 @@
 package com.pinker.util;
 
 import com.pinker.entity.pk_user;
+import javafx.application.Application;
+import org.apache.catalina.Session;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by Aries.Gu on 2018/1/15.
@@ -18,16 +21,19 @@ public class GenerateLinkUtils {
     /**
      * 生成帐户激活链接
      */
-    public static String generateActivateLink(pk_user user) {
-        return "http://localhost:8080/AccountActivate/activateAccount?id="
+    public static String generateActivateLink(pk_user user, HttpServletRequest request) {
+
+        String serverUrl=WEBUtils.getServerUrl(request);
+        return serverUrl+"/activateAccount?id="
                 + user.getId() + "&" + CHECK_CODE + "=" + generateCheckcode(user);
     }
 
     /**
      * 生成重设密码的链接
      */
-    public static String generateResetPwdLink(pk_user user) {
-        return "http://localhost:8080/AccountActivate/resetPasswordUI?userName="
+    public static String generateResetPwdLink(pk_user user,HttpServletRequest request) {
+        String serverUrl=WEBUtils.getServerUrl(request);
+        return serverUrl+"/UsersServlet?method=emailResponseCheck&userName="
                 + user.getLoginName() + "&" + CHECK_CODE + "=" + generateCheckcode(user);
     }
 

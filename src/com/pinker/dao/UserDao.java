@@ -48,5 +48,7 @@ public interface UserDao {
     Page<pk_user> findIdResult(Page<pk_user> page, Integer id,Integer status);
     /*黑白名单 用户名 分页查询*/
     Page<pk_user> findNameResult(Page<pk_user> page,  String username,Integer status);
+    /*更新随机码*/
+    int updateRandomCode(pk_user user);
 
 }

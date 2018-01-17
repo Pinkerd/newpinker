@@ -1,0 +1,230 @@
+h5{
+	margin: 0;
+}
+
+img{
+	max-width: 100%;
+    vertical-align: middle
+}
+
+input{
+	outline: none;	
+}
+
+#turlin-box{
+	max-width: 720px;
+	margin: 0 auto;
+	color:#333;
+	font-size: 26px;
+	position: fixed;
+	right:0;
+	bottom: 0;
+	border: 1px solid rgba(50,50,50,0.2);
+}
+
+.header{
+    border-bottom: 1px solid #dfdfdf;
+    padding:0 20px;
+    height: 80px;
+    line-height: 100px;
+    background: #fff;
+    position: fixed;
+    width: 100%;
+    max-width: 720px;
+    box-sizing: border-box;
+    z-index: 100;
+}
+
+
+.header .tit{
+    font-size: 32px;
+    vertical-align: middle;
+    text-align: center;
+    height: 100px;
+    line-height: 100px;
+    font-weight: normal;
+}
+
+.header .right{
+	position: absolute;
+	right: 30px;
+	top: 0;
+	float: none;
+	font-size: 24px;
+	line-height: 12px;
+}
+
+.message{
+    background-color: #f1f1f1;
+	padding: 12px 30px 100px 30px;
+    height: 720px;
+    overflow-y: scroll;
+
+}
+
+.time{
+    font-size:24px;
+    color:#999;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.footer{
+	position: absolute;
+	bottom: 0;
+    height:100px;
+    background-color:#fff;
+    line-height:100px;
+    width: 100%;
+    max-width: 720px;
+    border-top: 1px solid #ddd;
+    z-index: 500;
+	left:-3px;
+}
+
+.footer img{
+    margin-left:20px;
+    width: 50px;
+}
+
+ .footer input{
+    margin-left:20px;
+    width:500px;
+    height:64px;
+    border-radius: 10px;
+    border:1px solid #ddd;
+    padding : 0 15px;
+
+
+}
+
+.footer p{
+   width:120px;
+    height:68px;
+    font-size:30px;
+    color:#fff;
+    line-height:68px;
+    text-align:center;
+    background-color:cornflowerblue;
+    border-radius: 10px;
+    float:right;
+    margin-top:20px;
+    margin-right:20px;
+}
+
+.footer p:hover{
+    cursor: pointer;
+}
+
+.send:after,.show:after,.msg:after{
+	content: "";
+	clear: both;
+	display: table;	
+}
+
+.msg>img{
+	width: 80px;
+	float: left;
+}
+
+.msg>p{
+	float: left;
+	margin:0  40px;
+	padding: 25px;
+	background: #fff;
+	font-size: 18px;
+	position: relative;
+	border-radius: 20px;
+	max-width:400px ;
+	box-sizing: border-box;
+    z-index: 0;
+}
+
+.msg_input{
+	position: absolute;
+	background-size:31px auto;
+	width:31px;
+	height: 51px;
+	left: -31px;
+	top: 25px;
+}
+
+.show .msg img,.show .msg p,.show .msg{
+	float: right;
+}
+
+
+.show .msg_input{
+	left: auto;
+	right: -11px;
+	transform:rotate(180deg);
+	-ms-transform:rotate(180deg); 	/* IE 9 */
+	-moz-transform:rotate(180deg); 	/* Firefox */
+	-webkit-transform:rotate(180deg); /* Safari 和 Chrome */
+	-o-transform:rotate(180deg); 	/* Opera */
+}
+
+.send,.show{
+	padding-bottom: 30px;
+}
+
+.alert_novip,.flower_num,.give_flower{
+	display: none;
+	padding: 30px 50px;
+	font-size: 28px;
+}
+
+.alert_novip p,.flower_num  p {
+    margin-bottom: 45px;
+}
+
+.layui-layer-wrap button{
+	font-size: 28px;
+	padding: 20px 30px;
+	margin-top: 10px;
+	background: #f8f8f8;
+	border-radius: 10px;
+}
+
+.flower_num button{
+	padding: 20px 20px;
+	border-radius: 10px;
+}
+
+.layui-layer-wrap button:first-child{
+	float: left;
+}
+
+.layui-layer-wrap button:last-child{
+	float: right;
+	background: #FF7171;
+	color: #fff;
+}
+
+.alert_novip button{
+	padding: 20px 30px;
+    border-radius: 10px
+}
+
+.flower{
+	width: 80px;
+	margin: 0 auto;
+}
+
+.give_flower{
+	text-align: center;
+}
+.give_flower p{
+	text-align: center;
+	line-height: 1.5;
+}
+.give_flower input{
+	width: 80px;
+	margin-right: 10px;
+	margin-top: 20px;
+}
+
+
+#msgInputBox{
+    font-size: 28px;
+}
