@@ -16,9 +16,11 @@
 		<link rel="stylesheet" type="text/css" href="pinker/css/Template.css"/>
 		<link rel="stylesheet" type="text/css" href="pinker/css/zhwz.css">
 		<link rel="stylesheet" type="text/css" href="pinker/css/head_info.css">
+		<link rel="stylesheet" type="text/css" href="pinker/css/turlin.css">
 		<script type="text/javascript" src="pinker/js/Template.js"></script>
 		<script type="text/javascript" src="pinker/js/head_info.js"></script>
 		<script type="text/javascript" src="pinker/js/topic.js"></script>
+		<script type="text/javascript" src="pinker/js/turlin.js"></script>
 
 		<%
 			//页面获取话题id
@@ -218,5 +220,8 @@
 				</div>
 			</div>
 		</div>
+	
+	
+	<%@include file="/WEB-INF/include/turlin.jsp"%>
 	</body>
 </html>

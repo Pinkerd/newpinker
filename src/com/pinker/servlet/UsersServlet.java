@@ -3,7 +3,9 @@ package com.pinker.servlet;
 import com.pinker.entity.Page;
 import com.pinker.entity.pk_user;
 import com.pinker.service.Impl.UserServiceImpl;
+import com.pinker.service.UserService;
 import com.pinker.util.EmailUtils;
+import com.pinker.util.GenerateLinkUtils;
 
 
 import javax.servlet.ServletException;
@@ -345,6 +347,12 @@ public class UsersServlet extends BaseServlet {
         }
     }
 
+
+    /**
+     * 发送邮箱验证
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void emailTakeBack(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("jump into emailTakeBack...");
 
@@ -356,12 +364,31 @@ public class UsersServlet extends BaseServlet {
             request.getRequestDispatcher("pinker/emailTakeBack1.jsp").forward(request, response);
             return;
         }
-
+        //每次请求生成新的随机码修改随机码
+        usi.updateRandom(user);
+        user = usi.findUserByEmail(email);
         // 发送重新设置密码的链接
-        EmailUtils.sendResetPasswordEmail(user);
+        EmailUtils.sendResetPasswordEmail(user,request);
 
-        request.setAttribute("sendMailMsg", "您的申请已提交成功，请查看您的"+user.getEmail()+"邮箱。");
+        request.setAttribute("user", user);
 
-        request.getRequestDispatcher("/WEB-INF/pages/forgotPwdSuccess.jsp").forward(request, response);
+        request.getRequestDispatcher("pinker/emailTakeBack2.jsp").forward(request, response);
+    }
+
+
+    /**
+     * 邮箱验证
+     */
+    protected void emailResponseCheck(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String username=req.getParameter("userName");
+        pk_user user=usi.findByLoginName(username);
+        boolean match=GenerateLinkUtils.verifyCheckcode(user,req);
+        if(match){
+            req.setAttribute("user",user);
+            req.getRequestDispatcher("pinker/emailTakeBack3.jsp").forward(req,resp);
+        }else{
+            System.out.println(GenerateLinkUtils.generateCheckcode(user));
+        }
+
     }
 }

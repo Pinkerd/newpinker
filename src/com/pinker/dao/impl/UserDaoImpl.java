@@ -4,6 +4,7 @@ import com.pinker.dao.BaseDao;
 import com.pinker.dao.UserDao;
 import com.pinker.entity.Page;
 import com.pinker.entity.pk_user;
+import com.pinker.util.IDUtil;
 
 
 import java.util.Date;
@@ -175,6 +176,16 @@ public class UserDaoImpl extends BaseDao<pk_user> implements UserDao {
         List<pk_user> listBean = this.getListBean(sql,newname,status, page.getIndex(), page.getPageSize());
         page.setData(listBean);
         return page;
+    }
+
+    /**
+     * 更新随机码
+     * @return
+     */
+    @Override
+    public int updateRandomCode(pk_user user) {
+        String sql="update pk_user set randomCode=? where id=?";
+        return this.update(sql,IDUtil.createID(),user.getId());
     }
 
 }

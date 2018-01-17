@@ -14,7 +14,7 @@
 <style>
     *{margin: 0px;padding: 0px}
     .step{
-        width: 400px;
+        width: 300px;
         height: 50px;
         line-height:50px;
         font-size: 20px;
@@ -45,8 +45,9 @@
         text-align: center;
     }
     #first{ background-color:dodgerblue }
-    #second{background:orange }
-    #third{background: dodgerblue}
+    #second{background:dodgerblue }
+    #third{background: orange}
+    #fourth{background: dodgerblue}
     .InnerBox{
         width: 300px;
         height: 30px;
@@ -58,8 +59,9 @@
 <body>
 <div class="allStep">
     <div class="step" id="first">一、填写个人邮箱</div>
-    <div class="step" id="second">二、密码提示问题验证</div>
+    <div class="step" id="second">二、前往邮箱验证</div>
     <div class="step" id="third">三、修改密码</div>
+    <div class="step" id="fourth">四、修改成功</div>
 
 </div>
 <div class="fullIn">
