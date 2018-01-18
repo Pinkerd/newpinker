@@ -29,16 +29,17 @@
         display: inline-block;
     }
     .userName{
-        border: 1px red solid;
+        /*border: 1px red solid;*/
         width:100px;
         height: 20px;
         line-height: 20px;
         text-align: center;
         float: right;
         margin-top: 30px;
+        color:white;
     }
     .userHeader{
-        border: 1px red solid;
+        /*border: 1px red solid;*/
         width: 60px;
         height: 60px;
         float: right;
@@ -97,8 +98,8 @@
 <div class="header">
     <img src="img/安全中心.png"  style="float:left;width: 55px;height: 60px;margin-top: 10px;margin-left: 100px">
     <div class="title">安全中心</div>
-    <div class="userHeader">用户头像</div>
-    <div class="userName">用户名</div>
+    <div class="userHeader"><img width="50px" height="50px" src="http://localhost:8080/pinker/IOServlet?method=loadHeadImg" alt=""></div>
+    <div class="userName">${user.username}</div>
 </div>
 
 <div class="byEmail">

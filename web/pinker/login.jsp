@@ -73,7 +73,7 @@
 						</div>
 						<div id="LoginErrorMsg">${LoginErrorMsg}</div>
 						<div>
-							<a href="pinker/pswTakeBack1.jsp" id="pswTakeBack">
+							<a href="pinker/securityCenter.jsp" id="pswTakeBack">
 								忘记密码了？找回密码
 							</a>
 						</div>

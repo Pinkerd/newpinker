@@ -4,6 +4,8 @@ import com.pinker.entity.Page;
 import com.pinker.entity.pk_user;
 import com.pinker.service.Impl.UserServiceImpl;
 import com.pinker.util.EmailUtils;
+import com.pinker.util.GenerateLinkUtils;
+import com.pinker.util.IDUtil;
 
 
 import javax.servlet.ServletException;
@@ -345,6 +347,14 @@ public class UsersServlet extends BaseServlet {
         }
     }
 
+
+    /**
+     * 发送验证邮件
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void emailTakeBack(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("jump into emailTakeBack...");
 
@@ -356,12 +366,38 @@ public class UsersServlet extends BaseServlet {
             request.getRequestDispatcher("pinker/emailTakeBack1.jsp").forward(request, response);
             return;
         }
-
+        usi.updateRandom(user);
+        user=usi.findUserByEmail(email);
+        request.setAttribute("user",user);
         // 发送重新设置密码的链接
-        EmailUtils.sendResetPasswordEmail(user);
+        EmailUtils.sendResetPasswordEmail(user,request);
 
         request.setAttribute("sendMailMsg", "您的申请已提交成功，请查看您的"+user.getEmail()+"邮箱。");
 
-        request.getRequestDispatcher("/WEB-INF/pages/forgotPwdSuccess.jsp").forward(request, response);
+        request.getRequestDispatcher("pinker/emailTakeBack2.jsp").forward(request, response);
+    }
+
+
+    /**
+     * 邮箱验证核对
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
+    protected void emailResponseCheck(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        String userName=req.getParameter("userName");
+
+        pk_user user=usi.findByLoginName(userName);
+        if(GenerateLinkUtils.verifyCheckcode(user,req)){
+            req.setAttribute("user",user);
+            req.getRequestDispatcher("pinker/emailTakeBack3.jsp").forward(req,resp);
+            usi.updateRandom(user);
+        }else{
+            req.setAttribute("errMsg","邮箱验证失败，请勿使用过期验证");
+            req.getRequestDispatcher("pinker/emailTakeBack1.jsp").forward(req,resp);
+        }
+
     }
 }

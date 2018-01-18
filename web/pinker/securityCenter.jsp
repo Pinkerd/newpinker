@@ -97,10 +97,10 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $(".byEmail").click(function () {
-                window.location.href="邮件找回的连接";
+                window.location.href="http://localhost:8080/pinker/pinker/emailTakeBack1.jsp";
             })
             $(".byQA").click(function () {
-                window.location.href="密码提示问题找回的页面";
+                window.location.href="http://localhost:8080/pinker/pinker/pswTakeBack1.jsp";
             })
         })
 

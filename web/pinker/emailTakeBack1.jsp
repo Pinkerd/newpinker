@@ -69,7 +69,7 @@
            <div class="InnerBox">
                <span>请输入您的邮箱： </span>
                <input type="text" name="email" value="${email}" style="width: 200px;height: 25px">
-               <div class="errMsg">${errorMsg}</div>
+               <div class="errMsg">${errMsg}</div>
            </div>
 
 
