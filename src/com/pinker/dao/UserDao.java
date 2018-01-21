@@ -50,5 +50,8 @@ public interface UserDao {
     Page<pk_user> findNameResult(Page<pk_user> page,  String username,Integer status);
     /*更新随机码*/
     int updateRandomCode(pk_user user);
+    /*第三方新增用户*/
+    int addThirdUser(int id,String loginName,String userName,String password);
+
 
 }

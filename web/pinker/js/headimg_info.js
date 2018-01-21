@@ -27,9 +27,10 @@ function previewImg(imgFile){
     }
 }
 
-var upName,upDataImg;
 
-//开始上传
+var upName,upDataImg;//上传文件名，
+
+//图片提交预览
 function uploadImg(imgFile){
     //获取图片文件
     var file = imgFile.files[0];//文件对象
@@ -53,6 +54,8 @@ function uploadImg(imgFile){
     }
 }
 
+
+//异步提交
 function syncUpload(){
 
     var name=upName;

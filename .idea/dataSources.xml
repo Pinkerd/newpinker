@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="pinker@localhost" uuid="80e9a5aa-3333-4612-b8d4-271e070c06b9">
+    <data-source source="LOCAL" name="mypinker@localhost" uuid="8bde41ab-b271-4829-89d4-2998145860f5">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/pinker</jdbc-url>
+      <jdbc-url>jdbc:mysql://localhost:3306/mypinker</jdbc-url>
       <driver-properties>
         <property name="autoReconnect" value="true" />
         <property name="zeroDateTimeBehavior" value="convertToNull" />

@@ -87,7 +87,7 @@
         <div class="innnerTitle">通过邮件找回密码</div>
     </div>
 
-    <div class="byQA">
+    <div class="byQA">1
         <img src="img/通过密码提示问题找回.png"  style="width: 100px;height: 80px;float: left;margin-top: 55px;margin-left:30px">
         <div class="innnerTitle">密码提示问题找回密码</div>
     </div>

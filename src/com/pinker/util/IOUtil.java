@@ -87,9 +87,7 @@ public class IOUtil {
             }
 
             imgName = URLDecoder.decode(imgName,"utf-8");//前面进行了两次编码，这里需要用解码器解码一次
-            //String path = "/site/images"+File.separator+imgName;//Linux文件保存路径
-//            String path = "E:\\site\\images"+ File.separator+imgName;
-//            String path = filePath+ File.separator+imgName;//Windows文件保存路径
+
             String path = filePath+ "\\"+topicId+imgName.substring(imgName.lastIndexOf("."));
             System.out.println(path);
             //File file = new File("/site/images");

@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 
-    <div id="turlin-box">
+    <div id="turlin-box" hidden>
 		<header class="header">
 			<h5 class="tit">知性助手</h5>
 

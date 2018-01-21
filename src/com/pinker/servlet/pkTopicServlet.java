@@ -179,4 +179,21 @@ public class pkTopicServlet extends BaseServlet {
         IOUtil.uploadImg(req,resp,"E:\\site\\topicImg",topicId);
 
     }
+
+    /**
+     * 分页获取
+     */
+    protected void findByPageNum(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int pageNum= Integer.parseInt(req.getParameter("pageNum"));
+        Page<pk_topic> page= new Page<>();
+        page.setPageNumber(pageNum);
+        page.setPageSize(12);
+        page=tsi.findTopic(page);
+        page.getTotalPage();
+        String pageJ=gson.toJson(page);
+        PrintWriter out=resp.getWriter();
+        out.print(pageJ);
+        out.flush();
+        out.close();
+    }
 }

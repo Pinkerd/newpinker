@@ -47,7 +47,7 @@ public class TopicDaoImpl extends BaseDao<pk_topic > implements TopicDao {
 
     @Override
     public Page<pk_topic> findTopic(Page<pk_topic> page) {
-        String totalRecodeSql="select count(*) from pk_topic";
+        String totalRecodeSql="select count(*) from pk_topic where status=1";
         //书总数
         long totalRecodeL= 0;
 
@@ -60,7 +60,7 @@ public class TopicDaoImpl extends BaseDao<pk_topic > implements TopicDao {
         //偏移索引值
         int index=page.getIndex();
 
-        String listSql="select * from pk_topic limit ?,?";
+        String listSql="select * from pk_topic where status=1 limit ?,?";
         List<pk_topic> list=this.getListBean(listSql,index,pageSize);
 
         page.setData(list);

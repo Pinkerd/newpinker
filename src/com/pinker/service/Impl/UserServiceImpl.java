@@ -164,5 +164,10 @@ public class UserServiceImpl implements UserService {
 
 
 
+    @Override
+    public int addThirdUser(int id, String loginName, String userName, String password) {
+        return userDao.addThirdUser(id,loginName,userName,password);
+    }
+
 
 }

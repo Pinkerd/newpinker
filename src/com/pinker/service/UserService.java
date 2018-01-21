@@ -55,5 +55,7 @@ public interface UserService {
     int updateRandom(pk_user user);
 
 
+    /*第三方新增用户*/
+    int addThirdUser(int id,String loginName,String userName,String password);
 
 }

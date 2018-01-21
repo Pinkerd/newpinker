@@ -20,9 +20,9 @@ public class Page<T> {
 
     public int getTotalPage() {
         if(getTotalRecord() % getPageSize() ==0 ){
-            totalPage=getTotalRecord() / getPageSize();
+            totalPage= getTotalRecord() / getPageSize();
         }else{
-            totalPage=getTotalRecord() / getPageSize() + 1;
+            totalPage= getTotalRecord() / getPageSize() + 1;
         }
         return totalPage;
     }

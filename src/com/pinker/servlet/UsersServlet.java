@@ -1,11 +1,13 @@
 package com.pinker.servlet;
 
+import com.google.gson.Gson;
 import com.pinker.entity.Page;
 import com.pinker.entity.pk_user;
 import com.pinker.service.Impl.UserServiceImpl;
 import com.pinker.util.EmailUtils;
 import com.pinker.util.GenerateLinkUtils;
 import com.pinker.util.IDUtil;
+import org.apache.catalina.User;
 
 
 import javax.servlet.ServletException;
@@ -13,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -43,6 +46,7 @@ import java.util.List;
 @WebServlet(name = "UsersServlet",urlPatterns = ("/UsersServlet"))
 public class UsersServlet extends BaseServlet {
     UserServiceImpl usi=new UserServiceImpl();
+    private Gson gson=new Gson();
 
     /*1.登陆 根据登录名和密码登陆*/
     protected void logIn(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -111,14 +115,9 @@ public class UsersServlet extends BaseServlet {
         Date birthday = new SimpleDateFormat("yyyy-MM-dd").parse(birth);    //birthday Date
         String constellation = request.getParameter("constellation");           //constellation String
             String header = request.getParameter("header");
-            String pswQ1 = request.getParameter("pswQ1");
-        String pswA1 = request.getParameter("pswA1");
-        String pswQ2 = request.getParameter("pswQ2");
-        String pswA2 = request.getParameter("pswA2");
-        String pswQ3 = request.getParameter("pswQ3");
-        String pswA3 = request.getParameter("pswA3");
+
         String introduction = request.getParameter("introduction");
-            pk_user user = new pk_user(id, loginName, password, username, email, roleId, status, createtime, lastlogin, residence, school, gender, birthday, constellation, introduction, header, pswQ1, pswA1, pswQ2, pswA2, pswQ3, pswA3);
+            pk_user user = new pk_user(id, loginName, password, username, email, roleId, status, createtime, lastlogin, residence, school, gender, birthday, constellation, introduction, header, null, null, null, null, null, null);
             System.out.println(user);
             boolean update = usi.update(user);
             if(update){
@@ -349,7 +348,7 @@ public class UsersServlet extends BaseServlet {
 
 
     /**
-     * 发送验证邮件
+     * 17.发送验证邮件
      * @param request
      * @param response
      * @throws ServletException
@@ -379,7 +378,7 @@ public class UsersServlet extends BaseServlet {
 
 
     /**
-     * 邮箱验证核对
+     * 18.邮箱验证核对
      * @param req
      * @param resp
      * @throws ServletException
@@ -400,4 +399,35 @@ public class UsersServlet extends BaseServlet {
         }
 
     }
+
+
+    /**
+     * 修改密保问题
+     * @param request
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
+
+    protected void updateQA(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
+        Integer id = Integer.valueOf(request.getParameter("id"));
+        String pswQ1 = request.getParameter("pswQ1");
+        String pswA1 = request.getParameter("pswA1");
+        String pswQ2 = request.getParameter("pswQ2");
+        String pswA2 = request.getParameter("pswA2");
+        String pswQ3 = request.getParameter("pswQ3");
+        String pswA3 = request.getParameter("pswA3");
+        boolean b = usi.updatePswQA(pswQ1, pswA1, pswQ2, pswA2, pswQ3, pswA3, id);
+        if(b){
+            pk_user user = usi.findByUserId(id);
+            request.getSession().setAttribute("user",user);
+            request.getRequestDispatcher("/pinker/PersonPage.jsp").forward(request,resp);
+        }else{
+            request.setAttribute("errormeg","更改失败");
+            request.getRequestDispatcher("/pinker/securityCenterPsw.jsp").forward(request,resp);
+        }
+    }
+
+
+
 }

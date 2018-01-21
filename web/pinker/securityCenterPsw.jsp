@@ -92,6 +92,18 @@
         float: right;
     }
 
+    #oldPassword,#newPassword,#newPasswordAg{
+        display: inline-block;
+        width: 200px;
+        height: 30px;
+        border-radius: 6px;
+        border:1px solid rgba(50,50,50,0.5);
+    }
+
+
+
+
+
 
 </style>
 <body>
@@ -222,6 +234,7 @@
         <input type="submit" class="changePasswordBtn" id="changePasswordBtn1" value="修改" style="margin-left:70px">
         <input type="button"  class="changePasswordCancelBtn" id="cancelChange1" value="返回" style="margin-left: 30px">
      </form>
+    <h3 align="center">${errormeg}</h3>
 </div>
 
 

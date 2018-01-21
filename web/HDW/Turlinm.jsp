@@ -40,7 +40,7 @@
 
 <div id="messageInfo">
 
-
+<<a href="http://localhost:8080/pinker/pinker/emailTakeBack2.jsp">SSSS</a>
 
 </div>
 

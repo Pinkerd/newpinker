@@ -54,6 +54,7 @@
                             <ul>
                                 <li><a href="pinker/Myblo.jsp"><img src="pinker/img/icon/account.png" alt="" height="18px" width="18px">&nbsp;个人主页</a></li>
                                 <li><a href="pinker/PersonPage.jsp"><img src="pinker/img/icon/set.png" alt="" height="18px" width="18px">&nbsp; 个人信息</a></li>
+                                <li><a href="pinker/securityCenter.jsp"><img src="pinker/img/icon/security.png" alt="" height="18px" width="18px">&nbsp; 安全中心</a></li>
                                 <li><a id="loginOut-a" href="javascript:void(0)"><img src="pinker/img/icon/error.png" alt="" height="18px" width="18px">&nbsp; 退出登录</a></li>
                             </ul>
                         </div>

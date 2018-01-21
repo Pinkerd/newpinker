@@ -111,15 +111,15 @@ function ana308(result) {
 
 
 //获取时间日期
-function getDate() {
-    var date=new Date();
+function getDateString(date) {
+    var year=date.getYear();
     var month=date.getMonth()+1;
     var day=date.getDate();
     var hour=date.getHours();
     var minute=date.getMinutes();
     var second=date.getSeconds();
 
-    return month+"月"+day+"日  "+hour+":"+minute
+    return year+"年"+month+"月"+day+"日  "+hour+":"+minute+":"+second;
 }
 
 

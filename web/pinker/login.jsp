@@ -9,6 +9,7 @@
 		<%@include file="/WEB-INF/include/base_info.jsp"%>
 		<link rel="stylesheet" type="text/css" href="pinker/css/login.css" />
 		<script type="text/javascript" src="pinker/js/jquery-1.7.2.js"></script>
+		<script type="text/javascript" src="pinker/js/thirdParty.js"></script>
 		<style>
 			input[type="password"]{
 			width: 280px;
@@ -29,6 +30,18 @@
 				float: right;
 				color: #003b81;
 			}
+
+			.thirdLogo{
+				border-radius: 30px;
+				overflow: hidden;
+			}
+
+			#thirdBtn-div li{
+				list-style: none;
+				display: inline-block;
+
+			}
+
 		</style>
 
 		<script type="text/javascript">
@@ -64,7 +77,7 @@
 					<div class="index-form-login  isActive" hidden="hidden">
 
 			<%--登陆form表单--%>
-					<form action="http://localhost:8080/pinker/UsersServlet?method=logIn" method="post">
+					<form action="/UsersServlet?method=logIn" method="post">
 						<div class="login-input-usernameWrap">
 						<input type="text" name="loginname" value="" placeholder="用户名" onkeyup="this.value=this.value.replace(/[, ]/g,'')"/>
 						</div>
@@ -78,11 +91,13 @@
 							</a>
 						</div>
 						<input type="submit" id="login-commitBtn" value="登录"/>
+						<a href="javascript:void(0)" id="thirdParty-entry" style="display: inline-block;font-size:12px ;width: 100px;margin: 10px auto 0px">第三方登录</a>
+
 					</form>
 					</div>
 			<%--注册form表单--%>
 					<div class="index-form-regiser" hidden="hidden">
-						<form action="http://localhost:8080/pinker/UsersServlet?method=saveUser" method="post" id="#rgform" >
+						<form action="/UsersServlet?method=saveUser" method="post" id="#rgform" >
 							<input type="text" name="loginName"  id="rgname" placeholder="用户名" value="" onkeyup="this.value=this.value.replace(/[, ]/g,'')"/>
 							<input type="password" name="password"  id="rgpsw1" placeholder="密码" value="" onkeyup="this.value=this.value.replace(/[, ]/g,'')" />
 							<input type="password" name="passwordAg"  id="rgpsw2" placeholder="确认密码" value="" onkeyup="this.value=this.value.replace(/[, ]/g,'')" />
@@ -93,6 +108,45 @@
 				</div>
 			</div>
 		</div>
+
+		<div id="thirdBtn-div">
+			<span>第三方登录</span>
+			<ul>
+				<li>
+					<a id="ShowLanThirdLogin" href="javascript:void(0)"><img class="thirdLogo" src="pinker/img/thirdImg/lanLogo.png" height="50px" width="50px"></a>
+				</li>
+
+				<li>
+					<a id="showCorThirdLogin" href="javascript:void(0)"><img class="thirdLogo" src="pinker/img/thirdImg/lanLogo.png"  height="50px" width="50px"></a>
+				</li>
+			</ul>
+		</div>
+
+		<div id="lanThirdInfo-div">
+
+			<div id="lanThirdLogin-box" >
+				<a href="javascript:void(0)">
+				<img src="pinker/img/thirdImg/lanLogo.png" >
+				使用用户:<span id="lanUsername"></span>登录
+				</a>
+			</div>
+			<div id="lanThirdUserInfo-box" >
+
+
+
+			</div>
+		</div>
+
+		<div id="corThirdInfo-div">
+			<div id="corThirdLogin-box">
+
+			</div>
+			<div id="corThirdUserInfo-box">
+
+			</div>
+		</div>
+
+
 		<iframe src="pinker/background.jsp" width="100%" height="100%"></iframe>
 
 	</body>

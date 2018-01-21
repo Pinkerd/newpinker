@@ -195,4 +195,10 @@ public class UserDaoImpl extends BaseDao<pk_user> implements UserDao {
         return this.update(sql,IDUtil.createID(),user.getId());
     }
 
+    @Override
+    public int addThirdUser(int id, String loginName, String userName, String password) {
+        String sql="insert into pk_user (id,loginName,userName,password,createtime) values (?,?,?,?,NOW())";
+        return this.update(sql,id,loginName,userName,password);
+    }
+
 }
