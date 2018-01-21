@@ -69,7 +69,7 @@
         <%--开始发现之旅--%>
 
         <div class="downBox">
-            <a href="#down">
+            <a id="startKnowledge" href="#down">
             <div class="startDiscover">
                 <h2>开始知识的旅程</h2>
                 <img src="pinker/img/arrowDown.png" style="margin: 0px auto;width: 100px;height: 50px">
@@ -194,6 +194,8 @@
     <script type="text/javascript" src="pinker/js/jquery-1.7.2.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
+            $("#startKnowledge")[0].href=window.location.href+"#down";
+
             /*头部淡入*/
             $(".header").fadeIn(3000);
             $(".funcList").fadeIn(5000);

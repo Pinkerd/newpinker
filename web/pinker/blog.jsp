@@ -86,7 +86,7 @@
 						<div class="page_topfootmain">
 							<div class="page_topfootGroup">
 								<button class="page-attention"></button>
-								<a class="page-review" href="#mao">我要评论</a>
+								<a class="page-review"  href="#mao">我要评论</a>
 							</div>
 							<%--<div class="page_topfootAction">
 								<div class="page_topfootActioncomment">
@@ -131,9 +131,9 @@
 						</div>
 
 					</div>
-					<div class="AnswerItem-extraInfo">
-						收录于 编辑推荐 &nbsp;圆桌 299 人赞同了该回答
-					</div>
+					<%--<div class="AnswerItem-extraInfo">--%>
+						<%--收录于 编辑推荐 &nbsp;圆桌 299 人赞同了该回答--%>
+					<%--</div>--%>
 
 				</div>
 				<div class="RichContent-inner">
@@ -157,10 +157,10 @@
 						<a style="display: inline-block;position: relative;bottom:2px;left: 6px;"><span class="commentCountBox"></span>条评论</a>
 					</button>
 
-					<button class="left-dividual">
-						<img src="pinker/img/分享.png" width="20px" height="20px" style="position: relative;top: 3px;"/>
-						<a style="display: inline-block;position: relative;bottom:2px;left: 4px;">分享</a>
-					</button>
+					<%--<button class="left-dividual">--%>
+						<%--<img src="pinker/img/分享.png" width="20px" height="20px" style="position: relative;top: 3px;"/>--%>
+						<%--<a style="display: inline-block;position: relative;bottom:2px;left: 4px;">分享</a>--%>
+					<%--</button>--%>
 
 					<button class="left-collect">
 						<img src="pinker/img/收藏.png" width="20px" height="20px" style="position: relative;top: 3px;"/>
@@ -268,6 +268,9 @@
             data:{blogId:blogId},
             dataType:"text",
             success:function (result) {
+               $(".page-review")[0].href=window.location.href+"#mao";
+
+
                 //alert(result);
                 //这个result是个字符串
                 if (result=="true"){
