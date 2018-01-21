@@ -54,6 +54,7 @@
 									<tr>
 										<td>登录名</td>
 										<td><span class="loginName" name="loginName">${user.loginName}</span>
+											<input class="loginName" name="loginName" value="${user.loginName}" style="display: none">
 											<input type="text" name="password" style="display: none" value="${user.password}">
 										</td>
 									</tr>

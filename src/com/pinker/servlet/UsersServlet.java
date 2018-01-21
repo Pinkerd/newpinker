@@ -410,6 +410,8 @@ public class UsersServlet extends BaseServlet {
      */
 
     protected void updateQA(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("jump into updateQA");
+
         Integer id = Integer.valueOf(request.getParameter("id"));
         String pswQ1 = request.getParameter("pswQ1");
         String pswA1 = request.getParameter("pswA1");
@@ -418,6 +420,7 @@ public class UsersServlet extends BaseServlet {
         String pswQ3 = request.getParameter("pswQ3");
         String pswA3 = request.getParameter("pswA3");
         boolean b = usi.updatePswQA(pswQ1, pswA1, pswQ2, pswA2, pswQ3, pswA3, id);
+        System.out.println("QA更新："+b);
         if(b){
             pk_user user = usi.findByUserId(id);
             request.getSession().setAttribute("user",user);
