@@ -65,7 +65,7 @@
 						<c:forEach items="${collectTopic}" var="collectTop">
 							<div class="topic-wrap">
 								<div class="topic-img">
-									<img src="http://localhost:8080/pinker/IOServlet?method=loadTopicImg&topicId=${collectTop.topicId}" width="60px" height="60px" />
+									<img src="/pinker/IOServlet?method=loadTopicImg&topicId=${collectTop.topicId}" width="60px" height="60px" />
 								</div>
 								<div style="width: 400px" class="topic-title">
 									<a href="pinker/topic_blogList.jsp?topicId=${collectTop.topicId}"><h3>${collectTop.topic.title}</h3></a>

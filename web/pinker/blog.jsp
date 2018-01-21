@@ -68,7 +68,7 @@
 
 					</div>
 
-					<div class="page_topcontentside">
+					<%--<div class="page_topcontentside">
 						<div class="page-collector">
 							<div class="collector-name">收藏者</div>
 							<div class="collector-value">4875</div>
@@ -78,7 +78,7 @@
 							<div class="item-value">509544</div>
 						</div>
 
-					</div>
+					</div>--%>
 
 					<!--讨论论题的底部-->
 
@@ -206,7 +206,7 @@
 
 		<div class="template-body-right">
 			<!--在这里写右边-->
-			<div class="Card">
+			<%--<div class="Card">
 				<div class="Cardhead">
 					<div class="CardheadText">相关问题</div>
 					<hr />
@@ -233,7 +233,7 @@
 						3021个回答
 					</div>
 				</div>
-			</div>
+			</div>--%>
 		</div>
 	</div>
 </div>

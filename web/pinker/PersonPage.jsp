@@ -53,7 +53,8 @@
 
 									<tr>
 										<td>登录名</td>
-										<td><span class="loginName" name="loginName">${user.loginName}</span>
+										<td><span class="loginName" >${user.loginName}</span>
+											<input type="hidden" name="loginName" value="${user.loginName}">
 											<input type="text" name="password" style="display: none" value="${user.password}">
 										</td>
 									</tr>
