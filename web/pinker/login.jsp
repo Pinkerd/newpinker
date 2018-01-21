@@ -42,6 +42,19 @@
 
 			}
 
+			#thirdBtn-div{
+				position: absolute;
+				top:60%;
+				left:40%;
+			}
+
+			#lanThirdInfo-div{
+				position: fixed;
+				height: 100%;
+				width: 100%;
+				background: rgba(50,50,50,0.3);
+			}
+
 		</style>
 
 		<script type="text/javascript">
@@ -77,7 +90,7 @@
 					<div class="index-form-login  isActive" hidden="hidden">
 
 			<%--登陆form表单--%>
-					<form action="/UsersServlet?method=logIn" method="post">
+					<form action="UsersServlet?method=logIn" method="post">
 						<div class="login-input-usernameWrap">
 						<input type="text" name="loginname" value="" placeholder="用户名" onkeyup="this.value=this.value.replace(/[, ]/g,'')"/>
 						</div>
@@ -97,7 +110,7 @@
 					</div>
 			<%--注册form表单--%>
 					<div class="index-form-regiser" hidden="hidden">
-						<form action="/UsersServlet?method=saveUser" method="post" id="#rgform" >
+						<form action="UsersServlet?method=saveUser" method="post" id="#rgform" >
 							<input type="text" name="loginName"  id="rgname" placeholder="用户名" value="" onkeyup="this.value=this.value.replace(/[, ]/g,'')"/>
 							<input type="password" name="password"  id="rgpsw1" placeholder="密码" value="" onkeyup="this.value=this.value.replace(/[, ]/g,'')" />
 							<input type="password" name="passwordAg"  id="rgpsw2" placeholder="确认密码" value="" onkeyup="this.value=this.value.replace(/[, ]/g,'')" />
@@ -122,28 +135,23 @@
 			</ul>
 		</div>
 
-		<div id="lanThirdInfo-div">
+		<div id="lanThirdInfo-div" hidden>
 
 			<div id="lanThirdLogin-box" >
-				<a href="javascript:void(0)">
-				<img src="pinker/img/thirdImg/lanLogo.png" >
-				使用用户:<span id="lanUsername"></span>登录
-				</a>
+				<input type="text" id="lanLoginName">
+				<input type="password" id="lanPassword">
+				<button id="lanLoginBtn">登录</button>
 			</div>
-			<div id="lanThirdUserInfo-box" >
 
-
-
-			</div>
 		</div>
 
 		<div id="corThirdInfo-div">
 			<div id="corThirdLogin-box">
 
-			</div>
-			<div id="corThirdUserInfo-box">
+
 
 			</div>
+
 		</div>
 
 
