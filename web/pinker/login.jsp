@@ -180,7 +180,7 @@
 			<div id="lanThirdLogin-box" >
 				<div id="lanForm">
 				<img class="thirdLogo" src="pinker/img/thirdImg/lanLogo.png"  height="50px" width="50px">
-					<span style="font-size: 30px">蓝鲸灵乐园</span>
+					<span style="font-size: 30px">蓝鲸灵乐园</span><span id="thirdLoginRsult" style="font-size: 10px;color: red"></span>
 				<input type="text" id="lanLoginName">
 				<input type="password" id="lanPassword">
 				<button id="lanLoginBtn">登录</button>

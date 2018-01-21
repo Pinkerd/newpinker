@@ -102,12 +102,18 @@ function lanLogin(lanjinglingUrl) {
         },//添加跨域名请求参数
         crossDomain: true,//添加跨域名请求参数
         success:function(data){
-            alert(data);
+            if(data){
+                $("#ShowLanThirdLogin").trigger("click");
+            }else{
+
+                $("#thirdLoginRsult").text("用户名或密码错误");
+            }
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {
-            alert(XMLHttpRequest.status);
-            alert(XMLHttpRequest.readyState);
-            alert(textStatus);
+            // alert(XMLHttpRequest.status);
+            // alert(XMLHttpRequest.readyState);
+            // alert(textStatus);
+            // $("#ShowLanThirdLogin").trigger("click");
         }
 
 
