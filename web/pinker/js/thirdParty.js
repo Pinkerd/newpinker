@@ -66,7 +66,7 @@ function lanThirdLogin(myUser,myMethod) {
         if(result=="true"){
             window.location.href="/pinker/index.jsp";
         }else {
-            alert("蓝精灵无登录用户");
+            $("#lanThirdInfo-div").show();
         }
     })
 }
@@ -84,6 +84,45 @@ function corThirdLogin(myUser,myMethod) {
 }
 
 
+function lanLogin(lanjinglingUrl) {
+    var username=$("#lanLoginName").val();
+    var password=$("#lanPassword").val();
+
+
+    $.ajax({
+        url:"http://172.27.35.4:8080/OtherServlet?method=loginThird&callback=flightHandler",
+        type: 'post',
+        data: {username:username,password:password},
+        async: false,
+        dataType:'JSONP',//以js形式实现跨域获取数据
+        jsonp:"callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+        jsonpCallback:"flightHandler",//自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名，也可以写"?"，jQuery会自动为你处理数据
+        xhrFields: {
+            withCredentials: true
+        },//添加跨域名请求参数
+        crossDomain: true,//添加跨域名请求参数
+        success:function(data){
+            if(data){
+                $("#ShowLanThirdLogin").trigger("click");
+            }else{
+
+                $("#thirdLoginRsult").text("用户名或密码错误");
+            }
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            // alert(XMLHttpRequest.status);
+            // alert(XMLHttpRequest.readyState);
+            // alert(textStatus);
+            // $("#ShowLanThirdLogin").trigger("click");
+        }
+
+
+})
+
+}
+/**
+ * 页面加载后执行
+ */
 $(function () {
     //蓝精灵服务url
     var lanjinglingUrl="http://172.27.35.4:8080/OtherServlet?method=thirdService&callback=flightHandler";
@@ -107,9 +146,16 @@ $(function () {
     })
 
 
+    $("#closeLanLoginBtn").click(function () {
+        $("#lanThirdInfo-div").hide();
+    })
 
-    $("#thirdParty-entry").click(function () {
-        $("#thirdDiv").toggle();
-    });
+
+    $("#lanLoginBtn").click(function () {
+        lanLogin(lanjinglingUrl);
+    })
+
+
+
 })
 

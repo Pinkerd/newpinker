@@ -18,7 +18,7 @@ function loadTopicCount() {
  *  分页获取话题
  */
 function loadTopicByPageNum(pageNum){
-    $.post("/pinker//pkTopicServlet?method=findByPageNum",{pageNum:pageNum},function (pageJ) {
+    $.post("/pinker/pkTopicServlet?method=findByPageNum",{pageNum:pageNum},function (pageJ) {
         var page=JSON.parse(pageJ);
         if(page.totalPage==pageNum){
             $(".db a").text("没有更多了");

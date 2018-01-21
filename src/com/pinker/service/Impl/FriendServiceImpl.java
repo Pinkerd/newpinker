@@ -20,11 +20,11 @@ public class FriendServiceImpl implements FriendService {
      * @param friend
      */
     private void setFull(Friend friend){
-      /*  pk_user user=userDao.findByUserId(friend.getUserId());
+        pk_user user=userDao.findByUserId(friend.getUserId());
         pk_user friendUser=userDao.findByUserId(friend.getFriendId());
 
         friend.setUser(user);
-        friend.setFriend(friendUser);*/
+        friend.setFriend(friendUser);
     }
 
 

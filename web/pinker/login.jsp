@@ -39,13 +39,14 @@
 			#thirdBtn-div li{
 				list-style: none;
 				display: inline-block;
-
+				margin-right: 20px;
+				margin-top: 10px;
 			}
 
 			#thirdBtn-div{
 				position: absolute;
-				top:60%;
-				left:40%;
+				top:65%;
+				left:46%;
 			}
 
 			#lanThirdInfo-div{
@@ -53,6 +54,45 @@
 				height: 100%;
 				width: 100%;
 				background: rgba(50,50,50,0.3);
+			}
+
+			#lanThirdLogin-box{
+				height: 300px;
+				width: 500px;
+				background: rgb(230,230,230);
+				border-radius: 10px;
+				margin: 0 auto;
+				position: relative;
+				top:35%;
+			}
+
+
+			#lanLoginBtn{
+				background-color:cornflowerblue;
+				color: white;
+				border: 0;
+				outline: hidden;
+				height: 40px;
+				width: 300px;
+				margin-top: 20px;
+
+			}
+
+			#closeLanLoginBtn{
+				background-color:red;
+				color: white;
+				border: 0;
+				outline: hidden;
+				height: 40px;
+				width: 300px;
+				margin-top: 5px;
+			}
+
+			#lanForm{
+				width: 300px;
+				margin: 0 auto;
+				position: relative;
+				top:20px;
 			}
 
 		</style>
@@ -123,7 +163,7 @@
 		</div>
 
 		<div id="thirdBtn-div">
-			<span>第三方登录</span>
+			<span style="color: white;position: relative;left:30px;">第三方登录</span>
 			<ul>
 				<li>
 					<a id="ShowLanThirdLogin" href="javascript:void(0)"><img class="thirdLogo" src="pinker/img/thirdImg/lanLogo.png" height="50px" width="50px"></a>
@@ -138,9 +178,14 @@
 		<div id="lanThirdInfo-div" hidden>
 
 			<div id="lanThirdLogin-box" >
+				<div id="lanForm">
+				<img class="thirdLogo" src="pinker/img/thirdImg/lanLogo.png"  height="50px" width="50px">
+					<span style="font-size: 30px">蓝鲸灵乐园</span><span id="thirdLoginRsult" style="font-size: 10px;color: red"></span>
 				<input type="text" id="lanLoginName">
 				<input type="password" id="lanPassword">
 				<button id="lanLoginBtn">登录</button>
+					<button id="closeLanLoginBtn">取消</button>
+				</div>
 			</div>
 
 		</div>
