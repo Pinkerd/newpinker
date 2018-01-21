@@ -32,11 +32,14 @@ public class ThirdServlet extends BaseServlet {
      * 第三方登录服务
      */
     protected void thirdParty(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String callback = req.getParameter("callback");
+
         pk_user user= (pk_user) req.getSession().getAttribute("user");
         PrintWriter out= resp.getWriter();
         String userJ=null;
         if (user != null) {
             userJ =gson.toJson(user);
+            userJ=callback+"("+userJ+")";
         }
         out.write(userJ);
         out.flush();
