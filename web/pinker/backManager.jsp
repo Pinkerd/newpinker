@@ -113,7 +113,7 @@
         })
 
         $("li[id=tip]").click(function () {
-            $("#sframe").attr("src", "http://localhost:8080/pinker/pkTopicServlet?method=showAll")
+            $("#sframe").attr("src", "http://localhost:8080/pinker/pkTopicServlet?method=findBook&pn=1")
         })
         $("li[id=topic]").click(function () {
             $("#sframe").attr("src", "http://localhost:8080/pinker/pinker/topicCheck.jsp?pageNum=1")

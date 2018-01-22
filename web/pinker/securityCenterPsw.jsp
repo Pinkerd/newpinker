@@ -125,8 +125,8 @@
 </div>
 
 <div class="pswBox">
-    <form action="/pinker/UsersServlet?method=updatePassword" method="post">
-        <input type="hidden" name="id" value="${user.id}">
+    <form action="http://localhost:8080/pinker/UsersServlet?method=updatePassword" method="post">
+
         <table align="center"   >
             <input type="text" name="id" value="${user.id}" style="display: none" />
             <tr>
@@ -150,8 +150,8 @@
 </div>
 
 <div class="QABox">
-    <form action="/pinker/UsersServlet?method=updateQA" method="post">
-        <input type="hidden" name="id" value="${user.id}">
+    <form action="http://localhost:8080/pinker/UsersServlet?method=updateQA" method="post">
+        <input type="text" name="id" value="${user.id}" style="display: none" />
         <table>
             <tr>
                 <td>问题1</td>
