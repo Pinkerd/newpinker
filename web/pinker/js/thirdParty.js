@@ -45,7 +45,10 @@ function getCorThirdData(url) {
         crossDomain: true,//添加跨域名请求参数
         success:function(data){
             var dataJ=JSON.stringify(data);
-            corThirdLogin(dataJ,"corThird");
+     if( confirm("确定使用康纳酒店用户:"+data.username+"登录")){
+
+         corThirdLogin(dataJ,"corThird");
+     }
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {
             /*alert(XMLHttpRequest.status);
@@ -90,7 +93,7 @@ function lanLogin(lanjinglingUrl) {
 
 
     $.ajax({
-        url:"http://172.27.35.4:8080/OtherServlet?method=loginThird&callback=flightHandler",
+        url:"http://192.168.23.7:8080/OtherServlet?method=loginThird&callback=flightHandler",
         type: 'post',
         data: {username:username,password:password},
         async: false,
@@ -125,9 +128,9 @@ function lanLogin(lanjinglingUrl) {
  */
 $(function () {
     //蓝精灵服务url
-    var lanjinglingUrl="http://172.27.35.4:8080/OtherServlet?method=thirdService&callback=flightHandler";
+    var lanjinglingUrl="http://192.168.23.7:8080/OtherServlet?method=thirdService&callback=flightHandler";
     //阔南服务url
-    var cornerUrl=" *********** :8080/CustomerAll?methodName=thirdPartyLogin&callback=flightHandler";
+    var cornerUrl="http://192.168.23.3:8080/CustomerAll?methodName=thirdPartyLogin&callback=flightHandler";
 
     //后端蓝精灵第三方登录方法名
     var lanMethod="smurfsThird";
