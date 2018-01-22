@@ -146,12 +146,12 @@
 				</div>
 
 				<div class="ContentItem-actions">
-							<span>
+							<%--<span>
 								<button  class="left-Thumb">
 									<img src="pinker/img/点赞.png" width="25px" height="20px" id="zan"/>
 								</button>
 
-							</span>
+							</span>--%>
 					<button class="left-comment">
 						<img class="button3-img" src="pinker/img/评论.png" width="20px" height="20px" style="position: relative;bottom: 7px;"/>
 						<a style="display: inline-block;position: relative;bottom:2px;left: 6px;"><span class="commentCountBox"></span>条评论</a>
@@ -244,12 +244,12 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $("#zan").click(function () {
-            alert("666");
+
             /*  $("#zan").attr("src", "img/已赞.png");*/
-            if($("#zan").attr("src")=="/img/点赞.png"){
-                $("#zan").attr("src", "img/已赞.png");
+            if($("#zan").attr("src")=="pinker/img/点赞.png"){
+                $("#zan").attr("src", "pinker/img/已赞.png");
             }else{
-                $("#zan").attr("src", "img/点赞.png");
+                $("#zan").attr("src", "pinker/img/点赞.png");
             }
         })
     })

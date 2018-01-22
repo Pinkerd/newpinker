@@ -55,11 +55,16 @@ public class UsersServlet extends BaseServlet {
         String loginname = request.getParameter("loginname");
         String password = request.getParameter("password");
         pk_user user = usi.login(loginname, password);
+        System.out.println(user);
         request.getSession().setAttribute("user",user);
         request.setAttribute("loginname",loginname);
 
         if(user!=null && user.getStatus()==1){
+            //正常登陆
             request.getRequestDispatcher("index.jsp").forward(request,response);
+        }else if(user!=null && user.getStatus()==0){
+            request.setAttribute("LoginErrorMsg","您的账号已冻结，请联系管理员！");
+            request.getRequestDispatcher("pinker/login.jsp").forward(request,response);
         }else{
             request.setAttribute("LoginErrorMsg","登录名或密码错误，请重新输入！");
             request.getRequestDispatcher("pinker/login.jsp").forward(request,response);

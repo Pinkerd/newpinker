@@ -68,6 +68,14 @@ a{text-decoration: none}
     text-decoration: none;
     color: white;
 }
+#way1login{
+    color: white;
+    text-decoration: none;
+}
+#way2regist{
+    color: white;
+    text-decoration: none;
+}
 
 /*用户名头像*/
 .headerName{

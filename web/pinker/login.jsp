@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title></title>	
+		<title>知性网</title>
 		<%@include file="/WEB-INF/include/base_info.jsp"%>
 		<link rel="stylesheet" type="text/css" href="pinker/css/login.css" />
 		<script type="text/javascript" src="pinker/js/jquery-1.7.2.js"></script>

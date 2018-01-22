@@ -10,15 +10,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>知性网</title>
+
     <%@include file="/WEB-INF/include/base_info.jsp"%>
     <link rel="stylesheet" type="text/css" href="pinker/css/homepage.css"/>
     <link href="pinker/css/reset.css" rel="stylesheet" type="text/css">
     <link href="pinker/css/font-awesome.css" rel="stylesheet" type="text/css">
     <link href="pinker/css/showlist.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="pinker/js/modernizr.custom.js"></script>
-
-
+    <title>知性网</title>
 </head>
 <body>
 

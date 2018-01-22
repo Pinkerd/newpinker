@@ -27,6 +27,7 @@
             margin: auto;
             text-align: center;
         }
+
     </style>
 </head>
 <body>
@@ -97,6 +98,7 @@
 <%--分页--%>
 <br>
 
+
 <div id="page_nav">
     <a href="http://localhost:8080/pinker/UsersServlet?method=findUser&pageNumber=1" class="firstpage">首页</a>
     <a href="http://localhost:8080/pinker/UsersServlet?method=findUser&pageNumber=${page.pageNumber-1}" class="firstpage">上一页</a>
@@ -119,10 +121,14 @@
     <input value="${page.pageNumber}" name="pn" id="pn_input" style="width: 30px;height: 20px"/>页
     <input type="button" value="确定" id="jump" name="jump">
 </div>
+<br>
 
 <script type="text/javascript"  src="pinker/js/jquery-1.7.2.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
+
+
+
 
         if (${page.pageNumber==1}){
             $(".firstpage").css("display", "none");
@@ -142,6 +148,8 @@
             }
             location.href="http://localhost:8080/pinker/UsersServlet?method=findUser&pageNumber="+i;
         })
+
+
 
     });
 </script>

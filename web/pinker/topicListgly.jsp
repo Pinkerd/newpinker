@@ -122,12 +122,12 @@
                 <td>${abc.id}</td>
                 <td>${abc.title}</td>
                 <td class="contentTd">${abc.content}</td>
-                <td><img src=${abc.titleimg} class="glyImg"></td>
+                <td><img src="/pinker/IOServlet?method=loadTopicImg&topicId=${abc.id}" class="glyImg"></td>
                 <td>${abc.userId}</td>
                 <td>${abc.publishtime}</td>
                 <td colspan= 3 class="czxx">
                   <a href="pkTopicServlet?method=selectOne&numb=${abc.id}" class="tlhtxq">查看话题详情</a>
-                  <a href="pkTopicServlet?method=changePkTopic&numb=${abc.id}" class="tlhtxg">修改话题</a>
+
                   <a href="#" class="tlscht" onclick="window.confirm('确定要删除吗')?this.href='pkTopicServlet?method=deletePkTopic&numb=${abc.id}':this.href='javascrpt:void()';">删除话题</a>
                 </td>
             </tr></c:forEach>

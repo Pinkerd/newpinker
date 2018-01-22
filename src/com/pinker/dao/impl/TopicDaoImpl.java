@@ -60,7 +60,7 @@ public class TopicDaoImpl extends BaseDao<pk_topic > implements TopicDao {
         //偏移索引值
         int index=page.getIndex();
 
-        String listSql="select * from pk_topic where status=1 limit ?,?";
+        String listSql="select * from pk_topic where status=1 order by publishtime desc limit ?,?";
         List<pk_topic> list=this.getListBean(listSql,index,pageSize);
 
         page.setData(list);

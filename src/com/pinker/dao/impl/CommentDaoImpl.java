@@ -35,7 +35,7 @@ public class CommentDaoImpl extends BaseDao<Comment> implements CommentDao {
      */
     @Override
     public List<Comment> getselect(int blogId) {
-        String sql="select blogId,userId,content,publishtime from pk_comment where blogId=?";
+        String sql="select blogId,userId,content,publishtime from pk_comment where blogId=? order by publishtime desc";
         return this.getListBean(sql,blogId);
     }
     /**

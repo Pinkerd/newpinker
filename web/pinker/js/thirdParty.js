@@ -64,14 +64,20 @@ function getCorThirdData(url) {
 
 //蓝精灵，将用户提交到后端进行第三方登录
 function lanThirdLogin(myUser,myMethod) {
+    if(myUser!='null') {
+        var user=JSON.parse(myUser);
+        if (confirm("确定使用蓝鲸灵用户【" + user.username + "】登陆吗")) {
 
-        $.post("/pinker/ThirdServlet?method="+myMethod,{myUser:myUser},function (result) {
-        if(result=="true"){
-            window.location.href="/pinker/index.jsp";
-        }else {
-            $("#lanThirdInfo-div").show();
+            $.post("/pinker/ThirdServlet?method=" + myMethod, {myUser: myUser}, function (result) {
+                if (result == "true") {
+                    window.location.href = "/pinker/index.jsp";
+                }
+            })
+
         }
-    })
+    }else {
+        $("#lanThirdInfo-div").show();
+    }
 }
 
 //阔南，后端第三方登录
@@ -93,7 +99,7 @@ function lanLogin(lanjinglingUrl) {
 
 
     $.ajax({
-        url:"http://192.168.23.7:8080/OtherServlet?method=loginThird&callback=flightHandler",
+        url:"http://192.168.137.163:8080/OtherServlet?method=loginThird&callback=flightHandler",
         type: 'post',
         data: {username:username,password:password},
         async: false,
@@ -128,7 +134,7 @@ function lanLogin(lanjinglingUrl) {
  */
 $(function () {
     //蓝精灵服务url
-    var lanjinglingUrl="http://192.168.23.7:8080/OtherServlet?method=thirdService&callback=flightHandler";
+    var lanjinglingUrl="http://192.168.137.163:8080/OtherServlet?method=thirdService&callback=flightHandler";
     //阔南服务url
     var cornerUrl="http://192.168.23.3:8080/CustomerAll?methodName=thirdPartyLogin&callback=flightHandler";
 

@@ -20,6 +20,15 @@
         margin: auto;
         text-align: center;
     }
+    .historyback{
+        width: 50px;
+        text-align: center;
+        margin: 0px auto;
+    }
+    .historyback a{
+        color:black;
+        text-decoration: none;
+    }
 </style>
 <body>
 <h1 align="center">查询结果</h1>
@@ -77,6 +86,8 @@
 <%--分页--%>
 <br>
 
+
+
 <div id="page_nav">
     <a href="http://localhost:8080/pinker/UsersServlet?method=findUser&pageNumber=1" class="firstpage">首页</a>
     <a href="http://localhost:8080/pinker/UsersServlet?method=findUser&pageNumber=${page.pageNumber-1}" class="firstpage">上一页</a>
@@ -98,11 +109,15 @@
     共${page.totalPage}页，${page.totalRecord}条记录 到第
     <input value="${page.pageNumber}" name="pn" id="pn_input" style="width: 30px;height: 20px"/>页
     <input type="button" value="确定" id="jump" name="jump">
-</div>
-
+</div><br>
+<div class="historyback"><a>返回</a></div>
 <script type="text/javascript"  src="pinker/js/jquery-1.7.2.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
+
+        $(".historyback").click(function () {
+            window.history.back();
+        })
 
         if (${page.pageNumber==1}){
             $(".firstpage").css("display", "none");
