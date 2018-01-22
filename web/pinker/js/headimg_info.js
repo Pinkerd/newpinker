@@ -74,6 +74,7 @@ function syncUpload(){
             if(data.state == 'ok'){
                 document.getElementById("upload").value = "";//重置文件域
                 layer.msg(data.msg);
+                window.location.reload();
                 CloseImg();
             }else if(data.state == 'error'){
                 layer.msg(data.msg);

@@ -79,7 +79,7 @@
 			}
 
 			#closeLanLoginBtn{
-				background-color:red;
+				background-color:hotpink;
 				color: white;
 				border: 0;
 				outline: hidden;
@@ -170,7 +170,7 @@
 				</li>
 
 				<li>
-					<a id="showCorThirdLogin" href="javascript:void(0)"><img class="thirdLogo" src="pinker/img/thirdImg/lanLogo.png"  height="50px" width="50px"></a>
+					<a id="showCorThirdLogin" href="javascript:void(0)"><img class="thirdLogo" src="pinker/img/thirdImg/corner.png"  height="60px" width="60px"></a>
 				</li>
 			</ul>
 		</div>
